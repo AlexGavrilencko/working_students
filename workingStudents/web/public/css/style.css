@@ -1,0 +1,323 @@
+
+
+.popover {
+ max-width: none;
+}
+
+.glyphicon {
+ margin-right:.25em;
+}
+
+.table-bordered>thead>tr>td {
+ border-bottom-width: 1px;
+}
+
+.table tbody>tr>td, .table thead>tr>td {
+ padding-top: 3px;
+ padding-bottom: 3px;
+}
+
+.table-condensed tbody>tr>td {
+ padding-top: 0;
+ padding-bottom: 0;
+}
+
+.table .progress {
+ margin-bottom: inherit;
+}
+
+.table-borderless th, .table-borderless td {
+ border: 0 !important;
+}
+
+.table tbody tr.covered-by-large-tests, li.covered-by-large-tests, tr.success, td.success, li.success, span.success {
+ background-color: #dff0d8;
+}
+
+.table tbody tr.covered-by-medium-tests, li.covered-by-medium-tests {
+ background-color: #c3e3b5;
+}
+
+.table tbody tr.covered-by-small-tests, li.covered-by-small-tests {
+ background-color: #99cb84;
+}
+
+.table tbody tr.danger, .table tbody td.danger, li.danger, span.danger {
+ background-color: #f2dede;
+}
+
+.table tbody td.warning, li.warning, span.warning {
+ background-color: #fcf8e3;
+}
+
+.table tbody td.info {
+ background-color: #d9edf7;
+}
+
+td.big {
+ width: 117px;
+}
+
+
+td.codeLine {
+ font-family: monospace;
+ white-space: pre;
+}
+
+td span.comment {
+ color: #888a85;
+}
+
+td span.default {
+ color: #2e3436;
+}
+
+td span.html {
+ color: #888a85;
+}
+
+td span.keyword {
+ color: #2e3436;
+ font-weight: bold;
+}
+
+pre span.string {
+ color: #2e3436;
+}
+
+span.success, span.warning, span.danger {
+ margin-right: 2px;
+ padding-left: 10px;
+ padding-right: 10px;
+ text-align: center;
+}
+
+#classCoverageDistribution, #classComplexity {
+ height: 200px;
+ width: 475px;
+}
+
+#toplink {
+ position: fixed;
+ left: 5px;
+ bottom: 5px;
+ outline: 0;
+}
+
+svg text {
+ font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+ font-size: 11px;
+ color: #666;
+ fill: #666;
+}
+
+.scrollbox {
+ height:245px;
+ overflow-x:hidden;
+ overflow-y:scroll;
+}
+
+/*Размер логотипа*/
+.navbar-brad img{
+  width: 175px;
+ }
+
+ /*стиль для отступов элементов поиска в шапке*/
+ .margin-top{
+  margin-top: 13%;
+ }
+ 
+ /**/
+.overlay{
+ min-height: 100%;
+ min-width: 96%;
+}
+
+/* стиль для фоновой картинки главной страницы */
+.header{ 
+ background-image: url(/public/img/l.jpg);
+ background-attachment: fixed;
+ background-size: cover;
+ background-position: center;
+}
+
+
+/* стиль для фоновой картинки страниц регистрации и авторизации */
+.header1{ 
+  background-image: url(/public/img/header1.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+ }
+
+
+ /* стиль для фоновой картинки главной страницы работодателя */
+ .header2{  
+  background-image: url(/public/img/r.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+ }
+
+ /* стиль для кнопки зеленого цвета */
+.btngreen{ 
+    color: #9dbb19;
+    border-color: #9dbb19;
+}
+
+
+/* стиль для темного фона на стр регистрации и авторизации*/
+.darkwindow{ 
+  background-color: #0b0a0b;
+}
+
+/* стиль для цвета footer*/
+.dark{
+  background-color: #161616e3;
+}
+
+/* стиль для цвета меню*/
+.light{
+  background-color: #ffffff;
+}
+
+/* стиль для кнопки темно-фиолетового цвета */
+.btnred{
+  color: #54383c;
+  border-color: #54383c;
+}
+
+
+/* стиль для кнопки оранжевого цвета */
+.btnorange{
+  color: #d46619;
+  border-color: #d46619;
+}
+
+
+/* стиль для скругления элементов */
+.btn-rounded{
+  border-radius: 10px;
+}
+
+/* стиль для отмены скругления элементов */
+.btn-none{
+  border-radius: 0px;
+}
+
+
+.site-login{
+ position: absolute;
+}
+
+.h-100{
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.avtoriz{
+ width: 23%;
+ height: 38%;
+ margin-top: 6%;
+ margin-left: 76%;
+ opacity: 0.7;
+}
+.poleavtor{
+ width: 90%;
+ padding: 5%;
+}
+#logofooter{
+  width: 17%;
+}
+.hidden{
+ display: none;
+}
+.registr{
+ width: 65%;
+ height: 50%;
+ opacity: 0.9;
+ padding: 2%;
+}
+#search{
+ width: 60%;
+}
+.Avatar{
+ width: 30%;
+ height: 30%;
+margin-top: 5%;
+}
+.fon{
+ width: 70%;
+ height: 25%;
+ opacity: 0.7;
+}
+
+.inf{
+ padding: 3%;
+}
+
+.LDS{
+ opacity: 0.7;
+ padding: 2%;
+}
+.blockfavorites{
+ width: 20%;
+ opacity: 0.7;
+ padding: 1%;
+}
+.avatar{
+ width: 50%;
+ height: 50%;
+ margin-left: 25%;
+}
+.poisk{
+ width: 80%;
+opacity: 0.7;
+}
+.inf{
+ opacity: 0.7;
+ padding:2% ;
+}
+.poiskavatar{
+  width: 30%;
+  margin-left: 35%;
+  margin-top: 5%;
+ }
+.infavatar{
+ width: 90%;
+ margin-left: 5%;
+}
+.max-height-200{
+  max-height: 200px
+}
+
+
+.inputavtoriz{
+ width: 90%;
+}
+
+.pss{
+ opacity: 0.8;
+}
+.pagination{
+ display: inline-block;
+ padding-left: 0;
+ margin: 2% 0;
+ border-radius: 2%;
+}
+.pagination > li {
+ display: inline;
+}
+.pagination > li > a,
+.pagination > li > span {
+ position: relative;
+ float: left;
+ padding: 6px 12px;
+ margin-left: -1px;
+ line-height: 1.42857143;
+ color: #000000;
+ text-decoration: none;
+ background-color: #FFD700;
+ border: 1px solid #ddd;
+}
+

@@ -30,7 +30,7 @@ PublicAsset::register($this);
     <header class="header1">
     <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->
                
-               <a href="#" class="navbar-brad"><img src="/public/img/logo.jpg" alt="Logo"></a>  <!-- логотип в меню сайта -->
+               <a href="/site/index" class="navbar-brad"><img src="/public/img/logo.jpg" alt="Logo"></a>  <!-- логотип в меню сайта -->
                           
                   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
                       <span class="navbar-toggler-icon"></span>
@@ -59,7 +59,7 @@ PublicAsset::register($this);
                       </div>
           </nav>
 
-          <div class="container-fluid">
+    <div >
         <?= $content ?>
     </div>
 
@@ -67,11 +67,19 @@ PublicAsset::register($this);
 
    
     
-    <footer>
-        <div class="container-fluid d-flex align-items-center justify-content-center grey">
-            <img id="logofooter" src="/public/img/logo2.png" alt="Logo">
-            <!-- <p>@все права защищены</p> -->
-        </div>
+    <footer class="dark">
+             <div class="container">
+                 <div class="row justify-content-center">
+                    <a href="/site/index" id="logofooter" class="navbar-brad"><img src="/public/img/logofooter.png" alt="Logo"></a>
+                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center text-light">
+                            &copy; 2019 WorkingStudents, Build with by V&A
+                        </div>
+                    </div>
+                </div>
+             </div>
     </footer>
 
 

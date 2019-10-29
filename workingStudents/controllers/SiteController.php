@@ -15,6 +15,12 @@ use app\models\Vacancy;
 
 class SiteController extends Controller
 {
+
+   
+
+    public $layout = 'site';
+
+
     /**
      * {@inheritdoc}
      */
@@ -64,7 +70,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'home';
         return $this->render('index');
+    }
+
+    public function actionIndexwork()
+    {
+        $this->layout = 'homework';
+        return $this->render('indexwork');
     }
 
     /**
@@ -128,4 +141,5 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
 }

@@ -31,7 +31,7 @@ PublicAsset::register($this);
 
         <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->
                
-             <a href="#" class="navbar-brad"><img src="/public/img/logo.jpg" alt="Logo"></a>  <!-- логотип в меню сайта -->
+             <a href="/site/index" class="navbar-brad"><img src="/public/img/logo.jpg" alt="Logo"></a>  <!-- логотип в меню сайта -->
                         
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
                     <span class="navbar-toggler-icon"></span>
@@ -60,58 +60,59 @@ PublicAsset::register($this);
                     </div>
         </nav>
          
-        <div class="overlay">
-            <div class="container-fluid d-flex h-100 d-flex flex-row bd-highlight flex-column">
-                         
-                 <div class="row">
-                     <div class="col-12 col-md-8">
+        <div class="container-fluid d-flex h-100 flex-row bd-highlight flex-column">        
+            <div class="row">
+                <div class="col">
+                </div>
 
-                        </div>
-                            <div class="col-6 col-md-4">
-                                <a href="/site/registration" class="btn-rounded btngreen btn btn-lg m-4">Разместить резюме</a>
-                            </div>
-                        </div>
-        
+                <div class="col">
+                </div>
 
-                        <div class="container-fluid d-flex text-light  h-100 d-flex flex-row bd-highlight flex-column">
-                            
-                            <p class="h2">Работа для каждого</p>
-                                <div class="row no-gutters">
+                <div class="col">
+                </div>
+                
+                 <div class="col">
+                </div>
 
-                                    <div class="col-8 col-md-6">
-                                        <input class="form-control btn-none" id="search" type="text" placeholder="Поиск..." aria-label="Search" style="width: 100%" >      
-                                    </div>    
+                <div class="col">
+                    <a href="/site/registration" class="btn-rounded btngreen btn btn-lg m-4">Разместить резюме</a>
+                </div>
+            </div>
+             
+                <p class="h2 text-light margin-top">Работа для каждого</p>
 
-                                    <div class="col-4 col-md-2"> 
-                                        <button type="submit" class="btn-none btn btngreen">Найти</button>
-                                    </div>
+            <div class="row no-gutters">
+                <div class="col-8 col-md-6">
+                    <input class="form-control btn-none" id="search" type="text" placeholder="Поиск..." aria-label="Search" style="width: 100%" >      
+                </div>    
 
-                                    <div class="col-4 col-md-2"> 
-                                    </div> 
+                <div class="col-4 col-md-2"> 
+                    <button type="submit" class="btn-none btn btngreen">Найти</button>
+                </div>
 
-                                    
-                                </div>  
-                                <div class="col-4 col-md-2 mt-2"> 
-                                        <button type="submit" class="btn-none btn btngreen">Расширенный поиск</button>
-                                    </div>
-                        </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-</div>
+                <div class="col-4 col-md-2"> 
+                </div> 
+            </div>            
+        </div>
 
-  
-        <div class="container">
+        <div>
             <?= $content ?>
         </div>
   
 
-    <footer>
-        <div class="container-fluid d-flex align-items-center justify-content-center grey">
-            <img id="logofooter" src="/public/img/logo2.png" alt="Logo">
-            <!-- <p>@все права защищены</p> -->
-        </div>
+        <footer class="dark">
+             <div class="container">
+                 <div class="row justify-content-center">
+                    <a href="/site/index" id="logofooter" class="navbar-brad"><img src="/public/img/logofooter.png" alt="Logo"></a>
+                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center text-light">
+                            &copy; 2019 WorkingStudents, Build with by V&A
+                        </div>
+                    </div>
+                </div>
+             </div>
     </footer>
 
     <?php $this->endBody() ?>
