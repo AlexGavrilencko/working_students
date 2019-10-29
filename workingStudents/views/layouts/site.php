@@ -27,8 +27,7 @@ PublicAsset::register($this);
     <body class="fonbody">
     <?php $this->beginBody() ?>
 
-    <header>
-            
+    <header>          
          <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->
 
             <a href="#" class="navbar-brad"><img src="/public/img/logo.jpg" alt="Logo"></a>  <!-- логотип в меню сайта -->
@@ -62,7 +61,7 @@ PublicAsset::register($this);
 
                         <?php } else {?>
                             <?php $user = Yii::$app->user->identity;
-                            if($user->rang===10){ ?>
+                            if($user->rang===10){ ?> <!-- Для студента -->
 
                                 <li class="nav-item dropdown">
                                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -76,7 +75,7 @@ PublicAsset::register($this);
                                         </div>
                                 </li>
                             <?php }
-                            if($user->rang===20){ ?>
+                            if($user->rang===20){ ?> <!-- Для работодателя -->
 
                                 <li class="nav-item dropdown">
                                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -105,15 +104,24 @@ PublicAsset::register($this);
     </header>
 
 
-        <div class="container">
+        <div>
             <?= $content ?>
         </div>
 
-     <!--<footer class="sticky-button">
-         <div class="position-fixed container-fluid bg-dark d-flex align-items-center justify-content-center">
-             <img id="logofooter" src="/public/img/logo2.png" alt="Logo">
-        </div>
-    </footer>-->
+        <footer class="dark">
+             <div class="container">
+                 <div class="row justify-content-center">
+                    <a href="/site/index" id="logofooter" class="navbar-brad"><img src="/public/img/logofooter.png" alt="Logo"></a>
+                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center text-light">
+                            &copy; 2019 WorkingStudents, Build with by V&A
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </footer>
 
     <?php $this->endBody() ?>
     </body>
