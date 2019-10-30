@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php $form = ActiveForm::begin(); ?>
             <h3 class="text-center">Регистрация</h3>
                 <?php
-                $form->field($model, 'rang')->$rang;
+               // $form->field($model, 'rang')->$rang;
                 ?>
                 <?= $form->field($model, 'login')->textInput(['class'=>'form-control']) ?>
 

@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'ogrn')->textInput(['class'=>'form-control']) ?>
 
                     <div class="row justify-content-center">
-                        <?= Html::submitButton('Registration', ['class' => 'btn btn-outline-light btn-lg m-3', 'name' => 'login-button']) ?>
+                        <?= Html::submitButton('Signup', ['class' => 'btn btn-outline-light btn-lg m-3', 'name' => 'login-button']) ?>
                     </div>
 
 

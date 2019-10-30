@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-
+use \yii\db\ActiveRecord;
 /**
  * This is the model class for table "organization".
  *
@@ -15,7 +15,7 @@ use Yii;
  * @property string $ogrn
  * @property string $image
  */
-class Organization extends \yii\db\ActiveRecord
+class Organization extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -52,15 +52,7 @@ class Organization extends \yii\db\ActiveRecord
         ];
     }
 
-    public function signupwork()
-    {
-        if($this->validate())
-        {
-            $org = new Organization();
-            $org->attributes = $this->attributes;
-            return $org->create();
-        }
-    }
+    
 
     public function create()
     {

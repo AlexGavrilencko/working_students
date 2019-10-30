@@ -1,17 +1,18 @@
 <?php
 namespace app\controllers;
 
-use app\models\POStydent;
-use app\models\POWork;
+
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\SignupForm;
-use app\models\Organizaton;
 use app\models\LoginForm;
 use app\models\User;
+use app\models\Organizaton;
+use app\models\POStydent;
+use app\models\POWork;
 
 
 class AuthController extends Controller
@@ -49,24 +50,25 @@ class AuthController extends Controller
         
         $this->layout = 'avtoriz';
         $model = new SignupForm();
+        $model->rang=$rang;
+        
         if(Yii::$app->request->isPost)
         {
             $model->load(Yii::$app->request->post());
             if($model->signup())
             {
                 //var_dump($model->rang);
-                if($model->rang=10) {
+                if($model->rang=='10') {
                     return $this->redirect(['privateoffice/p-o-student']); //студент переходит на модель своего ЛК
                 }
-                if($model->rang=20) {
+                if($model->rang=='20') {
                     return $this->redirect(['auth/signupwork']); //компания переходит на регистрацию организацию
                 }
             }
         }
-
+       // var_dump($model);
         return $this->render('signup', [
             'model'=>$model,
-           // 'rang'=>$rang,
         ]);
     }
     
@@ -102,9 +104,9 @@ class AuthController extends Controller
         if(Yii::$app->request->isPost)
         {
             $model->load(Yii::$app->request->post());
-            if($model->signup())
+            if($model->create())
             {
-                return $this->redirect(['privateoffice/p-o-student']); //компания переходит на регистрацию организацию
+                return $this->redirect(['privateoffice/p-o-work']); //компания переходит на регистрацию организацию
             }
         }
 
