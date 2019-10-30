@@ -31,7 +31,7 @@ PublicAsset::register($this);
 
         <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->
                
-             <a href="/site/index" class="navbar-brad"><img src="/public/img/logo.jpg" alt="Logo"></a>  <!-- логотип в меню сайта -->
+             <a href="/site/index" class="navbar-brad"><img src="/public/img/logo1.png" alt="Logo"></a>  <!-- логотип в меню сайта -->
                         
                 <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
                     <span class="navbar-toggler-icon"></span>
@@ -101,7 +101,7 @@ PublicAsset::register($this);
         <footer class="dark">
              <div class="container">
                  <div class="row justify-content-center">
-                    <a href="/site/index" id="logofooter" class="navbar-brad"><img src="/public/img/logofooter.png" alt="Logo"></a>
+                    <a href="/site/index" id="logofooter" class="navbar-brad"><img src="/public/img/logofooter1.png" alt="Logo"></a>
                  </div>
                 <div class="row">
                     <div class="col-md-12">

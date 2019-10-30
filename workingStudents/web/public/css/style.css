@@ -286,9 +286,17 @@ svg text {
 #logofooter{
   width: 17%;
 }
+/* стиль для аватарки в поиске и избранном/просмотренном */
+.searchavatar{
+  width: 90%;
+  margin-left: 10%;
+  margin-top: 22%;
+ }
 
-
-
+/* стиль для фона вакансий и резюме в маленьком окне*/
+ .background_search{
+    background-color: #e8e8e8;
+ }
 
 /*__________________________________________________________________________________________*/
 
@@ -354,11 +362,7 @@ opacity: 0.7;
  opacity: 0.7;
  padding:2% ;
 }
-.poiskavatar{
-  width: 30%;
-  margin-left: 35%;
-  margin-top: 5%;
- }
+
 .infavatar{
  width: 90%;
  margin-left: 5%;

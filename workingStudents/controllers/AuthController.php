@@ -33,7 +33,7 @@ class AuthController extends Controller
             $user = User::find()->where(['login' => $model->login, 'password' => $model->password])->one();
 
             if($user) {
-                Yii::$app->user->login($user); // <-- вот так логиним пользователя
+                Yii::$app->user->login($user); // <-- вот так логиним пользователя  
             }
         }
 
@@ -59,7 +59,7 @@ class AuthController extends Controller
             {
                 //var_dump($model->rang);
                 if($model->rang=='10') {
-                    return $this->redirect(['privateoffice/p-o-student']); //студент переходит на модель своего ЛК
+                    return $this->redirect(['site/personal_account']); //студент переходит на модель своего ЛК
                 }
                 if($model->rang=='20') {
                     return $this->redirect(['auth/signupwork']); //компания переходит на регистрацию организацию
