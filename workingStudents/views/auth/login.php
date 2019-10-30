@@ -6,6 +6,7 @@
 use app\models\LoginForm;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Url;
 
 $this->title = 'Авторизация';
 $this->params['breadcrumbs'][] = $this->title;
@@ -27,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h3 class="text-center">Авторизация</h3>
 
 
-            <?= $form->field($model, 'login')->textInput(['autofocus' => true]) ?>
+                <?= $form->field($model, 'login')->textInput(['autofocus' => true]) ?>
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
 
@@ -48,11 +49,11 @@ $this->params['breadcrumbs'][] = $this->title;
                          <div class="row justify-content-md-center">
 
                                 <div class="col-sm-8 col-md-8 col-lg-6 col-xl-6">
-                                    <a href="/auth/signup" class="btn-rounded btngreen btn btn-lg btn-block m-4">Соискателя</a>
+                                    <a href="<?= Url::toRoute(['/auth/signup', 'rang'=>'10']); ?>" class="btn-rounded btngreen btn btn-lg btn-block m-4">Соискателя</a>
                                 </div>
 
                                 <div class="col-sm-8 col-md-8 col-lg-6 col-xl-6">
-                                    <a href="/auth/signupwork" class="btn-rounded btngreen btn btn-lg btn-block  m-4">Работодателя</a>
+                                    <a href="<?= Url::toRoute(['/auth/signup', 'rang'=>'20']); ?>" class="btn-rounded btngreen btn btn-lg btn-block  m-4">Работодателя</a>
                                 </div>
 
                         </div>

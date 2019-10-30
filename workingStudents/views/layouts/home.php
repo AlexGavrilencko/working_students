@@ -111,7 +111,7 @@ PublicAsset::register($this);
                     </div>
                 </div>
              </div>
-    </footer>
+        </footer>
 
     <?php $this->endBody() ?>
     </body>

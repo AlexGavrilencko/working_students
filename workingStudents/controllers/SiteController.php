@@ -80,6 +80,16 @@ class SiteController extends Controller
         return $this->render('indexwork');
     }
 
+
+    public function actionSearch()
+    {
+        $this->layout = 'site';
+        return $this->render('search', [
+            'vacancys' => $vacancy,
+            'pages' => $pages,
+       ]);
+    }
+
     /**
      * Login action.
      *

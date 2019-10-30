@@ -51,4 +51,21 @@ class Organization extends \yii\db\ActiveRecord
             'image' => 'Image',
         ];
     }
+
+    public function signupwork()
+    {
+        if($this->validate())
+        {
+            $org = new Organization();
+            $org->attributes = $this->attributes;
+            return $org->create();
+        }
+    }
+
+    public function create()
+    {
+        return $this->save(false);
+    }
+
+    
 }
