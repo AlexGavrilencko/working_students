@@ -15,14 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php $form = ActiveForm::begin(); ?>
             <h3 class="text-center">Регистрация</h3>
-
-            <div class="row justify-content-center">
-                <?=$form->field($model, 'rang')
-                ->radioList([
-                '10' => 'Студент',
-                '20' => 'Компания'
-                ])?>
-            </div>
+                <?php
+                $form->field($model, 'rang')->$rang;
+                ?>
                 <?= $form->field($model, 'login')->textInput(['class'=>'form-control']) ?>
 
                 <?= $form->field($model, 'e_mail')->textInput(['class'=>'form-control']) ?>
@@ -33,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                     <div class="row justify-content-center">
-                        <?= Html::submitButton('Registration', ['class' => 'btn btn-rounded btngreen btn-lg m-3', 'name' => 'login-button']) ?>
+                        <?= Html::submitButton('Signup', ['class' => 'btn btn-rounded btngreen btn-lg m-3', 'name' => 'login-button']) ?>
                     </div>
 
 

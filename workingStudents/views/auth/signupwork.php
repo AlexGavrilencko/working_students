@@ -13,31 +13,24 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="text-light d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
         <div class="registr bg-dark">
 
-                <?php $form = ActiveForm::begin(); ?>
-            <h4 class="text-center">Регистрация</h4>
+                
+            <?php $form = ActiveForm::begin(); ?>
+                <?= $form->field($model, 'name')->textInput(['class'=>'form-control']) ?>
 
-            <div class="row justify-content-center">
-                <?=$form->field($model, 'rang')
-                ->radioList([
-                '10' => 'Студент',
-                '20' => 'Компания'
-                ])?>
-            </div>
-                <?= $form->field($model, 'login')->textInput(['class'=>'form-control']) ?>
+                <?= $form->field($model, 'city_id')->textInput(['class'=>'form-control']) ?>
 
-                <?= $form->field($model, 'e_mail')->textInput(['class'=>'form-control']) ?>
+                <?= $form->field($model, 'adress')->textInput(['class'=>'form-control']) ?>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+                <?= $form->field($model, 'inn')->textInput(['class'=>'form-control']) ?>
 
-                <?= $form->field($model, 'password_repeat')->passwordInput() ?>
-
+                <?= $form->field($model, 'ogrn')->textInput(['class'=>'form-control']) ?>
 
                     <div class="row justify-content-center">
                         <?= Html::submitButton('Registration', ['class' => 'btn btn-outline-light btn-lg m-3', 'name' => 'login-button']) ?>
                     </div>
 
 
-                <?php ActiveForm::end(); ?>
+            <?php ActiveForm::end(); ?>
         </div>
     </div>
 </div>

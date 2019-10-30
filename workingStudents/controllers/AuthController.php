@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\SignupForm;
+use app\models\Organizaton;
 use app\models\LoginForm;
 use app\models\User;
 
@@ -32,23 +33,6 @@ class AuthController extends Controller
 
             if($user) {
                 Yii::$app->user->login($user); // <-- вот так логиним пользователя
-                // Yii::$app->user->login($user); // <-- вот так логиним пользователя 
-                // $identity = Yii::$app->user->identity;
-                // var_dump($user);
-                // $id = Yii::$app->user->identity;
-                // // echo '<br>' . $id;
-                // var_dump($id);
-
-                // exit();
-                // return $this->redirect(['site/']);
-               // $user = Yii::$app->user->identity;
-                //var_dump($user->rang);
-                //if($user->rang=10) {
-                //    return $this->redirect(['privateoffice/p-o-student']); //студент переходит на модель своего ЛК
-               // }
-               // if($user->rang=20) {
-              //      return $this->redirect(['privateoffice/p-o-work']); //компания переходит на модель своего ЛК
-              //  }
             }
         }
 
@@ -60,11 +44,11 @@ class AuthController extends Controller
     /**
      * @return string|Response
      */
-    public function actionSignup()
+    public function actionSignup($rang)
     {
+        
         $this->layout = 'avtoriz';
         $model = new SignupForm();
-
         if(Yii::$app->request->isPost)
         {
             $model->load(Yii::$app->request->post());
@@ -75,13 +59,17 @@ class AuthController extends Controller
                     return $this->redirect(['privateoffice/p-o-student']); //студент переходит на модель своего ЛК
                 }
                 if($model->rang=20) {
-                    return $this->redirect(['privateoffice/p-o-work']); //компания переходит на модель своего ЛК
+                    return $this->redirect(['auth/signupwork']); //компания переходит на регистрацию организацию
                 }
             }
         }
 
-        return $this->render('signup', ['model'=>$model]);
+        return $this->render('signup', [
+            'model'=>$model,
+           // 'rang'=>$rang,
+        ]);
     }
+    
 
     public function actionLogout()
     {
@@ -89,6 +77,7 @@ class AuthController extends Controller
 
         return $this->goHome();
     }
+
     public function actionTest()
     {
         $user = User::findOne(1);
@@ -103,5 +92,22 @@ class AuthController extends Controller
         {
             echo 'Пользователь Авторизован';
         }
+    }
+
+    public function actionSignupwork()
+    {
+        $this->layout = 'avtoriz';
+        $model = new Organization();
+
+        if(Yii::$app->request->isPost)
+        {
+            $model->load(Yii::$app->request->post());
+            if($model->signup())
+            {
+                return $this->redirect(['privateoffice/p-o-student']); //компания переходит на регистрацию организацию
+            }
+        }
+
+        return $this->render('signupwork', ['model'=>$model]);
     }
 }
