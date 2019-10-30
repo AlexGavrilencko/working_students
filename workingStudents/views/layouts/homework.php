@@ -27,7 +27,7 @@ PublicAsset::register($this);
     <body>
     <?php $this->beginBody() ?>
 
-<div class="header2 h-100" style="height: 480px;">
+<div class="header" style="height: 480px;">
 
         <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->
                
@@ -42,18 +42,18 @@ PublicAsset::register($this);
                         <ul class="navbar-nav">  <!-- переходы в меню -->
                     
                             <li class="nav-item">
-                                <a class="nav-link text-dark h5" href="/site/index">Студентам</a>
+                                <a class="nav-link menugreen h6" href="/site/index">Студентам</a>
                             </li>
                     
                             <li class="nav-item">
-                                <a class="nav-link text-dark h5" href="/site/indexwork">Работодателям</a>
+                                <a class="nav-link menured h6 text-decoration" href="/site/indexwork">Работодателям</a>
                             </li> 
                         </ul>
 
                         <ul class="navbar-nav ml-auto">  <!-- переходы в меню -->
 
                             <li class="nav-item">
-                                <a class=" nav-link text-dark h5 popup" href="/auth/login" id="vxod">Вход</a>
+                                <a class=" nav-link menugreen_v h6 popup" href="/auth/login" id="vxod">Вход</a>
                              </li>
 
                         </ul>

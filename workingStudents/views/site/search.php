@@ -14,11 +14,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
 
         <div class="col-sm-4"> 
-            
+             <!-- расширенный поиск -->
         </div>
 
         <div class="col-sm-8"> 
-            
+            <!-- результаты поиска -->
         </div>
 
     </div> 

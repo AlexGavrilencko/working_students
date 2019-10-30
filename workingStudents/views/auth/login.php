@@ -23,11 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="site-registration">
     <div class="text-light d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
-        <div class="registr darkwindow">
+        <div class="pole darkwindow">
             <?php $form = ActiveForm::begin(); ?>
-            <h3 class="text-center">Авторизация</h3>
-
-
+                <h3 class="text-center">Авторизация</h3>
 
 
                 <?= $form->field($model, 'login')->textInput(['autofocus' => true]) ?>
