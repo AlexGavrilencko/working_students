@@ -41,20 +41,12 @@ PublicAsset::register($this);
                           <ul class="navbar-nav">  <!-- переходы в меню -->
                       
                               <li class="nav-item">
-                                  <a class="nav-link text-dark h5" href="/site/index">Студентам</a>
+                                  <a class="nav-link menugreen h6" href="/site/index">Студентам</a>
                               </li>
                       
                               <li class="nav-item">
-                                  <a class="nav-link text-dark h5" href="/site/indexwork">Работодателям</a>
+                                  <a class="nav-link menugreen h6" href="/site/indexwork">Работодателям</a>
                               </li> 
-                          </ul>
-  
-                          <ul class="navbar-nav ml-auto">  <!-- переходы в меню -->
-  
-                              <li class="nav-item">
-                                  <a class=" nav-link text-dark h5 popup" href="/site/index" id="vxod">Главная</a>
-                               </li>
-  
                           </ul>
                       </div>
           </nav>

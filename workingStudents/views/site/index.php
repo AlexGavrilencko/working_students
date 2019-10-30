@@ -11,17 +11,17 @@ $this->title = 'My Yii Application';
     <div class="row">
 <!-- кнопки должны работать по принципу тегов -->
         <div class="col"> 
-            <button type="submit" class="btn btngreen  m-2">Банки, инвестиции, лизинг</button>
-            <button type="submit" class="btn btngreen  m-2">Бухгалтерия, учет, финансы</button>
-            <button type="submit" class="btn btngreen  m-2">Менеджмент, руководители</button>
-            <button type="submit" class="btn btngreen  m-2">Государственные службы, НКО</button>
-            <button type="submit" class="btn btngreen  m-2">Дизайн, искусство, развлечения</button>
-            <button type="submit" class="btn btngreen  m-2">Инсталляция и сервис</button>
-            <button type="submit" class="btn btngreen  m-2">ИТ и Интернет</button>
-            <button type="submit" class="btn btngreen  m-2">Кадровые службы, HR, ОТ</button>
-            <button type="submit" class="btn btngreen  m-2">Логистика, склад, закупки</button>
-            <button type="submit" class="btn btngreen  m-2">Маркетинг, реклама, PR</button>
-            <button type="submit" class="btn btngreen  m-2">Медицина и фармация</button>
+            <button type="submit" class="btn btngreen_k  m-2">Банки, инвестиции, лизинг</button>
+            <button type="submit" class="btn btngreen_k  m-2">Бухгалтерия, учет, финансы</button>
+            <button type="submit" class="btn btngreen_k  m-2">Менеджмент, руководители</button>
+            <button type="submit" class="btn btngreen_k  m-2">Государственные службы, НКО</button>
+            <button type="submit" class="btn btngreen_k  m-2">Дизайн, искусство, развлечения</button>
+            <button type="submit" class="btn btngreen_k  m-2">Инсталляция и сервис</button>
+            <button type="submit" class="btn btngreen_k  m-2">ИТ и Интернет</button>
+            <button type="submit" class="btn btngreen_k  m-2">Кадровые службы, HR, ОТ</button>
+            <button type="submit" class="btn btngreen_k  m-2">Логистика, склад, закупки</button>
+            <button type="submit" class="btn btngreen_k  m-2">Маркетинг, реклама, PR</button>
+            <button type="submit" class="btn btngreen_k  m-2">Медицина и фармация</button>
         </div>
 
         <div class="col">
@@ -50,6 +50,7 @@ $this->title = 'My Yii Application';
             <button type="submit" class="btn btnorange  m-2">ТЭК, энергетика, добыча сырья</button>
             <button type="submit" class="btn btnorange  m-2">Юриспруденция</button>
             <button type="submit" class="btn btnorange  m-2">Прочее</button>
+            <button type="submit" class="btn btngreen_k  m-2">Прохождение практики</button>
         </div>
     </div> 
 </div>

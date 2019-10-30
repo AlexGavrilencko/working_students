@@ -33,27 +33,27 @@ PublicAsset::register($this);
                
              <a href="/site/index" class="navbar-brad"><img src="/public/img/logo.jpg" alt="Logo"></a>  <!-- логотип в меню сайта -->
                         
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
+                <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 
                     <div class="collapse navbar-collapse " id="collapsibleNavbar">
 
                         <ul class="navbar-nav">  <!-- переходы в меню -->
-                    
+
                             <li class="nav-item">
-                                <a class="nav-link text-dark h5" href="/site/index">Студентам</a>
+                                <a class="nav-link menured h6 text-decoration" href="/site/index">Студентам</a>
                             </li>
                     
                             <li class="nav-item">
-                                <a class="nav-link text-dark h5" href="/site/indexwork">Работодателям</a>
+                                <a class="nav-link h6 menugreen" href="/site/indexwork">Работодателям</a>
                             </li> 
                         </ul>
 
                         <ul class="navbar-nav ml-auto">  <!-- переходы в меню -->
 
                             <li class="nav-item">
-                                <a class=" nav-link text-dark h5 popup" href="/auth/login" id="vxod">Вход</a>
+                                <a class=" nav-link menugreen_v h6 popup" href="/auth/login" id="vxod">Вход</a>
                              </li>
 
                         </ul>
@@ -62,19 +62,17 @@ PublicAsset::register($this);
          
         <div class="container-fluid d-flex h-100 flex-row bd-highlight flex-column">        
             <div class="row">
-                <div class="col">
+                <div class="col col-sm-3">
                 </div>
 
-                <div class="col">
+                <div class="col col-sm-3">
                 </div>
 
-                <div class="col">
-                </div>
                 
-                 <div class="col">
+                 <div class="col col-sm-3">
                 </div>
 
-                <div class="col">
+                <div class="col-12 col-sm-3">
                     <a href="/site/registration" class="btn-rounded btngreen btn btn-lg m-4">Разместить резюме</a>
                 </div>
             </div>

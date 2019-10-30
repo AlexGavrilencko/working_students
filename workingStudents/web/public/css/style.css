@@ -116,10 +116,11 @@ svg text {
  overflow-x:hidden;
  overflow-y:scroll;
 }
+/*____________________________________________________________________________________________*/
 
 /*Размер логотипа*/
 .navbar-brad img{
-  width: 175px;
+  width: 9em;
  }
 
  /*стиль для отступов элементов поиска в шапке*/
@@ -127,7 +128,7 @@ svg text {
   margin-top: 13%;
  }
  
- /**/
+ /*для блока шапки*/
 .overlay{
  min-height: 100%;
  min-width: 96%;
@@ -141,7 +142,6 @@ svg text {
  background-position: center;
 }
 
-
 /* стиль для фоновой картинки страниц регистрации и авторизации */
 .header1{ 
   background-image: url(/public/img/header1.jpg);
@@ -149,7 +149,6 @@ svg text {
   background-size: cover;
   background-position: center;
  }
-
 
  /* стиль для фоновой картинки главной страницы работодателя */
  .header2{  
@@ -163,6 +162,24 @@ svg text {
 .btngreen{ 
     color: #9dbb19;
     border-color: #9dbb19;
+}
+
+/* стиль при наведении для кнопки категории зеленого цвета */
+.btngreen_k:hover{
+    color: #d4d4d0;
+    border-color: #d4d4d0;
+}
+
+/* стиль для кнопки категории зеленого цвета */
+.btngreen_k{
+  color: #9dbb19;
+  border-color: #9dbb19;
+}
+
+/* стиль при наведении для кнопки зеленого цвета */
+.btngreen:hover{ 
+  color: #a3071e;
+  border-color: #a3071e;
 }
 
 
@@ -187,6 +204,25 @@ svg text {
   border-color: #54383c;
 }
 
+/* стиль при наведении для кнопки темно-фиолетового цвета */
+.btnred:hover{
+  color: #d4d4d0;
+  border-color: #d4d4d0;
+}
+
+/* цвет и подчеркивание для активной ссылки */
+.menured{
+  color: #a3071e;
+  border-bottom: 2px solid;
+  border-bottom-color: #a3071e;
+}
+
+/* цвет и подчеркивание при наведении для активной ссылки */
+.menured:hover{
+  color: #9dbb19;
+  border-bottom: 2px solid;
+  border-bottom-color: #9dbb19;
+}
 
 /* стиль для кнопки оранжевого цвета */
 .btnorange{
@@ -194,6 +230,23 @@ svg text {
   border-color: #d46619;
 }
 
+/* стиль при наведении для кнопки оранжевого цвета */
+.btnorange:hover{
+  color: #d4d4d0;
+  border-color: #d4d4d0;
+}
+
+/* цвет для неактивной ссылки */
+.menugreen{
+  color: #000000;
+}
+
+/* цвет и подчеркивание при наведении для неактивной ссылки */
+.menugreen:hover{
+  color: #9dbb19;
+  border-bottom: 2px solid;
+  border-bottom-color: #9dbb19;
+}
 
 /* стиль для скругления элементов */
 .btn-rounded{
@@ -205,14 +258,44 @@ svg text {
   border-radius: 0px;
 }
 
+/* стиль для размера окна */
+.h-100{
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+/* стиль для фона поял регистрации и авторизации */
+.pole{
+  width: 65%;
+  height: 50%;
+  opacity: 0.9;
+  padding: 2%;
+ }
+
+ /* стиль для ссылки входа */
+.menugreen_v{
+  color: #000000;
+}
+
+/* стиль при наведении для ссылки входа */
+.menugreen_v:hover{
+  color: #9dbb19;
+}
+
+/* стиль для логотипа подвала */
+#logofooter{
+  width: 17%;
+}
+
+
+
+
+/*__________________________________________________________________________________________*/
+
+
 
 .site-login{
  position: absolute;
-}
-
-.h-100{
-    min-height: 100vh;
-    min-width: 100vw;
 }
 
 .avtoriz{
@@ -226,18 +309,11 @@ svg text {
  width: 90%;
  padding: 5%;
 }
-#logofooter{
-  width: 17%;
-}
+
 .hidden{
  display: none;
 }
-.registr{
- width: 65%;
- height: 50%;
- opacity: 0.9;
- padding: 2%;
-}
+
 #search{
  width: 60%;
 }
