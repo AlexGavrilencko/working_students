@@ -61,19 +61,13 @@ PublicAsset::register($this);
         </nav>
          
         <div class="container-fluid d-flex h-100 flex-row bd-highlight flex-column">        
-            <div class="row">
-                <div class="col col-sm-3">
+            <div class="row justify-content-between">
+            
+                <div class="col-4">
                 </div>
 
-                <div class="col col-sm-3">
-                </div>
-
-                
-                 <div class="col col-sm-4">
-                </div>
-
-                <div class="col-12 col-sm-2">
-                    <a href="/site/registration" class="btn-rounded btngreen btn btn-lg m-4">Разместить резюме</a>
+                <div class="col-4">
+                    <a href="/site/registration" class="btn-rounded  btngreen btn btn-lg m-4">Разместить резюме</a>
                 </div>
             </div>
              
