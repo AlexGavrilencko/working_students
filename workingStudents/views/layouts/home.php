@@ -57,6 +57,24 @@ PublicAsset::register($this);
                              </li>
 
                         </ul>
+                        <?php
+                        //  нужно сделать разлагирование
+                        //        Yii::$app->user->isGuest ? (
+                        //            ['label' => 'Login', 'url' => ['/auth/login']]
+                        //        ) : (
+                        //            '<li>'
+                        //            . Html::beginForm(['/auth/logout'], 'post')
+                        //            . Html::submitButton(
+                        //                'Logout (' . Yii::$app->user->identity->login . ')',
+                        //                ['class' => 'btn btn-link logout']
+                        //            )
+                        //            . Html::endForm()
+                        //            . '</li>'
+                        //        )
+                            
+                        
+                        ?>
+                                
                     </div>
         </nav>
          

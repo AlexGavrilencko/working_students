@@ -33,7 +33,8 @@ class AuthController extends Controller
             $user = User::find()->where(['login' => $model->login, 'password' => $model->password])->one();
 
             if($user) {
-                Yii::$app->user->login($user); // <-- вот так логиним пользователя  
+                Yii::$app->user->login($user); // <-- вот так логиним пользователя 
+                return $this->redirect(['site/index']); 
             }
         }
 
