@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 <!-- здесь начинается цикл для отображения -->
     <div class="col-sm-6"> 
-        <div class="background_search">    
+        <div class="border_search">    
             <!-- результаты поиска -->
             <div class="row">
                 <div class="col-sm-3">
@@ -101,7 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
  <!-- здесь начинается цикл для отображения -->
     <div class="col-sm-6">  
-        <div class="background_search">    
+        <div class="border_search">    
             <!-- результаты поиска -->
             <div class="row">
                 <div class="col-sm-3">

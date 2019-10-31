@@ -32,13 +32,13 @@ PublicAsset::register($this);
 
             <a href="#" class="navbar-brad"><img src="/public/img/logo.jpg" alt="Logo"></a>  <!-- логотип в меню сайта -->
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                  <div class="collapse navbar-collapse " id="collapsibleNavbar">
 
-                        <ul class="navbar-nav">  <!-- переходы в меню -->
+                        <ul class="navbar-nav ml-auto">  <!-- переходы в меню -->
 
 
                         <?php  if (Yii::$app->user->isGuest){ ?>
@@ -64,38 +64,34 @@ PublicAsset::register($this);
                             if($user->rang===10){ ?> <!-- Для студента -->
 
                                 <li class="nav-item dropdown">
-                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                     <a class="nav-link menugreen dropdown-toggle h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                          Личный кабинет
                                      </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="#">Мое резюме</a>
-                                            <a class="dropdown-item" href="#">Избранное</a>
-                                            <a class="dropdown-item" href="#">Просмотренное</a>
-                                            <a class="dropdown-item" href="#">Вакансии</a>
+                                            <a class="dropdown-item menugreen_v h6" href="#">Мое резюме</a>
+                                            <a class="dropdown-item menugreen_v h6" href="#">Избранное</a>
+                                            <a class="dropdown-item menugreen_v h6" href="#">Просмотренное</a>
+                                            <a class="dropdown-item menugreen_v h6" href="#">Вакансии</a>
+                                            <a class="dropdown-item menugreen_v h6" href="#" id="exit"><div>Вход</div></a>
                                         </div>
                                 </li>
                             <?php }
                             if($user->rang===20){ ?> <!-- Для работодателя -->
 
                                 <li class="nav-item dropdown">
-                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                     <a class="nav-link dropdown-toggle h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                          Личный кабинет
                                      </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="#">Мои вакансии</a>
-                                            <a class="dropdown-item" href="#">Избранное</a>
-                                            <a class="dropdown-item" href="#">Просмотренное</a>
-                                            <a class="dropdown-item" href="#">Резюме</a>
+                                            <a class="dropdown-item menugreen_v h6" href="#">Мои вакансии</a>
+                                            <a class="dropdown-item menugreen_v h6" href="#">Избранное</a>
+                                            <a class="dropdown-item menugreen_v h6" href="#">Просмотренное</a>
+                                            <a class="dropdown-item menugreen_v h6" href="#">Резюме</a>
+                                            <a class="dropdown-item menugreen_v h6" href="#" id="exit"><div>Вход</div></a>
                                         </div>
                                 </li>
                             <?php }
                             ?>
-
-                
-                            <li class="nav-item">
-                                <a class="nav-link text-light h5 popup" href="/auth/logout" id="vixod">Выход</a>
-                            </li>
-                            
                         <?php }?>
 
                     </ul>
@@ -104,9 +100,7 @@ PublicAsset::register($this);
     </header>
 
 
-        <div>
-            <?= $content ?>
-        </div>
+    <main class="content"><?= $content ?></main>
 
         <footer class="dark">
              <div class="container">

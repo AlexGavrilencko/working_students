@@ -24,7 +24,7 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
+    public function behaviors()   /* Это что? */
     {
         return [
             'access' => [
@@ -50,7 +50,7 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function actions()
+    public function actions()   /* Это что? */
     {
         return [
             'error' => [
@@ -68,25 +68,30 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex()   /* Это для главной страницы студента */
     {
         $this->layout = 'home';
         return $this->render('index');
     }
 
-    public function actionPersonal_account()
+    public function actionComplete_information()   /* Это для просмотра отдельной страницы */
+    {
+        return $this->render('complete_information');
+    }
+
+    public function actionPersonal_account()   /* Это для личного кабинета пользователя */
     {
         return $this->render('personal_account');
     }
 
-    public function actionIndexwork()
+    public function actionIndexwork()    /* Это для главной страницы работодателя */
     {
         $this->layout = 'homework';
         return $this->render('indexwork');
     }
 
 
-    public function actionSearch()
+    public function actionSearch()      /* Это для страницы поиска */
     {
         $this->layout = 'site';
         return $this->render('search', [
@@ -122,7 +127,7 @@ class SiteController extends Controller
      *
      * @return Response
      */
-    public function actionLogout()
+    public function actionLogout()    /* Это нужно удалить? */
     {
         Yii::$app->user->logout();
 
@@ -147,12 +152,13 @@ class SiteController extends Controller
         ]);
     }
 
+
     /**
      * Displays about page.
      *
      * @return string
      */
-    public function actionAbout()
+    public function actionAbout()     /* Это нужно удалить? */
     {
         return $this->render('about');
     }

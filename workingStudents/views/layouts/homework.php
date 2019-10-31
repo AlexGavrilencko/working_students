@@ -33,7 +33,7 @@ PublicAsset::register($this);
                
              <a href="/site/indexwork" class="navbar-brad"><img src="/public/img/logo1.png" alt="Logo"></a>  <!-- логотип в меню сайта -->
                         
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
+                <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 
@@ -53,14 +53,14 @@ PublicAsset::register($this);
                         <ul class="navbar-nav ml-auto">  <!-- переходы в меню -->
 
                             <li class="nav-item">
-                                <a class=" nav-link menugreen_v h6 popup" href="/auth/login" id="vxod">Вход</a>
+                                <a class=" nav-link menugreen_v h6" href="/auth/login" id="vxod">Вход</a>
                              </li>
 
                         </ul>
                     </div>
         </nav>
          
-        <div class="container-fluid d-flex h-100 d-flex flex-row bd-highlight flex-column">        
+        <div class="container-fluid d-flex hh-100 d-flex flex-row bd-highlight flex-column">        
             <div class="row">
                 <div class="col">
                 </div>
@@ -93,9 +93,7 @@ PublicAsset::register($this);
         </div>
 
   
-        <div>
-            <?= $content ?>
-        </div>
+        <main class="content"><?= $content ?></main>
   
 
         <footer class="dark">

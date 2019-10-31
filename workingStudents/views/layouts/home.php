@@ -53,7 +53,7 @@ PublicAsset::register($this);
                         <ul class="navbar-nav ml-auto">  <!-- переходы в меню -->
 
                             <li class="nav-item">
-                                <a class=" nav-link menugreen_v h6 popup" href="/auth/login" id="vxod">Вход</a>
+                                <a class=" nav-link menugreen_v h6" href="/auth/login" id="vxod">Вход</a>
                              </li>
 
                         </ul>
@@ -71,27 +71,25 @@ PublicAsset::register($this);
                         //            . Html::endForm()
                         //            . '</li>'
                         //        )
-                            
-                        
-                        ?>
-                                
+                                                  
+                        ?>                               
                     </div>
         </nav>
          
-        <div class="container-fluid d-flex h-100 flex-row bd-highlight flex-column">        
+        <div class="container-fluid d-flex hh-100 flex-row bd-highlight flex-column">        
             <div class="row justify-content-between">
             
                 <div class="col-4">
                 </div>
 
                 <div class="col-4">
-                    <a href="/auth/login" class="btn-rounded  btngreen btn btn-lg m-4">Разместить резюме</a>
+                    <a href="/auth/login" class="btn-rounded btngreen btn btn-lg m-4">Разместить резюме</a>
                 </div>
             </div>
              
                 <p class="h2 text-light margin-top">Работа для каждого</p>
 
-            <div class="row no-gutters">
+ <!--           <div class="row no-gutters">
                 <div class="col-8 col-md-6">
                     <input class="form-control btn-none" id="search" type="text" placeholder="Поиск..." aria-label="Search" style="width: 100%" >      
                 </div>    
@@ -102,12 +100,29 @@ PublicAsset::register($this);
 
                 <div class="col-4 col-md-2"> 
                 </div> 
-            </div>            
-        </div>
+            </div>   
+-->     
+	                <div class="row">
+                        <div class="col-12 col-md-10 col-lg-8">
+                            <form class="search">
+                                <div class="row no-gutters align-items-center">
 
-        <div>
-            <?= $content ?>
-        </div>
+                                    <div class="col">
+                                        <input class="form-control btn-none form-control-lg" type="search" placeholder="Поиск...">
+                                    </div>
+
+                                    <div class="col-auto">
+                                        <button type="submit" class="btn-none btn-lg btn btngreen">Найти</button>
+                                    </div>
+                                </div>    
+                            </form>
+                        </div>
+                    </div>
+</div>
+
+
+<main class="content"><?= $content ?></main>
+       
   
 
         <footer class="dark">
