@@ -74,6 +74,11 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionPersonal_account()
+    {
+        return $this->render('personal_account');
+    }
+
     public function actionIndexwork()
     {
         $this->layout = 'homework';

@@ -30,9 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-sm-3"> 
              <!-- расширенный поиск -->
         </div>
-
+<!-- здесь начинается цикл для отображения -->
     <div class="col-sm-6"> 
-             <!-- здесь начинается цикл для отображения -->
         <div class="background_search">    
             <!-- результаты поиска -->
             <div class="row">
@@ -86,8 +85,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>   
         </div>
-        <!-- здесь заканчивается цикл для отображения -->
     </div>
+     <!-- здесь заканчивается цикл для отображения -->
 </div> 
 </div>
 <br> 
@@ -100,8 +99,8 @@ $this->params['breadcrumbs'][] = $this->title;
              <!-- расширенный поиск -->
         </div>
 
-    <div class="col-sm-6"> 
-             <!-- здесь начинается цикл для отображения -->
+ <!-- здесь начинается цикл для отображения -->
+    <div class="col-sm-6">  
         <div class="background_search">    
             <!-- результаты поиска -->
             <div class="row">
@@ -157,8 +156,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>   
         </div>
-        <!-- здесь заканчивается цикл для отображения -->
     </div>
+<!-- здесь заканчивается цикл для отображения -->
 </div> 
 </div> 
 <br>

@@ -294,11 +294,16 @@ svg text {
  }
 
 /* стиль для фона вакансий и резюме в маленьком окне*/
- .background_search{
-    background-color: #e8e8e8;
+ 
+
+ .border_search{
+  background-color: #eff3db;
+  border: 2px solid;
+  border-color: #9dbb19;
+  border-radius: 10px;
  }
 
- 
+
 /*__________________________________________________________________________________________*/
 
 

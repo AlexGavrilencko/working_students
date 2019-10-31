@@ -85,7 +85,7 @@ PublicAsset::register($this);
                 </div>
 
                 <div class="col-4">
-                    <a href="/site/registration" class="btn-rounded  btngreen btn btn-lg m-4">Разместить резюме</a>
+                    <a href="/auth/login" class="btn-rounded  btngreen btn btn-lg m-4">Разместить резюме</a>
                 </div>
             </div>
              

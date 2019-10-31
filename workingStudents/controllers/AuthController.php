@@ -34,7 +34,7 @@ class AuthController extends Controller
 
             if($user) {
                 Yii::$app->user->login($user); // <-- вот так логиним пользователя 
-                return $this->redirect(['site/index']); 
+                return $this->redirect(['site/personal_account']); 
             }
         }
 
