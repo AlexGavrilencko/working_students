@@ -38,8 +38,8 @@ PublicAsset::register($this);
                 </button>
                 
                     <div class="collapse navbar-collapse " id="collapsibleNavbar">
-
-                        <ul class="navbar-nav">  <!-- переходы в меню -->
+                        <?php  if (Yii::$app->user->isGuest){ ?>
+                        <ul class="navbar-nav">  <!-- переходы в меню для гостя-->
 
                             <li class="nav-item">
                                 <a class="nav-link menured h6 text-decoration" href="/site/index">Студентам</a>
@@ -50,29 +50,36 @@ PublicAsset::register($this);
                             </li> 
                         </ul>
 
-                        <ul class="navbar-nav ml-auto">  <!-- переходы в меню -->
+                        <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
 
                             <li class="nav-item">
                                 <a class=" nav-link menugreen_v h6" href="/auth/login" id="vxod">Вход</a>
                              </li>
 
                         </ul>
-                        <?php
-                        //  нужно сделать разлагирование
-                        //        Yii::$app->user->isGuest ? (
-                        //            ['label' => 'Login', 'url' => ['/auth/login']]
-                        //        ) : (
-                        //            '<li>'
-                        //            . Html::beginForm(['/auth/logout'], 'post')
-                        //            . Html::submitButton(
-                        //                'Logout (' . Yii::$app->user->identity->login . ')',
-                        //                ['class' => 'btn btn-link logout']
-                        //            )
-                        //            . Html::endForm()
-                        //            . '</li>'
-                        //        )
-                                                  
-                        ?>                               
+                        <?php } else {?>
+                            <?php $user = Yii::$app->user->identity;
+                            if($user->rang===10){ ?>
+                                <ul class="navbar-nav">  <!-- переходы в меню для студента ДОБАВЬ ССЫЛКУ НА ЛК-->
+                                    <li class="nav-item">
+                                        <a class="nav-link menured h6 text-decoration" href="/site/index">Студентам</a>
+                                    </li>
+                                </ul>
+                            <?php }
+                            if($user->rang===20){ ?>
+                                <ul class="navbar-nav">  <!-- переходы в меню для работадателя ДОБАВЬ ССЫЛКУ НА ЛК-->
+                                    <li class="nav-item">
+                                        <a class="nav-link h6 menugreen" href="/site/indexwork">Работодателям</a>
+                                    </li> 
+                                </ul>
+                            <?php }
+                            ?>
+                            <ul class="navbar-nav ml-auto">  <!-- переходы в меню ВЫХОД-->
+                                <li class="nav-item">
+                                    <a class=" nav-link menugreen_v h6" href="/auth/logout" id="vixod">Выход</a>
+                                </li>
+                            </ul>
+                        <?php }?>                             
                     </div>
         </nav>
          
