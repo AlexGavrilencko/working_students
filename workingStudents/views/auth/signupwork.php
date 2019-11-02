@@ -9,11 +9,13 @@ $this->title = 'Регистрация организации';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+<br>
 <div class="site-registration">
     <div class="text-light d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
-        <div class="registr bg-dark">
+        <div class="pole darkwindow">
 
-                
+            <h3 class="text-center">Данные об организации</h3>
+
             <?php $form = ActiveForm::begin(); ?>
                 <?= $form->field($model, 'name')->textInput(['class'=>'form-control']) ?>
 
@@ -26,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'ogrn')->textInput(['class'=>'form-control']) ?>
 
                     <div class="row justify-content-center">
-                        <?= Html::submitButton('Зарегистрировать', ['class' => 'btn btn-outline-light btn-lg m-3', 'name' => 'login-button']) ?>
+                        <?= Html::submitButton('Зарегистрировать', ['class' => 'btn btn-rounded btngreen btn-lg m-3', 'name' => 'login-button']) ?>
                     </div>
 
 
@@ -34,3 +36,4 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+<br>

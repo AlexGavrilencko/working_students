@@ -79,18 +79,13 @@ class SiteController extends Controller
         return $this->render('complete_information');
     }
 
-<<<<<<< HEAD
-=======
+
     public function actionComplete_information_work()   /* Это для просмотра отдельной страницы */
     {
         return $this->render('complete_information_work');
     }
 
-    public function actionPersonal_account()   /* Это для личного кабинета пользователя */
-    {
-        return $this->render('personal_account');
-    }
->>>>>>> 2af851cee9c41da0dd43da11b17fb002f2c8c8ca
+
 
     public function actionIndexwork()    /* Это для главной страницы работодателя */
     {
