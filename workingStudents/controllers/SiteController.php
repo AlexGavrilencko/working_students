@@ -79,6 +79,11 @@ class SiteController extends Controller
         return $this->render('complete_information');
     }
 
+    public function actionComplete_information_work()   /* Это для просмотра отдельной страницы */
+    {
+        return $this->render('complete_information_work');
+    }
+
     public function actionPersonal_account()   /* Это для личного кабинета пользователя */
     {
         return $this->render('personal_account');
@@ -96,6 +101,14 @@ class SiteController extends Controller
         $this->layout = 'site';
         return $this->render('search', [
             'vacancys' => $vacancy,
+            'pages' => $pages,
+       ]);
+    }
+    public function actionSearch_work()      /* Это для страницы поиска */
+    {
+        $this->layout = 'site';
+        return $this->render('search_work', [
+            'vacancys' => $vacancy,  /* Заменить на резюме */
             'pages' => $pages,
        ]);
     }

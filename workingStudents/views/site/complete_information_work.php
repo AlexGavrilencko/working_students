@@ -5,8 +5,9 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 ?>
+          
+<!-- резюме -->
 
-<!-- вакансии -->
     <div class="container-fluid padding_search d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
         <div class="row justify-content-md-center">
 
@@ -23,17 +24,17 @@ use yii\widgets\ActiveForm;
                             <!-- для описания -->
                             <div class="row">
                                 <div class="col-12 col-md-8">
-                                    <p>Должность</p> <!-- подгрузка из базы -->
+                                    <p>ФИО</p> <!-- подгрузка из базы -->
                                 </div>
 
                                 <div class="col-6 col-sm-4">
-                                    <p>Цена</p>     <!-- подгрузка из базы -->
+                                    <p>Дата рождения</p>     <!-- подгрузка из базы -->
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-12 col-md-8">
-                                    <p>Организация</p> <!-- подгрузка из базы -->
+                                    <p>Желаемая должность</p> <!-- подгрузка из базы -->
                                 </div>
 
                                 <div class="col-6 col-sm-4">
@@ -72,5 +73,4 @@ use yii\widgets\ActiveForm;
             </div>
         </div> 
     </div>
-                       
               

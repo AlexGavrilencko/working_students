@@ -24,14 +24,15 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 
-<!-- Для вакансии -->
+<!-- Для резюме -->
 <div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
 <div class="row">
         <div class="col-sm-3"> 
              <!-- расширенный поиск -->
         </div>
-<!-- здесь начинается цикл для отображения -->
-    <div class="col-sm-6"> 
+
+ <!-- здесь начинается цикл для отображения -->
+    <div class="col-sm-6">  
         <div class="border_search">    
             <!-- результаты поиска -->
             <div class="row">
@@ -43,33 +44,35 @@ $this->params['breadcrumbs'][] = $this->title;
                     <!-- для описания -->
                         <div class="row">
                             <div class="col-12 col-md-8">
-                                <p>Название</p> <!-- подгрузка из базы -->
+                                <p>ФИО</p> <!-- подгрузка из базы -->
                             </div>
 
                             <div class="col-6 col-sm-4">
-                                <p>Цена</p>     <!-- подгрузка из базы -->
+                            <p>В избранное</p> <!-- кнопка для сохранения вакансии в избранное-->
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-12 col-md-8">
-                                <p>Организация</p> <!-- подгрузка из базы -->
-                            </div>
-
-                            <div class="col-6 col-sm-4">
-                                <p>В избранное</p> <!-- кнопка для сохранения вакансии в избранное-->
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
                                 <p>Город</p> <!-- подгрузка из базы -->
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col">
-                                <p>Описание</p> <!-- подгрузка из базы -->
+                                <p>Дата рождения</p> <!-- подгрузка из базы -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <p>Желаемая должность</p> <!-- подгрузка из базы -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <p>Навыки</p> <!-- подгрузка из базы -->
                             </div>
                         </div>
 
@@ -86,7 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>   
         </div>
     </div>
-     <!-- здесь заканчивается цикл для отображения -->
+<!-- здесь заканчивается цикл для отображения -->
 </div> 
-</div>
-<br> 
+</div> 
+<br>

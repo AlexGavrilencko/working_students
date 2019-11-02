@@ -59,7 +59,7 @@ PublicAsset::register($this);
                         </ul>
                     </div>
         </nav>
-         
+
         <div class="container-fluid d-flex hh-100 d-flex flex-row bd-highlight flex-column">        
             <div class="row">
                 <div class="col">
