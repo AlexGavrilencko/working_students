@@ -72,7 +72,7 @@ PublicAsset::register($this);
                                             <a class="dropdown-item menugreen_v h6" href="#">Избранное</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Просмотренное</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Вакансии</a>
-                                            <a class="dropdown-item menugreen_v h6" href="#" id="exit"><div>Вход</div></a>
+                                            <a class="dropdown-item menugreen_v h6" href="/auth/logout" id="exit"><div>Выход</div></a>
                                         </div>
                                 </li>
                             <?php }
@@ -87,7 +87,7 @@ PublicAsset::register($this);
                                             <a class="dropdown-item menugreen_v h6" href="#">Избранное</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Просмотренное</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Резюме</a>
-                                            <a class="dropdown-item menugreen_v h6" href="#" id="exit"><div>Вход</div></a>
+                                            <a class="dropdown-item menugreen_v h6" href="/auth/logout" id="exit"><div>Выход</div></a>
                                         </div>
                                 </li>
                             <?php }
@@ -98,6 +98,7 @@ PublicAsset::register($this);
                 </div>
             </nav>
     </header>
+
 
 
     <main class="content"><?= $content ?></main>
