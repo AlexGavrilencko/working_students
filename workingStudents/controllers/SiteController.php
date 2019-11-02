@@ -79,10 +79,6 @@ class SiteController extends Controller
         return $this->render('complete_information');
     }
 
-    public function actionPersonal_account()   /* Это для личного кабинета пользователя */
-    {
-        return $this->render('personal_account');
-    }
 
     public function actionIndexwork()    /* Это для главной страницы работодателя */
     {

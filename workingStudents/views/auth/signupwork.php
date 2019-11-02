@@ -5,7 +5,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = 'Регистрация';
+$this->title = 'Регистрация организации';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -19,14 +19,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'city_id')->textInput(['class'=>'form-control']) ?>
 
-                <?= $form->field($model, 'adress')->textInput(['class'=>'form-control']) ?>
+                <?= $form->field($model, 'adres')->textInput(['class'=>'form-control']) ?>
 
                 <?= $form->field($model, 'inn')->textInput(['class'=>'form-control']) ?>
 
                 <?= $form->field($model, 'ogrn')->textInput(['class'=>'form-control']) ?>
 
                     <div class="row justify-content-center">
-                        <?= Html::submitButton('Signup', ['class' => 'btn btn-outline-light btn-lg m-3', 'name' => 'login-button']) ?>
+                        <?= Html::submitButton('Зарегистрировать', ['class' => 'btn btn-outline-light btn-lg m-3', 'name' => 'login-button']) ?>
                     </div>
 
 

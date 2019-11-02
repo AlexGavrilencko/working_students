@@ -10,9 +10,9 @@ use yii\filters\VerbFilter;
 use app\models\SignupForm;
 use app\models\LoginForm;
 use app\models\User;
-use app\models\Organizaton;
-use app\models\POStydent;
-use app\models\POWork;
+use app\models\OrganizationForm;
+use app\models\Organization;
+
 
 
 class AuthController extends Controller
@@ -34,7 +34,7 @@ class AuthController extends Controller
 
             if($user) {
                 Yii::$app->user->login($user); // <-- вот так логиним пользователя 
-                return $this->redirect(['site/personal_account']); 
+                return $this->redirect(['privateoffice/personal_account']); 
             }
         }
 
@@ -60,7 +60,7 @@ class AuthController extends Controller
             {
                 //var_dump($model->rang);
                 if($model->rang=='10') {
-                    return $this->redirect(['site/personal_account']); //студент переходит на модель своего ЛК
+                    return $this->redirect(['privateoffice/personal_account']); //студент переходит на модель своего ЛК
                 }
                 if($model->rang=='20') {
                     return $this->redirect(['auth/signupwork']); //компания переходит на регистрацию организацию
@@ -100,14 +100,16 @@ class AuthController extends Controller
     public function actionSignupwork()
     {
         $this->layout = 'avtoriz';
-        $model = new Organization();
+        $model = new OrganizationForm();
 
         if(Yii::$app->request->isPost)
         {
+        
             $model->load(Yii::$app->request->post());
-            if($model->create())
+            //var_dump($model);
+            if($model->organization())
             {
-                return $this->redirect(['privateoffice/p-o-work']); //компания переходит на регистрацию организацию
+                return $this->redirect(['privateoffice/personal_account']); //компания переходит на регистрацию организацию
             }
         }
 
