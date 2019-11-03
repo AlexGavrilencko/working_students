@@ -12,6 +12,7 @@ class OrganizationForm extends Model
     public $adres;
     public $inn;
     public $ogrn;
+    public $user_id;
 
     public function rules()
     {

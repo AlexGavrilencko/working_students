@@ -25,6 +25,7 @@ class PrivateofficeController extends Controller
     {
     $this->layout = 'site';
     $user = Yii::$app->user->identity; //определение текущего пользователя
+    //var_dump($user);
     $model = User::find()->where(['id'=>$user])->one();//поиск данных этого пользователя из таблицы user
      if(Yii::$app->request->isPost)
      {

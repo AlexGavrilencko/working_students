@@ -4,6 +4,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\Url;
 
 $this->title = 'Регистрация организации';
 $this->params['breadcrumbs'][] = $this->title;
@@ -14,7 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="registr bg-dark">
 
                 
-            <?php $form = ActiveForm::begin(); ?>
+                <?php $form = ActiveForm::begin();  
+                      $user = Yii::$app->user->identity;
+                      $users=$user->id;
+                     
+                ?>
                 <?= $form->field($model, 'name')->textInput(['class'=>'form-control']) ?>
 
                 <?= $form->field($model, 'city_id')->textInput(['class'=>'form-control']) ?>
@@ -26,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'ogrn')->textInput(['class'=>'form-control']) ?>
 
                     <div class="row justify-content-center">
-                        <?= Html::submitButton('Зарегистрировать', ['class' => 'btn btn-outline-light btn-lg m-3', 'name' => 'login-button']) ?>
+                    <a href="<?= Url::toRoute(['/privateoffice/personal_account', 'user_id'=>$users]); ?>" class="btn-rounded btngreen btn btn-lg btn-block  m-4">Зарегистрировать</a>
                     </div>
 
 

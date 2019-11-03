@@ -31,7 +31,7 @@ class Organization extends ActiveRecord
     public function rules()
     {
         return [
-            [['city_id'], 'integer'],
+            [['city_id','user_id'], 'integer'],
             [['name', 'adres', 'inn', 'ogrn', 'image'], 'string', 'max' => 255],
         ];
     }
@@ -43,6 +43,7 @@ class Organization extends ActiveRecord
     {
         return [
             'id' => 'ID',
+            'user_id' => 'ID User',
             'name' => 'Name',
             'city_id' => 'City ID',
             'adres' => 'Adres',

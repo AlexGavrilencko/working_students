@@ -19,6 +19,7 @@ class AuthController extends Controller
 {
    public $login;
    public $e_mail;
+   public $users;
 
     public function actionLogin(){
 
@@ -26,15 +27,20 @@ class AuthController extends Controller
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
-
         $model = new LoginForm();
-
         if ($model->load(Yii::$app->request->post())) {
             $user = User::find()->where(['login' => $model->login, 'password' => $model->password])->one();
-
+            
             if($user) {
+               // var_dump($user->rang);
                 Yii::$app->user->login($user); // <-- вот так логиним пользователя 
-                return $this->redirect(['privateoffice/personal_account']); 
+                
+                if($user->rang=='10') {
+                    return $this->redirect(['privateoffice/personal_account']); //студент переходит на модель своего ЛК
+                }
+                if($user->rang=='20') {
+                    return $this->redirect(['auth/signupwork']); //компания переходит на регистрацию организацию
+                } 
             }
         }
 
@@ -48,22 +54,19 @@ class AuthController extends Controller
      */
     public function actionSignup($rang)
     {
-        
         $this->layout = 'avtoriz';
         $model = new SignupForm();
         $model->rang=$rang;
-        
         if(Yii::$app->request->isPost)
         {
             $model->load(Yii::$app->request->post());
             if($model->signup())
             {
-                //var_dump($model->rang);
                 if($model->rang=='10') {
-                    return $this->redirect(['privateoffice/personal_account']); //студент переходит на модель своего ЛК
+                    return $this->redirect(['auth/login']); //студент переходит на модель своего ЛК
                 }
                 if($model->rang=='20') {
-                    return $this->redirect(['auth/signupwork']); //компания переходит на регистрацию организацию
+                    return $this->redirect(['auth/login']); //компания переходит на регистрацию организацию
                 }
             }
         }
@@ -101,14 +104,15 @@ class AuthController extends Controller
     {
         $this->layout = 'avtoriz';
         $model = new OrganizationForm();
-
+        $user = Yii::$app->user->identity;
+        $model->user_id=$user->id;
         if(Yii::$app->request->isPost)
         {
-        
             $model->load(Yii::$app->request->post());
-            //var_dump($model);
+            
             if($model->organization())
             {
+                var_dump($model);
                 return $this->redirect(['privateoffice/personal_account']); //компания переходит на регистрацию организацию
             }
         }

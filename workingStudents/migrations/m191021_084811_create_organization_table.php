@@ -14,6 +14,7 @@ class m191021_084811_create_organization_table extends Migration
     {
         $this->createTable('{{%organization}}', [
             'id' => $this->primaryKey(),
+            'user_id' => $this->integer(),
             'name' => $this->string(),//наименование
             'city_id' => $this->integer(),//город
             'adres' => $this->string(),//адрес
