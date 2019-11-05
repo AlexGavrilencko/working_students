@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'labelOptions' => ['class' => 'col-lg-1 control-label'],
     ],
 ]); ?>
-
+<br>
 <div class="site-registration">
     <div class="text-light d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
         <div class="pole darkwindow">
@@ -62,3 +62,4 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 
+<br>

@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 $this->title = 'Регистрация';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
+<br>
 <div class="site-registration">
     <div class="text-light d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
         <div class="pole darkwindow">
@@ -36,3 +36,4 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+<br>

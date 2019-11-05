@@ -84,7 +84,6 @@ class SiteController extends Controller
         return $this->render('complete_information_work');
     }
 
-
     public function actionIndexwork()    /* Это для главной страницы работодателя */
     {
         $this->layout = 'homework';

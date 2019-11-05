@@ -10,11 +10,12 @@ $this->title = 'Регистрация организации';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+<br>
 <div class="site-registration">
     <div class="text-light d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
-        <div class="registr bg-dark">
+        <div class="pole darkwindow">
 
-                
+            <h3 class="text-center">Данные об организации</h3>
                 <?php $form = ActiveForm::begin();  
                       $user = Yii::$app->user->identity;
                       $users=$user->id;
@@ -31,7 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'ogrn')->textInput(['class'=>'form-control']) ?>
 
                     <div class="row justify-content-center">
-                    <a href="<?= Url::toRoute(['/privateoffice/personal_account', 'user_id'=>$users]); ?>" class="btn-rounded btngreen btn btn-lg btn-block  m-4">Зарегистрировать</a>
+                     <a href="<?= Url::toRoute(['/privateoffice/personal_account', 'user_id'=>$users]); ?>" class="btn-rounded btngreen btn btn-lg btn-block  m-4">Зарегистрировать</a>
+                        <?= Html::submitButton('Зарегистрировать', ['class' => 'btn btn-rounded btngreen btn-lg m-3', 'name' => 'login-button']) ?>
                     </div>
 
 
@@ -39,3 +41,4 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+<br>
