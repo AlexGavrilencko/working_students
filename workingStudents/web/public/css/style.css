@@ -351,7 +351,11 @@ body {
 
 
 .indent{
-  margin-right: -5%;
+  margin-left: -1.1%;
+}
+
+.indent1{
+  margin-top: 2.5%;
 }
 
 
@@ -364,13 +368,7 @@ body {
  position: absolute;
 }
 
-.avtoriz{
- width: 23%;
- height: 38%;
- margin-top: 6%;
- margin-left: 76%;
- opacity: 0.7;
-}
+
 .poleavtor{
  width: 90%;
  padding: 5%;
@@ -380,14 +378,8 @@ body {
  display: none;
 }
 
-#search{
- width: 60%;
-}
-.Avatar{
- width: 30%;
- height: 30%;
-margin-top: 5%;
-}
+
+
 .fon{
  width: 70%;
  height: 25%;
@@ -404,11 +396,7 @@ margin-top: 5%;
  opacity: 0.7;
  padding: 1%;
 }
-.avatar{
- width: 50%;
- height: 50%;
- margin-left: 25%;
-}
+
 .poisk{
  width: 80%;
 opacity: 0.7;
@@ -426,10 +414,13 @@ opacity: 0.7;
   max-height: 200px
 }
 
-
 .inputavtoriz{
  width: 90%;
 }
+
+
+
+
 
 .pss{
  opacity: 0.8;

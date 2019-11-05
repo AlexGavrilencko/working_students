@@ -32,8 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'ogrn')->textInput(['class'=>'form-control']) ?>
 
                     <div class="row justify-content-center">
-                     <a href="<?= Url::toRoute(['/privateoffice/personal_account', 'user_id'=>$users]); ?>" class="btn-rounded btngreen btn btn-lg btn-block  m-4">Зарегистрировать</a>
-                        <?= Html::submitButton('Зарегистрировать', ['class' => 'btn btn-rounded btngreen btn-lg m-3', 'name' => 'login-button']) ?>
+                     <a href="<?= Url::toRoute(['/privateoffice/personal_account', 'user_id'=>$users]); ?>" class="btn btn-rounded btngreen btn-lg m-3">Зарегистрировать</a>
+                        
                     </div>
 
 

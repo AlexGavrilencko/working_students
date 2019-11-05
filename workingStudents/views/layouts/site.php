@@ -38,27 +38,28 @@ PublicAsset::register($this);
 
                  <div class="collapse navbar-collapse " id="collapsibleNavbar">
 
-                        <ul class="navbar-nav ml-auto">  <!-- переходы в меню -->
+                     
 
 
                         <?php  if (Yii::$app->user->isGuest){ ?>
+                            <ul class="navbar-nav">  <!-- переходы в меню для гостя-->
+
                             <li class="nav-item">
-                                <a class="nav-link text-dark h5" href="/site/index">Студентам</a>
+                                <a class="nav-link menugreen h6" href="/site/index">Студентам</a>
                             </li>
                     
                             <li class="nav-item">
-                                <a class="nav-link text-dark h5" href="/site/indexwork">Работодателям</a>
+                                <a class="nav-link h6 menugreen" href="/site/indexwork">Работодателям</a>
                             </li> 
                         </ul>
 
-                        <ul class="navbar-nav ml-auto">  <!-- переходы в меню -->
+                        <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
 
                             <li class="nav-item">
-                                <a class=" nav-link text-dark h5 popup" href="/auth/login" id="vxod">Вход</a>
+                                <a class=" nav-link menugreen_v h6" href="/auth/login" id="vxod">Вход</a>
                              </li>
 
                         </ul>
-
                         <?php } else {?>
                             <?php $user = Yii::$app->user->identity;
                             if($user->rang===10){ ?> <!-- Для студента -->
@@ -79,7 +80,7 @@ PublicAsset::register($this);
                             if($user->rang===20){ ?> <!-- Для работодателя -->
 
                                 <li class="nav-item dropdown">
-                                     <a class="nav-link dropdown-toggle h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                     <a class="nav-link menugreen dropdown-toggle h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                          Личный кабинет
                                      </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">

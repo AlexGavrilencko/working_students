@@ -25,12 +25,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 <?= $form->field($model, 'e_mail')->textInput() ?>
 
-                                <?= $form->field($model, 'password')->passwordInput() ?>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-10 indent">  <?= $form->field($model, 'password')->passwordInput() ?></div>
+                                        <div class="col-2 indent1"><button type="submit" class="btn btn-rounded btngreen ">Показать пароль</button></div>
+                                    </div>
+                                </div>
 
                                 <?= $form->field($model, 'phone')->textInput() ?>
 
                                 <div class="row justify-content-center">
-                                     <?= Html::submitButton('Сохранить', ['class' => 'btn btn-outline-light', 'name' => 'Save submit']) ?>
+                                     <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen btn-lg m-3', 'name' => 'Save submit']) ?>
                                 </div>
                         </div>
                 </div>

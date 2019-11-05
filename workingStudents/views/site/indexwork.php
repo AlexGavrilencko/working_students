@@ -16,7 +16,7 @@ $this->title = 'My Yii Application';
         </div>
 
         <div class="col-sm-6 text-center"> 
-            <h3>Результаты поиска</h3>
+            <h3>Резюме соискателей</h3>
         </div>
     </div>
 </div>

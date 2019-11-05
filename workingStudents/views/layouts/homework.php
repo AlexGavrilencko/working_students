@@ -78,18 +78,22 @@ PublicAsset::register($this);
         
                 <p class="h2 text-light margin-top">Найдите сотрудника на вашу вакансию</p>
 
-            <div class="row no-gutters">
-                <div class="col-8 col-md-6">
-                    <input class="form-control btn-none" id="search" type="text" placeholder="Поиск..." aria-label="Search" style="width: 100%" >      
-                </div>    
+                <div class="row">
+                        <div class="col-12 col-md-10 col-lg-8">
+                            <form class="search">
+                                <div class="row no-gutters align-items-center">
 
-                <div class="col-4 col-md-2"> 
-                    <button type="submit" class="btn-none btn btngreen">Найти</button>
-                </div>
+                                    <div class="col">
+                                        <input class="form-control btn-none form-control-lg" type="search" placeholder="Поиск...">
+                                    </div>
 
-                <div class="col-4 col-md-2"> 
-                </div> 
-            </div>               
+                                    <div class="col-auto">
+                                        <button type="submit" class="btn-none btn-lg btn btngreen">Найти</button>
+                                    </div>
+                                </div>    
+                            </form>
+                        </div>
+                    </div>            
         </div>
 
   
