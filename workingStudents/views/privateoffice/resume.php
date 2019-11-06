@@ -16,8 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php $form = ActiveForm::begin(); ?>
 <div class="site-registration">
-    <div class="text-light d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
-        <div class="pole darkwindow">
+    <div class="text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
+        <div class="pole border_search padding_search">
                     <div class="text-center">
                         <h1><?= Html::encode($this->title) ?></h1>
                         <p>Пожалуйста, заполните все поля:</p>
@@ -84,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         
 
                     <div class="row justify-content-center">
-                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-outline-light', 'name' => 'Save submit']) ?>
+                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen', 'name' => 'Save submit']) ?>
                     </div>
                 </div>
             </div>

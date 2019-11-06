@@ -64,7 +64,7 @@ PublicAsset::register($this);
                             <?php $user = Yii::$app->user->identity;
                             if($user->rang===10){ ?> <!-- Для студента -->
 
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown ml-auto">
                                      <a class="nav-link menugreen dropdown-toggle h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                          Личный кабинет
                                      </a>
@@ -79,7 +79,7 @@ PublicAsset::register($this);
                             <?php }
                             if($user->rang===20){ ?> <!-- Для работодателя -->
 
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown ml-auto">
                                      <a class="nav-link menugreen dropdown-toggle h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                          Личный кабинет
                                      </a>
