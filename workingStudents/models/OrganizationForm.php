@@ -30,7 +30,7 @@ class OrganizationForm extends Model
             'name' => 'Наименование организации',
             'city_id' => 'Город',
             'adres' => 'Адрес',
-            'inn' => 'ИННН',
+            'inn' => 'ИН',
             'ogrn' => 'ОГРН',
             'image' => 'Логотип',
         ];
@@ -41,7 +41,7 @@ class OrganizationForm extends Model
     {
         if($this->validate())
         {
-            $org= new organization();
+            $org= new Organization();
             $org->attributes = $this->attributes;
             return $org->create();
         }

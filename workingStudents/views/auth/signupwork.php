@@ -21,8 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <h3 class="text-center">Данные об организации</h3>
                 <?php $form = ActiveForm::begin();  
                       $user = Yii::$app->user->identity;
-                      $users=$user->id;
-                     
+                      $model->user_id=$user->id;
+                      //$form->field($model,'user_id')
                 ?>
                 <?= $form->field($model, 'name')->textInput(['class'=>'form-control']) ?>
                 <?php
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'ogrn')->textInput(['class'=>'form-control']) ?>
 
                     <div class="row justify-content-center">
-                     <a href="<?= Url::toRoute(['/privateoffice/personal_account', 'user_id'=>$users]); ?>" class="btn btn-rounded btngreen btn-lg m-3">Зарегистрировать</a>
+                     <a href="<?= Url::toRoute(['/privateoffice/personal_account']); ?>" class="btn btn-rounded btngreen btn-lg m-3">Зарегистрировать</a>
                         
                     </div>
 

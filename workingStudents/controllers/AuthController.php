@@ -19,7 +19,7 @@ class AuthController extends Controller
 {
    public $login;
    public $e_mail;
-   public $users;
+   
 
     public function actionLogin(){
 
@@ -30,7 +30,8 @@ class AuthController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post())) {
             $user = User::find()->where(['login' => $model->login, 'password' => $model->password])->one();
-            
+            $Act=$user->ActInactUser;
+           // var_dump($Act);
             if($user) {
                // var_dump($user->rang);
                 Yii::$app->user->login($user); // <-- вот так логиним пользователя 
@@ -39,7 +40,12 @@ class AuthController extends Controller
                     return $this->redirect(['privateoffice/personal_account']); //студент переходит на модель своего ЛК
                 }
                 if($user->rang=='20') {
-                    return $this->redirect(['auth/signupwork']); //компания переходит на регистрацию организацию
+                    if($user->ActInactUser=='1'){
+                        return $this->redirect(['privateoffice/personal_account']); //студент переходит на модель своего ЛК
+                    }
+                    else{
+                        return $this->redirect(['auth/signupwork']); //компания переходит на регистрацию организацию
+                    }
                 } 
             }
         }
@@ -49,9 +55,6 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * @return string|Response
-     */
     public function actionSignup($rang)
     {
         $this->layout = 'avtoriz';
@@ -103,20 +106,15 @@ class AuthController extends Controller
     public function actionSignupwork()
     {
         $this->layout = 'avtoriz';
-        $model = new OrganizationForm();
-        $user = Yii::$app->user->identity;
-        $model->user_id=$user->id;
+        $model = new Organization();
+        //$user->ActInactUser='1';
         if(Yii::$app->request->isPost)
         {
             $model->load(Yii::$app->request->post());
-            
-            if($model->organization())
-            {
-                var_dump($model);
-                return $this->redirect(['privateoffice/personal_account']); //компания переходит на регистрацию организацию
-            }
+            $model->create(); //адо проверить на всякий
+            return $this->redirect(['privateoffice/personal_account']); //компания переходит на регистрацию организацию
         }
-
+        
         return $this->render('signupwork', ['model'=>$model]);
     }
 }
