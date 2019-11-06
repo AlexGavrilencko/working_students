@@ -5,6 +5,9 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
+use app\models\Attributes;
+use \yii\db\ActiveRecord;
 
 $this->title = 'Регистрация организации';
 $this->params['breadcrumbs'][] = $this->title;
@@ -22,8 +25,16 @@ $this->params['breadcrumbs'][] = $this->title;
                      
                 ?>
                 <?= $form->field($model, 'name')->textInput(['class'=>'form-control']) ?>
-
-                <?= $form->field($model, 'city_id')->textInput(['class'=>'form-control']) ?>
+                <?php
+                // получаем все города из таблицы атрибутов
+                $city = Attributes::find()->where(['type'=>'city'])->all();
+                // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
+                $items = ArrayHelper::map($city,'id','name');
+                $params = [
+                    'prompt' => 'Укажите город'
+                ];
+                echo $form->field($model, 'city_id')->dropDownList($items,$params);
+                 ?>
 
                 <?= $form->field($model, 'adres')->textInput(['class'=>'form-control']) ?>
 

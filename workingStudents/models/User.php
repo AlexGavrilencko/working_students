@@ -4,7 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\web\IdentityInterface;
-use \yii\db\ActiveRecord ;
+use \yii\db\ActiveRecord;
 /**
  * This is the model class for table "user".
  *
@@ -57,10 +57,10 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'login' => 'Login',
-            'password' => 'Password',
-            'e_mail' => 'E Mail',
-            'phone' => 'Phone',
+            'login' => 'Логин',
+            'password' => 'Пароль',
+            'e_mail' => 'Электронная почта',
+            'phone' => 'Телефон',
             'ActInactUser' => 'Act Inact User',
             'rang' => 'Rang',
         ];

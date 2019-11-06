@@ -46,12 +46,12 @@ class Experience extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'resume_id' => 'Resume ID',
-            'dateStart' => 'Date Start',
-            'dateEnd' => 'Date End',
-            'StudyOrWork' => 'Study Or Work',
-            'nameOrganiz_id' => 'Name Organiz ID',
-            'speciality_id' => 'Speciality ID',
-            'description' => 'Description',
+            'dateStart' => 'Дата начала',
+            'dateEnd' => 'Дата окончания',
+            'StudyOrWork' => 'Работа\Учеба',
+            'nameOrganiz_id' => 'Наименование организации',
+            'speciality_id' => 'Специальность',
+            'description' => 'Описание',
         ];
     }
 }

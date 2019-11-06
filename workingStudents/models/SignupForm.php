@@ -25,12 +25,17 @@ class SignupForm extends Model
             ['password', 'compare'], //два пароля совпадают
         ];
     }
+    
     public function attributeLabels()
     {
         return [
+            'login' => 'Логин',
+            'e_mail' => 'Электронная почта',
+            'password' => 'Пароль',
             'password_repeat' => 'Повторите пароль',
         ];
     }
+
     public function signup()
     {
         if($this->validate())

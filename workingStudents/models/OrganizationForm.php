@@ -21,6 +21,21 @@ class OrganizationForm extends Model
             [['name', 'adres', 'inn', 'ogrn'], 'string', 'max' => 255],
         ];
     }
+    
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'user_id' => 'ID User',
+            'name' => 'Наименование организации',
+            'city_id' => 'Город',
+            'adres' => 'Адрес',
+            'inn' => 'ИННН',
+            'ogrn' => 'ОГРН',
+            'image' => 'Логотип',
+        ];
+    }
+
    
     public function organization()
     {
