@@ -108,10 +108,14 @@ class AuthController extends Controller
         $this->layout = 'avtoriz';
         $model = new Organization();
         //$user->ActInactUser='1';
+       // var_dump($model);
+        //var_dump(Yii::$app->request->isPost);
         if(Yii::$app->request->isPost)
         {
+            //var_dump($model);
             $model->load(Yii::$app->request->post());
             $model->create(); //адо проверить на всякий
+            
             return $this->redirect(['privateoffice/personal_account']); //компания переходит на регистрацию организацию
         }
         

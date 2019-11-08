@@ -22,8 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php $form = ActiveForm::begin();  
                       $user = Yii::$app->user->identity;
                       $model->user_id=$user->id;
-                      //$form->field($model,'user_id')
+                      $form->field($model,'user_id')
+                      
                 ?>
+                <?= $model->user_id ?>
                 <?= $form->field($model, 'name')->textInput(['class'=>'form-control']) ?>
                 <?php
                 // получаем все города из таблицы атрибутов
@@ -42,10 +44,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'ogrn')->textInput(['class'=>'form-control']) ?>
 
-                    <div class="row justify-content-center">
-                     <a href="<?= Url::toRoute(['/privateoffice/personal_account']); ?>" class="btn btn-rounded btngreen btn-lg m-3">Зарегистрировать</a>
-                        
-                    </div>
+                <div class="row justify-content-center">
+                        <?= Html::submitButton('Sign', ['class' => 'btn btn-rounded btngreen', 'name' => 'Save submit']) ?>
+                </div>
 
 
             <?php ActiveForm::end(); ?>

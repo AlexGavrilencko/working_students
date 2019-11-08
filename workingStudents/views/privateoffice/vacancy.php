@@ -1,9 +1,14 @@
 <?php
 
 
-use app\models\Attributes;
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Attributes;
+use app\models\Organization;
+use yii\db\ActiveRecord;
+use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
 
 $this->title = 'Вакансия';
 $this->params['breadcrumbs'][] = $this->title;
@@ -20,17 +25,83 @@ $this->params['breadcrumbs'][] = $this->title;
                         <h1><?= Html::encode($this->title) ?></h1>
                         <p>Пожалуйста, заполните все поля:</p>
                     </div>
-                    <?php   $user = Yii::$app->user->identity;
-                    $model->regestr_id=$user->id; ?>
-                    <p><?= $form->field($model,'regestr_id') ?></p>
+                    <?php   
+                        $user = Yii::$app->user->identity;
+                        $model->user_id=$user->id; 
+                    ?>
 
                     <?= $form->field($model, 'name')->textInput() ?>
 
-                    <?= $form->field($model, 'experience_id')->textInput() ?>
+                    <?php 
+                        $org = Organization::find()->where(['user_id'=>$user->id])->one();
+                        $city_id = Attributes::find()->where(['id'=>$org->city_id])->one();
+                        $city=$city_id->name;
+                    ?>
+                    <p>Данные об организации:</p>
+                    <p><?= $org->name ?></p>
+                    <p>г. <?= $city ?></p>
+                    <p>Адрес: <?=$org->adres?></p>
+                    <p>ИНН: <?=$org->inn?></p>
+                    <p>ОГРН: <?=$org->ogrn?></p>
+                    
 
-                    <?= $form->field($model, 'employment_id')->textInput() ?>
+                    <?php
+                            // получаем все города из таблицы атрибутов
+                            $city = Attributes::find()->where(['type'=>'city'])->all();
+                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
+                            $items = ArrayHelper::map($city,'id','name');
+                            $params = [
+                                'prompt' => 'Укажите город'
+                            ];
+                            echo $form->field($model, 'city_id')->dropDownList($items,$params);
+                        ?>
 
-                    <?= $form->field($model, 'position_id')->textInput() ?>
+                    <?php
+                            // получаем все города из таблицы атрибутов
+                            $experience = Attributes::find()->where(['type'=>'experience'])->all();
+                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
+                            $items = ArrayHelper::map($experience,'id','name');
+                            $params = [
+                                'prompt' => 'Укажите опыт работы'
+                            ];
+                            echo $form->field($model, 'experience_id')->dropDownList($items,$params);
+                        ?>
+
+                    <?php
+                            // получаем все города из таблицы атрибутов
+                            $employment = Attributes::find()->where(['type'=>'employment'])->all();
+                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
+                            $items = ArrayHelper::map($employment,'id','name');
+                            $params = [
+                                'prompt' => 'Укажите тип занятости'
+                            ];
+                            echo $form->field($model, 'employment_id')->dropDownList($items,$params);
+                        ?>
+
+                    <?php
+                            // получаем все города из таблицы атрибутов
+                            $schedule = Attributes::find()->where(['type'=>'schedule'])->all();
+                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
+                            $items = ArrayHelper::map($schedule,'id','name');
+                            $params = [
+                                'prompt' => 'Укажите график  работы'
+                            ];
+                            echo $form->field($model, 'schedule_id')->dropDownList($items,$params);
+                        ?>
+
+                    <?= $form->field($model, 'salary')->textInput() ?>
+
+                    <?php
+                            // получаем все города из таблицы атрибутов
+                            $position = Attributes::find()->where(['type'=>'objective'])->all();
+                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
+                            $items = ArrayHelper::map($position,'id','name');
+                            $params = [
+                                'prompt' => 'Укажите должность'
+                            ];
+                            echo $form->field($model, 'position_id')->dropDownList($items,$params);
+                        ?>
+
 
                     <?= $form->field($model, 'duties')->textInput() ?>
 
@@ -38,7 +109,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $form->field($model, 'conditions')->textInput() ?>
 
-                    <?= $form->field($model, 'industry_id')->textInput() ?>
+                    <?php
+                            // получаем все города из таблицы атрибутов
+                            $category = Attributes::find()->where(['type'=>'category'])->all();
+                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
+                            $items = ArrayHelper::map($category,'id','name');
+                            $params = [
+                                'prompt' => 'Укажите профобласть'
+                            ];
+                            echo $form->field($model, 'category_id')->dropDownList($items,$params);
+                        ?>
 
                     <?= $form->field($model, 'WorkOrPractice')->textInput() ?>
                     <div class="row justify-content-center">

@@ -57,17 +57,13 @@ class PrivateofficeController extends Controller
             $rg=$user->rang;
             if($user->saveImage($model->uploadFile($file, $user->image)))
             {
-                //if($rg==10) {
-               //     return $this->redirect(['privateoffice/p-o-student']); //студент переходит на модель своего ЛК
-               // }
-               // if($rg==20) {
-             //       return $this->redirect(['privateoffice/p-o-work']); //компания переходит на модель своего ЛК
-               // }
+            
             }
         }
-
         return $this->render('img', ['model'=>$model]);
     }
+
+
     public function actionResume(){
 
         $this->layout = 'site';
@@ -81,6 +77,8 @@ class PrivateofficeController extends Controller
 
         return $this->render('resume', ['model'=>$res]);
     }
+
+
     public function actionVacancy(){
         $this->layout = 'site';
         $vac=new Vacancy();
@@ -93,10 +91,6 @@ class PrivateofficeController extends Controller
         return $this->render('vacancy', ['model'=>$vac]);
 
     }
-    //
-    //                   // $atr=Attributes::find()->where(['type'=>'experien']);
-    //                       // foreach($atr as $name) {
-    //                           // echo "<option value="$name->id">" . $name->name . "<option/>"
-    //                        }
-    //
+
+
 }

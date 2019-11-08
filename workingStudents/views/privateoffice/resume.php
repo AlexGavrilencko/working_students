@@ -8,7 +8,7 @@ use app\models\Attributes;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;	
-use kartik\date\DatePicker;
+//use kartik\date\DatePicker;
 
 $this->title = 'Резюме';
 $this->params['breadcrumbs'][] = $this->title;
@@ -46,16 +46,16 @@ $this->params['breadcrumbs'][] = $this->title;
                             echo $form->field($model, 'city_id')->dropDownList($items,$params);
                         ?>
                         <?php
-                            echo DatePicker::widget([
-                                'model' => $model,
-                                'name' => 'dateBirth' ,  
-                                'type' => DatePicker :: TYPE_COMPONENT_APPEND ,  
-                                'value' => '' ,  
-                                'pluginOptions' => [  
-                                    'autoclose' => true ,
-                                    'format' => 'dd-M-yyyy'  
-                                ]
-                            ]);
+                            //echo DatePicker::widget([
+                            //    'model' => $model,
+                            //    'name' => 'dateBirth' ,  
+                            //    'type' => DatePicker :: TYPE_COMPONENT_APPEND ,  
+                            //    'value' => '' ,  
+                            //    'pluginOptions' => [  
+                            //        'autoclose' => true ,
+                            //        'format' => 'dd-M-yyyy'  
+                            //    ]
+                            //]);
                          ?>
                         
                         <?php
