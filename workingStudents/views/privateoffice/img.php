@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
          <div class="text-light d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
             <div class="registr bg-dark">
                 <h1>Загрузка картинки</h1>
-                <p>Пожалуйста, выберите изображение и сохраните его!</Пожалуй></p>
+                <p>Пожалуйста, выберите изображение и сохраните его!</p>
                     <div class="article-form">
 
                         <?php $form = ActiveForm::begin(); ?>

@@ -50,7 +50,7 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function actions()   /* Это что? */
+    public function actions()   
     {
         return [
             'error' => [

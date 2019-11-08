@@ -313,6 +313,7 @@ svg text {
  }
 
 
+
 /* стиль для фона вакансий и резюме в маленьком окне*/
 .border_search1{
   background-color: #e6d6ca;
@@ -349,7 +350,6 @@ body {
 /*Для прикрепления подвала к низу страницы конец*/
 
 
-
 .indent{
   margin-left: -1.1%;
 }
@@ -364,59 +364,7 @@ body {
 
 
 
-.site-login{
- position: absolute;
-}
 
-
-.poleavtor{
- width: 90%;
- padding: 5%;
-}
-
-.hidden{
- display: none;
-}
-
-
-
-.fon{
- width: 70%;
- height: 25%;
- opacity: 0.7;
-}
-
-.inf{
- padding: 3%;
-}
-
-
-.blockfavorites{
- width: 20%;
- opacity: 0.7;
- padding: 1%;
-}
-
-.poisk{
- width: 80%;
-opacity: 0.7;
-}
-.inf{
- opacity: 0.7;
- padding:2% ;
-}
-
-.infavatar{
- width: 90%;
- margin-left: 5%;
-}
-.max-height-200{
-  max-height: 200px
-}
-
-.inputavtoriz{
- width: 90%;
-}
 
 
 
