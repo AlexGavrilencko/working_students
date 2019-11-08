@@ -343,9 +343,12 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+  
 }
 .content {
   flex: 1 0 auto;
+  /*background: url(/public/img/fon2.jpg);
+  opacity: 0.4;*/
 }
 /*Для прикрепления подвала к низу страницы конец*/
 
@@ -358,7 +361,9 @@ body {
   margin-top: 2.5%;
 }
 
-
+.A404{
+width: 60%;
+}
 
 /*__________________________________________________________________________________________*/
 
