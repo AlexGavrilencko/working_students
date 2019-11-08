@@ -1,5 +1,5 @@
 <?php
-
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 
 
@@ -9,7 +9,13 @@ $this->title = 'My Yii Application';
 <div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения категорий -->
         <p class="h4 text-center">Работа в Новосибирске</p> <!-- Надо сделать так, чтобы город был автоматически, как на других сайтах -->
     <div class="row">
-<!-- кнопки должны работать по принципу тегов -->
+<!-- кнопки готовы, тебе только надо покрасивше сделать, за вывод отвечает цикл -->
+        <?php foreach($category as $cat):?>
+            <div class="col">        
+                <button type="submit" class="btn btngreen_k  m-2"><a href="<?= Url::toRoute(['site/catview','id'=>$cat->id]) ?>" class="btn btn-default"><?= $cat->name ?></a></button>
+            </div>  
+        <?php endforeach;?>
+
         <div class="col"> 
             <button type="submit" class="btn btngreen_k  m-2">Банки, инвестиции, лизинг</button>
             <button type="submit" class="btn btngreen_k  m-2">Бухгалтерия, учет, финансы</button>

@@ -12,6 +12,7 @@ use app\models\ContactForm;
 use app\models\Resume;
 use app\models\User;
 use app\models\Vacancy;
+use app\models\Attributes;
 
 class SiteController extends Controller
 {
@@ -71,7 +72,11 @@ class SiteController extends Controller
     public function actionIndex()   /* Это для главной страницы студента */
     {
         $this->layout = 'home';
-        return $this->render('index');
+        
+        $category=Attributes::find()->where(['type'=>'category'])->all();
+		return $this->render('index',[
+			'category'=>$category,
+		]);
     }
 
     public function actionComplete_information()   /* Это для просмотра отдельной страницы */
