@@ -29,11 +29,19 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php   $user = Yii::$app->user->identity;
                             $model->user_id=$user->id; ?>
 
-                        <?php if($model->image): ?>
-                            <img class="justify-content-center" src="/uploads/<?= $model->image?>" alt="">
-                        <?php endif; ?>
-                                 
-                            
+
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <?php if($model->image): ?>
+                                <img class="" src="/uploads/<?= $model->image?>" alt="">
+                            <?php endif; ?>
+                        </div>
+                    </div>          
+   
+
+
+
+
 
                         <?= $form->field($model, 'name')->textInput() ?>
 
