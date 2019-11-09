@@ -31,6 +31,19 @@ $this->params['breadcrumbs'][] = $this->title;
              <!-- расширенный поиск -->
         </div>
 <!-- здесь начинается цикл для отображения -->
+<?php
+//$org таблица организация
+//$atr таблица со всеми справочниками
+//$catvac все вакансии выбранной категории
+foreach ($catvac as $vacan)
+    : 
+   
+
+	//echo $tagg;
+	//$post=$vacan->article_id;
+	//foreach ($article as $articles)
+		//: 
+		//if ($post===$articles->id){ ?>
     <div class="col-sm-6"> 
         <div class="border_search">    
             <!-- результаты поиска -->
@@ -43,17 +56,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     <!-- для описания -->
                         <div class="row">
                             <div class="col-12 col-md-8">
-                                <p>Название</p> <!-- подгрузка из базы -->
+                                <p>Название</p><?= $vacan->name ?> <!-- подгрузка из базы -->
                             </div>
 
                             <div class="col-6 col-sm-4">
-                                <p>Цена</p>     <!-- подгрузка из базы -->
+                                <p>Цена</p><?= $vacan->salary ?>     <!-- подгрузка из базы -->
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-12 col-md-8">
-                                <p>Организация</p> <!-- подгрузка из базы -->
+                                <p>Организация</p><?= $vacan->organization_id ?> <!-- подгрузка из базы -->
                             </div>
 
                             <div class="col-6 col-sm-4">
@@ -63,13 +76,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <div class="row">
                             <div class="col">
-                                <p>Город</p> <!-- подгрузка из базы -->
+                                <p>Город</p><?= $vacan->city_id ?> <!-- подгрузка из базы -->
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col">
-                                <p>Описание</p> <!-- подгрузка из базы -->
+                                <p>Описание</p><?= $vacan->duties ?> <!-- подгрузка из базы -->
                             </div>
                         </div>
 
@@ -79,14 +92,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
 
                             <div class="col-6 col-sm-4">
-                                <p>Дата</p> <!-- подгрузка из базы -->
+                                <p>Дата</p><?= $vacan->dateAdd ?> <!-- подгрузка из базы -->
                             </div>
                         </div>
                 </div>
             </div>   
         </div>
     </div>
-     <!-- здесь заканчивается цикл для отображения -->
+    <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
 </div> 
 </div>
 <br> 

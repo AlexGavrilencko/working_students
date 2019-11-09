@@ -13,6 +13,7 @@ use app\models\Resume;
 use app\models\User;
 use app\models\Vacancy;
 use app\models\Attributes;
+use app\models\Organization;
 
 class SiteController extends Controller
 {
@@ -96,19 +97,27 @@ class SiteController extends Controller
     }
 
 
-    public function actionSearch()      /* Это для страницы поиска */
+    public function actionSearch($id)      /* Страница поиска для студента */
     {
         $this->layout = 'site';
-        return $this->render('search', [
-            'vacancys' => $vacancy,
-            'pages' => $pages,
-       ]);
+		$catvac=Vacancy::find()->where(['category_id' => $id])->all();
+        $atr=Attributes::find()->all();
+        $org=Organization::find()->all();
+		$vac=Vacancy::find()->all();
+		return $this->render('search',[
+		'catvac'=>$catvac,
+		'cat'=>$cat,
+        'vac'=>$vac,
+        'org'=>$org,	
+        'pages' => $pages,
+		]);
     }
-    public function actionSearch_work()      /* Это для страницы поиска */
+    public function actionSearch_work()      /* Страница поиска для компании */
     {
         $this->layout = 'site';
+        $vac=Resume::find()->all();
         return $this->render('search_work', [
-            'vacancys' => $vacancy,  /* Заменить на резюме */
+            'vac' => $vac,  /* Заменить на резюме */
             'pages' => $pages,
        ]);
     }
