@@ -122,10 +122,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?= $form->field($model, 'WorkOrPractice')->textInput() ?>
                     <div class="row justify-content-center">
-                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-outline-light', 'name' => 'Save submit']) ?>
+                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen', 'name' => 'Save submit']) ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 <?php ActiveForm::end(); ?>
+<br>

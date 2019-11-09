@@ -17,8 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class=" bd-highlight col-sm-12 col-md-12 col-lg-12 col-xl-10">
                 <div class="border_search padding_search">
                     <div class="text-center">
-                         <h1>Личный кабинет</h1>
-                        <p>Пожалуйста, заполните следующие поля:</p>
+                         <h2>Профиль</h2>
                     </div>
                         <div class="form">
                                 <?= $form->field($model, 'login')->textInput() ?>
@@ -28,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-10 indent">  <?= $form->field($model, 'password')->passwordInput() ?></div>
-                                        <div class="col-2 indent1"><button type="submit" class="btn btn-rounded btngreen ">Показать пароль</button></div>
+                                        <div class="col-2 indent1"><button type="submit" class="btn btn-rounded btngreen ">Показать</button></div>
                                     </div>
                                 </div>
 

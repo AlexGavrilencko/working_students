@@ -12,7 +12,7 @@ class m190529_143818_create_user_table extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('{{%user}}', [
+        $this->createTable('{{%user}}', [   //таблица user
             'id' => $this->primaryKey(), 
             'login' => $this->string(),// логин
             'password' => $this->string(),// пароль
@@ -21,9 +21,6 @@ class m190529_143818_create_user_table extends Migration
             'ActInactUser' => $this->boolean(),// статус пользователя
             'rang' => $this->tinyInteger()// ранг пользователя
         ]);
-
-
-        
     }
 
     /**
@@ -31,9 +28,6 @@ class m190529_143818_create_user_table extends Migration
      */
     public function safeDown()
     {
-       
-
-
         $this->dropTable('{{%user}}');
     }
 }

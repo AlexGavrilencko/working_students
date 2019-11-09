@@ -23,6 +23,8 @@ PublicAsset::register($this);
         <?php $this->registerCsrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
+
+       
     </head>
     <body class="fonbody">
     <?php $this->beginBody() ?>
@@ -69,10 +71,11 @@ PublicAsset::register($this);
                                          Личный кабинет
                                      </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item menugreen_v h6" href="#">Мое резюме</a>
+                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
+                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/resume">Мое резюме</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Избранное</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Просмотренное</a>
-                                            <a class="dropdown-item menugreen_v h6" href="#">Вакансии</a>
+                                            <a class="dropdown-item menugreen_v h6" href="/site/search">Поиск вакансий</a>
                                             <a class="dropdown-item menugreen_v h6" href="/auth/logout" id="exit"><div>Выход</div></a>
                                         </div>
                                 </li>
@@ -84,10 +87,12 @@ PublicAsset::register($this);
                                          Личный кабинет
                                      </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
+                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/vacancy">Составить вакансию</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Мои вакансии</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Избранное</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Просмотренное</a>
-                                            <a class="dropdown-item menugreen_v h6" href="#">Резюме</a>
+                                            <a class="dropdown-item menugreen_v h6" href="/site/search_work">Поиск резюме</a>
                                             <a class="dropdown-item menugreen_v h6" href="/auth/logout" id="exit"><div>Выход</div></a>
                                         </div>
                                 </li>

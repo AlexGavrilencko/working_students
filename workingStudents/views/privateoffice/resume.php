@@ -15,20 +15,18 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
-<div class="site-registration">
+
     <div class="text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
         <div class="pole border_search padding_search">
                     <div class="text-center">
-                        <h1><?= Html::encode($this->title) ?></h1>
-                        <p>Пожалуйста, заполните все поля:</p>
+                        <h2><?= Html::encode($this->title) ?></h2>
+                        <p>Вы можете составить свое резюме</p>
                     </div>
                     <div class="row justify-content-center">
-                        <a href="/privateoffice/set-image" class="btn btn-outline-light m-2">Загрузите личную фотографию</a>
+                        <a href="/privateoffice/set-image" class="btn btn-rounded btngreen">Загрузите личную фотографию</a>
                     </div>
                     <?php   $user = Yii::$app->user->identity;
                             $model->user_id=$user->id; ?>
-
-                        <?= $form->field($model,'user_id') ?></p>
 
                         <?= $form->field($model, 'name')->textInput() ?>
 
@@ -82,12 +80,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         
                         ?>
                         
-
                     <div class="row justify-content-center">
                         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen', 'name' => 'Save submit']) ?>
                     </div>
                 </div>
             </div>
          </div>
-    </div>
 <?php ActiveForm::end(); ?>
+<br>

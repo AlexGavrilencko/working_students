@@ -27,7 +27,7 @@ PublicAsset::register($this);
     <body class="fonbody">
     <?php $this->beginBody() ?>
 
-    <header class="header1">
+    <header class="header1 h-100">
     <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->
                
                <a href="/site/index" class="navbar-brad"><img src="/public/img/logo1.png" alt="Logo"></a>  <!-- логотип в меню сайта -->
@@ -51,15 +51,15 @@ PublicAsset::register($this);
                       </div>
           </nav>
 
-    <div >
+  
         <?= $content ?>
-    </div>
+    
 
     </header>
 
    
     
-    <footer class="dark">
+        <footer class="dark">
              <div class="container">
                  <div class="row justify-content-center">
                     <a href="/site/index" id="logofooter" class="navbar-brad"><img src="/public/img/logofooter1.png" alt="Logo"></a>
@@ -72,7 +72,7 @@ PublicAsset::register($this);
                     </div>
                 </div>
              </div>
-    </footer>
+        </footer>
 
 
     </div>
