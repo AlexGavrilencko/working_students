@@ -25,8 +25,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="row justify-content-center">
                         <a href="/privateoffice/set-image" class="btn btn-rounded btngreen">Загрузите личную фотографию</a>
                     </div>
+                    
                     <?php   $user = Yii::$app->user->identity;
                             $model->user_id=$user->id; ?>
+
+                        <?php if($model->image): ?>
+                            <img class="" src="/uploads/<?= $model->image?>" alt="">
+                        <?php endif; ?>
+                                 
+                            
 
                         <?= $form->field($model, 'name')->textInput() ?>
 

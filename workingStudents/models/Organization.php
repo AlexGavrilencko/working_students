@@ -60,5 +60,29 @@ class Organization extends ActiveRecord
         return $this->save(false);
     }
 
+    public function findModel($id)
+    {
+        if (($model = organization::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    public function saveImage($filename)
+    {
+        $this->image = $filename;
+        return $this->save(false);
+    }
+
+    public function getImage()
+    {
+        return ($this->image) ? '/uploads/' . $this->image : '/no-image.png';
+    }
+
+    public function deleteImage()
+    {
+        $imageUploadModel = new ImageUpload();
+        $imageUploadModel->deleteCurrentImage($this->image);
+    }
     
 }

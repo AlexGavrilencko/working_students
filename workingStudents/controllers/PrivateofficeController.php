@@ -14,6 +14,7 @@ use app\models\Resume;
 use yii\web\UploadedFile;
 use app\models\User;
 use app\models\Attributes;
+use yii\web\NotFoundHttpException;
 
 
 
@@ -37,11 +38,24 @@ class PrivateofficeController extends Controller
 
     public function findModel($id)
     {
-        if (($model = user::findOne($id)) !== null) {
-            return $model;
+        $user = Yii::$app->user->identity;
+        if($user->rang=='10')
+        {
+            if (($model = Resume::findOne($id)) !== null) {
+                return $model;
+            }
+    
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
-
-        throw new NotFoundHttpException('The requested page does not exist.');
+        if($user->rang=='20')
+        {
+            if (($model = Organization::findOne($id)) !== null) {
+                return $model;
+            }
+    
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+        
     }
 
     public function actionSetImage()
@@ -50,14 +64,30 @@ class PrivateofficeController extends Controller
         $model = new ImageUpload();
         $user = Yii::$app->user->identity;
         $id=$user->id;
-        if (Yii::$app->request->isPost)
+        if($user->rang=='10')
         {
-            $user = $this->findModel($id);
-            $file = UploadedFile::getInstance($model, 'image');
-            $rg=$user->rang;
-            if($user->saveImage($model->uploadFile($file, $user->image)))
+            $res=Resume::find()->where(['user_id'=>$id])->one();
+            $resume = $this->findModel($res->id);
+            if (Yii::$app->request->isPost)
             {
-            
+            $file = UploadedFile::getInstance($model, 'image');
+                if($resume->saveImage($model->uploadFile($file, $resume->image)))
+                {
+                    return $this->redirect(['privateoffice/resume']);
+                }
+            }
+        }
+        if($user->rang=='20')
+        {
+            $org=Organization::find()->where(['user_id'=>$id])->one();
+            $organiz = $this->findModel($org->id);
+            if (Yii::$app->request->isPost)
+            {
+            $file = UploadedFile::getInstance($model, 'image');
+                if($organiz->saveImage($model->uploadFile($file, $organiz->image)))
+                {
+                    return $this->redirect(['privateoffice/organiz']); //надо создать
+                }
             }
         }
         return $this->render('img', ['model'=>$model]);
@@ -68,7 +98,8 @@ class PrivateofficeController extends Controller
 
         $this->layout = 'site';
         $res=new Resume();
-        //$user = Yii::$app->user->identity; //наш текущий пользователь
+        $user = Yii::$app->user->identity; //наш текущий пользователь
+        $res = Resume::find()->where(['user_id'=>$user->id])->one();
         if(Yii::$app->request->isPost)
         {
             $res->load(Yii::$app->request->post());
