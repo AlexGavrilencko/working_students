@@ -7,7 +7,7 @@ use yii\widgets\LinkPager;
 use app\models\User;
 
 
-$this->title = 'My Yii Application';
+$this->title = 'Главная';
 
 ?>
 <div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
