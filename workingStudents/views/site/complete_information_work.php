@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
                             <!-- для описания -->
                             <div class="row">
                                 <div class="col-12 col-md-8">
-                                    <p>ФИО</p> <!-- подгрузка из базы -->
+                                    <p><?= $resum->name ?> <?= $resum->surname ?> <?= $resum->patronymic ?></p> <!-- ФИО подгрузка из базы -->
                                 </div>
 
                                 <div class="col-6 col-sm-4">

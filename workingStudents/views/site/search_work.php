@@ -31,8 +31,21 @@ $this->params['breadcrumbs'][] = $this->title;
              <!-- расширенный поиск -->
         </div>
 
- <!-- здесь начинается цикл для отображения -->
+
     <div class="col-sm-6">  
+     <!-- здесь начинается цикл для отображения -->
+     <?php
+        //$org таблица организация
+        //$atr таблица со всеми справочниками
+        //$catvac все вакансии выбранной категории
+        foreach ($resume as $resum)
+        : 
+
+	    //echo $tagg;
+	    //$post=$vacan->article_id;
+	    //foreach ($article as $articles)
+		//: 
+		//if ($post===$articles->id){ ?>
         <div class="border_search">    
             <!-- результаты поиска -->
             <div class="row">
@@ -44,7 +57,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     <!-- для описания -->
                         <div class="row">
                             <div class="col-12 col-md-8">
-                                <p>ФИО</p> <!-- подгрузка из базы -->
+                            <!-- ФИО -->
+                                <p><?= $resum->name ?> <?= $resum->surname ?></p> <!-- подгрузка из базы -->
                             </div>
 
                             <div class="col-6 col-sm-4">
@@ -54,25 +68,34 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <div class="row">
                             <div class="col-12 col-md-8">
-                                <p>Город</p> <!-- подгрузка из базы -->
+                                <p>    <!-- Город $resum->city_id подгрузка из базы -->
+                                    <?php
+                                        $city = $resum->city_id;
+                                            if ($city == NULL)
+                                            {
+                                                echo 'Не указано';
+                                            }
+                                            else echo $city;
+                                    ?>
+                                </p>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col">
-                                <p>Дата рождения</p> <!-- подгрузка из базы -->
+                                <p><?= $resum->dateBirth ?></p> <!-- дата рождения подгрузка из базы -->
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col">
-                                <p>Желаемая должность</p> <!-- подгрузка из базы -->
+                                <p><?= $resum->сareerObjective_id ?></p> <!-- Желаемая должность CareerObjective_id подгрузка из базы -->
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col">
-                                <p>Навыки</p> <!-- подгрузка из базы -->
+                                <p><?= $resum->skills ?></p> <!-- навыки skills подгрузка из базы -->
                             </div>
                         </div>
 
@@ -82,14 +105,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
 
                             <div class="col-6 col-sm-4">
-                                <p>Дата</p> <!-- подгрузка из базы -->
+                                <p><?= $vacan->dateAdd ?></p> <!-- дата подгрузка из базы -->
                             </div>
                         </div>
                 </div>
             </div>   
         </div>
+        <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
     </div>
-<!-- здесь заканчивается цикл для отображения -->
 </div> 
 </div> 
 <br>

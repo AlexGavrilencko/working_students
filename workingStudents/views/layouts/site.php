@@ -90,6 +90,7 @@ PublicAsset::register($this);
                                             <a class="dropdown-item menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
                                             <a class="dropdown-item menugreen_v h6" href="/privateoffice/vacancy">Составить вакансию</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Мои вакансии</a>
+                                            <a class="dropdown-item menugreen_v h6" href="#">Данные об организации</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Избранное</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Просмотренное</a>
                                             <a class="dropdown-item menugreen_v h6" href="/site/search_work">Поиск резюме</a>

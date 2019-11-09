@@ -115,9 +115,9 @@ class SiteController extends Controller
     public function actionSearch_work()      /* Страница поиска для компании */
     {
         $this->layout = 'site';
-        $vac=Resume::find()->all();
+        $resume=Resume::find()->all();
         return $this->render('search_work', [
-            'vac' => $vac,  /* Заменить на резюме */
+            'resume' => $resume,  /* Заменить на резюме */
             'pages' => $pages,
        ]);
     }
