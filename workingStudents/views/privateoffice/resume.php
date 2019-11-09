@@ -27,13 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     
                     <?php   $user = Yii::$app->user->identity;
-                            $model->user_id=$user->id; ?>
+                             ?>
 
 
                     <div class="row justify-content-center">
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <?php if($model->image): ?>
-                                <img class="" src="/uploads/<?= $model->image?>" alt="">
+                                <img class="size_img img-fluid" src="/uploads/<?= $model->image?>" alt="">
                             <?php endif; ?>
                         </div>
                     </div>          

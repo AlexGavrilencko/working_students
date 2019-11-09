@@ -365,6 +365,9 @@ body {
 width: 60%;
 }
 
+.size_img{
+  width: 30%;
+}
 
 li {
   list-style-type: none; /* Убираем маркеры */
