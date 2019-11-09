@@ -14,6 +14,7 @@ use app\models\Resume;
 use yii\web\UploadedFile;
 use app\models\User;
 use app\models\Attributes;
+use app\models\Organization;
 use yii\web\NotFoundHttpException;
 
 
@@ -120,6 +121,20 @@ class PrivateofficeController extends Controller
             $vac->create(); //адо проверить на всякий
         }
         return $this->render('vacancy', ['model'=>$vac]);
+
+    }
+
+    public function actionOrganiz(){
+        $this->layout = 'site';
+        $org=new Organization();
+        $user = Yii::$app->user->identity; //наш текущий пользователь
+        $org = Organization::find()->where(['user_id'=>$user->id])->one();
+        if(Yii::$app->request->isPost)
+        {
+            $org->load(Yii::$app->request->post());
+            $org->create(); //адо проверить на всякий
+        }
+        return $this->render('organiz', ['model'=>$vac]);
 
     }
 
