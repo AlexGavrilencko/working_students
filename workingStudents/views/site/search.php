@@ -7,7 +7,7 @@ use app\models\User;
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 
-$this->title = 'About';
+$this->title = 'Поиск';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

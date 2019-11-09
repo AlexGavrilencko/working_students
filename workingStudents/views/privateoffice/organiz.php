@@ -10,7 +10,7 @@ use yii\db\ActiveRecord;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 
-$this->title = 'Вакансия';
+$this->title = 'Организация';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php $form = ActiveForm::begin(); ?>

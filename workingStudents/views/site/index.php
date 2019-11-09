@@ -3,7 +3,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 
 
-$this->title = 'My Yii Application';
+$this->title = 'Главная';
 ?>
 <div class="container"> 
 <div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения категорий -->

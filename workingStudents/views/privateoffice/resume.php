@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             $model->user_id=$user->id; ?>
 
                         <?php if($model->image): ?>
-                            <img class="" src="/uploads/<?= $model->image?>" alt="">
+                            <img class="justify-content-center" src="/uploads/<?= $model->image?>" alt="">
                         <?php endif; ?>
                                  
                             
