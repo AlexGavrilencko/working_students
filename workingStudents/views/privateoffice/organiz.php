@@ -25,13 +25,22 @@ $this->params['breadcrumbs'][] = $this->title;
                         <h1><?= Html::encode($this->title) ?></h1>
                         <p>Пожалуйста, заполните все поля:</p>
                     </div>
+                    <div class="row justify-content-center">
+                        <a href="/privateoffice/set-image" class="btn btn-rounded btngreen">Загрузите личную фотографию</a>
+                    </div>
                     
+                    <?php   
+                        $user = Yii::$app->user->identity;
+                        if($model->image): ?>
+                            <img class="" src="/uploads/<?= $model->image?>" alt="">
+                        <?php endif; ?>
+                                 
                     <p>Данные об организации:</p>
-                    <p><?= $org->name ?></p>
-                    <p>г. <?= $city ?></p>
-                    <p>Адрес: <?=$org->adres?></p>
-                    <p>ИНН: <?=$org->inn?></p>
-                    <p>ОГРН: <?=$org->ogrn?></p>
+                    <p><?= $model->name ?></p>
+                    <p>г. <?= $model->city_id ?></p>
+                    <p>Адрес: <?=$model->adres?></p>
+                    <p>ИНН: <?=$model->inn?></p>
+                    <p>ОГРН: <?=$model->ogrn?></p>
                     
 
                    
