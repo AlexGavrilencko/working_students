@@ -13,7 +13,7 @@ $this->title = 'Главная';
         <?php foreach($category as $cat):
             $c=0; ?>
 
-            <div class="col">
+            <div class="col-3">
                 <?php if(($c=0)&&($c<7)) { ?>        
                     <a type="submit" class="btn btngreen_k  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
                 <?php $c++; }?>
@@ -22,7 +22,7 @@ $this->title = 'Главная';
 
 
 
-            <div class="col"> 
+            <div class="col-3"> 
                 <?php if(($c=7)&&($c<13)) { ?>
                     <a type="submit" class="btn btnred  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
                 <?php $c++; }?>
@@ -30,7 +30,7 @@ $this->title = 'Главная';
 
 
             
-            <div class="col">  
+            <div class="col-3">  
                 <?php if(($c=14)&&($c<20)) { ?>
                     <a type="submit" class="btn btnorange  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
                 <?php $c++; }?>
@@ -39,7 +39,7 @@ $this->title = 'Главная';
 
 
             
-            <div class="col">   
+            <div class="col-3">   
                 <?php if(($c=21)&&($c<27)) { ?>     
                     <a type="submit" class="btn btngreen_k  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
                 <?php $c++; }?>
@@ -49,10 +49,10 @@ $this->title = 'Главная';
         <?php endforeach;?>
             
               
-        <div class="col">
+        <!-- <div class="col">
             <button type="submit" class="btn btnorange  m-2">Прочее</button>
             <button type="submit" class="btn btngreen_k  m-2">Прохождение практики</button>
-        </div>
+        </div>-->
     </div> 
 </div>
 
