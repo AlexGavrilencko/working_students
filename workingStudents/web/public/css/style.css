@@ -351,8 +351,8 @@ body {
 }
 .content {
   flex: 1 0 auto;
-  /*background: url(/public/img/fon2.jpg);
-  opacity: 0.4;*/
+  background: url(/public/img/fon.jpg);
+  /*opacity: 0.4;*/
 }
 /*Для прикрепления подвала к низу страницы конец*/
 
