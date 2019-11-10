@@ -29,17 +29,26 @@ use yii\widgets\ActiveForm;
                                 </div>
 
                                 <div class="col-6 col-sm-4">
-                                    <p>Дата рождения</p>     <!-- подгрузка из базы -->
+                                    <p><?= $resum->dateBirth ?></p> <!-- дата рождения подгрузка из базы -->
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-12 col-md-8">
-                                    <p>Желаемая должность</p> <!-- подгрузка из базы -->
+                                <p><?= $resum->сareerObjective_id ?></p> <!-- Желаемая должность CareerObjective_id подгрузка из базы -->
                                 </div>
 
                                 <div class="col-6 col-sm-4">
-                                    <p>Город</p> <!-- подгрузка из базы -->
+                                <p>    <!-- Город $resum->city_id подгрузка из базы -->
+                                    <?php
+                                        $city = $resum->city_id;
+                                            if ($city == NULL)
+                                            {
+                                                echo 'Не указано';
+                                            }
+                                            else echo $city;
+                                    ?>
+                                </p>
                                 </div>
                             </div>
                         </div> 
@@ -55,7 +64,8 @@ use yii\widgets\ActiveForm;
                             <!-- для описания -->
                             <div class="row">
                                 <div class="col">
-                                    <p>Остальная информация</p> <!-- подгрузка из базы -->
+                                <p><?= $resum->skills ?></p> <!-- навыки подгрузка из базы -->
+                                <p><?= $resum->personalQualities_id ?></p> <!-- персональные качества подгрузка из базы -->
                                 </div>
                             </div>
 
@@ -65,7 +75,7 @@ use yii\widgets\ActiveForm;
                             </div>
 
                             <div class="col-6 col-sm-4">
-                                <p>Дата</p> <!-- подгрузка из базы -->
+                                <p><?= $vacan->dateAdd ?></p> <!-- дата подгрузка из базы -->
                             </div>
                             </div>
                         </div> 

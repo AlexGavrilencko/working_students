@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="row">
                             <div class="col-12 col-md-8">
                             <!-- ФИО -->
-                                <p><?= $resum->name ?> <?= $resum->surname ?></p> <!-- подгрузка из базы -->
+                                <p><?= $resum->name ?> <?= $resum->surname ?></p> <!-- имя и фамилия подгрузка из базы -->
                             </div>
 
                             <div class="col-6 col-sm-4">

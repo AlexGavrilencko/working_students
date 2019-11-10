@@ -23,21 +23,49 @@ use yii\widgets\ActiveForm;
                             <!-- для описания -->
                             <div class="row">
                                 <div class="col-12 col-md-8">
-                                    <p>Должность</p> <!-- подгрузка из базы -->
+                                    <p><?= $vacan->position_id ?></p> <!-- должность вакансии подгрузка из базы -->
                                 </div>
 
                                 <div class="col-6 col-sm-4">
-                                    <p>Цена</p>     <!-- подгрузка из базы -->
+                                    <p>    <!-- цена $vacan->salary подгрузка из базы -->
+                                        <?php
+                                            $salary = $vacan->salary;
+                                                if ($salary == NULL)
+                                                {
+                                                    echo 'Не указано';
+                                                }
+                                                else echo $salary;
+                                        ?>
+                                    </p>
+
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-12 col-md-8">
-                                    <p>Организация</p> <!-- подгрузка из базы -->
+                                    <p>    <!-- Название организации подгрузка из базы -->
+                                        <?php
+                                            $organization = $vacan->organization_id;
+                                                if ($organization == NULL)
+                                                {
+                                                    echo 'Не указано';
+                                                }
+                                                else echo $organization;
+                                        ?>
+                                    </p>
                                 </div>
 
                                 <div class="col-6 col-sm-4">
-                                    <p>Город</p> <!-- подгрузка из базы -->
+                                    <p>    <!-- Город $vacan->city_id подгрузка из базы -->
+                                        <?php
+                                            $city = $vacan->city_id;
+                                                if ($city == NULL)
+                                                {
+                                                    echo 'Не указано';
+                                                }
+                                                else echo $city;
+                                        ?>
+                                    </p>
                                 </div>
                             </div>
                         </div> 
@@ -53,7 +81,11 @@ use yii\widgets\ActiveForm;
                             <!-- для описания -->
                             <div class="row">
                                 <div class="col">
-                                    <p>Остальная информация</p> <!-- подгрузка из базы -->
+                                    <p>Опыт: <?= $vacan->experience_id ?></p> <!-- опыт подгрузка из базы -->
+                                    <p>График: <?= $vacan->employment_id ?></p> <!-- график работы подгрузка из базы -->
+                                    <p>Обязанности: <?= $vacan->duties ?></p> <!-- обязанности подгрузка из базы -->
+                                    <p>Требование: <?= $vacan->requirement ?></p> <!-- требование  подгрузка из базы -->
+                                    <p>Условия: <?= $vacan->conditions ?></p> <!-- условия подгрузка из базы -->
                                 </div>
                             </div>
 
@@ -63,7 +95,7 @@ use yii\widgets\ActiveForm;
                             </div>
 
                             <div class="col-6 col-sm-4">
-                                <p>Дата</p> <!-- подгрузка из базы -->
+                                <p><?= $vacan->dateAdd ?></p> <!-- дата $vacan->dateAdd подгрузка из базы -->
                             </div>
                             </div>
                         </div> 
