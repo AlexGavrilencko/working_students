@@ -10,19 +10,44 @@ $this->title = 'Главная';
         <p class="h4 text-center">Работа в Новосибирске</p> <!-- Надо сделать так, чтобы город был автоматически, как на других сайтах -->
     <div class="row">
 <!-- кнопки готовы, тебе только надо покрасивше сделать, за вывод отвечает цикл -->
-        <?php foreach($category as $cat):?>
-            <div class="col">        
-                <a class="btn btngreen_k  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>" class="btn btn-default"><?= $cat->name ?></a>
-            </div>  
-        <?php endforeach;?>
-            <p>Конец категорий</p>
-        <div class="col"> 
-            <button type="submit" class="btn btngreen_k  m-2">Медицина и фармация</button>
-        </div>
+        <?php foreach($category as $cat):
+            $c=0; ?>
 
-        <div class="col">
-            <button type="submit" class="btn btnred  m-2">Сельское хозяйство</button>
-        </div>
+            <div class="col">
+                <?php if(($c=0)&&($c<7)) { ?>        
+                    <a type="submit" class="btn btngreen_k  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
+                <?php $c++; }?>
+            </div>  
+            
+
+
+
+            <div class="col"> 
+                <?php if(($c=7)&&($c<13)) { ?>
+                    <a type="submit" class="btn btnred  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
+                <?php $c++; }?>
+            </div>
+
+
+            
+            <div class="col">  
+                <?php if(($c=14)&&($c<20)) { ?>
+                    <a type="submit" class="btn btnorange  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
+                <?php $c++; }?>
+            </div>  
+            
+
+
+            
+            <div class="col">   
+                <?php if(($c=21)&&($c<27)) { ?>     
+                    <a type="submit" class="btn btngreen_k  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
+                <?php $c++; }?>
+            </div>  
+            
+
+        <?php endforeach;?>
+            
               
         <div class="col">
             <button type="submit" class="btn btnorange  m-2">Прочее</button>

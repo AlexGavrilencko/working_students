@@ -26,8 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         <a href="/privateoffice/set-image" class="btn btn-rounded btngreen">Загрузите личную фотографию</a>
                     </div>
                     
+<<<<<<< HEAD
                     <?php   $user = Yii::$app->user->identity;
                              ?>
+=======
+                    <?php    ?>
+>>>>>>> 0a07036484591c75c670d6e6451e5c7f745a1a93
 
 
                     <div class="row justify-content-center">
@@ -49,6 +53,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <?= $form->field($model, 'patronymic')->textInput() ?>
                         <?php
+                            $user = Yii::$app->user->identity;
+                            $model->user_id=$user->id;
                             // получаем все города из таблицы атрибутов
                             $city = Attributes::find()->where(['type'=>'city'])->all();
                             // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
