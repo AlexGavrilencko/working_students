@@ -128,13 +128,15 @@ class PrivateofficeController extends Controller
         $this->layout = 'site';
         $org=new Organization();
         $user = Yii::$app->user->identity; //наш текущий пользователь
-        //$org = Organization::find()->where(['user_id'=>$user->id])->one();
+        $org = Organization::find()->where(['user_id'=>$user->id])->one();
+        //var_dump($org);
+
         if(Yii::$app->request->isPost)
         {
             $org->load(Yii::$app->request->post());
             $org->create(); //адо проверить на всякий
         }
-        return $this->render('organiz', ['model'=>$vac]);
+        return $this->render('organiz', ['model'=>$org]);
 
     }
 

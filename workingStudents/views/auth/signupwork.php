@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php $form = ActiveForm::begin();  
                       $user = Yii::$app->user->identity;
                       $model->user_id=$user->id;
-                      $form->field($model,'user_id')
+                      $form->field($model,'user_id');
                       
                 ?>
                 <?= $model->user_id ?>

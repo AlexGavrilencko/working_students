@@ -47,7 +47,7 @@ class Organization extends ActiveRecord
             'name' => 'Наименование организации',
             'city_id' => 'Город',
             'adres' => 'Адрес',
-            'inn' => 'ИННН',
+            'inn' => 'ИНН',
             'ogrn' => 'ОГРН',
             'image' => 'Логотип',
         ];

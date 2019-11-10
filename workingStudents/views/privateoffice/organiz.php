@@ -34,16 +34,24 @@ $this->params['breadcrumbs'][] = $this->title;
                         if($model->image): ?>
                             <img class="" src="/uploads/<?= $model->image?>" alt="">
                         <?php endif; ?>
-                                 
-                    <p>Данные об организации:</p>
-                    <p><?= $model->name ?></p>
-                    <p>г. <?= $model->city_id ?></p>
-                    <p>Адрес: <?=$model->adres?></p>
-                    <p>ИНН: <?=$model->inn?></p>
-                    <p>ОГРН: <?=$model->ogrn?></p>
-                    
+                    <?= $form->field($model, 'name')->textInput() ?>
+                    <?php
+                    // получаем все города из таблицы атрибутов
+                    $city = Attributes::find()->where(['type'=>'city'])->all();
+                    // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
+                    $items = ArrayHelper::map($city,'id','name');
+                    $params = [
+                        'prompt' => $city->name
+                    ];
+                    echo $form->field($model, 'city_id')->dropDownList($items,$params);
+                    ?>
 
-                   
+                    <?= $form->field($model, 'adres')->textInput() ?>
+
+                    <?= $form->field($model, 'inn')->textInput() ?>
+
+                    <?= $form->field($model, 'ogrn')->textInput() ?>
+
                     <div class="row justify-content-center">
                         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen', 'name' => 'Save submit']) ?>
                     </div>

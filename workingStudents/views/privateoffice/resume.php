@@ -25,14 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="row justify-content-center">
                         <a href="/privateoffice/set-image" class="btn btn-rounded btngreen">Загрузите личную фотографию</a>
                     </div>
-                    
-<<<<<<< HEAD
-                    <?php   $user = Yii::$app->user->identity;
-                             ?>
-=======
-                    <?php    ?>
->>>>>>> 0a07036484591c75c670d6e6451e5c7f745a1a93
-
 
                     <div class="row justify-content-center">
                         <div class="col-md-6 col-sm-6 col-xs-6">
