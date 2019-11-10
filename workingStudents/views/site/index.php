@@ -10,19 +10,32 @@ $this->title = 'Главная';
         <p class="h4 text-center">Работа в Новосибирске</p> <!-- Надо сделать так, чтобы город был автоматически, как на других сайтах -->
     <div class="row">
 <!-- кнопки готовы, тебе только надо покрасивше сделать, за вывод отвечает цикл -->
-        <?php foreach($category as $cat):?>
+        <?php foreach($category as $cat):
+            $c=0; 
+            if(($c=0)&&($c<7)) { ?>
             <div class="col">        
-                <a class="btn btngreen_k  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>" class="btn btn-default"><?= $cat->name ?></a>
+                <a type="submit" class="btn btngreen_k  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
             </div>  
+            <?php $c++; }?>
+            <div class="col"> 
+            <?php if(($c=7)&&($c<13)) { ?>
+                   
+                <a type="submit" class="btn btnred  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
+              
+            <?php $c++; }?>
+            </div>
+            <?php if(($c=14)&&($c<20)) { ?>
+            <div class="col">        
+                <a type="submit" class="btn btnorange  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
+            </div>  
+            <?php $c++; }?>
+            <?php if(($c=21)&&($c<27)) { ?>
+            <div class="col">        
+                <a type="submit" class="btn btngreen_k  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
+            </div>  
+            <?php $c++; }?>
         <?php endforeach;?>
-            <p>Конец категорий</p>
-        <div class="col"> 
-            <button type="submit" class="btn btngreen_k  m-2">Медицина и фармация</button>
-        </div>
-
-        <div class="col">
-            <button type="submit" class="btn btnred  m-2">Сельское хозяйство</button>
-        </div>
+            
               
         <div class="col">
             <button type="submit" class="btn btnorange  m-2">Прочее</button>
