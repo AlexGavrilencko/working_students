@@ -77,4 +77,8 @@ class Vacancy extends \yii\db\ActiveRecord
             'response' => 'Отклик',
         ];
     }
+    public function create()
+    {
+        return $this->save(false);
+    }
 }

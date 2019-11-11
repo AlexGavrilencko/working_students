@@ -100,7 +100,7 @@ class PrivateofficeController extends Controller
         $this->layout = 'site';
         $res=new Resume();
         $user = Yii::$app->user->identity; //наш текущий пользователь
-        //$res = Resume::find()->where(['user_id'=>$user->id])->one();
+        $res = Resume::find()->where(['user_id'=>$user->id])->one();
         if(Yii::$app->request->isPost)
         {
             $res->load(Yii::$app->request->post());
@@ -115,6 +115,7 @@ class PrivateofficeController extends Controller
         $this->layout = 'site';
         $vac=new Vacancy();
         $user = Yii::$app->user->identity; //наш текущий пользователь
+        $vac = Vacancy::find()->where(['user_id'=>$user->id])->one();
         if(Yii::$app->request->isPost)
         {
             $vac->load(Yii::$app->request->post());

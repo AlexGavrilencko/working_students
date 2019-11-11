@@ -3,9 +3,11 @@
 /* @var $this yii\web\View */
 
 use app\models\Attributes;
+use app\models\Organization;
 use app\models\User;
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
+use yii\helpers\Url;
 
 $this->title = 'Поиск';
 $this->params['breadcrumbs'][] = $this->title;
@@ -51,7 +53,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="row">
                 <div class="col-sm-3">
                     <!-- для изображения -->
-                    <img src="/public/img/nofoto.png" alt="Avatar" class="searchavatar">
+                    <?php
+                     if($resum->image): ?>
+                                <img class="searchavatar" src="/uploads/<?= $resum->image?>" alt="">
+                    <?php endif; ?>
+                   
                 </div>
                 <div class="col-sm-9 ">
                     <!-- для описания -->
@@ -70,12 +76,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="col-12 col-md-8">
                                 <p>    <!-- Город $resum->city_id подгрузка из базы -->
                                     <?php
-                                        $city = $resum->city_id;
+                                        $c = $resum->city_id;
+                                        $city = Attributes::find()->where(['id'=>$c])->one();
+                                        $obj=$resum->сareerObjective_id;
+                                        $object = Attributes::find()->where(['id'=>$obj])->one();
                                             if ($city == NULL)
                                             {
                                                 echo 'Не указано';
                                             }
-                                            else echo $city;
+                                            else echo $city->name;
                                     ?>
                                 </p>
                             </div>
@@ -89,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <div class="row">
                             <div class="col">
-                                <p><?= $resum->сareerObjective_id ?></p> <!-- Желаемая должность CareerObjective_id подгрузка из базы -->
+                                <p><?= $object->name ?></p> <!-- Желаемая должность CareerObjective_id подгрузка из базы -->
                             </div>
                         </div>
 
@@ -101,11 +110,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <div class="row">
                             <div class="col-12 col-sm-8">
-                                <p>Подробнее</p> <!-- кнопка для перехода на страницу данной вакансии и сохранение вакансии в просмотренное -->
+                            <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>">Подробнее</a> <!-- кнопка для перехода на страницу данной вакансии и сохранение вакансии в просмотренное -->
                             </div>
 
                             <div class="col-6 col-sm-4">
-                                <p><?= $vacan->dateAdd ?></p> <!-- дата подгрузка из базы -->
+                                <p><?= $resum->dateAdd ?></p> <!-- дата подгрузка из базы -->
                             </div>
                         </div>
                 </div>

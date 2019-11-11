@@ -3,9 +3,11 @@
 /* @var $this yii\web\View */
 
 use app\models\Attributes;
+use app\models\Organization;
 use app\models\User;
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
+use yii\helpers\Url;
 
 $this->title = 'Поиск';
 $this->params['breadcrumbs'][] = $this->title;
@@ -50,7 +52,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="row">
                 <div class="col-sm-3">
                     <!-- для изображения -->
-                    <img src="/public/img/nofoto.png" alt="Avatar" class="searchavatar">
+                    <?php
+                    $o = $vacan->organization_id;
+                    $organization = Organization::find()->where(['id'=>$o])->one();
+                     if($organization->image): ?>
+                                <img class="searchavatar" src="/uploads/<?= $organization->image?>" alt="">
+                    <?php endif; ?>
+                    
                 </div>
                 <div class="col-sm-9 ">
                     <!-- для описания -->
@@ -81,12 +89,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 <p>    <!-- Название организации подгрузка из базы -->
                                     <?php
-                                        $organization = $vacan->organization_id;
+                                        $o = $vacan->organization_id;
+                                        $organization = Organization::find()->where(['id'=>$o])->one();
                                             if ($organization == NULL)
                                             {
                                                 echo 'Не указано';
                                             }
-                                            else echo $organization;
+                                            else echo $organization->name;
                                     ?>
                                 </p>
 
@@ -102,12 +111,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                 
                                 <p>    <!-- Город $vacan->city_id подгрузка из базы -->
                                     <?php
-                                        $city = $vacan->city_id;
+                                        $c = $vacan->city_id;
+                                        $city = Attributes::find()->where(['id'=>$c])->one();
+                                        
                                             if ($city == NULL)
                                             {
                                                 echo 'Не указано';
                                             }
-                                            else echo $city;
+                                            else echo $city->name;
                                     ?>
                                 </p>
                             </div>
@@ -131,7 +142,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <div class="row">
                             <div class="col-12 col-sm-8">
-                                <p>Подробнее</p> <!-- кнопка для перехода на страницу данной вакансии и сохранение вакансии в просмотренное -->
+                            <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a> <!-- кнопка для перехода на страницу данной вакансии и сохранение вакансии в просмотренное -->
                             </div>
 
                             <div class="col-6 col-sm-4">

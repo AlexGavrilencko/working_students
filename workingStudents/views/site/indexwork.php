@@ -5,6 +5,9 @@
 use app\models\Attributes;
 use yii\widgets\LinkPager;
 use app\models\User;
+use app\models\Organization;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 
 $this->title = 'Главная';
@@ -27,20 +30,38 @@ $this->title = 'Главная';
              <!-- расширенный поиск -->
         </div>
 
- <!-- здесь начинается цикл для отображения -->
+
     <div class="col-sm-6">  
+     <!-- здесь начинается цикл для отображения -->
+     <?php
+        //$org таблица организация
+        //$atr таблица со всеми справочниками
+        //$catvac все вакансии выбранной категории
+        foreach ($resume as $resum)
+        : 
+
+	    //echo $tagg;
+	    //$post=$vacan->article_id;
+	    //foreach ($article as $articles)
+		//: 
+		//if ($post===$articles->id){ ?>
         <div class="border_search">    
             <!-- результаты поиска -->
             <div class="row">
                 <div class="col-sm-3">
                     <!-- для изображения -->
-                    <img src="/public/img/nofoto.png" alt="Avatar" class="searchavatar">
+                    <?php
+                     if($resum->image): ?>
+                                <img class="searchavatar" src="/uploads/<?= $resum->image?>" alt="">
+                    <?php endif; ?>
+                   
                 </div>
                 <div class="col-sm-9 ">
                     <!-- для описания -->
                         <div class="row">
                             <div class="col-12 col-md-8">
-                                <p>ФИО</p> <!-- подгрузка из базы -->
+                            <!-- ФИО -->
+                                <p><?= $resum->name ?> <?= $resum->surname ?></p> <!-- имя и фамилия подгрузка из базы -->
                             </div>
 
                             <div class="col-6 col-sm-4">
@@ -50,42 +71,54 @@ $this->title = 'Главная';
 
                         <div class="row">
                             <div class="col-12 col-md-8">
-                                <p>Город</p> <!-- подгрузка из базы -->
+                                <p>    <!-- Город $resum->city_id подгрузка из базы -->
+                                    <?php
+                                        $c = $resum->city_id;
+                                        $city = Attributes::find()->where(['id'=>$c])->one();
+                                        $obj=$resum->CareerObjective_id;
+                                        $object = Attributes::find()->where(['id'=>$obj])->one();
+                                            if ($city == NULL)
+                                            {
+                                                echo 'Не указано';
+                                            }
+                                            else echo $city->name;
+                                    ?>
+                                </p>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col">
-                                <p>Дата рождения</p> <!-- подгрузка из базы -->
+                                <p><?= $resum->dateBirth ?></p> <!-- дата рождения подгрузка из базы -->
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col">
-                                <p>Желаемая должность</p> <!-- подгрузка из базы -->
+                                <p><?= $object->name ?></p> <!-- Желаемая должность CareerObjective_id подгрузка из базы -->
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col">
-                                <p>Навыки</p> <!-- подгрузка из базы -->
+                                <p><?= $resum->skills ?></p> <!-- навыки skills подгрузка из базы -->
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-12 col-sm-8">
-                                <p>Подробнее</p> <!-- кнопка для перехода на страницу данной вакансии и сохранение вакансии в просмотренное -->
+                            <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>">Подробнее</a> <!-- кнопка для перехода на страницу данной вакансии и сохранение вакансии в просмотренное -->
                             </div>
 
                             <div class="col-6 col-sm-4">
-                                <p>Дата</p> <!-- подгрузка из базы -->
+                                <p><?= $resum->dateAdd ?></p> <!-- дата подгрузка из базы -->
                             </div>
                         </div>
                 </div>
             </div>   
         </div>
+        <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
     </div>
-<!-- здесь заканчивается цикл для отображения -->
 </div> 
 </div> 
 <br>

@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         $user = Yii::$app->user->identity;
                         $model->user_id=$user->id; 
                     ?>
-
+                    <?= $model->user_id ?></p>
                     <?= $form->field($model, 'name')->textInput() ?>
 
                     <?php 

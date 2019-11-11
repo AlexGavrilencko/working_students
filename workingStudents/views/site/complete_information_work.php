@@ -3,6 +3,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\Attributes;
+use app\models\Organization;
+use app\models\User;
+use yii\helpers\Url;
 
 
 ?>
@@ -27,7 +31,19 @@ use yii\widgets\ActiveForm;
                                 <div class="col-12 col-md-8">
                                     <p><?= $resum->name ?> <?= $resum->surname ?> <?= $resum->patronymic ?></p> <!-- ФИО подгрузка из базы -->
                                 </div>
-
+                                <?php
+                                        $c = $resum->city_id;
+                                        $city = Attributes::find()->where(['id'=>$c])->one();
+                                        $obj=$resum->CareerObjective_id;
+                                        $object = Attributes::find()->where(['id'=>$obj])->one();
+                                        $qal=$resum->personalQualities_id;
+                                        $qalit = Attributes::find()->where(['id'=>$qal])->all();
+                                            if ($city == NULL)
+                                            {
+                                                echo 'Не указано';
+                                            }
+                                            else echo $city->name;
+                                ?>
                                 <div class="col-6 col-sm-4">
                                     <p><?= $resum->dateBirth ?></p> <!-- дата рождения подгрузка из базы -->
                                 </div>
@@ -35,20 +51,10 @@ use yii\widgets\ActiveForm;
 
                             <div class="row">
                                 <div class="col-12 col-md-8">
-                                <p><?= $resum->сareerObjective_id ?></p> <!-- Желаемая должность CareerObjective_id подгрузка из базы -->
+                                <p><?= $object->name ?></p> <!-- Желаемая должность CareerObjective_id подгрузка из базы -->
                                 </div>
 
-                                <div class="col-6 col-sm-4">
-                                <p>    <!-- Город $resum->city_id подгрузка из базы -->
-                                    <?php
-                                        $city = $resum->city_id;
-                                            if ($city == NULL)
-                                            {
-                                                echo 'Не указано';
-                                            }
-                                            else echo $city;
-                                    ?>
-                                </p>
+                                
                                 </div>
                             </div>
                         </div> 
@@ -65,7 +71,7 @@ use yii\widgets\ActiveForm;
                             <div class="row">
                                 <div class="col">
                                 <p><?= $resum->skills ?></p> <!-- навыки подгрузка из базы -->
-                                <p><?= $resum->personalQualities_id ?></p> <!-- персональные качества подгрузка из базы -->
+                                <p><?= $qalit->name ?></p> <!-- персональные качества подгрузка из базы -->
                                 </div>
                             </div>
 

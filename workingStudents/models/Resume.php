@@ -69,6 +69,10 @@ class Resume extends \yii\db\ActiveRecord
             'response' => 'Отклик',
         ];
     }
+    public function create()
+    {
+        return $this->save(false);
+    }
     public function findModel($id)
     {
         if (($model = resume::findOne($id)) !== null) {

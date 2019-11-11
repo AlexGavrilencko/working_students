@@ -80,20 +80,32 @@ class SiteController extends Controller
 		]);
     }
 
-    public function actionComplete_information()   /* Это для просмотра отдельной страницы */
+    public function actionComplete_information($id)   /* Это для просмотра отдельной страницы */
     {
-        return $this->render('complete_information');
+        $vac=Vacancy::find()->where(['id' => $id])->one();
+        return $this->render('complete_information',[
+            'vac'=>$vac,
+            ]);
+        
     }
 
-    public function actionComplete_information_work()   /* Это для просмотра отдельной страницы */
+    public function actionComplete_information_work($id)   /* Это для просмотра отдельной страницы */
     {
-        return $this->render('complete_information_work');
+        $resume=Resume::find()->where(['id' => $id])->one();
+        return $this->render('complete_information_work',[
+            'resum'=>$resume,
+            ]);
+        
     }
 
     public function actionIndexwork()    /* Это для главной страницы работодателя */
     {
         $this->layout = 'homework';
-        return $this->render('indexwork');
+        $resume=Resume::find()->all();
+        return $this->render('indexwork',[
+            'resume'=>$resume,
+            ]);
+       
     }
 
 
@@ -118,7 +130,6 @@ class SiteController extends Controller
         $resume=Resume::find()->all();
         return $this->render('search_work', [
             'resume' => $resume,  /* Заменить на резюме */
-            'pages' => $pages,
        ]);
     }
 
