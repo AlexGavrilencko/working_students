@@ -144,7 +144,8 @@ svg text {
 
 /* стиль для фоновой картинки страниц регистрации и авторизации */
 .header1{ 
-  background-image: url(/public/img/header1.jpg);
+  flex: 1 0 auto;
+  background: url(/public/img/header1.jpg);
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
@@ -194,7 +195,7 @@ svg text {
 
 /* стиль для цвета footer*/
 .dark{
-  background-color: #161616e3;
+  background-color: #161616;
 }
 
 /* стиль для цвета меню*/
@@ -294,6 +295,8 @@ svg text {
 #logofooter{
   width: 17%;
 }
+
+
 /* стиль для аватарки в поиске и избранном/просмотренном */
 .searchavatar{
   width: 90%;
@@ -382,8 +385,6 @@ li {
 
 
 /*__________________________________________________________________________________________*/
-
-
 
 
 

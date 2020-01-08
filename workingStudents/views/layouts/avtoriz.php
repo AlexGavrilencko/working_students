@@ -27,14 +27,14 @@ PublicAsset::register($this);
     <body class="fonbody">
     <?php $this->beginBody() ?>
 
-    <header class="header1 h-100">
+    <header class="header1">
     <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->
                
                <a href="/site/index" class="navbar-brad"><img src="/public/img/logo1.png" alt="Logo"></a>  <!-- логотип в меню сайта -->
                           
-                  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
-                      <span class="navbar-toggler-icon"></span>
-                  </button>
+               <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                   
                       <div class="collapse navbar-collapse " id="collapsibleNavbar">
   
@@ -60,20 +60,24 @@ PublicAsset::register($this);
    
     
         <footer class="dark">
-             <div class="container">
+             <div class="container">      
+                
                  <div class="row justify-content-center">
-                    <a href="/site/index" id="logofooter" class="navbar-brad"><img src="/public/img/logofooter1.png" alt="Logo"></a>
+                    <div class="col-6 col-sm-4 col-md-2 col-lg-2 col-xl-2">
+                        <a href="/site/index" id="logofooter" class="navbar-brad"><img src="/public/img/logofooter1.png" alt="Logo"></a>
+                    </div>
                  </div>
+                 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <div class="text-center text-light">
                             &copy; 2019 WorkingStudents, Build with by V&A
                         </div>
                     </div>
                 </div>
+
              </div>
         </footer>
-
 
     </div>
     <?php $this->endBody() ?>
