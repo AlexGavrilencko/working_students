@@ -26,8 +26,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 <div class="container-fluid">
                                     <div class="row">
-                                        <div class="col-10 indent">  <?= $form->field($model, 'password')->passwordInput() ?></div>
-                                        <div class="col-2 indent1"><button type="submit" class="btn btn-rounded btngreen ">Показать</button></div>
+                                        <div class="col-sm-8 indent">
+                                            <?= $form->field($model, 'password')->passwordInput() ?>
+                                        </div>
+                                        <div class="col-sm-4 indent1">
+                                            <button type="submit" class="btn btn-rounded btngreen ">Показать</button>
+                                        </div>
+
+                                         <!--col-md-6 col-lg-6 col-xl-6-->
+
                                     </div>
                                 </div>
 

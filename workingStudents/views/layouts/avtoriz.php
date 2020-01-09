@@ -48,6 +48,13 @@ PublicAsset::register($this);
                                   <a class="nav-link menugreen h6" href="/site/indexwork">Работодателям</a>
                               </li> 
                           </ul>
+
+                        <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
+                            <li class="nav-item">
+                                <a class=" nav-link menugreen_v h6" href="/auth/login" id="vxod">Вход</a>
+                            </li>
+                        </ul>
+
                       </div>
           </nav>
 
