@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php $form = ActiveForm::begin(); ?>
                     <h3 class="text-center">Авторизация</h3>
 
-                    <?= $form->field($model, 'login')->textInput(['autofocus' => true]) ?>
+                    <?= $form->field($model, 'login')->textInput(['autofocus' => true]) ?> 
 
                     <?= $form->field($model, 'password')->passwordInput() ?>
 
@@ -51,12 +51,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 
                     <div class="container">
                          <div class="row justify-content-md-center">
-                            <div class="col-11 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                  <a href="<?= Url::toRoute(['/auth/signup', 'rang'=>'10']); ?>" class="btn-rounded btngreen btn btn-lg btn-block m-1">Соискателя</a>
                             </div>
 
+<<<<<<< HEAD
                             <div class="col-11 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                 <a href="<?= Url::toRoute(['/auth/signupwork', 'rang'=>'20']); ?>" class="btn-rounded btngreen btn btn-lg btn-block m-1">Работодателя</a>
+=======
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                <a href="<?= Url::toRoute(['/auth/signup', 'rang'=>'20']); ?>" class="btn-rounded btngreen btn btn-lg btn-block m-1">Работодателя</a>
+>>>>>>> 6f77494d4de9c63a1d84fa00ad10843729917c31
                             </div>
                         </div>
                     </div>

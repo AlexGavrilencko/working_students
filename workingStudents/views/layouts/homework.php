@@ -61,20 +61,24 @@ PublicAsset::register($this);
         </nav>
 
         <div class="container-fluid d-flex hh-100 d-flex flex-row bd-highlight flex-column">        
-            <div class="row">
-                <div class="col">
-                </div>
-                <div class="col">
-                </div>
-                <div class="col">
-                </div>
+           <!-- <div class="row">
                 <div class="col">
                 </div>
 
                 <div class="col">
                     <a href="/auth/login" class="btn-rounded btngreen btn btn-lg m-4">Разместить вакансию</a>
                 </div>
-            </div>
+            </div>--> 
+
+            <nav class="navbar navbar-expand-lg"> <!-- стиль для меню сайта -->  
+                <div class="collapse navbar-collapse " id="collapsibleNavbar">
+                    <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
+                        <li class="nav-item">
+                            <a href="/auth/login" class="btn-rounded btngreen btn btn-lg">Разместить вакансию</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         
                 <p class="h2 text-light margin-top">Найдите сотрудника на вашу вакансию</p>
 

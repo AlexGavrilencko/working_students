@@ -28,35 +28,31 @@ PublicAsset::register($this);
     <?php $this->beginBody() ?>
 
 <div class="header" style="height: 480px;">
+        <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->   
+            <a href="/site/index" class="navbar-brad"><img src="/public/img/logo1.png" alt="Logo"></a>  <!-- логотип в меню сайта --> 
 
-        <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->
-               
-             <a href="/site/index" class="navbar-brad"><img src="/public/img/logo1.png" alt="Logo"></a>  <!-- логотип в меню сайта -->
-                        
                 <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 
-                    <div class="collapse navbar-collapse " id="collapsibleNavbar">
-                        <?php  if (Yii::$app->user->isGuest){ ?>
+                <div class="collapse navbar-collapse " id="collapsibleNavbar">
+                    <?php  if (Yii::$app->user->isGuest){ ?>
                         <ul class="navbar-nav">  <!-- переходы в меню для гостя-->
-
                             <li class="nav-item">
                                 <a class="nav-link menured h6 text-decoration" href="/site/index">Студентам</a>
                             </li>
-                    
                             <li class="nav-item">
                                 <a class="nav-link h6 menugreen" href="/site/indexwork">Работодателям</a>
                             </li> 
                         </ul>
 
                         <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
-
                             <li class="nav-item">
                                 <a class=" nav-link menugreen_v h6" href="/auth/login" id="vxod">Вход</a>
                              </li>
-
                         </ul>
+
+     <!-- удалить для других пользователей. оставить только для пользователя гость -->                   
                         <?php } else {?>
                             <?php $user = Yii::$app->user->identity;
                             if($user->rang===10){ ?>
@@ -79,20 +75,32 @@ PublicAsset::register($this);
                                     <a class=" nav-link menugreen_v h6" href="/auth/logout" id="vixod">Выход</a>
                                 </li>
                             </ul>
-                        <?php }?>                             
-                    </div>
+                        <?php }?>   
+
+                </div>
         </nav>
          
         <div class="container-fluid d-flex hh-100 flex-row bd-highlight flex-column">        
-            <div class="row justify-content-between">
-            
+          <!--  <div class="row justify-content-between">   
+                 
                 <div class="col-4">
                 </div>
-
                 <div class="col-4">
                     <a href="/auth/login" class="btn-rounded btngreen btn btn-lg">Разместить резюме</a>
                 </div>
-            </div>
+            </div> --> 
+
+            <nav class="navbar navbar-expand-lg"> <!-- стиль для меню сайта -->  
+
+                <div class="collapse navbar-collapse " id="collapsibleNavbar">
+                        <ul class="navbar-nav ml-auto"> 
+                            <li class="nav-item">
+                            <a href="/auth/login" class="btn-rounded btngreen btn btn-lg">Разместить резюме</a>
+                             </li>
+                        </ul>
+                </div>
+        </nav>
+
              
                 <p class="h2 text-light margin-top">Работа для каждого</p>
 
@@ -109,6 +117,10 @@ PublicAsset::register($this);
                 </div> 
             </div>   
 -->     
+
+
+
+
 	                <div class="row">
                         <div class="col-12 col-md-10 col-lg-8">
                             <form class="search">

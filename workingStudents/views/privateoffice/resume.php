@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p>Вы можете составить свое резюме</p>
                     </div>
                     <div class="row justify-content-center">
-                        <a href="/privateoffice/set-image" class="btn btn-rounded btngreen">Загрузите личную фотографию</a>
+                        <a href="/privateoffice/set-image" class="btn btn-rounded btngreen">Загрузите фотографию</a>
                     </div>
 
                     <div class="row justify-content-center">
