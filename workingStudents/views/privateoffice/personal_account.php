@@ -10,6 +10,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php $form = ActiveForm::begin();  
       $user = Yii::$app->user->identity;
+      //var_dump($user);die();
 ?>
  
 <!-- Для свсех стандартно так как в таблице user храняться общие данные -->

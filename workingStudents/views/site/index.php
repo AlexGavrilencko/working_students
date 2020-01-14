@@ -1,51 +1,34 @@
 <?php
 use yii\helpers\Url;
+use app\helper\ClassHelper;
 /* @var $this yii\web\View */
 
 
 $this->title = 'Главная';
+$c = 0;
 ?>
 <div class="container"> 
 <div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения категорий -->
         <p class="h4 text-center">Работа в Новосибирске</p> <!-- Надо сделать так, чтобы город был автоматически, как на других сайтах -->
     <div class="row">
 <!-- кнопки готовы, тебе только надо покрасивше сделать, за вывод отвечает цикл -->
-        <?php foreach($category as $cat):
-            $c=0; ?>
+        
 
-            <div class="col-3">
-                <?php if(($c=0)&&($c<7)) { ?>        
-                    <a type="submit" class="btn btngreen_k  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
-                <?php $c++; }?>
-            </div>  
-            
+        <!-- btnorange
+btngreen_k 
+btngreen_k
+btnred
+ -->
 
+        <?php foreach($category as $cat): ?>
 
-
-            <div class="col-3"> 
-                <?php if(($c=7)&&($c<13)) { ?>
-                    <a type="submit" class="btn btnred  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
-                <?php $c++; }?>
+            <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3"> 
+                
+                    <a type="submit" class="btn d-block mx-auto <?php ClassHelper::getColor($c) ?> m-2" 
+                    href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
+                <?php $c++; ?>
             </div>
-
-
             
-            <div class="col-3">  
-                <?php if(($c=14)&&($c<20)) { ?>
-                    <a type="submit" class="btn btnorange  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
-                <?php $c++; }?>
-            </div>  
-            
-
-
-            
-            <div class="col-3">   
-                <?php if(($c=21)&&($c<27)) { ?>     
-                    <a type="submit" class="btn btngreen_k  m-2" href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
-                <?php $c++; }?>
-            </div>  
-            
-
         <?php endforeach;?>
             
               

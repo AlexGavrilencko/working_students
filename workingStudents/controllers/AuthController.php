@@ -30,29 +30,13 @@ class AuthController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post())) {
             $user = User::find()->where(['login' => $model->login, 'password' => $model->password])->one();
-            $Act=$user->ActInactUser;
-           // var_dump($Act);
             if($user) {
-               // var_dump($user->rang);
                 Yii::$app->user->login($user); // <-- вот так логиним пользователя 
-                
-                if($user->rang=='10') {
-                    return $this->redirect(['privateoffice/personal_account']); //студент переходит на модель своего ЛК
-                }
-                if($user->rang=='20') {
-                    if($user->ActInactUser=='1'){
-                        return $this->redirect(['privateoffice/personal_account']); //студент переходит на модель своего ЛК
-                    }
-                    else{
-                        return $this->redirect(['auth/signupwork']); //компания переходит на регистрацию организацию
-                    }
+                return $this->redirect(['privateoffice/personal_account']); //студент переходит на модель своего ЛК
                 } 
-            }
         }
-
-        return $this->render('login', [
-            'model' => $model,
-        ]);
+        
+        return $this->render('login',['model' => $model,]);
     }
 
     public function actionSignup($rang)
@@ -68,9 +52,7 @@ class AuthController extends Controller
                 if($model->rang=='10') {
                     return $this->redirect(['auth/login']); //студент переходит на модель своего ЛК
                 }
-                if($model->rang=='20') {
-                    return $this->redirect(['auth/login']); //компания переходит на регистрацию организацию
-                }
+               
             }
         }
        // var_dump($model);
@@ -103,22 +85,25 @@ class AuthController extends Controller
         }
     }
 
-    public function actionSignupwork()
+    public function actionSignupwork($rang)
     {
+      
         $this->layout = 'avtoriz';
-        $model = new Organization();
-        //$user->ActInactUser='1';
-       // var_dump($model);
-        //var_dump(Yii::$app->request->isPost);
+        $model1= new SignupForm();
+        $model2 = new Organization();
+        $model1->rang=$rang;
         if(Yii::$app->request->isPost)
         {
-            //var_dump($model);
-            $model->load(Yii::$app->request->post());
-            $model->create(); //адо проверить на всякий
+           //var_dump(Yii::$app->request->post()); die();
+            $model1->load(Yii::$app->request->post());
+            $user=$model1->signup(); //адо проверить на всякий
+            $model2->load(Yii::$app->request->post());
+            $model2->user_id=$user->id;
+            $model2->create(); //адо проверить на всякий
             
-            return $this->redirect(['privateoffice/personal_account']); //компания переходит на регистрацию организацию
+            return $this->redirect(['auth/login']); //компания переходит на регистрацию организацию
         }
         
-        return $this->render('signupwork', ['model'=>$model]);
+        return $this->render('signupwork', ['model1'=>$model1,'model2'=>$model2]);
     }
 }

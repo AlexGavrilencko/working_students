@@ -89,7 +89,8 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function create()
     {
-        return $this->save(false);
+        $this->save();
+        return $this;
     }
 
     public function getId()

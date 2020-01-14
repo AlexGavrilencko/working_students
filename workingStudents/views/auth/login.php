@@ -24,40 +24,44 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-registration">
     <div class="text-light d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
         <div class="pole darkwindow">
-            <?php $form = ActiveForm::begin(); ?>
-                <h3 class="text-center">Авторизация</h3>
 
+           
 
-                <?= $form->field($model, 'login')->textInput(['autofocus' => true]) ?>
+                <?php $form = ActiveForm::begin(); ?>
+                    <h3 class="text-center">Авторизация</h3>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+                    <?= $form->field($model, 'login')->textInput(['autofocus' => true]) ?>
 
-                <?= $form->field($model, 'rememberMe')->checkbox([
-                    'template' => "<div class=\"col-lg-offset-1 col-lg-3 btn-rounded btngreen\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-                ]) ?>
+                    <?= $form->field($model, 'password')->passwordInput() ?>
 
+                    <?= $form->field($model, 'rememberMe')->checkbox([
+                        'template' => "<div class=\"col-lg-offset-1 col-lg-3 btn-rounded btngreen\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
+                    ]) ?>
 
-                   <div class=" row justify-content-center">
+                   <div class=" row justify-content-center ">   
                         <?= Html::submitButton('Вход', ['class' => 'btn-rounded btngreen btn btn-lg m-2', 'name' => 'login-button']) ?>
                     </div>
-
-
+                    
                 <?php ActiveForm::end(); ?>
-        
-        <h3 class="text-center">Регистрация</h3>
-                <div class="container">
+
+       
+
+                     
+                <h3 class="text-center">Регистрация</h3>
+                
+                    <div class="container">
                          <div class="row justify-content-md-center">
+                            <div class="col-11 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                 <a href="<?= Url::toRoute(['/auth/signup', 'rang'=>'10']); ?>" class="btn-rounded btngreen btn btn-lg btn-block m-1">Соискателя</a>
+                            </div>
 
-                                <div class="col-sm-8 col-md-8 col-lg-6 col-xl-6">
-                                    <a href="<?= Url::toRoute(['/auth/signup', 'rang'=>'10']); ?>" class="btn-rounded btngreen btn btn-lg btn-block m-4">Соискателя</a>
-                                </div>
-
-                                <div class="col-sm-8 col-md-8 col-lg-6 col-xl-6">
-                                    <a href="<?= Url::toRoute(['/auth/signup', 'rang'=>'20']); ?>" class="btn-rounded btngreen btn btn-lg btn-block  m-4">Работодателя</a>
-                                </div>
-
+                            <div class="col-11 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                <a href="<?= Url::toRoute(['/auth/signupwork', 'rang'=>'20']); ?>" class="btn-rounded btngreen btn btn-lg btn-block m-1">Работодателя</a>
+                            </div>
                         </div>
-                </div>
+                    </div>
+       
+
         </div>
     </div>
 </div>

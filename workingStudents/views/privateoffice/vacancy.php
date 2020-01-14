@@ -27,7 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <?php   
                         $user = Yii::$app->user->identity;
-                        $model->user_id=$user->id; 
+                       // var_dump($model);die();
+                        $userid=$user->id;
+                        $model = new stdClass();
+                        
+                        $model->user_id=$userid;
+                        var_dump($model);
                     ?>
                     <?= $model->user_id ?></p>
                     <?= $form->field($model, 'name')->textInput() ?>

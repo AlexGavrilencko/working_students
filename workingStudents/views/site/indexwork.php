@@ -77,11 +77,17 @@ $this->title = 'Главная';
                                         $city = Attributes::find()->where(['id'=>$c])->one();
                                         $obj=$resum->CareerObjective_id;
                                         $object = Attributes::find()->where(['id'=>$obj])->one();
+                                        $city = $resum->city_id;
+
                                             if ($city == NULL)
                                             {
                                                 echo 'Не указано';
                                             }
+
                                             else echo $city->name;
+
+                                            //else echo $city;
+
                                     ?>
                                 </p>
                             </div>
@@ -96,6 +102,8 @@ $this->title = 'Главная';
                         <div class="row">
                             <div class="col">
                                 <p><?= $object->name ?></p> <!-- Желаемая должность CareerObjective_id подгрузка из базы -->
+                                <p><?= $resum->CareerObjective_id ?></p> <!-- Желаемая должность CareerObjective_id подгрузка из базы -->
+                                
                             </div>
                         </div>
 
@@ -112,6 +120,9 @@ $this->title = 'Главная';
 
                             <div class="col-6 col-sm-4">
                                 <p><?= $resum->dateAdd ?></p> <!-- дата подгрузка из базы -->
+
+                                <p><?= $vacan->dateAdd ?></p> <!-- дата подгрузка из базы -->
+
                             </div>
                         </div>
                 </div>

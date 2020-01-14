@@ -108,6 +108,10 @@ class SiteController extends Controller
        
     }
 
+    public function actionPersonal_data_protection()    /* Это для документа защиты персональных даннх */
+    {
+        return $this->render('personal_data_protection');
+    }
 
     public function actionSearch($id)      /* Страница поиска для студента */
     {
