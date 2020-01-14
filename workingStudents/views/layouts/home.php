@@ -93,7 +93,7 @@ PublicAsset::register($this);
             <nav class="navbar navbar-expand-lg"> <!-- стиль для меню сайта -->  
 
                 <div class="collapse navbar-collapse " id="collapsibleNavbar">
-                        <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
+                        <ul class="navbar-nav ml-auto"> 
                             <li class="nav-item">
                             <a href="/auth/login" class="btn-rounded btngreen btn btn-lg">Разместить резюме</a>
                              </li>
@@ -117,6 +117,10 @@ PublicAsset::register($this);
                 </div> 
             </div>   
 -->     
+
+
+
+
 	                <div class="row">
                         <div class="col-12 col-md-10 col-lg-8">
                             <form class="search">

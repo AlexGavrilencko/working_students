@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php $form = ActiveForm::begin(); ?>
                     <h3 class="text-center">Авторизация</h3>
 
-                    <?= $form->field($model, 'login')->textInput(['autofocus' => true]) ?>
+                    <?= $form->field($model, 'login')->textInput(['autofocus' => true]) ?> 
 
                     <?= $form->field($model, 'password')->passwordInput() ?>
 

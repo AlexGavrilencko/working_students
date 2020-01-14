@@ -24,18 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 <?= $form->field($model, 'e_mail')->textInput() ?>
 
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-sm-8 indent">
-                                            <?= $form->field($model, 'password')->passwordInput() ?>
-                                        </div>
-                                        <div class="col-sm-4 indent1">
-                                            <button type="submit" class="btn btn-rounded btngreen ">Показать</button>
-                                        </div>
-
-                                         <!--col-md-6 col-lg-6 col-xl-6-->
-
-                                    </div>
+                                <div class="group">
+                                    <?= $form->field($model, 'password')->passwordInput(['class'=>'password']) ?>
+                                        <label>
+                                            <input type="checkbox" class="show-password"> Показать пароль
+                                        </label>
                                 </div>
 
                                 <?= $form->field($model, 'phone')->textInput() ?>

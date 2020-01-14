@@ -359,15 +359,6 @@ body {
 }
 /*Для прикрепления подвала к низу страницы конец*/
 
-
-.indent{
-  margin-left: -1.1%;
-}
-
-.indent1{
-  margin-top: 3%;
-}
-
 .A404{
 width: 60%;
 }
@@ -382,6 +373,15 @@ li {
 .pers_data_prot{
  text-align:justify;
 }
+
+.password{
+  width: 100%;
+  font-size: 16px;
+	padding: 6px 0 4px 10px;
+	border: 1px solid #cecece;
+	border-radius: 5px;
+}
+
 
 
 /*__________________________________________________________________________________________*/
