@@ -33,12 +33,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <h3 class="text-center">Данные об организации</h3>
                 <?php   
-                      $user = Yii::$app->user->identity;
-                      $model2->user_id=$user->id;
-                      $form->field($model2,'user_id');
-                      
+                      //$user = Yii::$app->user->identity;
+                     // var_dump($user);die();
+                      //$model2->user_id=$user->id;
+                      //$form->field($model2,'user_id');
+                      //$model2 ->user_id
                 ?>
-                <?= $model2->user_id ?>
+              
                 <?= $form->field($model2, 'name')->textInput(['class'=>'form-control']) ?>
                 <?php
                 // получаем все города из таблицы атрибутов

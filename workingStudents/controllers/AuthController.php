@@ -97,6 +97,7 @@ class AuthController extends Controller
            //var_dump(Yii::$app->request->post()); die();
             $model1->load(Yii::$app->request->post());
             $user=$model1->signup(); //адо проверить на всякий
+            var_dump($model2);die();
             $model2->load(Yii::$app->request->post());
             $model2->user_id=$user->id;
             $model2->create(); //адо проверить на всякий
