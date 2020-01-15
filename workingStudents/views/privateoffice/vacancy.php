@@ -1,7 +1,4 @@
 <?php
-
-
-
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Attributes;
@@ -27,16 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <?php   
                         $user = Yii::$app->user->identity;
-                       // var_dump($model);die();
                         $userid=$user->id;
-                        $model = new stdClass();
-                        
                         $model->user_id=$userid;
-                        var_dump($model);
                     ?>
-                    <?= $model->user_id ?></p>
                     <?= $form->field($model, 'name')->textInput() ?>
-
                     <?php 
                         $org = Organization::find()->where(['user_id'=>$user->id])->one();
                         $city_id = Attributes::find()->where(['id'=>$org->city_id])->one();
@@ -48,8 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p>Адрес: <?=$org->adres?></p>
                     <p>ИНН: <?=$org->inn?></p>
                     <p>ОГРН: <?=$org->ogrn?></p>
-                    
-
                     <?php
                             // получаем все города из таблицы атрибутов
                             $city = Attributes::find()->where(['type'=>'city'])->all();
@@ -60,7 +49,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             ];
                             echo $form->field($model, 'city_id')->dropDownList($items,$params);
                         ?>
-
                     <?php
                             // получаем все города из таблицы атрибутов
                             $experience = Attributes::find()->where(['type'=>'experience'])->all();
@@ -71,7 +59,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             ];
                             echo $form->field($model, 'experience_id')->dropDownList($items,$params);
                         ?>
-
                     <?php
                             // получаем все города из таблицы атрибутов
                             $employment = Attributes::find()->where(['type'=>'employment'])->all();
@@ -82,7 +69,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             ];
                             echo $form->field($model, 'employment_id')->dropDownList($items,$params);
                         ?>
-
                     <?php
                             // получаем все города из таблицы атрибутов
                             $schedule = Attributes::find()->where(['type'=>'schedule'])->all();
@@ -93,9 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ];
                             echo $form->field($model, 'schedule_id')->dropDownList($items,$params);
                         ?>
-
                     <?= $form->field($model, 'salary')->textInput() ?>
-
                     <?php
                             // получаем все города из таблицы атрибутов
                             $position = Attributes::find()->where(['type'=>'objective'])->all();
@@ -106,14 +90,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             ];
                             echo $form->field($model, 'position_id')->dropDownList($items,$params);
                         ?>
-
-
                     <?= $form->field($model, 'duties')->textInput() ?>
-
                     <?= $form->field($model, 'requirement')->textInput() ?>
-
                     <?= $form->field($model, 'conditions')->textInput() ?>
-
                     <?php
                             // получаем все города из таблицы атрибутов
                             $category = Attributes::find()->where(['type'=>'category'])->all();
@@ -124,7 +103,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             ];
                             echo $form->field($model, 'category_id')->dropDownList($items,$params);
                         ?>
-
                     <?= $form->field($model, 'WorkOrPractice')->textInput() ?>
                     <div class="row justify-content-center">
                         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen', 'name' => 'Save submit']) ?>

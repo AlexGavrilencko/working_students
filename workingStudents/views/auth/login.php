@@ -58,6 +58,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             <div class="col-11 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                 <a href="<?= Url::toRoute(['/auth/signupwork', 'rang'=>'20']); ?>" class="btn-rounded btngreen btn btn-lg btn-block m-1">Работодателя</a>
+<<<<<<< HEAD
+=======
+
+                            
+>>>>>>> e6fc2e944184ceeb70fe60b22b99563ee120ab95
                         </div>
                     </div>
        
