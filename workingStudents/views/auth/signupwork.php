@@ -37,8 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
                       $model2->user_id=$user->id;
                       $form->field($model2,'user_id');
                       
+                      
                 ?>
-                <?= $model2->user_id ?>
                 <?= $form->field($model2, 'name')->textInput(['class'=>'form-control']) ?>
                 <?php
                 // получаем все города из таблицы атрибутов

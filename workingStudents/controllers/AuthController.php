@@ -30,6 +30,8 @@ class AuthController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post())) {
             $user = User::find()->where(['login' => $model->login, 'password' => $model->password])->one();
+            
+
             if($user) {
                 Yii::$app->user->login($user); // <-- вот так логиним пользователя 
                 return $this->redirect(['privateoffice/personal_account']); //студент переходит на модель своего ЛК
@@ -94,9 +96,10 @@ class AuthController extends Controller
         $model1->rang=$rang;
         if(Yii::$app->request->isPost)
         {
-           //var_dump(Yii::$app->request->post()); die();
+            
             $model1->load(Yii::$app->request->post());
             $user=$model1->signup(); //адо проверить на всякий
+            //$user = Yii::$app->user->identity;
             $model2->load(Yii::$app->request->post());
             $model2->user_id=$user->id;
             $model2->create(); //адо проверить на всякий

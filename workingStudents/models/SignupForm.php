@@ -42,6 +42,7 @@ class SignupForm extends Model
         {
             $user = new User();
             $user->attributes = $this->attributes;
+           // var_dump($user->create());die();
             return $user->create();
         }
     }

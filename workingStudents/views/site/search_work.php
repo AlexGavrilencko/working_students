@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <?php
                                         $c = $resum->city_id;
                                         $city = Attributes::find()->where(['id'=>$c])->one();
-                                        $obj=$resum->сareerObjective_id;
+                                        $obj=$resum->CareerObjective_id;
                                         $object = Attributes::find()->where(['id'=>$obj])->one();
                                             if ($city == NULL)
                                             {

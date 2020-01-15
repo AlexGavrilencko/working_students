@@ -25,16 +25,16 @@ class PrivateofficeController extends Controller
 
     public function actionPersonal_account()   /* Это для личного кабинета пользователя */
     {
-    $this->layout = 'site';
-    $user = Yii::$app->user->identity; //определение текущего пользователя
-    //var_dump($user);
-    $model = User::find()->where(['id'=>$user])->one();//поиск данных этого пользователя из таблицы user
-     if(Yii::$app->request->isPost)
-     {
-         $model->load(Yii::$app->request->post()); //загрузка данных
-         $model->create(); //вызов функции на проверку существования
-     }
-     return $this->render('personal_account', ['model'=>$model]);
+        $this->layout = 'site';
+        $user = Yii::$app->user->identity; //определение текущего пользователя
+        if(Yii::$app->request->isPost)
+        {
+            $model = User::findOne(Yii::$app->user->id);//поиск данных этого пользователя из таблицы user
+            $model->load(Yii::$app->request->post()); //загрузка данных
+            $model->save(); //вызов функции на сохранение
+            return $this->render('personal_account', ['model'=>$model]);
+        }
+        return $this->render('personal_account', ['model'=>$user]);
     }
 
     public function findModel($id)
@@ -45,7 +45,6 @@ class PrivateofficeController extends Controller
             if (($model = Resume::findOne($id)) !== null) {
                 return $model;
             }
-    
             throw new NotFoundHttpException('The requested page does not exist.');
         }
         if($user->rang=='20')
@@ -53,10 +52,8 @@ class PrivateofficeController extends Controller
             if (($model = Organization::findOne($id)) !== null) {
                 return $model;
             }
-    
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-        
     }
 
     public function actionSetImage()
@@ -96,17 +93,28 @@ class PrivateofficeController extends Controller
 
 
     public function actionResume(){
-
         $this->layout = 'site';
         $res=new Resume();
         $user = Yii::$app->user->identity; //наш текущий пользователь
-        $res = Resume::find()->where(['user_id'=>$user->id])->one();
-        if(Yii::$app->request->isPost)
-        {
-            $res->load(Yii::$app->request->post());
-            $res->create(); //адо проверить на всякий
+        $resume = Resume::find()->where(['user_id'=>$user->id])->one();
+        
+        if($resume===null){
+            //var_dump($resume===null);die();
+            if(Yii::$app->request->isPost)
+            {
+                $res->load(Yii::$app->request->post());
+                $res->create(); //адо проверить на всякий
+            }
         }
-
+        else{
+            if(Yii::$app->request->isPost)
+            {
+                $res->load(Yii::$app->request->post());
+                $res->save(); //адо проверить на всякий
+            }
+            return $this->render('resume', ['model'=>$res]);
+        }
+        
         return $this->render('resume', ['model'=>$res]);
     }
 
@@ -115,14 +123,14 @@ class PrivateofficeController extends Controller
         $this->layout = 'site';
         $vac=new Vacancy();
         $user = Yii::$app->user->identity; //наш текущий пользователь
-        $vac = Vacancy::find()->where(['user_id'=>$user->id])->one();
+       // $vac = Vacancy::find()->where(['user_id'=>$user->id])->one();
+        //var_dump($vac);die();
         if(Yii::$app->request->isPost)
         {
             $vac->load(Yii::$app->request->post());
-            $vac->create(); //адо проверить на всякий
+            $vac->create();
         }
         return $this->render('vacancy', ['model'=>$vac]);
-
     }
 
     public function actionOrganiz(){
@@ -130,16 +138,11 @@ class PrivateofficeController extends Controller
         $org=new Organization();
         $user = Yii::$app->user->identity; //наш текущий пользователь
         $org = Organization::find()->where(['user_id'=>$user->id])->one();
-        //var_dump($org);
-
         if(Yii::$app->request->isPost)
         {
             $org->load(Yii::$app->request->post());
             $org->create(); //адо проверить на всякий
         }
         return $this->render('organiz', ['model'=>$org]);
-
     }
-
-
 }

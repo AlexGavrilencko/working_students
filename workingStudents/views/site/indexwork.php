@@ -39,7 +39,7 @@ $this->title = 'Главная';
         //$catvac все вакансии выбранной категории
         foreach ($resume as $resum)
         : 
-
+        var_dump($resum);die();
 	    //echo $tagg;
 	    //$post=$vacan->article_id;
 	    //foreach ($article as $articles)
@@ -75,7 +75,9 @@ $this->title = 'Главная';
                                     <?php
                                         $c = $resum->city_id;
                                         $city = Attributes::find()->where(['id'=>$c])->one();
+                                        
                                         $obj=$resum->CareerObjective_id;
+                                        
                                         $object = Attributes::find()->where(['id'=>$obj])->one();
                                         $city = $resum->city_id;
 
