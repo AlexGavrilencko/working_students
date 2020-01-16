@@ -191,6 +191,13 @@ svg text {
 
 .darkwindow1{ 
   background-color: #d5d6d6;
+  width: 80%;
+  height: 40%;
+  opacity: 0.9;
+  padding: 2%;
+  border: 2px solid;
+  border-color: #9dbb19;
+  border-radius: 10px;
 }
 
 /* стиль для цвета footer*/
@@ -382,11 +389,32 @@ li {
 	border-radius: 5px;
 }
 
+.date_org{
+  width: 100%;
+  padding: 2%;
+  background-color: #ffffff;
+  border: 1px solid #cecece;
+  border-radius: 5px;
+}
 
-
+.logo_user{
+  width: 30%;
+  border-radius: 50%; /* Радиус скругления */
+  box-shadow: 0 0 0 3px #9dbb19, 0 0 13px #333; /* Параметры теней */
+}
 /*__________________________________________________________________________________________*/
 
+span.support::before {
+  content: attr(data-title); /*помещаем подсказку в псевдоэлемент*/
+  display: none; /*скрываем подсказку*/
+}
 
+span.support:hover::before {
+  display: block;
+}
+.question{
+  width: 2%;
+}
 
 
 

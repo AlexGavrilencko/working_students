@@ -121,6 +121,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>   
         </div>
         <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
+        <br>
     </div>
 </div> 
 </div> 

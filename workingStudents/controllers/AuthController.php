@@ -99,11 +99,11 @@ class AuthController extends Controller
             
             $model1->load(Yii::$app->request->post());
             $user=$model1->signup(); //адо проверить на всякий
-<<<<<<< HEAD
-            var_dump($model2);die();
-=======
+
+            //var_dump($model2);die();
+
             //$user = Yii::$app->user->identity;
->>>>>>> e6fc2e944184ceeb70fe60b22b99563ee120ab95
+
             $model2->load(Yii::$app->request->post());
             $model2->user_id=$user->id;
             $model2->create(); //адо проверить на всякий

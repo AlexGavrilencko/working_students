@@ -22,17 +22,20 @@ $this->params['breadcrumbs'][] = $this->title;
                         <h2><?= Html::encode($this->title) ?></h2>
                         <p>Вы можете составить свое резюме</p>
                     </div>
-                    <div class="row justify-content-center">
-                        <a href="/privateoffice/set-image" class="btn btn-rounded btngreen">Загрузите фотографию</a>
-                    </div>
+                            <div class="row justify-content-center">
+                                <a href="/privateoffice/set-image" class="btn btn-rounded btngreen">Загрузите личную фотографию</a>
+                            </div>
 
-                    <div class="row justify-content-center">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <?php if($model->image): ?>
-                                <img class="size_img img-fluid" src="/uploads/<?= $model->image?>" alt="">
-                            <?php endif; ?>
-                        </div>
-                    </div>          
+                        <br>
+                            <div class="row justify-content-center">
+                                <?php   
+                                    $user = Yii::$app->user->identity;
+                                        if($model->image): ?>
+                                            <img class=" logo_user" src="/uploads/<?= $model->image?>" alt="">
+                                        <?php endif; 
+                                ?>
+                            </div>
+                        <br>
    
                         <?= $form->field($model, 'name')->textInput() ?>
 

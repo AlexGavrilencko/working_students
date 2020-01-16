@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <br>
     <div class="site-registration text-center">
          <div class="text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
-            <div class="pole darkwindow1">
+            <div class="darkwindow1">
                 <h1>Загрузка картинки</h1>
                 <p>Пожалуйста, выберите изображение и сохраните его!</p>
                     <div class="article-form">
