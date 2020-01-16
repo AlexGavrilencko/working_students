@@ -33,15 +33,18 @@ $this->params['breadcrumbs'][] = $this->title;
                         $city_id = Attributes::find()->where(['id'=>$org->city_id])->one();
                         $city=$city_id->name;
                     ?>
+
                     <div class="date_org">
-                    <p>Данные об организации:</p>
-                    <p><?= $org->name ?></p>
-                    <p>г. <?= $city ?></p>
-                    <p>Адрес: <?=$org->adres?></p>
-                    <p>ИНН: <?=$org->inn?></p>
-                    <p>ОГРН: <?=$org->ogrn?></p>
+                            <p>Данные об организации:  <?= $org->name ?></p>
+                            <p>Город:  <?= $city ?></p>
+                            <p>Адрес:  <?=$org->adres?></p>
+                            <p>ИНН:  <?=$org->inn?></p>
+                            <p>ОГРН:  <?=$org->ogrn?></p>
+                        
                     </div>
+                    
                     <br>
+
                     <?php
                             // получаем все города из таблицы атрибутов
                             $city = Attributes::find()->where(['type'=>'city'])->all();

@@ -26,7 +26,7 @@ btnred
                 
                     <a type="submit" class="btn d-block mx-auto <?php ClassHelper::getColor($c) ?> m-2" 
                     href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
-                <?php $c++; ?>
+                    <?php $c++; ?>
             </div>
             
         <?php endforeach;?>
