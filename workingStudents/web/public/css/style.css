@@ -326,8 +326,6 @@ svg text {
   padding-top: 2%;
  }
 
-
-
 /* стиль для фона вакансий и резюме в маленьком окне*/
 .border_search1{
   background-color: #e6d6ca;
@@ -336,7 +334,6 @@ svg text {
   border-radius: 10px;
   padding-top: 2%;
  }
-
 
 /*Стиль для поиска в шапке*/
  .search {
@@ -359,6 +356,8 @@ body {
   flex-direction: column;
   
 }
+
+/*для фона контента*/
 .content {
   flex: 1 0 auto;
   background: url(/public/img/fon.jpg);
@@ -397,6 +396,7 @@ li {
   border-radius: 5px;
 }
 
+/*для отображения фотографии в личном кабинете*/
 .logo_user{
   width: 30%;
   border-radius: 50%; /* Радиус скругления */
@@ -404,44 +404,40 @@ li {
 }
 /*__________________________________________________________________________________________*/
 
+/*для работы подсказки*/
 span.support::before {
   content: attr(data-title); /*помещаем подсказку в псевдоэлемент*/
   display: none; /*скрываем подсказку*/
 }
-
 span.support:hover::before {
   display: block;
 }
+/*____________________*/
+
+/*размер для изображения вопроса*/
 .question{
   width: 2%;
 }
 
+/*отступ для текста в подвале*/
+.text_foot{
+  margin-top: 5px;
+}
+
+/*размер для изображений действий*/
+.open_eye{
+  width: 5%;
+}
+.pencil{
+  width: 5%;
+}
+.trashcan{
+  width: 5%;
+}
+/*________________________________*/
 
 
 
 
-.pss{
- opacity: 0.8;
-}
-.pagination{
- display: inline-block;
- padding-left: 0;
- margin: 2% 0;
- border-radius: 2%;
-}
-.pagination > li {
- display: inline;
-}
-.pagination > li > a,
-.pagination > li > span {
- position: relative;
- float: left;
- padding: 6px 12px;
- margin-left: -1px;
- line-height: 1.42857143;
- color: #000000;
- text-decoration: none;
- background-color: #FFD700;
- border: 1px solid #ddd;
-}
+
 

@@ -113,6 +113,21 @@ class SiteController extends Controller
         return $this->render('personal_data_protection');
     }
 
+    public function actionSite_terms_of_use()    /* Это для документа защиты персональных даннх */
+    {
+        return $this->render('site_terms_of_use');
+    }
+    
+    public function actionThe_agreement()    /* Это для документа защиты персональных даннх */
+    {
+        return $this->render('the_agreement');
+    }
+    
+    public function actionRules_for_placement_of_vacancies()    /* Это для документа защиты персональных даннх */
+    {
+        return $this->render('rules_for_placement_of_vacancies');
+    }
+
     public function actionSearch($id)      /* Страница поиска для студента */
     {
         $this->layout = 'site';
