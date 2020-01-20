@@ -426,13 +426,15 @@ span.support:hover::before {
 
 /*размер для изображений действий*/
 .open_eye{
-  width: 5%;
+  width: 50%;
+  margin-left: 40%;
 }
 .pencil{
-  width: 5%;
+  width: 40%;
 }
 .trashcan{
-  width: 5%;
+  width: 40%;
+  margin-right: 40%;
 }
 /*________________________________*/
 
