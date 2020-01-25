@@ -4,7 +4,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$this->title = 'Профиль';
+$this->title = 'Персональные данные';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

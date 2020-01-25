@@ -150,4 +150,28 @@ class PrivateofficeController extends Controller
         }
         return $this->render('organiz', ['model'=>$org]);
     }
+
+
+    public function actionMy_vacancy(){
+        $this->layout = 'site';
+        $user = Yii::$app->user->identity; //наш текущий пользователь
+        $org = Organization::find()->where(['user_id'=>$user->id])->one();
+        if(Yii::$app->request->isPost)
+        {
+            $org->load(Yii::$app->request->post());
+            $org->create(); //адо проверить на всякий
+        }
+        return $this->render('my_vacancy');
+        //$vac=new Vacancy();
+        //$user = Yii::$app->user->identity; //наш текущий пользователь
+       // $vac = Vacancy::find()->where(['user_id'=>$user->id])->one();
+        //var_dump($vac);die();
+        //if(Yii::$app->request->isPost)
+        //{
+        //    $vac->load(Yii::$app->request->post());
+        //    $vac->create();
+        //}
+        //return $this->render('vacancy', ['model'=>$vac]);
+    }
+
 }

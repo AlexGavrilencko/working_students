@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
-
+<br>
     <div class="text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
         <div class="pole border_search padding_search">
                     <div class="text-center">

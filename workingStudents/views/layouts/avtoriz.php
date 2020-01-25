@@ -106,23 +106,39 @@ PublicAsset::register($this);
 
    
     
-        <footer class="dark">
-             <div class="container">      
-                
+    <footer class="dark">
+             <div class="container">
                  <div class="row justify-content-center">
-                    <div class="col-6 col-sm-4 col-md-2 col-lg-2 col-xl-2">
-                        <a href="/site/index" id="logofooter" class="navbar-brad"><img src="/public/img/logofooter1.png" alt="Logo"></a>
-                    </div>
+                    <a href="/site/index" id="logofooter" class="navbar-brad"><img src="/public/img/logofooter1.png" alt="Logo"></a>
                  </div>
-                 
                 <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <div class="text-center text-light">
+                    
+                    <div class="col-md-3">
+                
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Документация
+                            </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item menugreen_v h6" href="/site/personal_data_protection">Согласие на обработку персональных данных</a>
+                                    <a class="dropdown-item menugreen_v h6" href="/site/site_terms_of_use">Условие использования сайта</a>
+                                    <a class="dropdown-item menugreen_v h6" href="/site/the_agreement">Соглашение об оказании услуг по содействию в трудоустройстве</a>
+                                    <a class="dropdown-item menugreen_v h6" href="/site/rules_for_placement_of_vacancies">Правила размещения вакансий на ws.ru</a>
+                                </div>
+                        </li>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="text-center text-light text_foot">
                             &copy; 2019 WorkingStudents, Build with by V&A
                         </div>
                     </div>
-                </div>
 
+                    <div class="col-md-3">
+                    </div>
+                    
+                </div>
              </div>
         </footer>
 
