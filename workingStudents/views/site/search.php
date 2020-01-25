@@ -35,38 +35,42 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
 <div class="row">
         <div class="col-sm-3"> 
-
              <!-- расширенный поиск -->
-            <div class="border_search">
+            <div class="border_advanced_search">
+                <br>
                 <form class="search">
                     <div class="row no-gutters align-items-center">
-                        <div class="col">
-                            <input class="form-control btn-none form-control-lg" type="search" placeholder="Поиск...">
+                        <div class="col-9">
+                            <input class="form-control btn-none form-control-lg advanced_search" type="search" placeholder="Поиск...">
                         </div>
 
-                        <div class="col-auto">
-                            <button type="submit" class="btn-none btn-lg btn btngreen">Найти</button>
+                        <div class="col-3">
+                            <button type="submit" class="btn-none btn btngreen advanced_search_sub">Найти</button>
                         </div>
                     </div>    
                 </form> 
-            </div>
-
-        </div>
+                
         <?php 
-        Pjax::begin(['id' => 'driverPjax']);
-        $form = ActiveForm::begin(['options' => ['data-pjax' => true]]);?>
-        <?php
-        //Данные из таблицы, подготовка данных для данных ГОРОД, а так же вывод в список
-        $city = Attributes::find()->where(['type'=>'city'])->all();
-        $items = ArrayHelper::map($city,'id','name');
-        $param = [
-            'prompt' => 'Укажите город'
-        ];
-        echo Html::dropDownList('citty', 'null', $items, $param);
+            Pjax::begin(['id' => 'driverPjax']);
+                $form = ActiveForm::begin(['options' => ['data-pjax' => true]]);
         ?>
-         
+
+        <br>
+
         <?php
+            //Данные из таблицы, подготовка данных для данных ГОРОД, а так же вывод в список
+            $city = Attributes::find()->where(['type'=>'city'])->all();
+            $items = ArrayHelper::map($city,'id','name');
+            $param = [
+                'prompt' => 'Укажите город'
+            ];
+            echo Html::dropDownList('citty', 'null', $items, $param);
+           
+        ?>
+
         
+
+        <?php
         $exp = Attributes::find()->where(['type'=>'experience'])->all();
         $items = ArrayHelper::map($exp,'id','name');
         $param = [
@@ -75,8 +79,9 @@ $this->params['breadcrumbs'][] = $this->title;
         echo Html::dropDownList('exp', 'null', $items, $param);
         ?>
 
+      
+
         <?php
-        
         $emp = Attributes::find()->where(['type'=>'employment'])->all();
         $items = ArrayHelper::map($emp,'id','name');
         $param = [
@@ -84,6 +89,8 @@ $this->params['breadcrumbs'][] = $this->title;
         ];
         echo Html::dropDownList('emp', 'null', $items, $param);
         ?>
+
+        
 
         <?php
         
@@ -123,6 +130,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php  ?>
         <?php ActiveForm::end();?>
         <?php Pjax::end(); ?> 
+
+
+            </div>
+        </div>
+      
         
         <div id="col"><?=$categoryg?> </div>
            

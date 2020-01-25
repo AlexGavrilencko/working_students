@@ -10,6 +10,9 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\assets\PublicAsset;
+use app\models\Organization;
+use app\models\Resume;
+use app\models\Vacancy;
 
 PublicAsset::register($this);
 ?>
@@ -118,9 +121,6 @@ PublicAsset::register($this);
             </div>   
 -->     
 
-
-
-
 	                <div class="row">
                         <div class="col-12 col-md-10 col-lg-8">
                             <form class="search">
@@ -137,6 +137,74 @@ PublicAsset::register($this);
                             </form>
                         </div>
                     </div>
+
+                <div class="margin_statistic">
+                    <div class="row ">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-light size_txt">Вакансии</p>
+                                </div>
+                                <div class="col">
+                                    <h5 class="text-light size_txt">Резюме</p>
+                                </div>
+                                <div class="col">
+                                    <p class="text-light size_txt">Организации</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-light size_txt">
+                                        <?php $model = Vacancy::find()->count();
+                                            if ($model == NULL)
+                                            {
+                                                echo '0';
+                                            }
+
+                                            else echo $model;
+                                        ?>
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <h5 class="text-light size_txt">
+                                    <?php $model = Resume::find()->count();
+                                        if ($model == NULL)
+                                        {
+                                            echo '0';
+                                        }
+
+                                        else echo $model;
+                                        ?>
+                                    </p>
+                                </div>
+                                <div class="col">
+                                    <p class="text-light size_txt">
+                                        <?php $model = Organization::find()->count();
+                                        if ($model == NULL)
+                                        {
+                                            echo '0';
+                                        }
+
+                                        else echo $model;
+                                        ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            
+                        </div>
+                    </div>
+                </div>
+
 </div>
 
 
