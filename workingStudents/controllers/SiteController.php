@@ -115,17 +115,26 @@ class SiteController extends Controller
 
     public function actionSearch($id)      /* Страница поиска для студента */
     {
+        
         $this->layout = 'site';
-		$catvac=Vacancy::find()->where(['category_id' => $id])->all();
+        if($id===0){
+            $catvac=Vacancy::findAll();
+        }
+        else{
+            $catvac=Vacancy::find()->where(['category_id' => $id])->all();
+        }
+       // var_dump($catvac);die();
         $atr=Attributes::find()->all();
         $org=Organization::find()->all();
-		$vac=Vacancy::find()->all();
+        $vac=Vacancy::find()->all();
+        $filter='';
+        $idc=$id;
 		return $this->render('search',[
 		'catvac'=>$catvac,
 		'cat'=>$cat,
         'vac'=>$vac,
-        'org'=>$org,	
-        'pages' => $pages,
+        'org'=>$org,
+        'idc'=>$idc,
 		]);
     }
     public function actionSearch_work()      /* Страница поиска для компании */

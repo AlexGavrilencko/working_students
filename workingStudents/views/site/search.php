@@ -8,11 +8,15 @@ use app\models\User;
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
+use yii\widgets\Pjax;
+use yii\db\ActiveRecord;
+use yii\widgets\ActiveForm;
 
 $this->title = 'Поиск';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<?php $form = ActiveForm::begin(); ?>
+
 
 <div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
     <div class="row">
@@ -44,72 +48,94 @@ $this->params['breadcrumbs'][] = $this->title;
                             <button type="submit" class="btn-none btn-lg btn btngreen">Найти</button>
                         </div>
                     </div>    
-                </form>
-
-                        <?php
-                            // получаем все города из таблицы атрибутов
-                            $city = Attributes::find()->where(['type'=>'city'])->all();
-                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                            $items = ArrayHelper::map($city,'id','name');
-                            $params = [
-                                'prompt' => 'Укажите город'
-                            ];
-                            echo $form->field($model, 'city_id')->dropDownList($items,$params);
-                        ?>
-
-                        <?php
-                            // получаем все города из таблицы атрибутов
-                            $experience = Attributes::find()->where(['type'=>'experience'])->all();
-                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                            $items = ArrayHelper::map($experience,'id','name');
-                            $params = [
-                                'prompt' => 'Укажите опыт работы'
-                            ];
-                            echo $form->field($model, 'experience_id')->dropDownList($items,$params);
-                        ?>
-
-                        <?php
-                            // получаем все города из таблицы атрибутов
-                            $employment = Attributes::find()->where(['type'=>'employment'])->all();
-                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                            $items = ArrayHelper::map($employment,'id','name');
-                            $params = [
-                                'prompt' => 'Укажите тип занятости'
-                            ];
-                            echo $form->field($model, 'employment_id')->dropDownList($items,$params);
-                        ?>
-
-                        <?php
-                            // получаем все города из таблицы атрибутов
-                            $schedule = Attributes::find()->where(['type'=>'schedule'])->all();
-                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                            $items = ArrayHelper::map($schedule,'id','name');
-                            $params = [
-                                'prompt' => 'Укажите график  работы'
-                            ];
-                            echo $form->field($model, 'schedule_id')->dropDownList($items,$params);
-                        ?>
-                         
-                        <?= $form->field($model, 'salary')->textInput() ?>
-
-                        <?php
-                            // получаем все города из таблицы атрибутов
-                                $category = Attributes::find()->where(['type'=>'category'])->all();
-                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                                $items = ArrayHelper::map($category,'id','name');
-                                $params = [
-                                    'prompt' => 'Укажите профобласть'
-                                ];
-                            echo $form->field($model, 'category_id')->dropDownList($items,$params);
-                        ?>
+                </form> 
             </div>
 
         </div>
+        <?php 
+        Pjax::begin(['id' => 'driverPjax']);
+        $form = ActiveForm::begin(['options' => ['data-pjax' => true]]);?>
+        <?php
+        //Данные из таблицы, подготовка данных для данных ГОРОД, а так же вывод в список
+        $city = Attributes::find()->where(['type'=>'city'])->all();
+        $items = ArrayHelper::map($city,'id','name');
+        $param = [
+            'prompt' => 'Укажите город'
+        ];
+        echo Html::dropDownList('citty', 'null', $items, $param);
+        ?>
+         
+        <?php
+        
+        $exp = Attributes::find()->where(['type'=>'experience'])->all();
+        $items = ArrayHelper::map($exp,'id','name');
+        $param = [
+            'prompt' => 'Укажите опыт работы'
+        ];
+        echo Html::dropDownList('exp', 'null', $items, $param);
+        ?>
 
+        <?php
+        
+        $emp = Attributes::find()->where(['type'=>'employment'])->all();
+        $items = ArrayHelper::map($emp,'id','name');
+        $param = [
+            'prompt' => 'Укажите тип занятости'
+        ];
+        echo Html::dropDownList('emp', 'null', $items, $param);
+        ?>
+
+        <?php
+        
+        $sch = Attributes::find()->where(['type'=>'schedule'])->all();
+        $items = ArrayHelper::map($sch,'id','name');
+        $param = [
+            'prompt' => 'Укажите график  работы'
+        ];
+        echo Html::dropDownList('sch', 'null', $items, $param);
+        ?>
+
+        <?php
+        
+        $obj = Attributes::find()->where(['type'=>'objective'])->all();
+        $items = ArrayHelper::map($obj,'id','name');
+        $param = [
+            'prompt' => 'Укажите должность'
+        ];
+        echo Html::dropDownList('obj', 'null', $items, $param);
+        ?>
+
+        <div onChange="$.pjax.reload({container : '#col', timeout: '5000'});">
+        <?php
+        
+        $category = Attributes::find()->where(['type'=>'category'])->all();
+        $items = ArrayHelper::map($category,'id','name');
+
+            $param = [
+                'prompt' => 'Укажите профобласть'
+            ];
+        
+        echo Html::dropDownList('categoryg', $idc, $items, $param);
+        ?>
+        </div>
+
+
+        <?php  ?>
+        <?php ActiveForm::end();?>
+        <?php Pjax::end(); ?> 
+        
+        <div id="col"><?=$categoryg?> </div>
+           
+        
+        
+        
 <!-- здесь начинается цикл для отображения -->
 
     <div class="col-sm-6"> 
     <?php
+       /* $city = Attributes::find()->where(['type'=>'city'])->all(); ?>         
+        <? $param = ['prompt' => 'Выберите город', 'id' => 'dropDownList-city']; ?>
+        <?= Html::dropDownList('city', 0, $city, $param); ?> */
         //$org таблица организация
         //$atr таблица со всеми справочниками
         //$catvac все вакансии выбранной категории
@@ -232,4 +258,4 @@ $this->params['breadcrumbs'][] = $this->title;
 </div> 
 </div>
 <br> 
-<?php ActiveForm::end(); ?>
+

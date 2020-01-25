@@ -65,9 +65,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model2, 'ogrn')->textInput(['class'=>'form-control']) ?>
 
-                <input type="checkbox" class="show-password">
-                    <a href="/site/personal_data_protection">Согласие на обработку персональных данных</a>
-                <br><br>
+                <?php echo $form->field($model1, 'personaldate')->checkbox(['class'=>'show-password']);
+                    echo '<a href="/site/personal_data_protection">Согласие на обработку персональных данных</a>';
+                    
+                ?> 
 
                 <div class="row justify-content-center">
                         <?= Html::submitButton('Sign', ['class' => 'btn btn-rounded btngreen', 'name' => 'Save submit']) ?>

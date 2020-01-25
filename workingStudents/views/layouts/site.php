@@ -10,6 +10,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\assets\PublicAsset;
+use yii\helpers\Url;
 
 PublicAsset::register($this);
 ?>
@@ -76,7 +77,7 @@ PublicAsset::register($this);
                                             <a class="dropdown-item menugreen_v h6" href="#">Достижения</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Избранное</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Просмотренное</a>
-                                            <a class="dropdown-item menugreen_v h6" href="/site/search">Поиск вакансий</a>
+                                            <a class="dropdown-item menugreen_v h6" href="<?= Url::toRoute(['site/search']) ?>">Поиск вакансий</a>
                                             <a class="dropdown-item menugreen_v h6" href="/auth/logout" id="exit"><div>Выход</div></a>
                                         </div>
                                 </li>

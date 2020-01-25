@@ -94,28 +94,33 @@ class PrivateofficeController extends Controller
 
     public function actionResume(){
         $this->layout = 'site';
-        $res=new Resume();
-        $user = Yii::$app->user->identity; //наш текущий пользователь
-        $resume = Resume::find()->where(['user_id'=>$user->id])->one();
-        
-        if($resume===null){
-            //var_dump($resume===null);die();
+        $user = Yii::$app->user->identity; 
+        $model = Resume::findOne(['user_id'=>Yii::$app->user->id]);
+        //var_dump($model);die();
+        if($model===null){
+           // var_dump($model===null);die();
+            $resum=new Resume();
+            $resum->user_id=$user->id;
             if(Yii::$app->request->isPost)
             {
-                $res->load(Yii::$app->request->post());
-                $res->create(); //адо проверить на всякий
+                $resum->load(Yii::$app->request->post());
+                $resum->create(); //адо проверить на всякий
             }
+            return $this->render('resume', ['model'=>$resum]);
         }
         else{
+            //$model->user_id=$user->id;
+            
             if(Yii::$app->request->isPost)
             {
-                $res->load(Yii::$app->request->post());
-                $res->save(); //адо проверить на всякий
+                $model->load(Yii::$app->request->post());
+                //var_dump($model->create());die();
+                $model->create(); //адо проверить на всякий
             }
-            return $this->render('resume', ['model'=>$res]);
+            return $this->render('resume', ['model'=>$model]);
         }
         
-        return $this->render('resume', ['model'=>$res]);
+        return $this->render('resume', ['model'=>$model]);
     }
 
 

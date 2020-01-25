@@ -26,12 +26,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'password_repeat')->passwordInput() ?>
 
-                <input type="checkbox" class="show-password">
-                    <a href="/site/personal_data_protection">Согласие на обработку персональных данных</a>
+                <?php echo $form->field($model, 'personaldate')->checkbox(['class'=>'show-password']);
+                    echo '<a href="/site/personal_data_protection">Согласие на обработку персональных данных</a>';
                     
+                ?> 
+                    
+               
                     <div class="row justify-content-center">
                         <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-rounded btngreen btn-lg', 'name' => 'login-button']) ?>
                     </div>
+              
+                    
+                        
+                    
 
 
                 <?php ActiveForm::end(); ?>
