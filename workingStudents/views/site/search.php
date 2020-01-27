@@ -112,7 +112,6 @@ $this->params['breadcrumbs'][] = $this->title;
         echo Html::dropDownList('obj', 'null', $items, $param);
         ?>
 
-        <div onChange="$.pjax.reload({container : '#col', timeout: '5000'});">
         <?php
         
         $category = Attributes::find()->where(['type'=>'category'])->all();
@@ -123,6 +122,18 @@ $this->params['breadcrumbs'][] = $this->title;
             ];
         
         echo Html::dropDownList('categoryg', $idc, $items, $param);
+        ?>
+
+        <?php
+        
+        $org = Organization::find()->all();
+        $items = ArrayHelper::map($org,'id','name');
+
+            $param = [
+                'prompt' => 'Доступные организации'
+            ];
+        
+        echo Html::dropDownList('org', $idc, $items, $param);
         ?>
         </div>
 
@@ -158,7 +169,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	    //$post=$vacan->article_id;
 	    //foreach ($article as $articles)
 		//: 
-		//if ($post===$articles->id){ ?>
+		if ($vacan->ShowOrHide===0){ ?>
         <div class="border_search">    
             <!-- результаты поиска -->
             <div class="row">
@@ -264,6 +275,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>   
         </div>
+        <?php  }; ?>
         <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
         <br>
     </div>

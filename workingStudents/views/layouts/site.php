@@ -77,7 +77,7 @@ PublicAsset::register($this);
                                             <a class="dropdown-item menugreen_v h6" href="#">Достижения</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Избранное</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Просмотренное</a>
-                                            <a class="dropdown-item menugreen_v h6" href="<?= Url::toRoute(['site/search']) ?>">Поиск вакансий</a>
+                                            <a class="dropdown-item menugreen_v h6" href="<?= Url::toRoute(['site/search','id'=>'0']) ?>">Поиск вакансий</a>
                                             <a class="dropdown-item menugreen_v h6" href="/auth/logout" id="exit"><div>Выход</div></a>
                                         </div>
                                 </li>
@@ -91,7 +91,7 @@ PublicAsset::register($this);
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
                                             <a class="dropdown-item menugreen_v h6" href="/privateoffice/vacancy">Составить вакансию</a>
-                                            <a class="dropdown-item menugreen_v h6" href="#">Мои вакансии</a>
+                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/my_vacancy">Мои вакансии</a>
                                             <a class="dropdown-item menugreen_v h6" href="/privateoffice/organiz">Данные об организации</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Избранное</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Просмотренное</a>

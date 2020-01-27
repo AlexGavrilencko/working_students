@@ -101,6 +101,7 @@ class PrivateofficeController extends Controller
            // var_dump($model===null);die();
             $resum=new Resume();
             $resum->user_id=$user->id;
+            
             if(Yii::$app->request->isPost)
             {
                 $resum->load(Yii::$app->request->post());
@@ -128,12 +129,16 @@ class PrivateofficeController extends Controller
         $this->layout = 'site';
         $vac=new Vacancy();
         $user = Yii::$app->user->identity; //наш текущий пользователь
-       // $vac = Vacancy::find()->where(['user_id'=>$user->id])->one();
-        //var_dump($vac);die();
+        $vac->user_id = $user->id;
+        $vac->ShowOrHide=0;
+        $org = Organization::find()->where(['user_id'=>$user->id])->one();
+        $vac->organization_id = $org->id;
+        //var_dump($vac);
         if(Yii::$app->request->isPost)
         {
             $vac->load(Yii::$app->request->post());
             $vac->create();
+            return $this->redirect(['privateoffice/my_vacancy']);
         }
         return $this->render('vacancy', ['model'=>$vac]);
     }
@@ -156,22 +161,41 @@ class PrivateofficeController extends Controller
         $this->layout = 'site';
         $user = Yii::$app->user->identity; //наш текущий пользователь
         $org = Organization::find()->where(['user_id'=>$user->id])->one();
+        $vac = Vacancy::find()->where(['user_id'=>$user->id])->all();
+        //var_dump($vac);
+        return $this->render('my_vacancy',[
+            'vac'=>$vac,
+            'org'=>$org,
+        ]);
+		
+    }
+    public function actionVacancy_up($id){
+        $this->layout = 'site';
+        //var_dump($id);
+        $user = Yii::$app->user->identity; //наш текущий пользователь
+        $vac = Vacancy::findOne(['id'=>$id]);
         if(Yii::$app->request->isPost)
         {
-            $org->load(Yii::$app->request->post());
-            $org->create(); //адо проверить на всякий
+            $vac->load(Yii::$app->request->post());
+            $vac->create();
+            return $this->redirect(['privateoffice/my_vacancy']);
         }
-        return $this->render('my_vacancy');
-        //$vac=new Vacancy();
-        //$user = Yii::$app->user->identity; //наш текущий пользователь
-       // $vac = Vacancy::find()->where(['user_id'=>$user->id])->one();
-        //var_dump($vac);die();
-        //if(Yii::$app->request->isPost)
-        //{
-        //    $vac->load(Yii::$app->request->post());
-        //    $vac->create();
-        //}
-        //return $this->render('vacancy', ['model'=>$vac]);
+        return $this->render('vacancy_up', ['model'=>$vac]);
+    }
+    public function actionVacancy_del($id)
+    {
+        $this->findModelVac($id)->delete();
+
+        return $this->redirect(['privateoffice/my_vacancy']);
+    }
+
+    protected function findModelVac($id)
+    {
+        if (($model = Vacancy::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 
 }

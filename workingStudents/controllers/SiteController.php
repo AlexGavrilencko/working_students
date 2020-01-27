@@ -156,8 +156,9 @@ class SiteController extends Controller
     {
         $this->layout = 'site';
         $resume=Resume::find()->all();
+        $model=new Resume();
         return $this->render('search_work', [
-            'resume' => $resume,  /* Заменить на резюме */
+            'resume' => $resume, 'model'=>$model  /* Заменить на резюме */
        ]);
     }
 
