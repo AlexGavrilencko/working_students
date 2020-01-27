@@ -266,6 +266,15 @@ svg text {
   border-radius: 10px;
 }
 
+.dropDownList{
+  width: 100%;
+  font-size: 16px;
+	padding: 2px 0 2px 2px;
+	border: 1px solid #a3071e;
+  border-radius: 3%;
+}
+
+
 /* стиль для отмены скругления элементов */
 .btn-none{
   border-radius: 0px;
@@ -345,12 +354,24 @@ svg text {
  }
 
 .advanced_search{
-  width: 100%;
+  width: 98%;
   font-size: 14px;
 	padding: 1.5px 0 1px 2.5px;
 	border: 1px solid #cecece;
   border-radius: 2px;
   margin-left: 2%;
+}
+
+
+.mr_seach{
+margin-bottom: 3%;
+}
+
+
+
+
+.advanced_search{
+  margin-right: 10%;
 }
 
 .size_txt{

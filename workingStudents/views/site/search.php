@@ -32,122 +32,123 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <!-- Для вакансии -->
-<div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
-<div class="row">
-        <div class="col-sm-3"> 
+    <div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
+        <div class="row">
+            <div class="col-sm-3 border_advanced_search"> 
              <!-- расширенный поиск -->
-            <div class="border_advanced_search">
                 <br>
-                <form class="search">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col-9">
-                            <input class="form-control btn-none form-control-lg advanced_search" type="search" placeholder="Поиск...">
+                    <form class="search">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col">
+                                <input class="form-control btn-none form-control-lg advanced_search" type="search" placeholder="Поиск...">
+                            </div> 
+                            <div class="col-auto">
+                                <button type="submit" class="btn-none btn btngreen advanced_search_sub">Найти</button>
+                            </div>        
                         </div>
+                    </form>     
+             
+                <?php 
+                    Pjax::begin(['id' => 'driverPjax']);
+                    $form = ActiveForm::begin(['options' => ['data-pjax' => true]]);
+                ?>
+                <br>
 
-                        <div class="col-3">
-                            <button type="submit" class="btn-none btn btngreen advanced_search_sub">Найти</button>
-                        </div>
-                    </div>    
-                </form> 
-                
-        <?php 
-            Pjax::begin(['id' => 'driverPjax']);
-                $form = ActiveForm::begin(['options' => ['data-pjax' => true]]);
-        ?>
-
-        <br>
-
-        <?php
-            //Данные из таблицы, подготовка данных для данных ГОРОД, а так же вывод в список
-            $city = Attributes::find()->where(['type'=>'city'])->all();
-            $items = ArrayHelper::map($city,'id','name');
-            $param = [
-                'prompt' => 'Укажите город'
-            ];
-            echo Html::dropDownList('citty', 'null', $items, $param);
-           
-        ?>
-
+                <div class="col-12  mr_seach">
+                    <?php
+                        //Данные из таблицы, подготовка данных для данных ГОРОД, а так же вывод в список
+                        $city = Attributes::find()->where(['type'=>'city'])->all();
+                        $items = ArrayHelper::map($city,'id','name');
+                        $param = [
+                            'prompt' => 'Укажите город',
+                            'class' => 'dropDownList',                         
+                        ];
+                        echo Html::dropDownList('citty', 'null', $items, $param);
+                        
+                    ?>
+                </div>       
         
-
-        <?php
-        $exp = Attributes::find()->where(['type'=>'experience'])->all();
-        $items = ArrayHelper::map($exp,'id','name');
-        $param = [
-            'prompt' => 'Укажите опыт работы'
-        ];
-        echo Html::dropDownList('exp', 'null', $items, $param);
-        ?>
-
+                <div class="col-12 mr_seach">
+                    <?php
+                        $exp = Attributes::find()->where(['type'=>'experience'])->all();
+                        $items = ArrayHelper::map($exp,'id','name');
+                        $param = [
+                            'prompt' => 'Укажите опыт работы',
+                            'class' => 'dropDownList',   
+                        ];
+                        echo Html::dropDownList('exp', 'null', $items, $param);
+                    ?>
+                </div> 
       
-
-        <?php
-        $emp = Attributes::find()->where(['type'=>'employment'])->all();
-        $items = ArrayHelper::map($emp,'id','name');
-        $param = [
-            'prompt' => 'Укажите тип занятости'
-        ];
-        echo Html::dropDownList('emp', 'null', $items, $param);
-        ?>
-
+                <div class="col-12  mr_seach">
+                    <?php
+                        $emp = Attributes::find()->where(['type'=>'employment'])->all();
+                        $items = ArrayHelper::map($emp,'id','name');
+                        $param = [
+                            'prompt' => 'Укажите тип занятости',
+                            'class' => 'dropDownList',   
+                        ];
+                        echo Html::dropDownList('emp', 'null', $items, $param);
+                    ?>
+                </div> 
         
+                <div class="col-12  mr_seach">
+                    <?php
+                        $sch = Attributes::find()->where(['type'=>'schedule'])->all();
+                        $items = ArrayHelper::map($sch,'id','name');
+                        $param = [
+                            'prompt' => 'Укажите график  работы',
+                            'class' => 'dropDownList',   
+                        ];
+                        echo Html::dropDownList('sch', 'null', $items, $param);
+                    ?>
+                </div> 
 
-        <?php
-        
-        $sch = Attributes::find()->where(['type'=>'schedule'])->all();
-        $items = ArrayHelper::map($sch,'id','name');
-        $param = [
-            'prompt' => 'Укажите график  работы'
-        ];
-        echo Html::dropDownList('sch', 'null', $items, $param);
-        ?>
+                <div class="col-12  mr_seach">
+                    <?php
+                        $obj = Attributes::find()->where(['type'=>'objective'])->all();
+                        $items = ArrayHelper::map($obj,'id','name');
+                        $param = [
+                            'prompt' => 'Укажите должность',
+                            'class' => 'dropDownList',   
+                        ];
+                        echo Html::dropDownList('obj', 'null', $items, $param);
+                    ?>
+                </div>
 
-        <?php
-        
-        $obj = Attributes::find()->where(['type'=>'objective'])->all();
-        $items = ArrayHelper::map($obj,'id','name');
-        $param = [
-            'prompt' => 'Укажите должность'
-        ];
-        echo Html::dropDownList('obj', 'null', $items, $param);
-        ?>
+                <div class="col-12  mr_seach">
+                    <?php  
+                        $category = Attributes::find()->where(['type'=>'category'])->all();
+                        $items = ArrayHelper::map($category,'id','name');
+                        $param = [
+                            'prompt' => 'Укажите профобласть',
+                            'class' => 'dropDownList',   
+                        ];
+                        echo Html::dropDownList('categoryg', $idc, $items, $param);
+                    ?>
+                </div>
 
-        <?php
-        
-        $category = Attributes::find()->where(['type'=>'category'])->all();
-        $items = ArrayHelper::map($category,'id','name');
-
-            $param = [
-                'prompt' => 'Укажите профобласть'
-            ];
-        
-        echo Html::dropDownList('categoryg', $idc, $items, $param);
-        ?>
-
-        <?php
-        
-        $org = Organization::find()->all();
-        $items = ArrayHelper::map($org,'id','name');
-
-            $param = [
-                'prompt' => 'Доступные организации'
-            ];
-        
-        echo Html::dropDownList('org', $idc, $items, $param);
-        ?>
-        </div>
-
-
-        <?php  ?>
-        <?php ActiveForm::end();?>
-        <?php Pjax::end(); ?> 
-
-
+                <div class="col-12 mr_seach">
+                    <?php
+                        $org = Organization::find()->all();
+                        $items = ArrayHelper::map($org,'id','name');
+                        $param = [
+                            'prompt' => 'Доступные организации',
+                            'class' => 'dropDownList',   
+                        ];  
+                        echo Html::dropDownList('org', $idc, $items, $param);
+                    ?>
+                </div>   
             </div>
+
+            <?php  ?>
+                <?php ActiveForm::end();?>
+                    <?php Pjax::end(); ?> 
+                        <div id="col"><?=$categoryg?> </div>     
         </div>
       
         
-        <div id="col"><?=$categoryg?> </div>
+        
            
         
         
