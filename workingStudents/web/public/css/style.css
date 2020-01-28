@@ -184,7 +184,6 @@ svg text {
   border-color: #a3071e;
 }
 
-
 /* стиль для темного фона на стр регистрации и авторизации*/
 .darkwindow{ 
   background-color: #0b0a0b;
@@ -230,7 +229,6 @@ svg text {
   border-bottom-color: #a3071e;
 }
 
-
 /* цвет и подчеркивание при наведении для активной ссылки */
 .menured:hover{
   color: #9dbb19;
@@ -275,7 +273,6 @@ svg text {
   border-radius: 3%;
 }
 
-
 /* стиль для отмены скругления элементов */
 .btn-none{
   border-radius: 0px;
@@ -313,12 +310,12 @@ svg text {
   width: 17%;
 }
 
-
 /* стиль для аватарки в поиске и избранном/просмотренном */
 .searchavatar{
-  width: 90%;
+  border-radius: 50%; /* Радиус скругления */
+  box-shadow: 0 0 0 3px #9dbb19, 0 0 13px #333; /* Параметры теней */
+  width: 50%;
   margin-left: 10%;
-  margin-top: 22%;
  }
 
  .compsearchavatar {
@@ -336,6 +333,7 @@ svg text {
   padding-top: 2%;
   margin-bottom: 2%;
  }
+
 
 /* стиль для фона вакансий и резюме в маленьком окне*/
 .border_search1{
@@ -364,13 +362,9 @@ svg text {
   margin-left: 2%;
 }
 
-
 .mr_seach{
 margin-bottom: 3%;
 }
-
-
-
 
 .advanced_search{
   margin-right: 10%;
@@ -384,7 +378,6 @@ margin-bottom: 3%;
 .margin_statistic{
   margin-top: 10%;
 }
-
 
 /*Стиль для поиска в шапке*/
  .search {
@@ -406,6 +399,10 @@ body {
   display: flex;
   flex-direction: column;
   
+}
+
+.blok_information{
+  margin-left: 2%;
 }
 
 
@@ -462,7 +459,7 @@ span.support:hover::before {
 
 /*размер для изображения вопроса*/
 .question{
-  width: 2%;
+  width: 3%;
 }
 
 /*отступ для текста в подвале*/
@@ -483,7 +480,40 @@ span.support:hover::before {
 }
 /*________________________________*/
 
+/* задаем относительное позиционирование контейнеру */
+.block{position:relative;}
+/* Оформление скрытого элемента по умолчанию */ 
+.hidden{
+  display: none;
+  position: absolute;
+  bottom: 130%;
+  background-color: #d6f054;
+  color: #000000;
+  padding: 8px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 7px;
+}
+/* Дополнительное оформление скрытого элемента */
+.hover + .hidden:before{
+  content: " ";
+  position: absolute;
+  top: 98%;
+  left: 10%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  height: 0;
+  width: 0;
+  border: 7px solid transparent;
+  border-right: 7px solid #fff;
+  border-color: #d6f054 transparent transparent transparent;
+  z-index: 2;
+}
 
+
+/* Появление скрытого элемента при наведении */
+.hover:hover + .hidden{display: block;}
 
 
 

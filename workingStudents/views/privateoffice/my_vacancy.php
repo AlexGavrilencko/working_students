@@ -39,61 +39,24 @@ $this->title = 'Мои вакансии';
                 //if ($post===$articles->id){ ?>
         <div class="border_search">    
             <!-- результаты поиска -->
-            <div class="row">
+            <div class="row ">
 
-                <div class="col-sm-3">
-                    <!-- для изображения -->
-                    <?php
-                    $o = $vacan->organization_id;
-                    $organization = Organization::find()->where(['id'=>$o])->one();
-                     if($organization->image): ?>
-                                <img class="searchavatar" src="/uploads/<?= $organization->image?>" alt="">
-                    <?php endif; ?>
-                </div>
-
-                <div class="col-sm-9 ">
-                    <!-- для описания -->
-                        <div class="row">
-
-                            <div class="col-12 col-md-8">
-                                <p><?= $vacan->name ?></p> <!-- название вакансии подгрузка из базы -->
-                            </div>
-
-                            <div class="col-6 col-sm-4">
-                                <div class="row">
-
-                                    <div class="col-4">
-                                        <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>"><img class="open_eye" src="/public/img/open_eye.png" alt="Подробнее"></a>
-                                    </div>
-
-                                    <div class="col-4">
-                                        <a href="<?= Url::toRoute(['privateoffice/vacancy_up', 'id'=>$vacan->id]); ?>"><img class="pencil" src="/public/img/pencil.png" alt="Редактировать"></a>
-                                    </div>
-
-                                    <div class="col-4">
-                                        <a href="<?= Url::toRoute(['privateoffice/vacancy_del', 'id'=>$vacan->id]); ?>"><img class="trashcan" src="/public/img/trashcan.png" alt="Удалить"></a>
-                                    </div>
-
-                                </div>  
-                            </div>
-
-                            <div class="col-6 col-sm-4">
-                                <p>    <!-- цена $vacan->salary подгрузка из базы -->
-                                    <?php
-                                        $salary = $vacan->salary;
-                                            if ($salary == NULL)
-                                            {
-                                                echo 'Не указано';
-                                            }
-                                            else echo $salary;
-                                    ?>
-                                </p>
-                            </div>
-
+                        <div class="col-sm ">
+                            <!-- для изображения -->
+                            <?php
+                            $o = $vacan->organization_id;
+                            $organization = Organization::find()->where(['id'=>$o])->one();
+                            if($organization->image): ?>
+                                        <img class="searchavatar " src="/uploads/<?= $organization->image?>" alt="">
+                            <?php endif; ?>
                         </div>
 
-                        <div class="row">
-                            <div class="col-12 col-md-8">
+            <div class="col-sm blok_information">
+                    <!-- для описания -->
+                    <div class="row">
+                        <div class="col-12 col-md-8">
+                            <p><?= $vacan->name ?></p> <!-- название вакансии подгрузка из базы -->
+
                             <!-- $vacan->organization_id-->
                                 <p>    <!-- Название организации подгрузка из базы -->
                                     <?php
@@ -106,11 +69,18 @@ $this->title = 'Мои вакансии';
                                             else echo $organization->name;
                                     ?>
                                 </p>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col"> 
+                                <p>    <!-- цена $vacan->salary подгрузка из базы -->
+                                    <?php
+                                        $salary = $vacan->salary;
+                                            if ($salary == NULL)
+                                            {
+                                                echo 'Не указано';
+                                            }
+                                            else echo $salary;
+                                    ?>
+                                </p>
+
                                 <p>    <!-- Город $vacan->city_id подгрузка из базы -->
                                     <?php
                                         $c = $vacan->city_id;
@@ -123,12 +93,7 @@ $this->title = 'Мои вакансии';
                                             else echo $city->name;
                                     ?>
                                 </p>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col">
-                                <!-- описание $vacan->duties подгрузка из базы -->
                                 <p>
                                     <?php
                                         $duties = $vacan->duties;
@@ -139,15 +104,23 @@ $this->title = 'Мои вакансии';
                                             else echo $duties;
                                     ?>
                                 </p>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-6 col-sm-4">
                                 <p><?= $vacan->dateAdd ?></p> <!-- дата $vacan->dateAdd подгрузка из базы -->
-                            </div>
+
                         </div>
+                    </div>   
                 </div>
+                    
+                <div class="col-sm ">
+                    <div class="row blok_information"><a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a></div>
+                    <div class="row blok_information"><a href="<?= Url::toRoute(['privateoffice/vacancy_up', 'id'=>$vacan->id]); ?>">Редактировать</a></div>
+                    <div class="row blok_information"> <a href="<?= Url::toRoute(['privateoffice/vacancy_del', 'id'=>$vacan->id]); ?>">Удалить</a></div>
+                    
+                    
+                   
+                
+                </div>
+
             </div>   
         </div>
         <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
