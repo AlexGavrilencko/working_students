@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                         
                             <div class="row justify-content-center">
-                                <a href="/privateoffice/set-image" class="btn btn-rounded btngreen">Загрузите логотип организации</a>
+                                <a href="/privateoffice/set-image" class="btn btn-rounded btngreen">Загрузите логотип</a>
                             </div>
                         <br>
                             <div class="row justify-content-center">
@@ -40,12 +40,20 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ?>
                             </div>
                         <br>
+                        
+                        <div class="block"> <!-- контейнер -->
+                            <div class="hover"><img src="/public/img/w.png" class="question" alt="?"></div> <!-- видимый элемент -->
+                            <span class="hidden">это подсказка с оформлением</span> <!-- скрытый элемент -->
+                        </div>
 
+              
                         <?= $form->field($model, 'name')->textInput() ?> 
                         
-                            <span class='support' tabindex="1" data-title='Текст подсказки'>
+                          <!--  <span class='support' tabindex="1" data-title='Текст подсказки'>
                                 <em><img src="/public/img/w.png" class="question" alt="?"></em>
-                            </span>
+                            </span> -->
+
+                            
                         
                     <?php
                         // получаем все города из таблицы атрибутов
@@ -57,6 +65,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ];
                             echo $form->field($model, 'city_id')->dropDownList($items,$params);
                     ?>
+
+                    
 
                     <?= $form->field($model, 'adres')->textInput() ?>
 

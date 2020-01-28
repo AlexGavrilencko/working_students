@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
 
                         <br>
-                            <div class="row justify-content-center">
+                        <div class="row justify-content-center">
                                 <?php   
                                     $user = Yii::$app->user->identity;
                                         if($model->image): ?>

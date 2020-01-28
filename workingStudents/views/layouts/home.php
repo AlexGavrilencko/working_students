@@ -142,13 +142,13 @@ PublicAsset::register($this);
                     <div class="row ">
                         <div class="col">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-sm">
                                     <p class="text-light size_txt">Вакансии</p>
                                 </div>
-                                <div class="col">
+                                <div class="col-sm">
                                     <h5 class="text-light size_txt">Резюме</p>
                                 </div>
-                                <div class="col">
+                                <div class="col-sm">
                                     <p class="text-light size_txt">Организации</p>
                                 </div>
                             </div>
@@ -173,6 +173,7 @@ PublicAsset::register($this);
                                         ?>
                                     </p>
                                 </div>
+
                                 <div class="col">
                                     <h5 class="text-light size_txt">
                                     <?php $model = Resume::find()->count();
@@ -185,6 +186,7 @@ PublicAsset::register($this);
                                         ?>
                                     </p>
                                 </div>
+
                                 <div class="col">
                                     <p class="text-light size_txt">
                                         <?php $model = Organization::find()->count();
@@ -199,6 +201,7 @@ PublicAsset::register($this);
                                 </div>
                             </div>
                         </div>
+
                         <div class="col">
                             
                         </div>

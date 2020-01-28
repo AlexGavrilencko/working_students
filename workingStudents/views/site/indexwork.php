@@ -136,7 +136,7 @@ $this->title = 'Главная';
     </div>
 </div> 
 </div> 
-<br>
+
         
 
 

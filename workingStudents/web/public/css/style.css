@@ -151,13 +151,14 @@ svg text {
   background-position: center;
  }
 
- /* стиль для фоновой картинки главной страницы работодателя */
- .header2{  
-  background-image: url(/public/img/r.jpg);
+ /*для фона контента*/
+.content {
+  flex: 1 0 auto;
+  background: url(/public/img/fon1.jpg);
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
- }
+}
 
  /* стиль для кнопки зеленого цвета */
 .btngreen{ 
@@ -167,7 +168,7 @@ svg text {
 
 /* стиль при наведении для кнопки категории зеленого цвета */
 .btngreen_k:hover{
-  color: #d4d4d0;
+  color: #d4d0d0;
   border-color: #d4d4d0;
 }
 
@@ -182,7 +183,6 @@ svg text {
   color: #a3071e;
   border-color: #a3071e;
 }
-
 
 /* стиль для темного фона на стр регистрации и авторизации*/
 .darkwindow{ 
@@ -229,7 +229,6 @@ svg text {
   border-bottom-color: #a3071e;
 }
 
-
 /* цвет и подчеркивание при наведении для активной ссылки */
 .menured:hover{
   color: #9dbb19;
@@ -264,6 +263,14 @@ svg text {
 /* стиль для скругления элементов */
 .btn-rounded{
   border-radius: 10px;
+}
+
+.dropDownList{
+  width: 100%;
+  font-size: 16px;
+	padding: 2px 0 2px 2px;
+	border: 1px solid #a3071e;
+  border-radius: 3%;
 }
 
 /* стиль для отмены скругления элементов */
@@ -303,12 +310,12 @@ svg text {
   width: 17%;
 }
 
-
 /* стиль для аватарки в поиске и избранном/просмотренном */
 .searchavatar{
-  width: 90%;
+  border-radius: 50%; /* Радиус скругления */
+  box-shadow: 0 0 0 3px #9dbb19, 0 0 13px #333; /* Параметры теней */
+  width: 50%;
   margin-left: 10%;
-  margin-top: 22%;
  }
 
  .compsearchavatar {
@@ -324,7 +331,9 @@ svg text {
   border-color: #9dbb19;
   border-radius: 10px;
   padding-top: 2%;
+  margin-bottom: 2%;
  }
+
 
 /* стиль для фона вакансий и резюме в маленьком окне*/
 .border_search1{
@@ -353,6 +362,14 @@ svg text {
   margin-left: 2%;
 }
 
+.mr_seach{
+margin-bottom: 3%;
+}
+
+.advanced_search{
+  margin-right: 10%;
+}
+
 .size_txt{
   font-size: 20px;
   margin-right: 15%;
@@ -361,7 +378,6 @@ svg text {
 .margin_statistic{
   margin-top: 10%;
 }
-
 
 /*Стиль для поиска в шапке*/
  .search {
@@ -385,12 +401,11 @@ body {
   
 }
 
-/*для фона контента*/
-.content {
-  flex: 1 0 auto;
-  background: url(/public/img/fon.jpg);
-  /*opacity: 0.4;*/
+.blok_information{
+  margin-left: 2%;
 }
+
+
 /*Для прикрепления подвала к низу страницы конец*/
 
 .A404{
@@ -444,7 +459,7 @@ span.support:hover::before {
 
 /*размер для изображения вопроса*/
 .question{
-  width: 2%;
+  width: 3%;
 }
 
 /*отступ для текста в подвале*/
@@ -454,19 +469,51 @@ span.support:hover::before {
 
 /*размер для изображений действий*/
 .open_eye{
-  width: 50%;
-  margin-left: 40%;
+  width: 100%;
 }
 .pencil{
-  width: 40%;
+  width: 70%;
 }
 .trashcan{
-  width: 40%;
-  margin-right: 40%;
+  width: 70%;
+  margin-right: 30%;
 }
 /*________________________________*/
 
+/* задаем относительное позиционирование контейнеру */
+.block{position:relative;}
+/* Оформление скрытого элемента по умолчанию */ 
+.hidden{
+  display: none;
+  position: absolute;
+  bottom: 130%;
+  background-color: #d6f054;
+  color: #000000;
+  padding: 8px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 7px;
+}
+/* Дополнительное оформление скрытого элемента */
+.hover + .hidden:before{
+  content: " ";
+  position: absolute;
+  top: 98%;
+  left: 10%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  height: 0;
+  width: 0;
+  border: 7px solid transparent;
+  border-right: 7px solid #fff;
+  border-color: #d6f054 transparent transparent transparent;
+  z-index: 2;
+}
 
+
+/* Появление скрытого элемента при наведении */
+.hover:hover + .hidden{display: block;}
 
 
 
