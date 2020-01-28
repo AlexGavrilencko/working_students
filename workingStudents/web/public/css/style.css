@@ -151,13 +151,14 @@ svg text {
   background-position: center;
  }
 
- /* стиль для фоновой картинки главной страницы работодателя */
- .header2{  
-  background-image: url(/public/img/r.jpg);
+ /*для фона контента*/
+.content {
+  flex: 1 0 auto;
+  background: url(/public/img/fon1.jpg);
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
- }
+}
 
  /* стиль для кнопки зеленого цвета */
 .btngreen{ 
@@ -167,7 +168,7 @@ svg text {
 
 /* стиль при наведении для кнопки категории зеленого цвета */
 .btngreen_k:hover{
-  color: #d4d4d0;
+  color: #d4d0d0;
   border-color: #d4d4d0;
 }
 
@@ -333,6 +334,7 @@ svg text {
   border-color: #9dbb19;
   border-radius: 10px;
   padding-top: 2%;
+  margin-bottom: 2%;
  }
 
 /* стиль для фона вакансий и резюме в маленьком окне*/
@@ -354,7 +356,7 @@ svg text {
  }
 
 .advanced_search{
-  width: 98%;
+  width: 100%;
   font-size: 14px;
 	padding: 1.5px 0 1px 2.5px;
 	border: 1px solid #cecece;
@@ -406,12 +408,7 @@ body {
   
 }
 
-/*для фона контента*/
-.content {
-  flex: 1 0 auto;
-  background: url(/public/img/fon.jpg);
-  /*opacity: 0.4;*/
-}
+
 /*Для прикрепления подвала к низу страницы конец*/
 
 .A404{
@@ -475,15 +472,14 @@ span.support:hover::before {
 
 /*размер для изображений действий*/
 .open_eye{
-  width: 50%;
-  margin-left: 40%;
+  width: 100%;
 }
 .pencil{
-  width: 40%;
+  width: 70%;
 }
 .trashcan{
-  width: 40%;
-  margin-right: 40%;
+  width: 70%;
+  margin-right: 30%;
 }
 /*________________________________*/
 
