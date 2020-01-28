@@ -48,10 +48,16 @@ class Experience extends \yii\db\ActiveRecord
             'resume_id' => 'Resume ID',
             'dateStart' => 'Дата начала',
             'dateEnd' => 'Дата окончания',
-            'StudyOrWork' => 'Работа\Учеба',
+            'StudyOrWork' => 'Опыт работы\Образование',
             'nameOrganiz_id' => 'Наименование организации',
             'speciality_id' => 'Специальность',
             'description' => 'Описание',
         ];
+    }
+
+    public function create()
+    {
+        $this->save();
+        return $this;
     }
 }

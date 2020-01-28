@@ -138,11 +138,11 @@ class SiteController extends Controller
         else{
             $catvac=Vacancy::find()->where(['category_id' => $id])->all();
         }
-       // var_dump($catvac);die();
+       
         $atr=Attributes::find()->all();
         $org=Organization::find()->all();
         $vac=Vacancy::find()->all();
-        $filter='';
+        //$filter='';
         $idc=$id;
 		return $this->render('search',[
 		'catvac'=>$catvac,
@@ -156,9 +156,9 @@ class SiteController extends Controller
     {
         $this->layout = 'site';
         $resume=Resume::find()->all();
-        $model=new Resume();
-        return $this->render('search_work', [
-            'resume' => $resume, 'model'=>$model  /* Заменить на резюме */
+        
+        return $this->render('search_work',[
+            'resume' => $resume,   /* Заменить на резюме */
        ]);
     }
 

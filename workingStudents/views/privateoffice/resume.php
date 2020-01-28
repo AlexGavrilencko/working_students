@@ -7,8 +7,11 @@ use yii\widgets\ActiveField;
 use app\models\Attributes;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
-use yii\helpers\ArrayHelper;	
-//use kartik\date\DatePicker;
+use yii\helpers\ArrayHelper;
+use yii\widgets\DetailView;	
+use yii\grid\GridView;
+use app\models\Organization;
+use kartik\date\DatePicker;
 
 $this->title = 'Резюме';
 $this->params['breadcrumbs'][] = $this->title;
@@ -57,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             echo $form->field($model, 'city_id')->dropDownList($items,$params);
                         ?>
                         <?php
-                            //echo DatePicker::widget([
+                           // echo DatePicker::widget([
                             //    'model' => $model,
                             //    'name' => 'dateBirth' ,  
                             //    'type' => DatePicker :: TYPE_COMPONENT_APPEND ,  
@@ -92,7 +95,46 @@ $this->params['breadcrumbs'][] = $this->title;
                             echo $form->field($model, 'CareerObjective_id')->dropDownList($items,$params);
                         
                         ?>
-                        
+                        <p>
+                            <?= Html::a('Добавить опыт работы', ['experience_cr','res_id'=>$model->id,'or'=>'1'], ['class' => 'btn btn-success']) ?>
+                            <?= Html::a('Добавить образование', ['experience_cr','res_id'=>$model->id,'or'=>'0'], ['class' => 'btn btn-success']) ?>
+                        </p>
+                    <?php if($model1 != null){ ?>    
+                    <table>
+                    <tr><td>№</td><td>Дата начала</td><td>Дата окончания</td><td>Образование\работа</td><td>Наименование организации</td><td>Специальность</td></tr>
+                    <?php foreach($model1 as $exp): ?>
+                        <?php  
+                            $org = Organization::find()->where(['id'=>$exp->nameOrganiz_id])->one();
+                            $speciality = Attributes::find()->where(['id'=>$exp->speciality_id])->one();
+                            $speciality=$speciality->name;
+                    
+                        ?>
+                        <tr>
+                        <td><?=$exp->id?></td>
+                        <td><?=$exp->dateStart?></td>
+                        <td><?=$exp->dateEnd?></td>
+                        <td><?php if($exp->StudyOrWork===0){
+                            echo "Образование";
+                        }else{
+                            echo "Опыт работы";
+                        }?></td>
+                        <td><?=$org->name?></td>
+                        <td><?=$speciality?></td>
+                        <td><?= Html::a('Редактировать', ['experience_up', 'id' => $exp->id], ['class' => 'btn btn-primary']) ?></td>
+                        <td><?= Html::a('Удалить', ['experience_del', 'id' => $exp->id], [
+                            'class' => 'btn btn-danger',
+                            'data' => [
+                                'confirm' => 'Вы действительно хотите удалить эти данные?',
+                                'method' => 'post',
+                            ],
+                        ]) ?></td>
+                        </tr>
+                    <?php endforeach;?>
+                    
+                    </table>
+                    <?php };?>
+
+
                     <div class="row justify-content-center">
                         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen', 'name' => 'Save submit']) ?>
                     </div>

@@ -57,45 +57,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             $params = [
                                 'prompt' => 'Укажите город'
                             ];
-                            echo $form->field($model, 'city_id')->dropDownList($items,$params);
+                            echo Html::dropDownList('citty', 'null', $items, $param);
+                            //echo $form->field($model, 'city_id')->dropDownList($items,$params);
                         ?>
 
-                        <?php
-                            // получаем все города из таблицы атрибутов
-                            $experience = Attributes::find()->where(['type'=>'experience'])->all();
-                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                            $items = ArrayHelper::map($experience,'id','name');
-                            $params = [
-                                'prompt' => 'Укажите опыт работы'
-                            ];
-                            echo $form->field($model, 'experience_id')->dropDownList($items,$params);
-                        ?>
-
-                        <?php
-                            // получаем все города из таблицы атрибутов
-                            $employment = Attributes::find()->where(['type'=>'employment'])->all();
-                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                            $items = ArrayHelper::map($employment,'id','name');
-                            $params = [
-                                'prompt' => 'Укажите тип занятости'
-                            ];
-                            echo $form->field($model, 'employment_id')->dropDownList($items,$params);
-                        ?>
-
-                        <?php
-                            // получаем все города из таблицы атрибутов
-                            $schedule = Attributes::find()->where(['type'=>'schedule'])->all();
-                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                            $items = ArrayHelper::map($schedule,'id','name');
-                            $params = [
-                                'prompt' => 'Укажите график  работы'
-                            ];
-                            echo $form->field($model, 'schedule_id')->dropDownList($items,$params);
-                        ?>
                         
-                        <?= $form->field($model, 'salary')->textInput() ?>
-
                         <?php
+                        
                             // получаем все города из таблицы атрибутов
                             $category = Attributes::find()->where(['type'=>'category'])->all();
                             // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
@@ -103,7 +71,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             $params = [
                                 'prompt' => 'Укажите профобласть'
                             ];
-                            echo $form->field($model, 'category_id')->dropDownList($items,$params);
+                            //echo $form->field($model, 'category_id')->dropDownList($items,$params);
+                            echo Html::dropDownList('cat', 'null', $items, $param);
                         ?>
             </div>
 
@@ -118,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
         //$catvac все вакансии выбранной категории
         foreach ($resume as $resum)
         : 
-
+        if ($resum->ShowOrHide===0){
 	    //echo $tagg;
 	    //$post=$vacan->article_id;
 	    //foreach ($article as $articles)
@@ -196,6 +165,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>   
         </div>
+        <?php  }; ?>
         <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
         <br>
     </div>

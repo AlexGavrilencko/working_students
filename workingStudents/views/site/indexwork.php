@@ -39,7 +39,8 @@ $this->title = 'Главная';
         //$catvac все вакансии выбранной категории
         foreach ($resume as $resum)
         : 
-        var_dump($resum);die();
+        if ($resum->ShowOrHide===0){
+        //var_dump($resum);die();
 	    //echo $tagg;
 	    //$post=$vacan->article_id;
 	    //foreach ($article as $articles)
@@ -130,6 +131,7 @@ $this->title = 'Главная';
                 </div>
             </div>   
         </div>
+        <?php  }; ?>
         <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
     </div>
 </div> 

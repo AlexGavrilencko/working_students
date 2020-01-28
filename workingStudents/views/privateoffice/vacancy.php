@@ -28,6 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         $userid=$user->id;
                         $model->user_id=$userid;
                     ?>
+                    <?= $form->field($model, 'ShowOrHide')->radioList(array(0 => 'Показывать вакансию при поиске', 1 => 'Скрывать вакансию при поиске',), array('labelOptions'=>array('style'=>'display:inline'), 'separator'=>'&nbsp;&nbsp;&nbsp;</br>',)); ?>
+                    
                     <?= $form->field($model, 'name')->textInput() ?>
                     <?php 
                         $org = Organization::find()->where(['user_id'=>$user->id])->one();
@@ -110,7 +112,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ];
                             echo $form->field($model, 'category_id')->dropDownList($items,$params);
                         ?>
-                    <?= $form->field($model, 'WorkOrPractice')->textInput() ?>
+                    <?= $form->field($model, 'WorkOrPractice')->radioList(array(0 => 'Предложение по работе', 1 => 'Предложение по практике',), array('labelOptions'=>array('style'=>'display:inline'), 'separator'=>'&nbsp;&nbsp;&nbsp;</br>',)); ?>
                     <div class="row justify-content-center">
                         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen', 'name' => 'Save submit']) ?>
                     </div>
