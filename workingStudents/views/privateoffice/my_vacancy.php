@@ -115,10 +115,6 @@ $this->title = 'Мои вакансии';
                     <div class="row blok_information"><a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a></div>
                     <div class="row blok_information"><a href="<?= Url::toRoute(['privateoffice/vacancy_up', 'id'=>$vacan->id]); ?>">Редактировать</a></div>
                     <div class="row blok_information"> <a href="<?= Url::toRoute(['privateoffice/vacancy_del', 'id'=>$vacan->id]); ?>">Удалить</a></div>
-                    
-                    
-                   
-                
                 </div>
 
             </div>   

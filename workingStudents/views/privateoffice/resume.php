@@ -95,9 +95,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             echo $form->field($model, 'CareerObjective_id')->dropDownList($items,$params);
                         
                         ?>
-                        <p>
-                            <?= Html::a('Добавить опыт работы', ['experience_cr','res_id'=>$model->id,'or'=>'1'], ['class' => 'btn btn-success']) ?>
-                            <?= Html::a('Добавить образование', ['experience_cr','res_id'=>$model->id,'or'=>'0'], ['class' => 'btn btn-success']) ?>
+                        <p class="row justify-content-center">
+                            <?= Html::a('Добавить опыт работы', ['experience_cr','res_id'=>$model->id,'or'=>'1'], ['class' => 'btn btn-rounded btngreen ml-1']) ?>
+                            <?= Html::a('Добавить образование', ['experience_cr','res_id'=>$model->id,'or'=>'0'], ['class' => 'btn btn-rounded btngreen ml-1']) ?>
                         </p>
                     <?php if($model1 != null){ ?>    
                     <table>
