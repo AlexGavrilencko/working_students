@@ -99,40 +99,81 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= Html::a('Добавить опыт работы', ['experience_cr','res_id'=>$model->id,'or'=>'1'], ['class' => 'btn btn-rounded btngreen ml-1']) ?>
                             <?= Html::a('Добавить образование', ['experience_cr','res_id'=>$model->id,'or'=>'0'], ['class' => 'btn btn-rounded btngreen ml-1']) ?>
                         </p>
-                    <?php if($model1 != null){ ?>    
-                    <table>
-                    <tr><td>№</td><td>Дата начала</td><td>Дата окончания</td><td>Образование\работа</td><td>Наименование организации</td><td>Специальность</td></tr>
-                    <?php foreach($model1 as $exp): ?>
-                        <?php  
-                            $org = Organization::find()->where(['id'=>$exp->nameOrganiz_id])->one();
-                            $speciality = Attributes::find()->where(['id'=>$exp->speciality_id])->one();
-                            $speciality=$speciality->name;
-                    
-                        ?>
-                        <tr>
-                        <td><?=$exp->id?></td>
-                        <td><?=$exp->dateStart?></td>
-                        <td><?=$exp->dateEnd?></td>
-                        <td><?php if($exp->StudyOrWork===0){
+                    <?php if($model1 != null){ ?> 
+    <div class="container-fluid">
+        <div class="row"> <!-- отображение заголовков таблицы -->
+            <div class="col">
+                <p>№</p>
+            </div>
+            <div class="col">
+                <p>Дата начала</p>
+            </div>
+            <div class="col">
+                <p>Дата окончания</p>
+            </div>
+            <div class="col">
+                <p>Образование\работа</p>
+            </div>
+            <div class="col">
+                <p>Наименование организации</p>
+            </div>
+            <div class="col">
+                <p>Специальность</p>
+            </div>
+            <div class="col">
+                <p>Действия</p>
+            </div>
+        </div>
+    <?php foreach($model1 as $exp): ?>
+        <?php  
+            $org = Organization::find()->where(['id'=>$exp->nameOrganiz_id])->one();
+            $speciality = Attributes::find()->where(['id'=>$exp->speciality_id])->one();
+            $speciality=$speciality->name;
+        ?>
+
+        <div class="row"> <!-- отобрежение цикла -->
+            <div class="col">
+                <p><?=$exp->id?></p>
+            </div>
+            <div class="col">
+                <p><?=$exp->dateStart?></p>
+            </div>
+            <div class="col">
+                <p><?=$exp->dateEnd?></p>
+            </div>
+            <div class="col">
+                <p>
+                    <?php if($exp->StudyOrWork===0){
                             echo "Образование";
                         }else{
                             echo "Опыт работы";
-                        }?></td>
-                        <td><?=$org->name?></td>
-                        <td><?=$speciality?></td>
-                        <td><?= Html::a('Редактировать', ['experience_up', 'id' => $exp->id], ['class' => 'btn btn-primary']) ?></td>
-                        <td><?= Html::a('Удалить', ['experience_del', 'id' => $exp->id], [
-                            'class' => 'btn btn-danger',
+                        }
+                    ?>
+                </p>
+            </div>
+            <div class="col">
+                <p><?=$org->name?></p>
+            </div>
+            <div class="col">
+                <p><?=$speciality?></p>
+            </div>
+            <div class="col">
+                <?= Html::a('Редактировать', ['experience_up', 'id' => $exp->id], ['class' => 'btn btn-rounded btngreen ml-1']) ?>
+                <?= Html::a('Удалить', ['experience_del', 'id' => $exp->id], [
+                            'class' => 'btn btn-rounded btngreen ml-1',
                             'data' => [
                                 'confirm' => 'Вы действительно хотите удалить эти данные?',
                                 'method' => 'post',
                             ],
-                        ]) ?></td>
-                        </tr>
-                    <?php endforeach;?>
-                    
-                    </table>
-                    <?php };?>
+                        ]) ?>
+            </div>                
+        </div>
+        <?php endforeach;?>
+        <?php };?>
+</div>
+
+
+                   
 
 
                     <div class="row justify-content-center">
@@ -143,3 +184,4 @@ $this->params['breadcrumbs'][] = $this->title;
          </div>
 <?php ActiveForm::end(); ?>
 <br>
+
