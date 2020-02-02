@@ -118,402 +118,435 @@ svg text {
 }
 /*____________________________________________________________________________________________*/
 
-/*Размер логотипа*/
-.navbar-brad img{
-  width: 9em;
- }
+/*a___________________________________________________________*/
+  .advanced_search{
+    width: 100%;
+    font-size: 14px;
+    padding: 1.5px 0 1px 2.5px;
+    border: 1px solid #cecece;
+    border-radius: 2px;
+    margin-left: 2%;
+  }
+  .advanced_search{
+    margin-right: 10%;
+  }  
+  .A404{
+    width: 60%;
+  }
+/*/a__________________________________________________________*/
 
- /*стиль для отступов элементов поиска в шапке*/
- .margin-top{
-  margin-top: 13%;
- }
- 
- /*для блока шапки*/
-.overlay{
- min-height: 100%;
- min-width: 96%;
-}
+/*b___________________________________________________________*/
+  /* стиль для кнопки зеленого цвета */
+  .btngreen{ 
+    color: #9dbb19;
+    border-color: #9dbb19;
+  }
+  /* стиль при наведении для кнопки категории зеленого цвета */
+  .btngreen_k:hover{
+    color: #d4d0d0;
+    border-color: #d4d4d0;
+  }
+  /* стиль для кнопки категории зеленого цвета */
+  .btngreen_k{
+    color: #9dbb19;
+    border-color: #9dbb19;
+  }
+  /* стиль при наведении для кнопки зеленого цвета */
+  .btngreen:hover{ 
+    color: #a3071e;
+    border-color: #a3071e;
+  }
+  /* стиль для кнопки темно-фиолетового цвета */
+  .btnred{
+    color: #54383c;
+    border-color: #54383c;
+  }
+  /* стиль при наведении для кнопки темно-фиолетового цвета */
+  .btnred:hover{
+    color: #d4d4d0;
+    border-color: #d4d4d0;
+  }
+  /* стиль для кнопки оранжевого цвета */
+  .btnorange{
+    color: #d46619;
+    border-color: #d46619;
+  }
+  /* стиль при наведении для кнопки оранжевого цвета */
+  .btnorange:hover{
+    color: #d4d4d0;
+    border-color: #d4d4d0;
+  }
+  /* стиль для скругления элементов */
+  .btn-rounded{
+    border-radius: 10px;
+  }
+  /* стиль для отмены скругления элементов */
+  .btn-none{
+    border-radius: 0px;
+  }
+  .btn-lg{
+    margin-top: 3%;
+  }
+  /* стиль для фона вакансий и резюме в маленьком окне*/
+  .border_search{
+    background-color: #eff3db;
+    border: 2px solid;
+    border-color: #9dbb19;
+    border-radius: 10px;
+    padding-top: 2%;
+    margin-bottom: 2%;
+  }
+  /* стиль для фона вакансий и резюме в маленьком окне*/
+  .border_search1{
+    background-color: #e6d6ca;
+    border: 2px solid;
+    border-color: #d46619;
+    border-radius: 10px;
+    padding-top: 2%;
+  }
+  /* стиль для фона расширенного поиска*/
+  .border_advanced_search{
+    width: 100%;
+    background-color: #eff3db;
+    border: 2px solid;
+    border-color: #9dbb19;
+    border-radius: 10px;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  .blok_information{
+    margin-left: 2%;
+  }
+  /* задаем относительное позиционирование контейнеру */
+  .block{position:relative;}
+/*/b___________________________________________________________*/
 
-/* стиль для фоновой картинки главной страницы */
-.header{ 
- background-image: url(/public/img/l.jpg);
- background-attachment: fixed;
- background-size: cover;
- background-position: center;
-}
+/*c____________________________________________________________*/
+  /*для фона контента*/
+  .content {
+    flex: 1 0 auto;
+    background: url(/public/img/fon1.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+  .compsearchavatar {
+    width: 70%;
+    margin-left: 15%;
+    margin-bottom: 15%;
+  }
+/*/c___________________________________________________________*/
 
-/* стиль для фоновой картинки страниц регистрации и авторизации */
-.header1{ 
-  flex: 1 0 auto;
-  background: url(/public/img/header1.jpg);
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
- }
+/*d____________________________________________________________*/
+  /* стиль для темного фона на стр регистрации и авторизации*/
+  .darkwindow{ 
+    background-color: #0b0a0b;
+  }
+  .darkwindow1{ 
+    background-color: #d5d6d6;
+    width: 80%;
+    height: 40%;
+    opacity: 0.9;
+    padding: 2%;
+    border: 2px solid;
+    border-color: #9dbb19;
+    border-radius: 10px;
+  }
+  /* стиль для цвета footer*/
+  .dark{
+    background-color: #161616;
+  }
+  .dropDownList{
+    width: 100%;
+    font-size: 16px;
+    padding: 2px 0 2px 2px;
+    border: 1px solid #a3071e;
+    border-radius: 3%;
+  }
+  .date_org{
+    width: 100%;
+    padding: 2%;
+    background-color: #ffffff;
+    border: 1px solid #cecece;
+    border-radius: 5px;
+  }
+/*/d___________________________________________________________*/
 
- /*для фона контента*/
-.content {
-  flex: 1 0 auto;
-  background: url(/public/img/fon1.jpg);
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
-}
+/*e____________________________________________________________*/
 
- /* стиль для кнопки зеленого цвета */
-.btngreen{ 
-  color: #9dbb19;
-  border-color: #9dbb19;
-}
+/*/e___________________________________________________________*/
 
-/* стиль при наведении для кнопки категории зеленого цвета */
-.btngreen_k:hover{
-  color: #d4d0d0;
-  border-color: #d4d4d0;
-}
+/*f____________________________________________________________*/
 
-/* стиль для кнопки категории зеленого цвета */
-.btngreen_k{
-  color: #9dbb19;
-  border-color: #9dbb19;
-}
+/*/f___________________________________________________________*/
 
-/* стиль при наведении для кнопки зеленого цвета */
-.btngreen:hover{ 
-  color: #a3071e;
-  border-color: #a3071e;
-}
+/*g____________________________________________________________*/
 
-/* стиль для темного фона на стр регистрации и авторизации*/
-.darkwindow{ 
-  background-color: #0b0a0b;
-}
+/*/g___________________________________________________________*/
 
-.darkwindow1{ 
-  background-color: #d5d6d6;
-  width: 80%;
-  height: 40%;
-  opacity: 0.9;
-  padding: 2%;
-  border: 2px solid;
-  border-color: #9dbb19;
-  border-radius: 10px;
-}
+/*h____________________________________________________________*/
+  /* стиль для фоновой картинки главной страницы */
+  .header{ 
+    background-image: url(/public/img/l.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+  /* стиль для фоновой картинки страниц регистрации и авторизации */
+  .header1{ 
+    flex: 1 0 auto;
+    background: url(/public/img/header1.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    }
+    /* стиль для размера окна */
+  .hh-100{
+    height: 94%!important;
+  }
+  /*Для прикрепления подвала к низу страницы начало*/
+  html, body {
+    height: 100%;
+  }
+  /*Для прикрепления подвала к низу страницы конец*/
+  /* Оформление скрытого элемента по умолчанию */ 
+  .hidden{
+    display: none;
+    position: absolute;
+    bottom: 130%;
+    background-color: #d6f054;
+    color: #000000;
+    padding: 8px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 7px;
+  }
+  /* Дополнительное оформление скрытого элемента */
+  .hover + .hidden:before{
+    content: " ";
+    position: absolute;
+    top: 98%;
+    left: 10%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    height: 0;
+    width: 0;
+    border: 7px solid transparent;
+    border-right: 7px solid #fff;
+    border-color: #d6f054 transparent transparent transparent;
+    z-index: 2;
+  }
+  /* Появление скрытого элемента при наведении */
+  .hover:hover + .hidden{display: block;}
+/*/h___________________________________________________________*/
 
-/* стиль для цвета footer*/
-.dark{
-  background-color: #161616;
-}
+/*i____________________________________________________________*/
 
-/* стиль для цвета меню*/
-.light{
-  background-color: #ffffff;
-}
+/*/i___________________________________________________________*/
 
-/* стиль для кнопки темно-фиолетового цвета */
-.btnred{
-  color: #54383c;
-  border-color: #54383c;
-}
+/*j____________________________________________________________*/
 
-/* стиль при наведении для кнопки темно-фиолетового цвета */
-.btnred:hover{
-  color: #d4d4d0;
-  border-color: #d4d4d0;
-}
+/*/j___________________________________________________________*/
 
-/* цвет и подчеркивание для активной ссылки */
-.menured{
-  color: #a3071e;
-  border-bottom: 2px solid;
-  border-bottom-color: #a3071e;
-}
+/*k____________________________________________________________*/
 
-/* цвет и подчеркивание при наведении для активной ссылки */
-.menured:hover{
-  color: #9dbb19;
-  border-bottom: 2px solid;
-  border-bottom-color: #9dbb19;
-}
+/*/k___________________________________________________________*/
 
-/* стиль для кнопки оранжевого цвета */
-.btnorange{
-  color: #d46619;
-  border-color: #d46619;
-}
+/*l____________________________________________________________*/
+  /* стиль для цвета меню*/
+  .light{
+    background-color: #ffffff;
+  }
+  /* стиль для логотипа подвала */
+  #logofooter{
+    width: 17%;
+  }
+  /*для отображения фотографии в личном кабинете*/
+  .logo_user{
+    width: 30%;
+    border-radius: 50%; /* Радиус скругления */
+    box-shadow: 0 0 0 3px #9dbb19, 0 0 13px #333; /* Параметры теней */
+  }
+  li {
+    list-style-type: none; /* Убираем маркеры */
+  }
+/*/l___________________________________________________________*/
 
-/* стиль при наведении для кнопки оранжевого цвета */
-.btnorange:hover{
-  color: #d4d4d0;
-  border-color: #d4d4d0;
-}
+/*m____________________________________________________________*/
+  /*стиль для отступов элементов поиска в шапке*/
+  .margin-top{
+    margin-top: 13%;
+  }
+  /* цвет и подчеркивание для активной ссылки */
+  .menured{
+    color: #a3071e;
+    border-bottom: 2px solid;
+    border-bottom-color: #a3071e;
+  }
+  /* цвет и подчеркивание при наведении для активной ссылки */
+  .menured:hover{
+    color: #9dbb19;
+    border-bottom: 2px solid;
+    border-bottom-color: #9dbb19;
+  }
+  /* цвет для неактивной ссылки */
+  .menugreen{
+    color: #000000;
+  }
+  /* цвет и подчеркивание при наведении для неактивной ссылки */
+  .menugreen:hover{
+    color: #9dbb19;
+    border-bottom: 2px solid;
+    border-bottom-color: #9dbb19;
+  }
+  /* стиль для ссылки входа */
+  .menugreen_v{
+    color: #000000;
+  }
+  /* стиль при наведении для ссылки входа */
+  .menugreen_v:hover{
+    color: #9dbb19;
+  } 
+  .mr_seach{
+    margin-bottom: 3%;
+    }
+    .margin_statistic{
+      margin-top: 10%;
+    }
+/*/m___________________________________________________________*/
 
-/* цвет для неактивной ссылки */
-.menugreen{
-  color: #000000;
-}
+/*n____________________________________________________________*/
+  /*Размер логотипа*/
+  .navbar-brad img{
+    width: 9em;
+  }
+/*/n___________________________________________________________*/
 
-/* цвет и подчеркивание при наведении для неактивной ссылки */
-.menugreen:hover{
-  color: #9dbb19;
-  border-bottom: 2px solid;
-  border-bottom-color: #9dbb19;
-}
+/*o____________________________________________________________*/
+  /*для блока шапки*/
+  .overlay{
+    min-height: 100%;
+    min-width: 96%;
+  }
+  /*размер для изображений действий*/
+  .open_eye{
+    width: 100%;
+  }
+/*/o___________________________________________________________*/
 
-/* стиль для скругления элементов */
-.btn-rounded{
-  border-radius: 10px;
-}
+/*p____________________________________________________________*/
+  /* стиль для фона поял регистрации и авторизации */
+  .pole{
+    width: 80%;
+    height: 50%;
+    opacity: 0.9;
+    padding: 2%;
+  }
+  /*Отступы в блоке в отображении краткой информации*/
+  .padding_search{
+    padding: 2%;
+  }
+  .password{
+    width: 100%;
+    font-size: 16px;
+    padding: 6px 0 4px 10px;
+    border: 1px solid #cecece;
+    border-radius: 5px;
+  }
+  .pers_data_prot{
+    text-align:justify;
+  }
+  .pencil{
+    width: 70%;
+  }
+/*/p___________________________________________________________*/
 
-.dropDownList{
-  width: 100%;
-  font-size: 16px;
-	padding: 2px 0 2px 2px;
-	border: 1px solid #a3071e;
-  border-radius: 3%;
-}
+/*q____________________________________________________________*/
+  /*размер для изображения вопроса*/
+  .question{
+    width: 3%;
+  }
+/*/q___________________________________________________________*/
 
-/* стиль для отмены скругления элементов */
-.btn-none{
-  border-radius: 0px;
-}
+/*r____________________________________________________________*/
 
-/* стиль для размера окна */
-.hh-100{
-  height: 94%!important;
-}
+/*/r___________________________________________________________*/
 
-.btn-lg{
-  margin-top: 3%;
-}
-
-/* стиль для фона поял регистрации и авторизации */
-.pole{
-  width: 80%;
-  height: 50%;
-  opacity: 0.9;
-  padding: 2%;
- }
-
- /* стиль для ссылки входа */
-.menugreen_v{
-  color: #000000;
-}
-
-/* стиль при наведении для ссылки входа */
-.menugreen_v:hover{
-  color: #9dbb19;
-}
-
-/* стиль для логотипа подвала */
-#logofooter{
-  width: 17%;
-}
-
-/* стиль для аватарки в поиске и избранном/просмотренном */
-.searchavatar{
-  border-radius: 50%; /* Радиус скругления */
-  box-shadow: 0 0 0 3px #9dbb19, 0 0 13px #333; /* Параметры теней */
-  width: 50%;
-  margin-left: 10%;
- }
-
- .compsearchavatar {
-  width: 70%;
-  margin-left: 15%;
-  margin-bottom: 15%;
-}
-
-/* стиль для фона вакансий и резюме в маленьком окне*/
- .border_search{
-  background-color: #eff3db;
-  border: 2px solid;
-  border-color: #9dbb19;
-  border-radius: 10px;
-  padding-top: 2%;
-  margin-bottom: 2%;
- }
-
-
-/* стиль для фона вакансий и резюме в маленьком окне*/
-.border_search1{
-  background-color: #e6d6ca;
-  border: 2px solid;
-  border-color: #d46619;
-  border-radius: 10px;
-  padding-top: 2%;
- }
-
- /* стиль для фона расширенного поиска*/
- .border_advanced_search{
-  width: 100%;
-  background-color: #eff3db;
-  border: 2px solid;
-  border-color: #9dbb19;
-  border-radius: 10px;
- }
-
-.advanced_search{
-  width: 100%;
-  font-size: 14px;
-	padding: 1.5px 0 1px 2.5px;
-	border: 1px solid #cecece;
-  border-radius: 2px;
-  margin-left: 2%;
-}
-
-.mr_seach{
-margin-bottom: 3%;
-}
-
-.advanced_search{
-  margin-right: 10%;
-}
-
-.size_txt{
-  font-size: 20px;
-  margin-right: 15%;
-}
-
-.margin_statistic{
-  margin-top: 10%;
-}
-
-/*Стиль для поиска в шапке*/
+/*s____________________________________________________________*/
+  /* стиль для аватарки в поиске и избранном/просмотренном */
+  .searchavatar{
+    border-radius: 50%; /* Радиус скругления */
+    box-shadow: 0 0 0 3px #9dbb19, 0 0 13px #333; /* Параметры теней */
+    width: 50%;
+    margin-left: 10%;
+  }
+  .size_txt{
+    font-size: 20px;
+    margin-right: 15%;
+  }
+  /*Стиль для поиска в шапке*/
  .search {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .size_img{
+    width: 30%; 
+  }
+  /*для работы подсказки*/
+  span.support::before {
+    content: attr(data-title); /*помещаем подсказку в псевдоэлемент*/
+    display: none; /*скрываем подсказку*/
+  }
+  span.support:hover::before {
+    display: block;
+  }
+/*/s___________________________________________________________*/
 
-/*Отступы в блоке в отображении краткой информации*/
-.padding_search{
-  padding: 2%;
-}
-
-/*Для прикрепления подвала к низу страницы начало*/
-html, body {
-  height: 100%;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  
-}
-
-.blok_information{
-  margin-left: 2%;
-}
-
-
-/*Для прикрепления подвала к низу страницы конец*/
-
-.A404{
-width: 60%;
-}
-
-.size_img{
-  width: 30%;
-}
-
-li {
-  list-style-type: none; /* Убираем маркеры */
- }
-.pers_data_prot{
- text-align:justify;
-}
-
-.password{
-  width: 100%;
-  font-size: 16px;
-	padding: 6px 0 4px 10px;
-	border: 1px solid #cecece;
-	border-radius: 5px;
-}
-
-.date_org{
-  width: 100%;
-  padding: 2%;
-  background-color: #ffffff;
-  border: 1px solid #cecece;
-  border-radius: 5px;
-}
-
-/*для отображения фотографии в личном кабинете*/
-.logo_user{
-  width: 30%;
-  border-radius: 50%; /* Радиус скругления */
-  box-shadow: 0 0 0 3px #9dbb19, 0 0 13px #333; /* Параметры теней */
-}
-/*__________________________________________________________________________________________*/
-
-/*для работы подсказки*/
-span.support::before {
-  content: attr(data-title); /*помещаем подсказку в псевдоэлемент*/
-  display: none; /*скрываем подсказку*/
-}
-span.support:hover::before {
-  display: block;
-}
-/*____________________*/
-
-/*размер для изображения вопроса*/
-.question{
-  width: 3%;
-}
-
+/*t____________________________________________________________*/
 /*отступ для текста в подвале*/
 .text_foot{
   margin-top: 5px;
-}
-
-/*размер для изображений действий*/
-.open_eye{
-  width: 100%;
-}
-.pencil{
-  width: 70%;
 }
 .trashcan{
   width: 70%;
   margin-right: 30%;
 }
-/*________________________________*/
+/*/t___________________________________________________________*/
 
-/* задаем относительное позиционирование контейнеру */
-.block{position:relative;}
-/* Оформление скрытого элемента по умолчанию */ 
-.hidden{
-  display: none;
-  position: absolute;
-  bottom: 130%;
-  background-color: #d6f054;
-  color: #000000;
-  padding: 8px;
-  text-align: center;
-  font-size: 14px;
-  border-radius: 7px;
-}
-/* Дополнительное оформление скрытого элемента */
-.hover + .hidden:before{
-  content: " ";
-  position: absolute;
-  top: 98%;
-  left: 10%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  height: 0;
-  width: 0;
-  border: 7px solid transparent;
-  border-right: 7px solid #fff;
-  border-color: #d6f054 transparent transparent transparent;
-  z-index: 2;
-}
+/*u____________________________________________________________*/
+
+/*/u___________________________________________________________*/
+
+/*v____________________________________________________________*/
+
+/*/v___________________________________________________________*/
+
+/*w____________________________________________________________*/
+
+/*/w___________________________________________________________*/
+
+/*x____________________________________________________________*/
+
+/*/x___________________________________________________________*/
+
+/*y____________________________________________________________*/
+
+/*/y___________________________________________________________*/
+
+/*z____________________________________________________________*/
+
+/*/z___________________________________________________________*/
+ 
 
 
-/* Появление скрытого элемента при наведении */
-.hover:hover + .hidden{display: block;}
+
+
+
+
 
 
 
