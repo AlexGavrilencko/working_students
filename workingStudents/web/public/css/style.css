@@ -141,10 +141,14 @@ svg text {
     color: #9dbb19;
     border-color: #9dbb19;
   }
+  .btngreen1{ 
+    color: #684510;
+    border-color: #684510;
+  }
   /* стиль при наведении для кнопки категории зеленого цвета */
   .btngreen_k:hover{
-    color: #d4d0d0;
-    border-color: #d4d4d0;
+    color: #3d3d3b;
+    border-color: #3d3d3b;
   }
   /* стиль для кнопки категории зеленого цвета */
   .btngreen_k{
@@ -156,6 +160,10 @@ svg text {
     color: #a3071e;
     border-color: #a3071e;
   }
+  .btngreen1:hover{ 
+    color: #a3071e;
+    border-color: #a3071e;
+  }
   /* стиль для кнопки темно-фиолетового цвета */
   .btnred{
     color: #54383c;
@@ -163,8 +171,8 @@ svg text {
   }
   /* стиль при наведении для кнопки темно-фиолетового цвета */
   .btnred:hover{
-    color: #d4d4d0;
-    border-color: #d4d4d0;
+    color: #a3071e;
+    border-color: #a3071e;
   }
   /* стиль для кнопки оранжевого цвета */
   .btnorange{
@@ -173,8 +181,8 @@ svg text {
   }
   /* стиль при наведении для кнопки оранжевого цвета */
   .btnorange:hover{
-    color: #d4d4d0;
-    border-color: #d4d4d0;
+    color: #3d3d3b;
+    border-color: #3d3d3b;
   }
   /* стиль для скругления элементов */
   .btn-rounded{
@@ -198,11 +206,24 @@ svg text {
   }
   /* стиль для фона вакансий и резюме в маленьком окне*/
   .border_search1{
-    background-color: #e6d6ca;
+    background-color: #f0e3d9;
     border: 2px solid;
-    border-color: #d46619;
+    border-color: #aa4f0d;
     border-radius: 10px;
     padding-top: 2%;
+  }
+  .border_project{
+    background-color: #c9dae7;
+    border: 2px solid;
+    border-color: #173955;
+    border-radius: 10px;
+    padding-top: 2%;
+    padding: 1% 1% 1% 1%;
+  }
+  .project_img{
+   width: 100%;
+   border-radius: 50%; /* Радиус скругления */
+   box-shadow: 0 0 0 3px #173955, 0 0 13px #333; /* Параметры теней */
   }
   /* стиль для фона расширенного поиска*/
   .border_advanced_search{
@@ -227,7 +248,7 @@ svg text {
   /*для фона контента*/
   .content {
     flex: 1 0 auto;
-    background: url(/public/img/fon1.jpg);
+    background: url(/public/img/fon.png);
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -262,6 +283,7 @@ svg text {
     width: 100%;
     font-size: 16px;
     padding: 2px 0 2px 2px;
+    color: #525050;
     border: 1px solid #a3071e;
     border-radius: 3%;
   }
@@ -460,7 +482,13 @@ svg text {
     text-align:justify;
   }
   .pencil{
-    width: 70%;
+    width: 30%;
+    margin-left: 80%;
+    margin-top: 15%;
+  }
+  .project_img{
+    border-radius: 50%; /* Радиус скругления */
+    box-shadow: 0 0 0 3px #33141b, 0 0 13px #333; /* Параметры теней */
   }
 /*/p___________________________________________________________*/
 
@@ -512,8 +540,9 @@ svg text {
   margin-top: 5px;
 }
 .trashcan{
-  width: 70%;
-  margin-right: 30%;
+  width: 30%;
+  margin-left: 15%;
+  margin-top: 15%;
 }
 /*/t___________________________________________________________*/
 
