@@ -34,11 +34,12 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             [['ActInactUser', 'rang'], 'integer'],
             [['e_mail', 'phone'], 'string', 'max' => 255],
+            [['phone'], 'string', 'min' => 12,'max' => 12],
             [['password', 'login'],'string', 'min' => 8, 'max' => 32], //длинна от 8 до 32 символов
-            [['phone'], 'filter', 'filter' => function ($value) {
-                $result = preg_replace("/(\+7)(\d{3})(\d{3})(\d{2})(\d{2})/", "$1 ($2) $3-$4-$5", $value);
-                return $result;
-            }],
+            //[['phone'], 'filter', 'filter' => function ($value) {
+            //    $result = preg_replace("/(\+7)(\d{3})(\d{3})(\d{2})(\d{2})/", "$1 ($2) $3-$4-$5", $value);
+            //    return $result;
+           // }],
             [['login'], 'unique', 'targetClass' => 'app\models\User', 'targetAttribute' => 'login'], //имя(логин) уникально
             [['e_mail'], 'unique', 'targetClass' => 'app\models\User', 'targetAttribute' => 'e_mail'], //имя(логин) уникально
             ['e_mail', 'email'], //емэил это емэил
@@ -47,6 +48,8 @@ class User extends ActiveRecord implements IdentityInterface
                 'minWidth' => 400, 'maxWidth' => 2000,
                 'minHeight' => 400, 'maxHeight' =>2000,
             ],//изображение определенного файла и размера
+            [['login', 'password','e_mail', 'phone'], 'required'],
+            
         ];
     }
 

@@ -9,7 +9,13 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 
 ?>
-
+   <?php if ($user=Yii::$app->user->identity){
+       echo "kzkzkz";
+   }
+   else{
+       echo "pppppp";
+   }
+   ?>
 <!-- вакансии -->
     <div class="container-fluid padding_search d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
         <div class="row justify-content-md-center">

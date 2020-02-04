@@ -8,6 +8,7 @@ use app\models\User;
 use app\models\Organization;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
 
 $this->title = 'Мои вакансии';
 ?>
@@ -114,8 +115,13 @@ $this->title = 'Мои вакансии';
                 <div class="col-sm ">
                     <div class="row blok_information"><a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a></div>
                     <div class="row blok_information"><a href="<?= Url::toRoute(['privateoffice/vacancy_up', 'id'=>$vacan->id]); ?>">Редактировать</a></div>
-                    <div class="row blok_information"> <a href="<?= Url::toRoute(['privateoffice/vacancy_del', 'id'=>$vacan->id]); ?>">Удалить</a></div>
-                    
+                    <?= Html::a('Удалить', ['privateoffice/vacancy_del', 'id'=>$vacan->id], [
+                            'class' => 'row blok_information',
+                            'data' => [
+                                'confirm' => 'Вы действительно хотите удалить данную вакансию?',
+                                'method' => 'post',
+                            ],
+                        ]); ?>
                     
                    
                 

@@ -19,6 +19,8 @@ use app\models\Organization;
 use app\models\Experience;
 use app\models\ExperienceSearch;
 use yii\web\NotFoundHttpException;
+use yii\helpers\FileHelper;
+
 
 
 
@@ -281,10 +283,11 @@ class PrivateofficeController extends Controller
     }
     //функция удаления достижений
     public function actionProject_del($id)
-    {
+    { 
+        //$imageUploadModel = new Project();
+        $this->findModelProj($id)->deleteImage();
         $this->findModelProj($id)->delete();
-        $imageUploadModel = new ImageUpload();
-        $imageUploadModel->deleteCurrentImage($this->image);
+        
         return $this->redirect(['privateoffice/my_project']);
     }
 }
