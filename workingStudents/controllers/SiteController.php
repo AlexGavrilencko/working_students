@@ -14,6 +14,7 @@ use app\models\User;
 use app\models\Vacancy;
 use app\models\Attributes;
 use app\models\Organization;
+use app\models\Scanned;
 
 class SiteController extends Controller
 {
@@ -82,15 +83,28 @@ class SiteController extends Controller
 
     public function actionComplete_information($id)   /* Это для просмотра отдельной страницы */
     {
+        $user=Yii::$app->user->identity;
+        $user_id=$user->id;
+        $scanned=new Scanned();
+        $scanned->user_id=$user_id;
+        $scanned->vacancy_id=$id;
+        $scanned->ViewOrSelect=0;
+        $scanned->create();
         $vac=Vacancy::find()->where(['id' => $id])->one();
         return $this->render('complete_information',[
             'vac'=>$vac,
-            ]);
+        ]);
         
     }
 
     public function actionComplete_information_work($id)   /* Это для просмотра отдельной страницы */
     {
+        $user=Yii::$app->user->identity;
+        $user_id=$user->id;
+        $scanned=new Scanned();
+        $scanned->user_id=$user_id;
+        $scanned->resume_id=$id;
+        $scanned->ViewOrSelect=0;
         $resume=Resume::find()->where(['id' => $id])->one();
         return $this->render('complete_information_work',[
             'resum'=>$resume,
@@ -223,6 +237,27 @@ class SiteController extends Controller
     public function actionAbout()     /* Это нужно удалить? */
     {
         return $this->render('about');
+    }
+     public function actionSelected($id){
+         $user=Yii::$app->user->identity;
+         $user_id=$user->id;
+         $scanned=new Scanned();
+         $scanned->user_id=$user_id;
+         $scanned->vacancy_id=$id;
+         $scanned->ViewOrSelect=1;
+         $scanned->create();
+         return $this->redirect(Yii::$app->user->returnUrl); 
+     }
+
+     public function actionSelected_r($id){
+        $user=Yii::$app->user->identity;
+        $user_id=$user->id;
+        $scanned=new Scanned();
+        $scanned->user_id=$user_id;
+        $scanned->resume_id=$id;
+        $scanned->ViewOrSelect=1;
+        $scanned->create();
+        return $this->render('search_work');
     }
 
 }

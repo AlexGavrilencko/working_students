@@ -150,19 +150,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <div class="col-sm-6"> 
                     <?php
-                        /* $city = Attributes::find()->where(['type'=>'city'])->all(); ?>         
-                            <? $param = ['prompt' => 'Выберите город', 'id' => 'dropDownList-city']; ?>
-                            <?= Html::dropDownList('city', 0, $city, $param); ?> */
                             //$org таблица организация
                             //$atr таблица со всеми справочниками
                             //$catvac все вакансии выбранной категории
                             foreach ($catvac as $vacan)
                             : 
 
-                            //echo $tagg;
-                            //$post=$vacan->article_id;
-                            //foreach ($article as $articles)
-                            //: 
                             if ($vacan->ShowOrHide===0){ 
                     ?>
                     <div class="border_search">    
@@ -216,7 +209,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </div>
 
                                     <div class="col-6 col-sm-4">
-                                        <p>В избранное</p> <!-- кнопка для сохранения вакансии в избранное-->
+                                        <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">В избранное</a>
+                                         <!-- кнопка для сохранения вакансии в избранное-->
                                     </div>
                                 </div>
 

@@ -46,4 +46,10 @@ class Scanned extends \yii\db\ActiveRecord
             'ViewOrSelect' => 'View Or Select',
         ];
     }
+
+    public function create()
+    {
+        $this->save();
+        return $this;
+    }
 }

@@ -14,6 +14,7 @@ use app\models\Resume;
 use yii\web\UploadedFile;
 use app\models\User;
 use app\models\Project;
+use app\models\Scanned;
 use app\models\Attributes;
 use app\models\Organization;
 use app\models\Experience;
@@ -289,5 +290,12 @@ class PrivateofficeController extends Controller
         $this->findModelProj($id)->delete();
         
         return $this->redirect(['privateoffice/my_project']);
+    }
+
+    public function actionMy_select(){
+        $this->layout = 'site';
+        $user = Yii::$app->user->identity; 
+        $select= Project::find()->where(['user_id'=>$user->id])->all();
+        return $this->render('my_project',['project'=>$proj]);
     }
 }

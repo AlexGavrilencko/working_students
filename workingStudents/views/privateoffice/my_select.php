@@ -1,6 +1,5 @@
 <?php
 
-
 use yii\widgets\ActiveForm;
 use app\models\Attributes;
 use yii\widgets\LinkPager;
@@ -8,13 +7,11 @@ use app\models\User;
 use app\models\Organization;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\helpers\ArrayHelper;
 
-$this->title = 'Мои вакансии';
+$this->title = 'Мои достижения';
 ?>
           
 <br>
-
 <div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
     <div class="row">
         <div class="col-sm-2"> 
