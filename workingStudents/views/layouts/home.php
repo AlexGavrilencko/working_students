@@ -30,7 +30,7 @@ PublicAsset::register($this);
     <body>
     <?php $this->beginBody() ?>
 
-<div class="header" style="height: 480px;">
+<div class="header">
         <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->   
             <a href="/site/index" class="navbar-brad"><img src="/public/img/logo1.png" alt="Logo"></a>  <!-- логотип в меню сайта --> 
 
@@ -83,61 +83,41 @@ PublicAsset::register($this);
                 </div>
         </nav>
          
-        <div class="container-fluid d-flex hh-100 flex-row bd-highlight flex-column">        
-          <!--  <div class="row justify-content-between">   
-                 
-                <div class="col-4">
-                </div>
-                <div class="col-4">
-                    <a href="/auth/login" class="btn-rounded btngreen btn btn-lg">Разместить резюме</a>
-                </div>
-            </div> --> 
+        <div class="container-fluid d-flex hh-100 flex-row  flex-column">        
 
             <nav class="navbar navbar-expand-lg"> <!-- стиль для меню сайта -->  
 
                 <div class="collapse navbar-collapse " id="collapsibleNavbar">
                         <ul class="navbar-nav ml-auto"> 
                             <li class="nav-item">
-                            <a href="/auth/login" class="btn-rounded btngreen btn btn-lg">Разместить резюме</a>
+                            <a href="/auth/login" class="btn-rounded btnwite btn btn-lg">Разместить резюме</a>
                              </li>
                         </ul>
                 </div>
-        </nav>
+            </nav>
 
              
                 <p class="h2 text-light margin-top">Работа для каждого</p>
-
- <!--           <div class="row no-gutters">
-                <div class="col-8 col-md-6">
-                    <input class="form-control btn-none" id="search" type="text" placeholder="Поиск..." aria-label="Search" style="width: 100%" >      
-                </div>    
-
-                <div class="col-4 col-md-2"> 
-                    <button type="submit" class="btn-none btn btngreen">Найти</button>
-                </div>
-
-                <div class="col-4 col-md-2"> 
-                </div> 
-            </div>   
--->     
+  
 
 	                <div class="row">
                         <div class="col-12 col-md-10 col-lg-8">
                             <form class="search">
                                 <div class="row no-gutters align-items-center">
 
-                                    <div class="col">
-                                        <input class="form-control btn-none form-control-lg" type="search" placeholder="Поиск...">
+                                    <div class="col-8">
+                                        <input class="form-control btn-none form-control-lg" type="search" placeholder="Профессия или должность">
                                     </div>
 
                                     <div class="col-auto">
-                                        <button type="submit" class="btn-none btn-lg btn btngreen">Найти</button>
+                                        <button type="submit" class="btn-none btn-lg btn btnwite">Найти</button>
                                     </div>
                                 </div>    
                             </form>
                         </div>
                     </div>
 
+<!--                   
                 <div class="margin_statistic">
                     <div class="row ">
                         <div class="col">
@@ -166,10 +146,10 @@ PublicAsset::register($this);
                                         <?php $model = Vacancy::find()->count();
                                             if ($model == NULL)
                                             {
-                                                echo '0';
+                                                //echo '0';
                                             }
 
-                                            else echo $model;
+                                            else //echo $model;
                                         ?>
                                     </p>
                                 </div>
@@ -179,10 +159,10 @@ PublicAsset::register($this);
                                     <?php $model = Resume::find()->count();
                                         if ($model == NULL)
                                         {
-                                            echo '0';
+                                            //echo '0';
                                         }
 
-                                        else echo $model;
+                                        else //echo $model;
                                         ?>
                                     </p>
                                 </div>
@@ -192,10 +172,10 @@ PublicAsset::register($this);
                                         <?php $model = Organization::find()->count();
                                         if ($model == NULL)
                                         {
-                                            echo '0';
+                                           // echo '0';
                                         }
 
-                                        else echo $model;
+                                        else //echo $model;
                                         ?>
                                     </p>
                                 </div>
@@ -207,7 +187,7 @@ PublicAsset::register($this);
                         </div>
                     </div>
                 </div>
-
+--> 
 </div>
 
 

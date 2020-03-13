@@ -42,13 +42,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         <br>
                         
                         <div class="block"> <!-- контейнер -->
-                            <div class="hover"><img src="/public/img/w.png" class="question" alt="?"></div> <!-- видимый элемент -->
-                            <span class="hidden">это подсказка с оформлением</span> <!-- скрытый элемент -->
+                            <div class="hover"><?= $form->field($model, 'name')->textInput() ?></div> <!-- видимый элемент -->
+                            <span class="hidden">В данном поле нужно ввести наименование вашей организации</span> <!-- скрытый элемент <img src="/public/img/w.png" class="question" alt="?">-->
                         </div>
 
-              
-                        <?= $form->field($model, 'name')->textInput() ?> 
-                        
+
                           <!--  <span class='support' tabindex="1" data-title='Текст подсказки'>
                                 <em><img src="/public/img/w.png" class="question" alt="?"></em>
                             </span> -->

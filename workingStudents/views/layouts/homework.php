@@ -27,7 +27,7 @@ PublicAsset::register($this);
     <body>
     <?php $this->beginBody() ?>
 
-<div class="header" style="height: 480px;">
+<div class="header">
 
         <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->
                
@@ -60,7 +60,7 @@ PublicAsset::register($this);
                     </div>
         </nav>
 
-        <div class="container-fluid d-flex hh-100 d-flex flex-row bd-highlight flex-column">        
+        <div class="container-fluid d-flex hh-100 flex-row bd-highlight flex-column">        
            <!-- <div class="row">
                 <div class="col">
                 </div>

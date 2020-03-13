@@ -23,13 +23,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php
                // $form->field($model, 'rang')->$rang;
                 ?>
-                <?= $form->field($model1, 'login')->textInput(['class'=>'form-control']) ?>
+                <?= $form->field($model1, 'login')->textInput(['class'=>'form-control','placeholder'=>"Введите ваш логин"]) ?>
 
-                <?= $form->field($model1, 'e_mail')->textInput(['class'=>'form-control']) ?>
+                <?= $form->field($model1, 'e_mail')->textInput(['class'=>'form-control', 'placeholder'=>"Введите ваш email"]) ?>
 
-                <?= $form->field($model1, 'password')->passwordInput() ?>
+                <?= $form->field($model1, 'password')->passwordInput(['placeholder'=>"Введите пароль"]) ?>
 
-                <?= $form->field($model1, 'password_repeat')->passwordInput() ?>
+                <?= $form->field($model1, 'password_repeat')->passwordInput(['placeholder'=>"Введите пароль еще раз"]) ?>
 
                 <h3 class="text-center">Данные об организации</h3>
                 <?php   
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                       
                 ?>
 
-                <?= $form->field($model2, 'name')->textInput(['class'=>'form-control']) ?>
+                <?= $form->field($model2, 'name')->textInput(['class'=>'form-control','placeholder'=>"Введите название вашей организации"]) ?>
                 <?php
                 // получаем все города из таблицы атрибутов
                 $city = Attributes::find()->where(['type'=>'city'])->all();
@@ -61,13 +61,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model2, 'adres')->textInput(['class'=>'form-control']) ?>
 
-                <?= $form->field($model2, 'inn')->textInput(['class'=>'form-control']) ?>
+                <?= $form->field($model2, 'inn')->textInput(['class'=>'form-control','placeholder'=>"Введите ИНН вашей организации"]) ?>
 
-                <?= $form->field($model2, 'ogrn')->textInput(['class'=>'form-control']) ?>
+                <?= $form->field($model2, 'ogrn')->textInput(['class'=>'form-control', 'placeholder'=>"Введите ОГРН вашей организации"]) ?>
 
                 <?php echo $form->field($model1, 'personaldate')->checkbox(['class'=>'show-password']);
-                    echo '<a href="/site/personal_data_protection">Согласие на обработку персональных данных</a>';
-                    
+                    //echo '<a href="/site/personal_data_protection">Согласие на обработку персональных данных</a>'; 
                 ?> 
 
                 <div class="row justify-content-center">
