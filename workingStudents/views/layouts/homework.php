@@ -74,7 +74,7 @@ PublicAsset::register($this);
                 <div class="collapse navbar-collapse " id="collapsibleNavbar">
                     <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
                         <li class="nav-item">
-                            <a href="/auth/login" class="btn-rounded btngreen btn btn-lg">Разместить вакансию</a>
+                            <a href="/auth/login" class="btn-rounded btnwite btn btn-lg">Разместить вакансию</a>
                         </li>
                     </ul>
                 </div>
@@ -87,12 +87,12 @@ PublicAsset::register($this);
                             <form class="search">
                                 <div class="row no-gutters align-items-center">
 
-                                    <div class="col">
-                                        <input class="form-control btn-none form-control-lg" type="search" placeholder="Поиск...">
+                                    <div class="col-8">
+                                        <input class="form-control btn-none form-control-lg" type="search" placeholder="Профессия или должность">
                                     </div>
 
                                     <div class="col-auto">
-                                        <button type="submit" class="btn-none btn-lg btn btngreen">Найти</button>
+                                        <button type="submit" class="btn-none btn-lg btn btnwite">Найти</button>
                                     </div>
                                 </div>    
                             </form>

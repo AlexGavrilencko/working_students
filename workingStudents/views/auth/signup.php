@@ -18,13 +18,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php
                // $form->field($model, 'rang')->$rang;
                 ?>
-                <?= $form->field($model, 'login')->textInput(['class'=>'form-control']) ?>
 
-                <?= $form->field($model, 'e_mail')->textInput(['class'=>'form-control']) ?>
+<?= $form->field($model, 'login')->textInput(['class'=>'form-control','placeholder'=>"Введите логин, не менее 8 символов"]) ?>
+                
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+                <?= $form->field($model, 'e_mail')->textInput(['class'=>'form-control', 'placeholder'=>"Введите email"]) ?>
 
-                <?= $form->field($model, 'password_repeat')->passwordInput() ?>
+                <?= $form->field($model, 'password')->passwordInput(['placeholder'=>"Введите пароль, не менее 8 символов"]) ?>
+
+                <?= $form->field($model, 'password_repeat')->passwordInput(['placeholder'=>"Повторите пароль"]) ?>
 
                 <?php echo $form->field($model, 'personaldate')->checkbox(['class'=>'show-password']);
                   //  echo '<a href="/site/personal_data_protection">Согласие на обработку персональных данных</a>';

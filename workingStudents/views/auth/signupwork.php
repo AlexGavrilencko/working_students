@@ -23,11 +23,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php
                // $form->field($model, 'rang')->$rang;
                 ?>
-                <?= $form->field($model1, 'login')->textInput(['class'=>'form-control','placeholder'=>"Введите ваш логин"]) ?>
+                <?= $form->field($model1, 'login')->textInput(['class'=>'form-control','placeholder'=>"Введите логин, не менее 8 символов"]) ?>
 
-                <?= $form->field($model1, 'e_mail')->textInput(['class'=>'form-control', 'placeholder'=>"Введите ваш email"]) ?>
+                <?= $form->field($model1, 'e_mail')->textInput(['class'=>'form-control', 'placeholder'=>"Введите email"]) ?>
 
-                <?= $form->field($model1, 'password')->passwordInput(['placeholder'=>"Введите пароль"]) ?>
+                <?= $form->field($model1, 'password')->passwordInput(['placeholder'=>"Введите пароль, не менее 8 символов"]) ?>
 
                 <?= $form->field($model1, 'password_repeat')->passwordInput(['placeholder'=>"Введите пароль еще раз"]) ?>
 
@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 echo $form->field($model2, 'city_id')->dropDownList($items,$params);
                  ?>
 
-                <?= $form->field($model2, 'adres')->textInput(['class'=>'form-control']) ?>
+                <?= $form->field($model2, 'adres')->textInput(['class'=>'form-control','placeholder'=>"Введите адрес организации"]) ?>
 
                 <?= $form->field($model2, 'inn')->textInput(['class'=>'form-control','placeholder'=>"Введите ИНН вашей организации"]) ?>
 
