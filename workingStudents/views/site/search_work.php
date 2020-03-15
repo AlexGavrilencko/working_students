@@ -37,20 +37,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
 
             <!-- Расширенный поиск -->
-            <div class="col-sm-3"> 
-                <div class="border_search">
+            <div class="col-sm-3 border_advanced_search"> 
+               
                     <!-- Отображения поиска по слову -->
-                    <form class="search">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col"> <!-- Поле для ввода слова или фразы -->
-                                <input class="form-control btn-none form-control-lg" type="search" placeholder="Поиск...">
-                            </div>
-
-                            <div class="col-auto"> <!-- кнопка для поика -->
-                                <button type="submit" class="btn-none btn-lg btn btngreen">Найти</button>
-                            </div>
-                        </div>    
-                    </form>
+                    <br>
                     <!-- /Отображение поиска по слову (конец) -->
 
                     <!-- отображение выпадающих списков (фильтры) -->
@@ -120,7 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
                      <!-- /отображение выпадающих списков (фильтры) (конец) -->   
 
                     
-                </div>
+               <br>
             </div>
             <!-- /Расширенный поиск (конец) -->
 

@@ -149,10 +149,7 @@ svg text {
     color: #9dbb19;
     border-color: #9dbb19;
   }
-  .btngreen1{ 
-    color: #684510;
-    border-color: #684510;
-  }
+ 
   /* стиль при наведении для кнопки категории зеленого цвета */
   .btngreen_k:hover{
     color: #3d3d3b;
@@ -174,8 +171,8 @@ svg text {
   }
   /* стиль для кнопки темно-фиолетового цвета */
   .btnred{
-    color: #119287;
-    border-color: #119287;
+    color: #22beb1;
+    border-color: #22beb1;
   }
   /* стиль при наведении для кнопки темно-фиолетового цвета */
   .btnred:hover{
@@ -205,7 +202,7 @@ svg text {
   }
   /* стиль для фона вакансий и резюме в маленьком окне*/
   .border_search{
-    background-color: #eff3db;
+    background-color: #eff3db69;
     border: 2px solid;
     border-color: #9dbb19;
     border-radius: 10px;
@@ -214,14 +211,37 @@ svg text {
   }
   /* стиль для фона вакансий и резюме в маленьком окне*/
   .border_search1{
-    background-color: #f0e3d9;
+    background-color: #f3b6870a;
     border: 2px solid;
-    border-color: #aa4f0d;
+    border-color: #f57906cc;
     border-radius: 10px;
     padding-top: 2%;
   }
+
+  .btngreen1{ 
+    color: #f57906;
+    border-color: #f57906;
+  }
+
+  .border_search2{
+    background-color: #1c6a8a05;
+    border: 2px solid;
+    border-color: #47def8cc;
+    border-radius: 10px;
+    padding-top: 2%;
+  }
+
+  .border_search3{
+    background-color: #691c3a15;
+    border: 2px solid;
+    border-color: #e60d60cc;
+    border-radius: 10px;
+    padding-top: 2%;
+    margin-bottom: 2%;
+  }
+
   .border_project{
-    background-color: #c9dae7;
+    background-color: #aed1ec36;
     border: 2px solid;
     border-color: #173955;
     border-radius: 10px;
@@ -230,7 +250,8 @@ svg text {
     margin-bottom: 2%;
   }
   .project_img{
-   width: 100%;
+   width: 50%;
+   height: 50%;
    border-radius: 50%; /* Радиус скругления */
    box-shadow: 0 0 0 3px #173955, 0 0 13px #333; /* Параметры теней */
   }
@@ -401,6 +422,11 @@ svg text {
     border-radius: 50%; /* Радиус скругления */
     box-shadow: 0 0 0 3px #9dbb19, 0 0 13px #333; /* Параметры теней */
   }
+  .logo_user1{
+    width: 20%;
+    border-radius: 50%; /* Радиус скругления */
+    box-shadow: 0 0 0 1px #22beb1, 0 0 13px #333; /* Параметры теней */
+  }
   li {
     list-style-type: none; /* Убираем маркеры */
   }
@@ -491,11 +517,12 @@ svg text {
     text-align:justify;
   }
   .pencil{
-    width: 30%;
-    margin-left: 80%;
-    margin-top: 15%;
+    width: 32%;
+
   }
   .project_img{
+    height: 30%;
+    
     border-radius: 50%; /* Радиус скругления */
     box-shadow: 0 0 0 3px #33141b, 0 0 13px #333; /* Параметры теней */
   }
@@ -516,9 +543,9 @@ svg text {
   /* стиль для аватарки в поиске и избранном/просмотренном */
   .searchavatar{
     border-radius: 50%; /* Радиус скругления */
-    box-shadow: 0 0 0 3px #9dbb19, 0 0 13px #333; /* Параметры теней */
-    width: 50%;
-    margin-left: 10%;
+    box-shadow: 0 0 0 2px #c9105abb, 0 0 13px #333; /* Параметры теней */
+    width: 45%;
+    margin-left: 20%;
   }
   .size_txt{
     font-size: 20px;
@@ -550,8 +577,7 @@ svg text {
 }
 .trashcan{
   width: 30%;
-  margin-left: 15%;
-  margin-top: 15%;
+
 }
 /*/t___________________________________________________________*/
 

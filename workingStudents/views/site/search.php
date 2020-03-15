@@ -36,8 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row">
             <div class="col-sm-3 border_advanced_search"> 
              <!-- расширенный поиск -->
-                <br>
-                    <form class="search">
+                 <!--<br>    
+                     <form class="search">
                         <div class="row no-gutters align-items-center">
                             <div class="col">
                                 <input class="form-control btn-none form-control-lg advanced_search" type="search" placeholder="Поиск...">
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <button type="submit" class="btn-none btn btngreen advanced_search_sub">Найти</button>
                             </div>        
                         </div>
-                    </form>     
+                    </form>  -->   
              
                 <?php 
                     Pjax::begin(['id' => 'driverPjax']);

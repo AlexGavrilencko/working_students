@@ -38,7 +38,7 @@ $this->title = 'Мои вакансии';
                 //foreach ($article as $articles)
                 //: 
                 //if ($post===$articles->id){ ?>
-        <div class="border_search">    
+        <div class="border_search3">    
             <!-- результаты поиска -->
             <div class="row ">
 
@@ -59,24 +59,22 @@ $this->title = 'Мои вакансии';
                             <p><?= $vacan->name ?></p> <!-- название вакансии подгрузка из базы -->
 
                             <!-- $vacan->organization_id-->
-                                <p>    <!-- Название организации подгрузка из базы -->
+                                <p>Организация: <!-- Название организации подгрузка из базы -->
                                     <?php
                                         $o = $vacan->organization_id;
                                         $organization = Organization::find()->where(['id'=>$o])->one();
-                                            if ($organization == NULL)
-                                            {
+                                            if ($organization == NULL){
                                                 echo 'Не указано';
                                             }
                                             else echo $organization->name;
                                     ?>
                                 </p>
 
-                                <p>    <!-- цена $vacan->salary подгрузка из базы -->
+                                <p>Зарплата: <!-- цена $vacan->salary подгрузка из базы -->
                                     <?php
                                         $salary = $vacan->salary;
-                                            if ($salary == NULL)
-                                            {
-                                                echo 'Не указано';
+                                            if ($salary == NULL){
+                                                echo 'не указано';
                                             }
                                             else echo $salary;
                                     ?>
@@ -87,19 +85,17 @@ $this->title = 'Мои вакансии';
                                         $c = $vacan->city_id;
                                         $city = Attributes::find()->where(['id'=>$c])->one();
                                         
-                                            if ($city == NULL)
-                                            {
+                                            if ($city == NULL){
                                                 echo 'Не указано';
                                             }
                                             else echo $city->name;
                                     ?>
                                 </p>
 
-                                <p>
+                                <p>Обязанности:
                                     <?php
                                         $duties = $vacan->duties;
-                                            if ($duties == NULL)
-                                            {
+                                            if ($duties == NULL){
                                                 echo 'Не указано';
                                             }
                                             else echo $duties;
@@ -122,11 +118,6 @@ $this->title = 'Мои вакансии';
                                 'method' => 'post',
                             ],
                         ]); ?>
-                    
-                   
-                
-
-                    <div class="row blok_information"> <a href="<?= Url::toRoute(['privateoffice/vacancy_del', 'id'=>$vacan->id]); ?>">Удалить</a></div>
 
                 </div>
 

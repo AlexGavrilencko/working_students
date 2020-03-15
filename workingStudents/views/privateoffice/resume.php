@@ -20,14 +20,14 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php $form = ActiveForm::begin(); ?>
 <br>
             <div class="text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
-                <div class="pole border_search1 padding_search">
+                <div class="pole border_search padding_search">
                     <div class="text-center">
                         <h2><?= Html::encode($this->title) ?></h2>
                         <p>Вы можете составить свое резюме</p>
                     </div>
 
                     <div class="row justify-content-center">
-                        <a href="/privateoffice/set-image" class="btn btn-rounded btngreen1">Загрузите личную фотографию</a>
+                        <a href="/privateoffice/set-image" class="btn btn-rounded btngreen">Загрузите личную фотографию</a>
                     </div>
 
                     <br>
@@ -97,8 +97,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         
                         ?>
                         <p class="row justify-content-center">
-                            <?= Html::a('Добавить опыт работы', ['experience_cr','res_id'=>$model->id,'or'=>'1'], ['class' => 'btn btn-rounded btngreen1 ml-1']) ?>
-                            <?= Html::a('Добавить образование', ['experience_cr','res_id'=>$model->id,'or'=>'0'], ['class' => 'btn btn-rounded btngreen1 ml-1']) ?>
+                            <?= Html::a('Добавить опыт работы', ['experience_cr','res_id'=>$model->id,'or'=>'1'], ['class' => 'btn btn-rounded btngreen ml-1']) ?>
+                            <?= Html::a('Добавить образование', ['experience_cr','res_id'=>$model->id,'or'=>'0'], ['class' => 'btn btn-rounded btngreen ml-1']) ?>
                         </p>
                     <?php if($model1 != null){ ?> 
 
@@ -160,9 +160,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <p><?=$speciality?></p>
                                 </div>
                                 <div class="col">
-                                    <?= Html::a('Редактировать', ['experience_up', 'id' => $exp->id], ['class' => 'btn btn-rounded btngreen1 ml-1']) ?>
-                                    <?= Html::a('Удалить', ['experience_del', 'id' => $exp->id], [
-                                                'class' => 'btn btn-rounded btngreen1 ml-1',
+                                    <?= Html::a('<img src="/public/img/pencil1.png" class="pencil">', ['experience_up', 'id' => $exp->id]) ?>
+                                    <?= Html::a('<img src="/public/img/trashcan1.png" class="trashcan">', ['experience_del', 'id' => $exp->id], [
                                                 'data' => [
                                                     'confirm' => 'Вы действительно хотите удалить эти данные?',
                                                     'method' => 'post',
@@ -175,7 +174,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                     <div class="row justify-content-center">
-                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen1', 'name' => 'Save submit']) ?>
+                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen', 'name' => 'Save submit']) ?>
                     </div>
                 </div>
             </div>

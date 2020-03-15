@@ -72,8 +72,8 @@ class Vacancy extends \yii\db\ActiveRecord
             'category_id' => 'Категория',
             'dateAdd' => 'Дата добавления',
             'dateChanges' => 'Дата редактирования',
-            'WorkOrPractice' => 'Работа\Практика',
-            'ShowOrHide' => 'Показывать\Скрывать',
+            'WorkOrPractice' => 'Данная вакансия предложение по работе или практики',
+            'ShowOrHide' => 'Отображать или скрывать вакансию',
             'response' => 'Отклик',
         ];
     }

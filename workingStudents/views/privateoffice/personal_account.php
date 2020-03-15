@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <!-- Для свсех стандартно так как в таблице user храняться общие данные -->
         <div class="row d-flex text-dark flex-row justify-content-center m-2 p-1">
             <div class=" bd-highlight col-sm-12 col-md-12 col-lg-12 col-xl-10">
-                <div class="border_search padding_search">
+                <div class="border_search1 padding_search">
                     <div class="text-center">
                          <h2>Профиль</h2>
                     </div>
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= $form->field($model, 'phone')->textInput() ?>
 
                                 <div class="row justify-content-center">
-                                     <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen btn-lg m-3', 'name' => 'Save submit']) ?>
+                                     <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen1 btn-lg m-3', 'name' => 'Save submit']) ?>
                                 </div>
                         </div>
                 </div>

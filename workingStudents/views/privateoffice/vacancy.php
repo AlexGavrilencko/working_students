@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ?>
                     <?= $form->field($model, 'ShowOrHide')->radioList(array(0 => 'Показывать вакансию при поиске', 1 => 'Скрывать вакансию при поиске',), array('labelOptions'=>array('style'=>'display:inline'), 'separator'=>'&nbsp;&nbsp;&nbsp;</br>',)); ?>
                     
-                    <?= $form->field($model, 'name')->textInput() ?>
+                    <?= $form->field($model, 'name')->textInput(['placeholder'=>"Введите название вакансии"]) ?>
                     <?php 
                         $org = Organization::find()->where(['user_id'=>$user->id])->one();
                         $city_id = Attributes::find()->where(['id'=>$org->city_id])->one();
@@ -38,12 +38,46 @@ $this->params['breadcrumbs'][] = $this->title;
                     ?>
 
                     <div class="date_org">
-                            <p>Данные об организации:  <?= $org->name ?></p>
-                            <p>Город:  <?= $city ?></p>
-                            <p>Адрес:  <?=$org->adres?></p>
-                            <p>ИНН:  <?=$org->inn?></p>
-                            <p>ОГРН:  <?=$org->ogrn?></p>
-                        
+                            <p class="text-center">Данные о вашей организации</p>                       
+                            <p>Название организации:
+                                <?  if ($org->name == NULL){
+                                        echo 'Не указано';
+                                    }
+                                    else echo $org->name;
+                                ?>  
+                            </p>
+                            <p>Город:  
+                                <?  if ($city == NULL){
+                                        echo 'Не указано';
+                                    }
+                                    else echo $city;
+                                ?>
+                            </p>
+                            <p>Адрес:
+                                <?  if ($org->adres == NULL){
+                                        echo 'Не указано';
+                                    }
+                                    else echo $org->adres;
+                                ?>
+                            </p>
+                            <p>ИНН:  
+                                <?  if ($org->inn == NULL){
+                                        echo 'Не указано';
+                                    }
+                                    else echo $org->inn;
+                                ?>
+                            </p>
+                            <p>ОГРН:
+                                <?  if ($org->ogrn == NULL){
+                                        echo 'Не указано';
+                                    }
+                                    else echo $org->ogrn;
+                                ?>  
+                            </p>
+                            <div class="row justify-content-center"> 
+                                <a href="/privateoffice/organiz" class="btn-rounded btngreen btn">Добавить данные</a>
+                            </div>
+                           
                     </div>
                     
                     <br>
@@ -54,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
                             $items = ArrayHelper::map($city,'id','name');
                             $params = [
-                                'prompt' => 'Укажите город'
+                                'prompt' => 'Укажите город, где требуется вакансия'
                             ];
                             echo $form->field($model, 'city_id')->dropDownList($items,$params);
                         ?>
@@ -64,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
                             $items = ArrayHelper::map($experience,'id','name');
                             $params = [
-                                'prompt' => 'Укажите опыт работы'
+                                'prompt' => 'Укажите опыт работы для данной вакансии'
                             ];
                             echo $form->field($model, 'experience_id')->dropDownList($items,$params);
                         ?>
@@ -74,7 +108,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
                             $items = ArrayHelper::map($employment,'id','name');
                             $params = [
-                                'prompt' => 'Укажите тип занятости'
+                                'prompt' => 'Укажите тип занятости для данной вакансии'
                             ];
                             echo $form->field($model, 'employment_id')->dropDownList($items,$params);
                         ?>
@@ -88,7 +122,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ];
                             echo $form->field($model, 'schedule_id')->dropDownList($items,$params);
                         ?>
-                    <?= $form->field($model, 'salary')->textInput() ?>
+                    <?= $form->field($model, 'salary')->textInput(['placeholder'=>"Введите заработную плату"]) ?>
                     <?php
                             // получаем все города из таблицы атрибутов
                             $position = Attributes::find()->where(['type'=>'objective'])->all();
@@ -99,9 +133,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             ];
                             echo $form->field($model, 'position_id')->dropDownList($items,$params);
                         ?>
-                    <?= $form->field($model, 'duties')->textInput() ?>
-                    <?= $form->field($model, 'requirement')->textInput() ?>
-                    <?= $form->field($model, 'conditions')->textInput() ?>
+                    <?= $form->field($model, 'duties')->textInput(['placeholder'=>"Введите обязанности"]) ?>
+                    <?= $form->field($model, 'requirement')->textInput(['placeholder'=>"Введите требования"]) ?>
+                    <?= $form->field($model, 'conditions')->textInput(['placeholder'=>"Введите условия"]) ?>
                     <?php
                             // получаем все города из таблицы атрибутов
                             $category = Attributes::find()->where(['type'=>'category'])->all();

@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <br>
     <div class="site-registration">
         <div class="text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
-            <div class="pole border_search padding_search">
+            <div class="pole border_search2 padding_search">
                 <div class="form">
                     <div class="text-center">
                         <h1><?= Html::encode($this->title) ?></h1>
@@ -28,31 +28,29 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                         
                             <div class="row justify-content-center">
-                                <a href="/privateoffice/set-image" class="btn btn-rounded btngreen">Загрузите логотип</a>
+                                <a href="/privateoffice/set-image" class="btn btn-rounded btnred">Загрузите логотип</a>
                             </div>
                         <br>
                             <div class="row justify-content-center">
                                 <?php   
                                     $user = Yii::$app->user->identity;
                                         if($model->image): ?>
-                                            <img class=" logo_user" src="/uploads/<?= $model->image?>" alt="">
+                                            <img class=" logo_user1" src="/uploads/<?= $model->image?>" alt="">
                                         <?php endif; 
                                 ?>
                             </div>
                         <br>
                         
-                        <div class="block"> <!-- контейнер -->
-                            <div class="hover"><?= $form->field($model, 'name')->textInput() ?></div> <!-- видимый элемент -->
-                            <span class="hidden">В данном поле нужно ввести наименование вашей организации</span> <!-- скрытый элемент <img src="/public/img/w.png" class="question" alt="?">-->
-                        </div>
-
+                        <!--<div class="block">  контейнер -->
+                          <!--   <div class="hover"></div> видимый элемент -->
+                            <!-- <span class="hidden">В данном поле нужно ввести наименование вашей организации</span> скрытый элемент <img src="/public/img/w.png" class="question" alt="?"> </div>-->
+                        
+                        <?= $form->field($model, 'name')->textInput() ?>
 
                           <!--  <span class='support' tabindex="1" data-title='Текст подсказки'>
                                 <em><img src="/public/img/w.png" class="question" alt="?"></em>
                             </span> -->
 
-                            
-                        
                     <?php
                         // получаем все города из таблицы атрибутов
                         $city = Attributes::find()->where(['type'=>'city'])->all();
@@ -66,14 +64,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     
 
-                    <?= $form->field($model, 'adres')->textInput() ?>
+                    <?= $form->field($model, 'adres')->textInput(['placeholder'=>"Введите адрес"]) ?>
 
-                    <?= $form->field($model, 'inn')->textInput() ?>
+                    <?= $form->field($model, 'inn')->textInput(['placeholder'=>"Введите ИНН вашей организации"]) ?>
 
-                    <?= $form->field($model, 'ogrn')->textInput() ?>
+                    <?= $form->field($model, 'ogrn')->textInput(['placeholder'=>"Введите ОГРН вашей организации"]) ?>
 
                     <div class="row justify-content-center">
-                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen', 'name' => 'Save submit']) ?>
+                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btnred', 'name' => 'Save submit']) ?>
                     </div>
                 </div>
             </div>
