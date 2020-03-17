@@ -13,6 +13,11 @@ $this->title = 'Мои достижения';
           
 <br>
     <div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
+        
+        <div class="text-center">
+        <h2><?= Html::encode($this->title) ?></h2>
+        <p>Вы можете добавить изображения своих достижений</p>
+                </div>
     <div class="col-sm-4"> 
             <?= Html::a('Добавить фотографию', ['privateoffice/set-project'], ['class' => 'btn btn-rounded btnred']) ?>
         </div>
