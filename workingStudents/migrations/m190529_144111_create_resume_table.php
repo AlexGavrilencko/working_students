@@ -22,7 +22,8 @@ class m190529_144111_create_resume_table extends Migration
             'dateBirth' => $this->date()->defaultValue(null),//дата рождения
             'image' => $this->string()->defaultValue(null),//фото
             'skills' => $this->text(),//навыки
-            'personalQualities_id' => $this->text(),//персональные качества
+            'addinform' => $this->text(),//навыки
+            'personalQualities_id' => $this->integer(),//персональные качества
             'CareerObjective_id' => $this->integer(),//желаемая должность
             'dateAdd' => $this->date(),//дата добавления
             'dateChanges' => $this->date(),//дата редактирования

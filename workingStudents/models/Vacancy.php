@@ -26,6 +26,17 @@ use Yii;
  * @property int $WorkOrPractice
  * @property int $ShowOrHide
  * @property string $response
+ *
+ * @property Response[] $responses
+ * @property Scanned[] $scanneds
+ * @property Attributes $category
+ * @property Attributes $city
+ * @property Attributes $employment
+ * @property Attributes $experience
+ * @property Organization $organization
+ * @property Attributes $position
+ * @property Attributes $schedule
+ * @property User $user
  */
 class Vacancy extends \yii\db\ActiveRecord
 {
@@ -47,6 +58,14 @@ class Vacancy extends \yii\db\ActiveRecord
             [['duties', 'requirement', 'conditions'], 'string'],
             [['dateAdd', 'dateChanges'], 'safe'],
             [['name', 'response'], 'string', 'max' => 255],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['category_id' => 'id']],
+            [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['city_id' => 'id']],
+            [['employment_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['employment_id' => 'id']],
+            [['experience_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['experience_id' => 'id']],
+            [['organization_id'], 'exist', 'skipOnError' => true, 'targetClass' => Organization::className(), 'targetAttribute' => ['organization_id' => 'id']],
+            [['position_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['position_id' => 'id']],
+            [['schedule_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['schedule_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -57,28 +76,110 @@ class Vacancy extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Наименование вакансии',
+            'name' => 'Name',
             'user_id' => 'User ID',
-            'organization_id' => 'Организация',
-            'city_id' => 'Город',
-            'experience_id' => 'Опыт работы',
-            'employment_id' => 'Тип занятости',
-            'schedule_id' => 'График работы',
-            'salary' => 'Заработанная плата',
-            'position_id' => 'Должность',
-            'duties' => 'Обязанности',
-            'requirement' => 'Требования',
-            'conditions' => 'Условия',
-            'category_id' => 'Категория',
-            'dateAdd' => 'Дата добавления',
-            'dateChanges' => 'Дата редактирования',
-            'WorkOrPractice' => 'Данная вакансия предложение по работе или практики',
-            'ShowOrHide' => 'Отображать или скрывать вакансию',
-            'response' => 'Отклик',
+            'organization_id' => 'Organization ID',
+            'city_id' => 'City ID',
+            'experience_id' => 'Experience ID',
+            'employment_id' => 'Employment ID',
+            'schedule_id' => 'Schedule ID',
+            'salary' => 'Salary',
+            'position_id' => 'Position ID',
+            'duties' => 'Duties',
+            'requirement' => 'Requirement',
+            'conditions' => 'Conditions',
+            'category_id' => 'Category ID',
+            'dateAdd' => 'Date Add',
+            'dateChanges' => 'Date Changes',
+            'WorkOrPractice' => 'Work Or Practice',
+            'ShowOrHide' => 'Show Or Hide',
+            'response' => 'Response',
         ];
     }
+
+
     public function create()
     {
         return $this->save(false);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getResponses()
+    {
+        return $this->hasMany(Response::className(), ['vacancy_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getScanneds()
+    {
+        return $this->hasMany(Scanned::className(), ['vacancy_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Attributes::className(), ['id' => 'category_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCity()
+    {
+        return $this->hasOne(Attributes::className(), ['id' => 'city_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEmployment()
+    {
+        return $this->hasOne(Attributes::className(), ['id' => 'employment_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getExperience()
+    {
+        return $this->hasOne(Attributes::className(), ['id' => 'experience_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrganization()
+    {
+        return $this->hasOne(Organization::className(), ['id' => 'organization_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPosition()
+    {
+        return $this->hasOne(Attributes::className(), ['id' => 'position_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSchedule()
+    {
+        return $this->hasOne(Attributes::className(), ['id' => 'schedule_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }

@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\web\IdentityInterface;
 use \yii\db\ActiveRecord;
+
 /**
  * This is the model class for table "user".
  *
@@ -15,6 +16,13 @@ use \yii\db\ActiveRecord;
  * @property string $phone
  * @property int $ActInactUser
  * @property int $rang
+ * @property string $auth_key
+ *
+ * @property Project[] $projects
+ * @property Response[] $responses
+ * @property Resume[] $resumes
+ * @property Scanned[] $scanneds
+ * @property Vacancy[] $vacancies
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -33,23 +41,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             [['ActInactUser', 'rang'], 'integer'],
-            [['e_mail', 'phone'], 'string', 'max' => 255],
-            [['phone'], 'string', 'min' => 12,'max' => 12],
-            [['password', 'login'],'string', 'min' => 8, 'max' => 32], //длинна от 8 до 32 символов
-            //[['phone'], 'filter', 'filter' => function ($value) {
-            //    $result = preg_replace("/(\+7)(\d{3})(\d{3})(\d{2})(\d{2})/", "$1 ($2) $3-$4-$5", $value);
-            //    return $result;
-           // }],
-            [['login'], 'unique', 'targetClass' => 'app\models\User', 'targetAttribute' => 'login'], //имя(логин) уникально
-            [['e_mail'], 'unique', 'targetClass' => 'app\models\User', 'targetAttribute' => 'e_mail'], //имя(логин) уникально
-            ['e_mail', 'email'], //емэил это емэил
-            [['phone'], 'unique', 'targetClass' => 'app\models\User', 'targetAttribute' => 'phone'], //телефон уникальный
-            ['image', 'image', 'extensions' => 'jpg,png',
-                'minWidth' => 400, 'maxWidth' => 2000,
-                'minHeight' => 400, 'maxHeight' =>2000,
-            ],//изображение определенного файла и размера
-            [['login', 'password','e_mail', 'phone'], 'required'],
-            
+            [['login', 'password', 'e_mail', 'phone', 'auth_key'], 'string', 'max' => 255],
         ];
     }
 
@@ -66,8 +58,11 @@ class User extends ActiveRecord implements IdentityInterface
             'phone' => 'Телефон',
             'ActInactUser' => 'Act Inact User',
             'rang' => 'Rang',
+            'auth_key' => 'Auth Key',
         ];
     }
+
+    
 
     public static function findIdentity($id)
     {
@@ -141,6 +136,43 @@ class User extends ActiveRecord implements IdentityInterface
         $imageUploadModel->deleteCurrentImage($this->image);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProjects()
+    {
+        return $this->hasMany(Project::className(), ['user_id' => 'id']);
+    }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getResponses()
+    {
+        return $this->hasMany(Response::className(), ['user_id' => 'id']);
+    }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getResumes()
+    {
+        return $this->hasMany(Resume::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getScanneds()
+    {
+        return $this->hasMany(Scanned::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVacancies()
+    {
+        return $this->hasMany(Vacancy::className(), ['user_id' => 'id']);
+    }
 }

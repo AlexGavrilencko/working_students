@@ -5,26 +5,26 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "scanned".
+ * This is the model class for table "response".
  *
  * @property int $id
  * @property int $user_id
  * @property int $vacancy_id
  * @property int $resume_id
- * @property int $ViewOrSelect
+ * @property string $date
  *
  * @property Vacancy $vacancy
  * @property Resume $resume
  * @property User $user
  */
-class Scanned extends \yii\db\ActiveRecord
+class Response extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'scanned';
+        return 'response';
     }
 
     /**
@@ -33,7 +33,8 @@ class Scanned extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'vacancy_id', 'resume_id', 'ViewOrSelect'], 'integer'],
+            [['user_id', 'vacancy_id', 'resume_id'], 'integer'],
+            [['date'], 'safe'],
             [['vacancy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vacancy::className(), 'targetAttribute' => ['vacancy_id' => 'id']],
             [['resume_id'], 'exist', 'skipOnError' => true, 'targetClass' => Resume::className(), 'targetAttribute' => ['resume_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -50,19 +51,10 @@ class Scanned extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'vacancy_id' => 'Vacancy ID',
             'resume_id' => 'Resume ID',
-            'ViewOrSelect' => 'View Or Select',
+            'date' => 'Date',
         ];
     }
 
-
-
-    public function create()
-    {
-        $this->save();
-        return $this;
-    }
-
-    
     /**
      * @return \yii\db\ActiveQuery
      */

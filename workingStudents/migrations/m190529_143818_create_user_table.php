@@ -19,7 +19,8 @@ class m190529_143818_create_user_table extends Migration
             'e_mail' => $this->string(),// почта
             'phone' => $this->string(),// телефон
             'ActInactUser' => $this->boolean(),// статус пользователя
-            'rang' => $this->tinyInteger()// ранг пользователя
+            'rang' => $this->tinyInteger(),// ранг пользователя
+            'auth_key' => $this->string()
         ]);
     }
 

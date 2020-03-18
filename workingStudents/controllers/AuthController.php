@@ -49,6 +49,7 @@ class AuthController extends Controller
         if(Yii::$app->request->isPost)
         {
             $model->load(Yii::$app->request->post());
+            //var_dump($model);
             if($model->signup())
             {
                 if($model->rang=='10') {
@@ -57,7 +58,7 @@ class AuthController extends Controller
                
             }
         }
-       // var_dump($model);
+        
         return $this->render('signup', [
             'model'=>$model,
         ]);
