@@ -27,7 +27,7 @@ PublicAsset::register($this);
     <body>
     <?php $this->beginBody() ?>
 
-<div class="header">
+<div class="header2">
 
         <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->
                

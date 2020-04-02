@@ -15,116 +15,124 @@ $this->title = 'Мои вакансии';
           
 <br>
 
-<div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
+<div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер -->
     <div class="row">
+
         <div class="col-sm-2"> 
-             <!-- расширенный поиск -->
+             <!-- Для того, чтобы отображения вакансии было по середине -->
         </div>
 
 
-    <div class="col-sm-8">  
-        <?php
-            /* $city = Attributes::find()->where(['type'=>'city'])->all(); ?>         
-                <? $param = ['prompt' => 'Выберите город', 'id' => 'dropDownList-city']; ?>
-                <?= Html::dropDownList('city', 0, $city, $param); ?> */
-                //$org таблица организация
-                //$atr таблица со всеми справочниками
-                //$catvac все вакансии выбранной категории
-                foreach ($vac as $vacan)
-                : 
+        <div class="col-sm-8">    <!-- Блок для отображения вакансий -->
+            <?php
+                foreach ($vac as $vacan):    
+            ?>                                <!-- Цикл для отображения вакансий -->
 
-                //echo $tagg;
-                //$post=$vacan->article_id;
-                //foreach ($article as $articles)
-                //: 
-                //if ($post===$articles->id){ ?>
-        <div class="border_search3">    
-            <!-- результаты поиска -->
-            <div class="row ">
+<!-- _______________________________________________________________________________________________ -->
+            <div class="border_search3"> <!-- Фон для отображения -->
+                
+                <div class="row"> 
 
-                        <div class="col-sm ">
-                            <!-- для изображения -->
+                        <div class="col-sm-4"> <!-- Отображение фотографии -->
                             <?php
-                            $o = $vacan->organization_id;
-                            $organization = Organization::find()->where(['id'=>$o])->one();
-                            if($organization->image): ?>
+                                $o = $vacan->organization_id;
+                                $organization = Organization::find()->where(['id'=>$o])->one();
+                                    if($organization->image): ?>
                                         <img class="searchavatar " src="/uploads/<?= $organization->image?>" alt="">
                             <?php endif; ?>
-                        </div>
+                        </div>                 <!-- /Отображение фотографии -->
 
-            <div class="col-sm blok_information">
-                    <!-- для описания -->
-                    <div class="row">
-                        <div class="col-12 col-md-8">
-                            <p><?= $vacan->name ?></p> <!-- название вакансии подгрузка из базы -->
+                        <div class="col-sm-8"> <!-- Отображение информации правее фотографии -->
+                            <div class="row">
 
-                            <!-- $vacan->organization_id-->
-                                <p>Организация: <!-- Название организации подгрузка из базы -->
-                                    <?php
-                                        $o = $vacan->organization_id;
-                                        $organization = Organization::find()->where(['id'=>$o])->one();
-                                            if ($organization == NULL){
-                                                echo 'Не указано';
-                                            }
-                                            else echo $organization->name;
-                                    ?>
-                                </p>
+                                    <div class="col-sm-8">  <!-- Отображение названии вакансии -->
+                                        <p><?= $vacan->name ?></p>
+                                    </div>                  <!-- /Отображение названии вакансии -->
 
-                                <p>Зарплата: <!-- цена $vacan->salary подгрузка из базы -->
-                                    <?php
-                                        $salary = $vacan->salary;
-                                            if ($salary == NULL){
-                                                echo 'не указано';
-                                            }
-                                            else echo $salary;
-                                    ?>
-                                </p>
+                                    <div class="col-sm-4"> <!-- Отображение зарплаты -->
+                                        <p>Зарплата: 
+                                            <?php
+                                                $salary = $vacan->salary;
+                                                    if ($salary == NULL){
+                                                        echo 'не указано';
+                                                    }
+                                                    else echo $salary;
+                                            ?>
+                                        </p>
+                                    </div>                  <!-- /Отображение зарплаты -->
 
-                                <p>    <!-- Город $vacan->city_id подгрузка из базы -->
-                                    <?php
-                                        $c = $vacan->city_id;
-                                        $city = Attributes::find()->where(['id'=>$c])->one();
-                                        
-                                            if ($city == NULL){
-                                                echo 'Не указано';
+                            </div>
+
+                            <div class="row ml-1"> <!-- Отображение названия организации -->
+                                    <p> 
+                                        <?php
+                                            $o = $vacan->organization_id;
+                                            $organization = Organization::find()->where(['id'=>$o])->one();
+                                                if ($organization == NULL){
+                                                    echo 'Не указано';
+                                                }
+                                                else echo $organization->name;
+                                        ?>
+                                    </p>
+                            </div>                 <!-- /Отображение названия организации -->
+
+                            <div class="row ml-1"> <!-- Отображение города -->
+                                    <p> 
+                                        <?php
+                                            $c = $vacan->city_id;
+                                            $city = Attributes::find()->where(['id'=>$c])->one();
+                                            if ($city == NULL) 
+                                            { 
+                                                echo 'Город не указан'; 
                                             }
                                             else echo $city->name;
-                                    ?>
-                                </p>
-
-                                <p>Обязанности:
-                                    <?php
-                                        $duties = $vacan->duties;
-                                            if ($duties == NULL){
-                                                echo 'Не указано';
-                                            }
-                                            else echo $duties;
-                                    ?>
-                                </p>
-
-                                <p><?= $vacan->dateAdd ?></p> <!-- дата $vacan->dateAdd подгрузка из базы -->
-
-                        </div>
-                    </div>   
+                                            ?>
+                                    </p>
+                            </div>                 <!-- /Отображение города -->
+                        </div>                 <!-- /Отображение информации правее фотографии -->
                 </div>
+
+                        <div class="row ml-3 mt-3"> <!-- Отображение дополнительной информации для соискателя -->
+                            <p>Обязанности:
+                                <?php
+                                    $duties = $vacan->duties;
+                                        if ($duties == NULL){
+                                            echo 'Обязанности не указаны';
+                                        }
+                                        else echo $duties;
+                                ?>
+                            </p>
+                        </div>                      <!-- /Отображение дополнительной информации для соискателя -->
                     
-                <div class="col-sm ">
-                    <div class="row blok_information"><a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a></div>
-                    <div class="row blok_information"><a href="<?= Url::toRoute(['privateoffice/vacancy_up', 'id'=>$vacan->id]); ?>">Редактировать</a></div>
-                    <?= Html::a('Удалить', ['privateoffice/vacancy_del', 'id'=>$vacan->id], [
-                            'class' => 'row blok_information',
-                            'data' => [
-                                'confirm' => 'Вы действительно хотите удалить данную вакансию?',
-                                'method' => 'post',
-                            ],
-                        ]); ?>
+                    <div class="row ml-1"> <!-- кнопок действия и даты -->
+        
+                            <div class="col">
+                                <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a>
+                            </div>
 
-                </div>
+                            <div class="col">
+                                <a href="<?= Url::toRoute(['privateoffice/vacancy_up', 'id'=>$vacan->id]); ?>">Редактировать</a>
+                            </div>
 
-            </div>   
-        </div>
-        <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
-    </div>
-    
+                            <div class="col">
+                                <?= Html::a('Удалить', ['privateoffice/vacancy_del', 'id'=>$vacan->id], [
+                                    'class' => 'row blok_information',
+                                    'data' => [
+                                    'confirm' => 'Вы действительно хотите удалить данную вакансию?',
+                                    'method' => 'post',
+                                    ],
+                                ]); ?>
+                            </div>
+
+                            <div class="col">
+                                <p>Дата<?= $vacan->dateAdd ?></p>       
+                            </div>
+                    </div>
+            </div> <!-- /Фон для отображения -->
+<!-- _______________________________________________________________________________________________ -->
+            <?php  endforeach; ?>  <!-- /Цикл для отображения вакансий -->
+        </div> <!-- /Блок для отображения вакансий --> 
     </div> 
-</div> 
+</div>  <!-- /Контейнер -->
+
+<br>

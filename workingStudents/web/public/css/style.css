@@ -202,7 +202,7 @@ svg text {
   }
   /* стиль для фона вакансий и резюме в маленьком окне*/
   .border_search{
-    background-color: #eff3db69;
+    background-color: #eff3db1c;
     border: 2px solid;
     border-color: #9dbb19;
     border-radius: 10px;
@@ -235,9 +235,7 @@ svg text {
     background-color: #691c3a15;
     border: 2px solid;
     border-color: #e60d60cc;
-    border-radius: 10px;
-    padding-top: 2%;
-    margin-bottom: 2%;
+    padding: 3%;
   }
 
   .border_project{
@@ -263,6 +261,13 @@ svg text {
     border-color: #9dbb19;
     border-radius: 10px;
   }
+
+  .border_search_resume{
+    width: 100%;
+    background-color: #22beb1;
+    padding: 2%;
+  }
+
   body {
     display: flex;
     flex-direction: column;
@@ -272,6 +277,10 @@ svg text {
   }
   /* задаем относительное позиционирование контейнеру */
   .block{position:relative;}
+
+  
+
+
 /*/b___________________________________________________________*/
 
 /*c____________________________________________________________*/
@@ -346,6 +355,13 @@ svg text {
     background-size: cover;
     background-position: center;
   }
+  .header2{ 
+    background-image: url(/public/img/main_image.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+
   /* стиль для фоновой картинки страниц регистрации и авторизации */
   .header1{ 
     flex: 1 0 auto;
@@ -356,7 +372,7 @@ svg text {
     }
     /* стиль для размера окна */
   .hh-100{
-    height: 91%!important;
+    height: 70%!important;
   }
   /*Для прикрепления подвала к низу страницы начало*/
   html, body {
@@ -424,7 +440,7 @@ svg text {
   }
   .logo_user1{
     width: 20%;
-    border-radius: 50%; /* Радиус скругления */
+    
     box-shadow: 0 0 0 1px #22beb1, 0 0 13px #333; /* Параметры теней */
   }
   li {
@@ -542,10 +558,9 @@ svg text {
 /*s____________________________________________________________*/
   /* стиль для аватарки в поиске и избранном/просмотренном */
   .searchavatar{
-    border-radius: 50%; /* Радиус скругления */
     box-shadow: 0 0 0 2px #c9105abb, 0 0 13px #333; /* Параметры теней */
-    width: 45%;
-    margin-left: 20%;
+    width: 70%;
+    margin-left: 5%;
   }
   .size_txt{
     font-size: 20px;
@@ -590,7 +605,9 @@ svg text {
 /*/v___________________________________________________________*/
 
 /*w____________________________________________________________*/
-
+.widht_search_resume{
+  width: 100%;
+}
 /*/w___________________________________________________________*/
 
 /*x____________________________________________________________*/

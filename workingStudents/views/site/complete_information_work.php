@@ -22,14 +22,16 @@ use yii\helpers\Url;
                     <div class="row"> 
                         <div class="col-sm-4">
                         <!-- для изображения -->
-                            <img src="/public/img/nofoto.png" alt="Avatar" class="compsearchavatar">
+                        <?php if($resum->image): ?>
+                                    <img class="compsearchavatar" src="/uploads/<?= $resum->image?>" alt="">
+                        <?php endif; ?>
                         </div> 
 
                         <div class="col-sm-8">
                             <!-- для описания -->
                             <div class="row">
                                 <div class="col-12 col-md-8">
-                                    <p><?= $resum->name ?> <?= $resum->surname ?> <?= $resum->patronymic ?></p> <!-- ФИО подгрузка из базы -->
+                                    <p><?= $resum->surname ?> <?= $resum->name ?>  <?= $resum->patronymic ?></p> <!-- ФИО подгрузка из базы -->
                                 </div>
                                 <?php
                                         $c = $resum->city_id;

@@ -74,7 +74,7 @@ PublicAsset::register($this);
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
                                             <a class="dropdown-item menugreen_v h6" href="/privateoffice/resume">Мое резюме</a>
-                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/my_project">Достижения</a>
+                                         <!--   <a class="dropdown-item menugreen_v h6" href="/privateoffice/my_project">Достижения</a>-->
                                             <a class="dropdown-item menugreen_v h6" href="#">Избранное</a>
                                             <a class="dropdown-item menugreen_v h6" href="#">Просмотренное</a>
                                             <a class="dropdown-item menugreen_v h6" href="<?= Url::toRoute(['site/search','id'=>'0']) ?>">Поиск вакансий</a>
