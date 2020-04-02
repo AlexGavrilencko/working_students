@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Class m190604_111302_fk_attr_user
  */
-class m190604_111302_fk_attr_user extends Migration
+class m200504_111302_fk_attr_user extends Migration
 {
     /**
      * {@inheritdoc}
@@ -358,6 +358,83 @@ class m190604_111302_fk_attr_user extends Migration
             'id',
             'CASCADE'
         );
+        
+
+
+
+
+
+        //Связи для таблицы отклик
+        // creates index for column `user_id` or response
+        $this->createIndex(
+            'idx-response-user_id',
+            'response',
+            'user_id'
+        );
+        // add foreign key for table `user`
+        $this->addForeignKey(
+            'fk-response-user_id',
+            'response',
+            'user_id',
+            'user',
+            'id',
+            'CASCADE'
+        );
+        // creates index for column `resume_id`
+        $this->createIndex(
+            'idx-response-resume_id',
+            'response',
+            'resume_id'
+        );
+        // add foreign key for table `resume`
+        $this->addForeignKey(
+            'fk-response-resume_id',
+            'response',
+            'resume_id',
+            'resume',
+            'id',
+            'CASCADE'
+        );
+        // creates index for column `vacancy_id`
+        $this->createIndex(
+            'idx-response-vacancy_id',
+            'response',
+            'vacancy_id'
+        );
+        // add foreign key for table `vacancy`
+        $this->addForeignKey(
+            'fk-response-vacancy_id',
+            'response',
+            'vacancy_id',
+            'vacancy',
+            'id',
+            'CASCADE'
+        );
+
+
+
+
+
+
+
+
+        //Связи для таблицы должность
+        // creates index for column `attrcat_id` or position
+        $this->createIndex(
+            'idx-position-attrcat_id',
+            'position',
+            'attrcat_id'
+        );
+        // add foreign key for table `city`
+        $this->addForeignKey(
+            'fk-position-attrcat_id',
+            'position',
+            'attrcat_id',
+            'attributes',
+            'id',
+            'CASCADE'
+        );
+
     }
 
     /**
@@ -378,6 +455,61 @@ class m190604_111302_fk_attr_user extends Migration
             'idx-organization-city_id',
             'organization'
         );
+
+
+
+
+
+
+        // position
+        // drops foreign key for table `position`
+        $this->dropForeignKey(
+            'fk-position-attrcat_id',
+            'position'
+        );
+        // drops index for column `attrcat_id`
+        $this->dropIndex(
+            'idx-position-attrcat_id',
+            'position'
+        );
+
+
+
+
+
+
+
+
+        // response
+        // drops foreign key for table `response`
+        $this->dropForeignKey(
+            'fk-response-user_id',
+            'response'
+        );
+        // drops index for column `user_id`
+        $this->dropIndex(
+            'idx-response-user_id',
+            'response'
+        );
+        $this->dropForeignKey(
+            'fk-response-resume_id',
+            'response'
+        );
+        // drops index for column `resume_id`
+        $this->dropIndex(
+            'idx-response-resume_id',
+            'response'
+        );
+        $this->dropForeignKey(
+            'fk-response-vacancy_id',
+            'response'
+        );
+        // drops index for column `vacancy_id`
+        $this->dropIndex(
+            'idx-response-vacancy_id',
+            'response'
+        );
+
 
 
 
