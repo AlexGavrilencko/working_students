@@ -72,7 +72,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             <div>
                                 <div class="row">
+
                                     <div class="col-sm-2"></div>
+
                                     <div class="col">
                                         <h4>График работы</h4>
                                         <div class="row ml-1">
@@ -176,9 +178,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 </div>
                                             </div>
                                     </div>
-                                    <div class="col-sm-2"></div>
-                                    
+
+                                    <div class="col-sm-2"></div>  
                                 </div>
+
+                                <div class="row justify-content-center mt-5">                                
+                                    <button type="submit" class="btn btn-secondary">Найти</button>                       
+                                </div>
+                            
                             </div>
                     </form>
         </div>

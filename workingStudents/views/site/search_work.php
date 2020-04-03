@@ -97,11 +97,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="col-sm-8"> <!-- Отображение информации правее фотографии -->
                             <div class="row">
 
-                                    <div class="col-sm-7">  <!-- Отображение названии вакансии -->
+                                    <div class="col-sm-6">  <!-- Отображение названии вакансии -->
                                         <p><?= $vacan->name ?></p>
                                     </div>                  <!-- /Отображение названии вакансии -->
 
-                                    <div class="col-sm-5"> <!-- Отображение зарплаты -->
+                                    <div class="col"> <!-- Отображение зарплаты -->
                                         <p>Зарплата: 
                                             <?php
                                                 $salary = $vacan->salary;
@@ -112,6 +112,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                             ?>
                                         </p>
                                     </div>                  <!-- /Отображение зарплаты -->
+
+                                    <div class="col-sm-2"> 
+                                        <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>"> <img class="heard" src="/public/img/heard.png" alt="В избранное"></a>
+                                    </div> 
+
 
                             </div>
 

@@ -33,7 +33,7 @@ PublicAsset::register($this);
     <header>          
          <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->
 
-            <a href="#" class="navbar-brad"><img src="/public/img/logo.jpg" alt="Logo"></a>  <!-- логотип в меню сайта -->
+            <a href="/site/index" class="navbar-brad"><img src="/public/img/logo.jpg" alt="Logo"></a>  <!-- логотип в меню сайта -->
 
                 <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
                     <span class="navbar-toggler-icon"></span>
@@ -48,11 +48,11 @@ PublicAsset::register($this);
                             <ul class="navbar-nav">  <!-- переходы в меню для гостя-->
 
                             <li class="nav-item">
-                                <a class="nav-link menugreen h6" href="/site/index">Студентам</a>
+                                <a class="nav-link menugreen h6" href="/site/search">Вакансии</a>
                             </li>
                     
                             <li class="nav-item">
-                                <a class="nav-link h6 menugreen" href="/site/indexwork">Работодателям</a>
+                                <a class="nav-link h6 menugreen" href="/site/search_work">Резюме</a>
                             </li> 
                         </ul>
 
@@ -61,6 +61,9 @@ PublicAsset::register($this);
                             <li class="nav-item">
                                 <a class=" nav-link menugreen_v h6" href="/auth/login" id="vxod">Вход</a>
                              </li>
+                             <li class="nav-item">
+                                <a href="/auth/login" class="btn btn-secondary">Разместить резюме</a>
+                            </li>
 
                         </ul>
                         <?php } else {?>
@@ -114,13 +117,8 @@ PublicAsset::register($this);
 
     <footer class="dark">
              <div class="container">
-                 <div class="row justify-content-center">
-                    <a href="/site/index" id="logofooter" class="navbar-brad"><img src="/public/img/logofooter1.png" alt="Logo"></a>
-                 </div>
                 <div class="row">
-                    
-                    <div class="col-md-3">
-                
+                    <div class="col-sm-3">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-light h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Документация
@@ -132,18 +130,19 @@ PublicAsset::register($this);
                                     <a class="dropdown-item menugreen_v h6" href="/site/rules_for_placement_of_vacancies">Правила размещения вакансий на ws.ru</a>
                                 </div>
                         </li>
-
                     </div>
 
-                    <div class="col-md-6">
-                        <div class="text-center text-light text_foot">
-                            &copy; 2019 WorkingStudents, Build with by V&A
+                    <div class="col">
+                        <div class="row justify-content-center">
+                            <a href="/site/index" id="logofooter" class="navbar-brad"><img src="/public/img/logofooter1.png" alt="Logo"></a>
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col">
+                        <div class="text-center text-light text_foot ml-5">
+                            &copy; 2019 WorkingStudents, Build with by V&A
+                        </div>
                     </div>
-                    
                 </div>
              </div>
         </footer>
