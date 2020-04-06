@@ -136,7 +136,52 @@ svg text {
 /*/a__________________________________________________________*/
 
 /*b___________________________________________________________*/
-  /* стиль для кнопки зеленого цвета */
+  /* Главная страница */
+/* стиль при наведении для кнопки категории зеленого цвета */
+.btngreen_k:hover{
+  color: #5FEB3B;
+  border-color: #5FEB3B;
+}
+/* стиль для кнопки категории зеленого цвета */
+.btngreen_k{
+  color: #41A128;
+  border-color: #2DD700;
+}
+/* стиль для кнопки голубого цвета */
+.btnblue{
+  color: #1D7074;
+  border-color: #01939A;
+}
+/* стиль при наведении для кнопки голубого цвета */
+.btnblue:hover{
+  color: #34C6CD;
+  border-color: #34C6CD;
+}
+ /* стиль для кнопки оранжевого цвета */
+ .btnorange{
+  color: #BF9630;
+  border-color: #FFB600;
+}
+/* стиль при наведении для кнопки оранжевого цвета */
+.btnorange:hover{
+  color: #FFC840;
+  border-color: #FFC840;
+}
+ /* стиль для кнопки фиолетового цвета */
+ .btnpurple{
+  color: #313186;
+  border-color: #1B1BB3;
+}
+/* стиль при наведении для кнопки фиолетовогоцвета */
+.btnpurple:hover{
+  color: #4F4FD9;
+  border-color: #4F4FD9;
+}
+
+
+/* /Главная страница */
+
+/* стиль для кнопки зеленого цвета */
   .btngreen{ 
     color: #9dbb19;
     border-color: #9dbb19;
@@ -150,16 +195,6 @@ svg text {
     border-color: #9dbb19;
   }
  
-  /* стиль при наведении для кнопки категории зеленого цвета */
-  .btngreen_k:hover{
-    color: #3d3d3b;
-    border-color: #3d3d3b;
-  }
-  /* стиль для кнопки категории зеленого цвета */
-  .btngreen_k{
-    color: #08c408;
-    border-color: #08c408;
-  }
   /* стиль при наведении для кнопки зеленого цвета */
   .btngreen:hover{ 
     color: #a3071e;
@@ -169,26 +204,7 @@ svg text {
     color: #a3071e;
     border-color: #a3071e;
   }
-  /* стиль для кнопки темно-фиолетового цвета */
-  .btnred{
-    color: #22beb1;
-    border-color: #22beb1;
-  }
-  /* стиль при наведении для кнопки темно-фиолетового цвета */
-  .btnred:hover{
-    color: #a3071e;
-    border-color: #a3071e;
-  }
-  /* стиль для кнопки оранжевого цвета */
-  .btnorange{
-    color: #d46619;
-    border-color: #d46619;
-  }
-  /* стиль при наведении для кнопки оранжевого цвета */
-  .btnorange:hover{
-    color: #3d3d3b;
-    border-color: #3d3d3b;
-  }
+  
   /* стиль для скругления элементов */
   .btn-rounded{
     border-radius: 10px;
@@ -351,10 +367,11 @@ svg text {
 /*h____________________________________________________________*/
   /* стиль для фоновой картинки главной страницы */
   .header{ 
-    background-image: url(/public/img/l.jpg);
+    background-image: url(/public/img/main_image.jpg);
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
+    height: 80%!important;
   }
   .header2{ 
     background-image: url(/public/img/main_image.jpg);
@@ -373,16 +390,14 @@ svg text {
     }
     /* стиль для размера окна */
   .hh-100{
-    height: 70%!important;
+    height: 90%!important;
   }
   /*Для прикрепления подвала к низу страницы начало*/
   html, body {
     height: 100%;
   }
 
-  .heard{
-    width: 60%;
-  }
+  
   /*Для прикрепления подвала к низу страницы конец*/
   /* Оформление скрытого элемента по умолчанию */ 
   .hidden{
