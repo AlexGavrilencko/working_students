@@ -8,6 +8,6 @@ class ClassHelper
         if($num % 4 == 0) echo 'btnorange';
         if($num % 4 == 1) echo 'btngreen_k';
         if($num % 4 === 2) echo 'btnblue';
-        if($num % 4 === 3) echo 'btnpurple'; //Еще какой-то
+        if($num % 4 === 3) echo 'btnpurple'; 
     }
 }
