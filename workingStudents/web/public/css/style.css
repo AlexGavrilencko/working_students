@@ -320,6 +320,12 @@ svg text {
   .darkwindow{ 
     background-color: #0b0a0b;
   }
+
+  .documentswindow{
+    background-color: #c9c6c946;
+    border-radius: 10px;
+  }
+
   .darkwindow1{ 
     background-color: #d5d6d6;
     width: 80%;
