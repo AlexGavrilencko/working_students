@@ -16,6 +16,15 @@ use yii\widgets\ActiveForm;
 $this->title = 'Поиск';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<script>
+    function disp(div) {
+        if (div.style.display == "none") {
+            div.style.display = "block";
+        } else {
+            div.style.display = "none";
+        }
+    }
+    </script>
 
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
     <div class="row "> <!-- Для поиска -->
@@ -60,7 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </div>
 
                                 <div class="col"> <!-- Кнопка для поиска -->
-                                    <button type="submit" class="btn btn-secondary">Еще фильтры</button>
+                                    <input type="button" class="btn btn-secondary" value="Еще фильтры" onclick="disp(document.getElementById('form1'))" />
                                 </div>
 
                                 <div class="col"> <!-- Кнопка для поиска -->
@@ -70,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                         <br>
 
-                            <div>
+                            <div id="form1" style="display: none;">
                                 <div class="row">
 
                                     <div class="col-sm-2"></div>
