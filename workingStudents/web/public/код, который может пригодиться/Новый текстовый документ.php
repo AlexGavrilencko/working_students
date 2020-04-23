@@ -678,3 +678,171 @@
                 </div>
              </div>
         </footer>
+
+
+
+
+<!-- код старой страницы работодателя (шапка) -->
+<div class="container-fluid d-flex hh-100 flex-row bd-highlight flex-column">        
+           <!-- <div class="row">
+                <div class="col">
+                </div>
+
+                <div class="col">
+                    <a href="/auth/login" class="btn-rounded btngreen btn btn-lg m-4">Разместить вакансию</a>
+                </div>
+            </div>--> 
+
+            <nav class="navbar navbar-expand-lg"> <!-- стиль для меню сайта -->  
+                <div class="collapse navbar-collapse " id="collapsibleNavbar">
+                    <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
+                        <li class="nav-item">
+                            <a href="/auth/login" class="btn-rounded btnwite btn btn-lg">Разместить вакансию</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        
+                <p class="h2 text-light margin-top">Найдите сотрудника на вашу вакансию</p>
+
+                <div class="row">
+                        <div class="col-12 col-md-10 col-lg-8">
+                            <form class="search">
+                                <div class="row no-gutters align-items-center">
+
+                                    <div class="col-8">
+                                        <input class="form-control btn-none form-control-lg" type="search" placeholder="Профессия или должность">
+                                    </div>
+
+                                    <div class="col-auto">
+                                        <button type="submit" class="btn-none btn-lg btn btnwite">Найти</button>
+                                    </div>
+                                </div>    
+                            </form>
+                        </div>
+                    </div>          
+
+<!-- контент -->
+<div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
+    <div class="row">
+        <div class="col-sm-3 text-center"> 
+        </div>
+
+        <div class="col-sm-6 text-center"> 
+            <h3>Резюме соискателей</h3>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
+<div class="row">
+        <div class="col-sm-3"> 
+             <!-- расширенный поиск -->
+        </div>
+
+
+    <div class="col-sm-6">  
+     <!-- здесь начинается цикл для отображения -->
+     <?php
+        //$org таблица организация
+        //$atr таблица со всеми справочниками
+        //$catvac все вакансии выбранной категории
+        foreach ($resume as $resum)
+        : 
+        if ($resum->ShowOrHide===0){
+        //var_dump($resum);die();
+	    //echo $tagg;
+	    //$post=$vacan->article_id;
+	    //foreach ($article as $articles)
+		//: 
+		//if ($post===$articles->id){ ?>
+        <div class="border_search">    
+            <!-- результаты поиска -->
+            <div class="row">
+                <div class="col-sm-3">
+                    <!-- для изображения -->
+                    <?php
+                     if($resum->image): ?>
+                                <img class="searchavatar" src="/uploads/<?= $resum->image?>" alt="">
+                    <?php endif; ?>
+                   
+                </div>
+                <div class="col-sm-9 ">
+                    <!-- для описания -->
+                        <div class="row">
+                            <div class="col-12 col-md-8">
+                            <!-- ФИО -->
+                                <p><?= $resum->name ?> <?= $resum->surname ?></p> <!-- имя и фамилия подгрузка из базы -->
+                            </div>
+
+                            <div class="col-6 col-sm-4">
+                                <a href="<?= Url::toRoute(['site/selectedR', 'id'=>$resum->id]); ?>">В избранное</a> <!-- кнопка для сохранения вакансии в избранное-->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 col-md-8">
+                                <p>    <!-- Город $resum->city_id подгрузка из базы -->
+                                    <?php
+                                        $c = $resum->city_id;
+                                        $city = Attributes::find()->where(['id'=>$c])->one();
+                                        
+                                        $obj=$resum->CareerObjective_id;
+                                        
+                                        $object = Attributes::find()->where(['id'=>$obj])->one();
+                                        $city = $resum->city_id;
+
+                                            if ($city == NULL)
+                                            {
+                                                echo 'Не указано';
+                                            }
+
+                                            else echo $city->name;
+
+                                            //else echo $city;
+
+                                    ?>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <p><?= $resum->dateBirth ?></p> <!-- дата рождения подгрузка из базы -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <p><?= $object->name ?></p> <!-- Желаемая должность CareerObjective_id подгрузка из базы -->
+                                <p><?= $resum->CareerObjective_id ?></p> <!-- Желаемая должность CareerObjective_id подгрузка из базы -->
+                                
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <p><?= $resum->skills ?></p> <!-- навыки skills подгрузка из базы -->
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12 col-sm-8">
+                            <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>">Подробнее</a> <!-- кнопка для перехода на страницу данной вакансии и сохранение вакансии в просмотренное -->
+                            </div>
+
+                            <div class="col-6 col-sm-4">
+                                <p><?= $resum->dateAdd ?></p> <!-- дата подгрузка из базы -->
+
+                                <p><?= $vacan->dateAdd ?></p> <!-- дата подгрузка из базы -->
+
+                            </div>
+                        </div>
+                </div>
+            </div>   
+        </div>
+        <?php  }; ?>
+        <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
+    </div>
+</div> 
+</div> 

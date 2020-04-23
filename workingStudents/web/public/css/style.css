@@ -263,12 +263,7 @@ svg text {
     padding: 1% 1% 1% 1%;
     margin-bottom: 2%;
   }
-  .project_img{
-   width: 50%;
-   height: 50%;
-   border-radius: 50%; /* Радиус скругления */
-   box-shadow: 0 0 0 3px #173955, 0 0 13px #333; /* Параметры теней */
-  }
+
   /* стиль для фона расширенного поиска*/
   .border_advanced_search{
     width: 100%;
@@ -287,6 +282,7 @@ svg text {
   body {
     display: flex;
     flex-direction: column;
+    font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */ 
   }
   .blok_information{
     margin-left: 2%;
@@ -294,7 +290,9 @@ svg text {
   /* задаем относительное позиционирование контейнеру */
   .block{position:relative;}
 
-  
+  .btn_iw{
+    margin-left: 15%;
+  }
 
 
 /*/b___________________________________________________________*/
@@ -304,6 +302,13 @@ svg text {
   .content {
     flex: 1 0 auto;
     background: url(/public/img/fon.png);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+  .content1 {
+    flex: 1 0 auto;
+    background: url(/public/img/fon_work.jpg);
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -380,7 +385,6 @@ svg text {
     height: 80%!important;
   }
   .header2{ 
-    background-image: url(/public/img/main_image.jpg);
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -438,7 +442,9 @@ svg text {
 /*/h___________________________________________________________*/
 
 /*i____________________________________________________________*/
-
+.img_iw{
+  width: 60%;
+}
 /*/i___________________________________________________________*/
 
 /*j____________________________________________________________*/
@@ -563,6 +569,12 @@ svg text {
 
   }
   .project_img{
+    width: 50%;
+    height: 50%;
+    border-radius: 50%; /* Радиус скругления */
+    box-shadow: 0 0 0 3px #173955, 0 0 13px #333; /* Параметры теней */
+   }
+  .project_img{
     height: 30%;
     
     border-radius: 50%; /* Радиус скругления */
@@ -618,7 +630,12 @@ svg text {
 }
 .trashcan{
   width: 30%;
+}
 
+.text_indexwork{
+  margin-left: 15%;
+  margin-top: 12%;
+  font-size: 7vw;
 }
 /*/t___________________________________________________________*/
 
