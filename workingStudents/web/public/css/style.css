@@ -437,6 +437,9 @@ svg text {
     border-color: #d6f054 transparent transparent transparent;
     z-index: 2;
   }
+  .heard{
+    width: 70%;
+  }
   /* Появление скрытого элемента при наведении */
   .hover:hover + .hidden{display: block;}
 /*/h___________________________________________________________*/
@@ -467,12 +470,10 @@ svg text {
   /*для отображения фотографии в личном кабинете*/
   .logo_user{
     width: 30%;
-    border-radius: 50%; /* Радиус скругления */
-    box-shadow: 0 0 0 3px #9dbb19, 0 0 13px #333; /* Параметры теней */
+    box-shadow: 0 0 0 1px #9dbb19, 0 0 13px #333; /* Параметры теней */
   }
   .logo_user1{
     width: 20%;
-    
     box-shadow: 0 0 0 1px #22beb1, 0 0 13px #333; /* Параметры теней */
   }
   li {

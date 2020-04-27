@@ -71,11 +71,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row"> <!-- Для отображения информации -->
 
-            <div class="col-sm-3"> 
+            <div class="col-sm-1"> 
                 
             </div>
 
-            <div class="col-sm-6">  
+            <div class="col-sm-8">  
                 <br>  
 
                 <?php
@@ -98,10 +98,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="row">
 
                                     <div class="col-sm-6">  <!-- Отображение названии вакансии -->
-                                        <p><?= $vacan->name ?></p>
+                                        <p> <?= $resum->surname ?> <?= $resum->name ?> </p>
                                     </div>                  <!-- /Отображение названии вакансии -->
 
-                                    <div class="col"> <!-- Отображение зарплаты -->
+                                     <div class="col">  <!--Отображение зарплаты -->
                                         <p>Зарплата: 
                                             <?php
                                                 $salary = $vacan->salary;
@@ -111,10 +111,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     else echo $salary;
                                             ?>
                                         </p>
-                                    </div>                  <!-- /Отображение зарплаты -->
+                                    </div>                 <!-- /Отображение зарплаты -->
 
                                     <div class="col-sm-2"> 
-                                        <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>"> <img class="heard" src="/public/img/heard.png" alt="В избранное"></a>
+                                        <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>"><img class="heard" src="/public/img/heard.png" alt="В избранное"></a>
                                     </div> 
 
 
@@ -122,7 +122,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             <div class="row ml-1"> <!-- Отображение ФИО и города -->
                                 <div class="col-sm-6">
-                                    <p> <?= $resum->surname ?> <?= $resum->name ?> </p>
+                                <p><?= $vacan->name ?></p>
                                 </div>    
                                 
                                 <div class="col-sm-5">
@@ -155,7 +155,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="row ml-1"> <!-- кнопок действия и даты -->
         
                             <div class="col-sm-8">
-                                <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a>
+                                <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>">Подробнее</a>
                             </div>
 
                             

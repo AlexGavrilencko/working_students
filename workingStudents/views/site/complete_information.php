@@ -8,14 +8,10 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 
+
+$this->title = 'Просмотр вакансии';
 ?>
-   <?php if ($user=Yii::$app->user->identity){
-       echo "kzkzkz";
-   }
-   else{
-       echo "pppppp";
-   }
-   ?>
+
 <!-- вакансии -->
     <div class="container-fluid padding_search d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
         <div class="row justify-content-md-center">
@@ -32,7 +28,7 @@ use yii\helpers\Url;
                         $p=$vac->position_id;
                         $pos = Attributes::find()->where(['id'=>$p])->one();
                         if($organization->image): ?>
-                                    <img class="compsearchavatar" src="/uploads/<?= $organization->image?>" alt="">
+                            <img class="compsearchavatar" src="/uploads/<?= $organization->image?>" alt="Логотип компании">
                         <?php endif; ?>
                             
                         </div> 

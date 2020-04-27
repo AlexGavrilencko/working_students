@@ -846,3 +846,22 @@
     </div>
 </div> 
 </div> 
+
+
+
+проверка
+<?php if ($user=Yii::$app->user->identity){
+       echo "kzkzkz";
+   }
+   else{
+       echo "pppppp";
+   }
+   ?>
+
+
+
+<?php else ?>
+        <img class="compsearchavatar" src="/public/img/nofoto.png" alt="Нет логотипа">
+
+
+        <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>"> <img class="heard" src="/public/img/heard.png" alt="В избранное"></a>

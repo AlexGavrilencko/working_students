@@ -8,7 +8,7 @@ use app\models\Organization;
 use app\models\User;
 use yii\helpers\Url;
 
-
+$this->title = 'Просмотр резюме';
 ?>
           
 <!-- резюме -->
