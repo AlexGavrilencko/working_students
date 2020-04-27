@@ -120,7 +120,7 @@ PublicAsset::register($this);
                 <div class="row">
                     <div class="col-sm-3">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-light h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-light h6"   href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Документация
                             </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -134,12 +134,12 @@ PublicAsset::register($this);
 
                     <div class="col">
                         <div class="row justify-content-center">
-                            <a href="/site/index" id="logofooter" class="navbar-brad"><img src="/public/img/logofooter1.png" alt="Logo"></a>
+                            <a href="/site/index" id="logofooter" class="navbar-brad img-fluid"><img src="/public/img/logofooter1.png" alt="Logo"></a>
                         </div>
                     </div>
 
                     <div class="col">
-                        <div class="text-center text-light text_foot ml-5">
+                        <div class="text-center text-light text_foot ml-5" >
                             &copy; 2019 WorkingStudents, Build with by V&A
                         </div>
                     </div>

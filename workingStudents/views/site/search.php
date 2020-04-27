@@ -290,11 +290,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     
                     <div class="row ml-1"> <!-- кнопок действия и даты -->
         
-                            <div class="col">
+                            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                                 <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a>
                             </div>
 
-                            <div class="col">
+                            <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                                 <p>Дата<?= $vacan->dateAdd ?></p>       
                             </div>
                     </div>

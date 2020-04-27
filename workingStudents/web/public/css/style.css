@@ -314,9 +314,9 @@ svg text {
     background-position: center;
   }
   .compsearchavatar {
+    box-shadow: 0 0 0 2px #22beb16e, 0 0 13px #333; /* Параметры теней */
     width: 70%;
-    margin-left: 15%;
-    margin-bottom: 15%;
+    margin-left: 5%;
   }
 /*/c___________________________________________________________*/
 
@@ -438,7 +438,7 @@ svg text {
     z-index: 2;
   }
   .heard{
-    width: 70%;
+    width: 100%;
   }
   /* Появление скрытого элемента при наведении */
   .hover:hover + .hidden{display: block;}
@@ -465,7 +465,7 @@ svg text {
   }
   /* стиль для логотипа подвала */
   #logofooter{
-    width: 17%;
+    width: 13%;
   }
   /*для отображения фотографии в личном кабинете*/
   .logo_user{

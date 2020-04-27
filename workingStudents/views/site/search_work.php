@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="border_search_resume">
             <form class="search_resume">
                 <div class="row">
-                    <div class="col"> <!-- Выбор города -->
+                    <div class="col-sm mt-1"> <!-- Выбор города -->
                         <?php
                             $city = Attributes::find()->where(['type'=>'city'])->all();  // получаем все города из таблицы атрибутов
                                 $items = ArrayHelper::map($city,'id','name'); // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         
                     </div>
 
-                    <div class="col"> <!-- Выбор категории -->
+                    <div class="col-sm mt-1"> <!-- Выбор категории -->
                         <?php
                             // получаем все города из таблицы атрибутов
                             $category = Attributes::find()->where(['type'=>'category'])->all();
@@ -53,15 +53,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     </div>-->
 
-                    <div class="col"> <!-- Ввод зарплаты -->
+                    <div class="col-sm mt-1"> <!-- Ввод зарплаты -->
                         <input class="form-control btn-none " type="search" placeholder="Зарплата от">
                     </div>
 
-                    <div class="col"> <!-- Ввод должности или профессии -->
+                    <div class="col-sm mt-1"> <!-- Ввод должности или профессии -->
                         <input class="form-control btn-none " type="search" placeholder="Профессия">
                     </div>
 
-                    <div class="col-sm-2"> <!-- Кнопка для поиска -->
+                    <div class="col-sm-2 mt-1"> <!-- Кнопка для поиска -->
                         <button type="submit" class="btn btn-secondary mb-1">Найти</button>
                     </div>
                 </div>
@@ -69,13 +69,11 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <div class="row"> <!-- Для отображения информации -->
+    <div class="row justify-content-md-center mb-3"> <!-- Для отображения информации -->
+        
+           
 
-            <div class="col-sm-1"> 
-                
-            </div>
-
-            <div class="col-sm-8">  
+            <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-6">  
                 <br>  
 
                 <?php
@@ -83,49 +81,37 @@ $this->params['breadcrumbs'][] = $this->title;
                         if ($resum->ShowOrHide===0){
                 ?>   
 <!-- _______________________________________________________________________________________________ -->
-        <div class="border_search3"> <!-- Фон для отображения -->
+        <div class="border_search3 "> <!-- Фон для отображения -->
                 
                 <div class="row"> 
 
-                        <div class="col-sm-4"> <!-- Отображение фотографии -->
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение фотографии -->
                             <?php
                                 if($resum->image): ?>
-                                <img class="searchavatar" src="/uploads/<?= $resum->image?>" alt="">
+                                    <img class="searchavatar" src="/uploads/<?= $resum->image?>" alt="">
                             <?php endif; ?>
                         </div>                 <!-- /Отображение фотографии -->
 
-                        <div class="col-sm-8"> <!-- Отображение информации правее фотографии -->
+                        <div class="col-5 col-sm-5 col-md-7 col-lg-7 col-xl-7"> <!-- Отображение информации правее фотографии -->
                             <div class="row">
 
-                                    <div class="col-sm-6">  <!-- Отображение названии вакансии -->
-                                        <p> <?= $resum->surname ?> <?= $resum->name ?> </p>
-                                    </div>                  <!-- /Отображение названии вакансии -->
+                                    <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение ФИО -->
+                                        <p> <?= $resum->surname ?> <?= $resum->name ?> <?= $resum->patronymic ?></p>
+                                    </div>                  <!-- /Отображение ФИО -->
 
-                                     <div class="col">  <!--Отображение зарплаты -->
-                                        <p>Зарплата: 
-                                            <?php
-                                                $salary = $vacan->salary;
-                                                    if ($salary == NULL){
-                                                        echo 'не указано';
-                                                    }
-                                                    else echo $salary;
-                                            ?>
-                                        </p>
-                                    </div>                 <!-- /Отображение зарплаты -->
-
-                                    <div class="col-sm-2"> 
-                                        <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>"><img class="heard" src="/public/img/heard.png" alt="В избранное"></a>
+                                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"> 
+                                        <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>"><!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">--></a>
                                     </div> 
 
 
                             </div>
 
-                            <div class="row ml-1"> <!-- Отображение ФИО и города -->
-                                <div class="col-sm-6">
+                            <div class="row ml-1"> <!-- Отображение желаемой доолжности и города -->
+                                <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
                                 <p><?= $vacan->name ?></p>
                                 </div>    
                                 
-                                <div class="col-sm-5">
+                                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                                     <p> 
                                         <?php
                                             $c = $vacan->city_id;
@@ -138,7 +124,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                             ?>
                                     </p>
                                 </div>  
-                            </div>                 <!-- /Отображение ФИО и города-->
+                            </div>                 <!-- /Отображение даты рождения и города-->
 
                             <div class="row ml-1"> 
                                     
@@ -152,15 +138,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             </p>
                         </div>                      <!-- /Отображение дополнительной информации для соискателя -->
                     
-                    <div class="row ml-1"> <!-- кнопок действия и даты -->
+                    <div class="row ml-1 "> <!-- кнопок действия и даты -->
         
-                            <div class="col-sm-8">
+                            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                                 <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>">Подробнее</a>
                             </div>
 
                             
 
-                            <div class="col">
+                            <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                                 <p>Дата<?= $vacan->dateAdd ?></p>       
                             </div>
                     </div>
