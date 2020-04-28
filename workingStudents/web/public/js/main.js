@@ -1,19 +1,9 @@
-$(document).ready(function(){
-    $('.header').height($(window).height());
-
-
-    $('#vxod').click(function () {
-        $(".avtoriz").show();
-    });
-
-})
 
 let showPassword = document.querySelectorAll('.show-password');
 
 showPassword.forEach(item =>
     item.addEventListener('click', toggleType)
 );
-
 
 function toggleType() {
     let input = this.closest('.group').querySelector('.password');
@@ -25,5 +15,7 @@ function toggleType() {
 }
 
 
-
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 

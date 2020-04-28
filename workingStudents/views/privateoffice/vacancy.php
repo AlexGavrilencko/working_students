@@ -28,9 +28,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         $userid=$user->id;
                         $model->user_id=$userid;
                     ?>
-                    <?= $form->field($model, 'ShowOrHide')->radioList(array(0 => 'Показывать вакансию при поиске', 1 => 'Скрывать вакансию при поиске',), array('labelOptions'=>array('style'=>'display:inline'), 'separator'=>'&nbsp;&nbsp;&nbsp;</br>',)); ?>
+                    <?= $form->field($model, 'ShowOrHide')->radioList(array(0 => 'Показывать вакансию при поиске',
+                     1 => 'Скрывать вакансию при поиске',), array('labelOptions'=>array('style'=>'display:inline'),
+                      'separator'=>'&nbsp;&nbsp;&nbsp;</br>',))->label('Показать или скрыть <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                      "data-placement"=>"top", "title"=>"Хотите, чтобы ваша вакансия отображалась всем пользователям?"]); ?>
                     
-                    <?= $form->field($model, 'name')->textInput(['placeholder'=>"Введите название вакансии"]) ?>
+                    <?= $form->field($model, 'name')->textInput(['placeholder'=>"Введите название вакансии"])->label('Название вакансии <strong><big><span class="vop">?</span></big></strong>', 
+                    ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Название вакансии/должности, которую вы хотите предложить пользователю"]); ?>
                     <?php 
                         $org = Organization::find()->where(['user_id'=>$user->id])->one();
                         $city_id = Attributes::find()->where(['id'=>$org->city_id])->one();
@@ -88,9 +92,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
                             $items = ArrayHelper::map($city,'id','name');
                             $params = [
-                                'prompt' => 'Укажите город, где требуется вакансия'
+                                'prompt' => 'Город'
                             ];
-                            echo $form->field($model, 'city_id')->dropDownList($items,$params);
+                            echo $form->field($model, 'city_id')->dropDownList($items,$params)->label('Город <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                            "data-placement"=>"top", "title"=>"Укажите город"]);
                         ?>
                     <?php
                             // получаем все города из таблицы атрибутов
@@ -98,9 +103,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
                             $items = ArrayHelper::map($experience,'id','name');
                             $params = [
-                                'prompt' => 'Укажите опыт работы для данной вакансии'
+                                'prompt' => 'Опыт работы'
                             ];
-                            echo $form->field($model, 'experience_id')->dropDownList($items,$params);
+                            echo $form->field($model, 'experience_id')->dropDownList($items,$params)->label('Опыт работы <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                            "data-placement"=>"top", "title"=>"Укажите какой опыт работы нужен для вашей вакансии"]);
                         ?>
                     <?php
                             // получаем все города из таблицы атрибутов
@@ -108,9 +114,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
                             $items = ArrayHelper::map($employment,'id','name');
                             $params = [
-                                'prompt' => 'Укажите тип занятости для данной вакансии'
+                                'prompt' => 'Тип занятости'
                             ];
-                            echo $form->field($model, 'employment_id')->dropDownList($items,$params);
+                            echo $form->field($model, 'employment_id')->dropDownList($items,$params)->label('Тип занятости <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                            "data-placement"=>"top", "title"=>"Тип занятости для вакансии"]);
                         ?>
                     <?php
                             // получаем все города из таблицы атрибутов
@@ -118,11 +125,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
                             $items = ArrayHelper::map($schedule,'id','name');
                             $params = [
-                                'prompt' => 'Укажите график  работы'
+                                'prompt' => 'График  работы'
                             ];
-                            echo $form->field($model, 'schedule_id')->dropDownList($items,$params);
+                            echo $form->field($model, 'schedule_id')->dropDownList($items,$params)->label('График работы <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                            "data-placement"=>"top", "title"=>"График работы"]);
                         ?>
-                    <?= $form->field($model, 'salary')->textInput(['placeholder'=>"Введите заработную плату"]) ?>
+                    <?= $form->field($model, 'salary')->textInput(['placeholder'=>"Введите заработную плату"])->label('Заработная плата <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                            "data-placement"=>"top", "title"=>"Заработная плата"]) ?>
                     <?php
                             // получаем все города из таблицы атрибутов
                             $position = Attributes::find()->where(['type'=>'objective'])->all();
@@ -131,11 +140,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             $params = [
                                 'prompt' => 'Укажите должность'
                             ];
-                            echo $form->field($model, 'position_id')->dropDownList($items,$params);
+                            echo $form->field($model, 'position_id')->dropDownList($items,$params)->label('Должность <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                            "data-placement"=>"top", "title"=>"Должность"]);
                         ?>
-                    <?= $form->field($model, 'duties')->textInput(['placeholder'=>"Введите обязанности"]) ?>
-                    <?= $form->field($model, 'requirement')->textInput(['placeholder'=>"Введите требования"]) ?>
-                    <?= $form->field($model, 'conditions')->textInput(['placeholder'=>"Введите условия"]) ?>
+                    <?= $form->field($model, 'duties')->textInput(['placeholder'=>"Введите обязанности"])->label('Обязанности <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                            "data-placement"=>"top", "title"=>"Обязанности"]) ?>
+                    <?= $form->field($model, 'requirement')->textInput(['placeholder'=>"Введите требования"])->label('Требования <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                            "data-placement"=>"top", "title"=>"Требования "]) ?>
+                    <?= $form->field($model, 'conditions')->textInput(['placeholder'=>"Введите условия"])->label('Условия <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                            "data-placement"=>"top", "title"=>"Условия"]) ?>
                     <?php
                             // получаем все города из таблицы атрибутов
                             $category = Attributes::find()->where(['type'=>'category'])->all();
@@ -144,7 +157,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             $params = [
                                 'prompt' => 'Укажите профобласть'
                             ];
-                            echo $form->field($model, 'category_id')->dropDownList($items,$params);
+                            echo $form->field($model, 'category_id')->dropDownList($items,$params)->label('Профобласть <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                            "data-placement"=>"top", "title"=>"Профобласть к которой отностится вакансия"]);
                         ?>
                     <?= $form->field($model, 'WorkOrPractice')->radioList(array(0 => 'Предложение по работе', 1 => 'Предложение по практике',), array('labelOptions'=>array('style'=>'display:inline'), 'separator'=>'&nbsp;&nbsp;&nbsp;</br>',)); ?>
                     <div class="row justify-content-center">

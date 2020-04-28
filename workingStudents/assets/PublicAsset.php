@@ -21,6 +21,7 @@ class PublicAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css",
+        "https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css",
         "public/css/style.css"
     ];
     public $js = [
