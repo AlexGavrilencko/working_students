@@ -43,9 +43,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <?= $form->field($model, 'ShowOrHide')->radioList(array(0 => 'Показывать резюме при поиске', 1 => 'Скрывать резюме при поиске',), array('labelOptions'=>array('style'=>'display:inline'), 'separator'=>'&nbsp;&nbsp;&nbsp;</br>',)); ?>
    
-                        <?= $form->field($model, 'name')->textInput() ?>
-
                         <?= $form->field($model, 'surname')->textInput() ?>
+                        
+                        <?= $form->field($model, 'name')->textInput() ?>
 
                         <?= $form->field($model, 'patronymic')->textInput() ?>
                         

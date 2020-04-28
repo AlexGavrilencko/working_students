@@ -76,8 +76,12 @@ class SiteController extends Controller
         $this->layout = 'home';
         
         $category=Attributes::find()->where(['type'=>'category'])->all();
+
+        $organizations = Organization::find()->orderBy('RAND()')->limit(8)->all();
+
 		return $this->render('index',[
 			'category'=>$category,
+            'organizations' => $organizations
 		]);
     }
 

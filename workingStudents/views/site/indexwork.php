@@ -13,130 +13,52 @@ use yii\helpers\Url;
 $this->title = 'Главная';
 
 ?>
-<div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
-    <div class="row">
-        <div class="col-sm-3 text-center"> 
+
+        <div class="row">
+            <h1 class="text_indexwork"><strong>Разместить</strong></h1>
         </div>
-
-        <div class="col-sm-6 text-center"> 
-            <h3>Резюме соискателей</h3>
+        <div class="row">
+            <h1 class="btn_iw" style="font-size: 7vw;"><strong>первую вакансию</strong></h1>
         </div>
-    </div>
-</div>
-
-<div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
-<div class="row">
-        <div class="col-sm-3"> 
-             <!-- расширенный поиск -->
-        </div>
-
-
-    <div class="col-sm-6">  
-     <!-- здесь начинается цикл для отображения -->
-     <?php
-        //$org таблица организация
-        //$atr таблица со всеми справочниками
-        //$catvac все вакансии выбранной категории
-        foreach ($resume as $resum)
-        : 
-        if ($resum->ShowOrHide===0){
-        //var_dump($resum);die();
-	    //echo $tagg;
-	    //$post=$vacan->article_id;
-	    //foreach ($article as $articles)
-		//: 
-		//if ($post===$articles->id){ ?>
-        <div class="border_search">    
-            <!-- результаты поиска -->
             <div class="row">
-                <div class="col-sm-3">
-                    <!-- для изображения -->
-                    <?php
-                     if($resum->image): ?>
-                                <img class="searchavatar" src="/uploads/<?= $resum->image?>" alt="">
-                    <?php endif; ?>
-                   
+                <a href="/auth/login" class="btn btn-secondary btn-lg btn_iw">Разместить вакансию</a>
+            </div>
+            
+                <div class="row" style="margin-left: 13%; margin-top: 15%; margin-right: 3%">
+                    <div class="col-sm">
+                        <img class="img_iw" src="/public/img/Work_1.jpg" alt="">
+                    </div>
+                    <div class="col-sm">
+                        <p style="font-size: 2.5vw; margin-top: 15%;"><strong>Вам будут доступны<br> резюме</strong></p>
+                    </div>
                 </div>
-                <div class="col-sm-9 ">
-                    <!-- для описания -->
-                        <div class="row">
-                            <div class="col-12 col-md-8">
-                            <!-- ФИО -->
-                                <p><?= $resum->name ?> <?= $resum->surname ?></p> <!-- имя и фамилия подгрузка из базы -->
-                            </div>
 
-                            <div class="col-6 col-sm-4">
-                                <a href="<?= Url::toRoute(['site/selectedR', 'id'=>$resum->id]); ?>">В избранное</a> <!-- кнопка для сохранения вакансии в избранное-->
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-12 col-md-8">
-                                <p>    <!-- Город $resum->city_id подгрузка из базы -->
-                                    <?php
-                                        $c = $resum->city_id;
-                                        $city = Attributes::find()->where(['id'=>$c])->one();
-                                        
-                                        $obj=$resum->CareerObjective_id;
-                                        
-                                        $object = Attributes::find()->where(['id'=>$obj])->one();
-                                        $city = $resum->city_id;
-
-                                            if ($city == NULL)
-                                            {
-                                                echo 'Не указано';
-                                            }
-
-                                            else echo $city->name;
-
-                                            //else echo $city;
-
-                                    ?>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <p><?= $resum->dateBirth ?></p> <!-- дата рождения подгрузка из базы -->
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <p><?= $object->name ?></p> <!-- Желаемая должность CareerObjective_id подгрузка из базы -->
-                                <p><?= $resum->CareerObjective_id ?></p> <!-- Желаемая должность CareerObjective_id подгрузка из базы -->
-                                
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <p><?= $resum->skills ?></p> <!-- навыки skills подгрузка из базы -->
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12 col-sm-8">
-                            <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>">Подробнее</a> <!-- кнопка для перехода на страницу данной вакансии и сохранение вакансии в просмотренное -->
-                            </div>
-
-                            <div class="col-6 col-sm-4">
-                                <p><?= $resum->dateAdd ?></p> <!-- дата подгрузка из базы -->
-
-                                <p><?= $vacan->dateAdd ?></p> <!-- дата подгрузка из базы -->
-
-                            </div>
-                        </div>
+                <div class="row" style="margin-left: 13%; margin-right: 3%">
+                    <div class="col-sm">
+                        <p style="font-size: 2.5vw; margin-top: 15%;"><strong>Ваша вакансия будет<br> видна всем 
+                        пользователям</strong></p>
+                    </div>
+                    <div class="col-sm">
+                        <img class="img_iw" src="/public/img/Work_2.jpg" alt="">
+                    </div>
                 </div>
-            </div>   
-        </div>
-        <?php  }; ?>
-        <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
-    </div>
-</div> 
-</div> 
 
+
+                <div class="row" style="margin-left: 13%; margin-bottom: 5%; margin-right: 3%">
+                    <div class="col-sm">
+                        <img class="img_iw" src="/public/img/Work_3_1.jpg" alt="">
+                    </div>
+                    <div class="col-sm">
+                        <p style="font-size: 2.5vw; margin-top: 15%;"><strong>На Workind Students<br> могут 
+                        зарегистрироваться <br>как крупные, так и<br> маленькие компании</strong></p>
+                    </div>
+                </div>
+
+                    <div class="row justify-content-center" style=" margin-bottom: 5%;">
+                        <a href="/auth/login" class="btn btn-secondary btn-lg">Разместить вакансию</a>
+                    </div>
+                
         
 
 

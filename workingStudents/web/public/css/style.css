@@ -136,7 +136,52 @@ svg text {
 /*/a__________________________________________________________*/
 
 /*b___________________________________________________________*/
-  /* стиль для кнопки зеленого цвета */
+  /* Главная страница */
+/* стиль при наведении для кнопки категории зеленого цвета */
+.btngreen_k:hover{
+  color: #5FEB3B;
+  border-color: #5FEB3B;
+}
+/* стиль для кнопки категории зеленого цвета */
+.btngreen_k{
+  color: #41A128;
+  border-color: #2DD700;
+}
+/* стиль для кнопки голубого цвета */
+.btnblue{
+  color: #1D7074;
+  border-color: #01939A;
+}
+/* стиль при наведении для кнопки голубого цвета */
+.btnblue:hover{
+  color: #34C6CD;
+  border-color: #34C6CD;
+}
+ /* стиль для кнопки оранжевого цвета */
+ .btnorange{
+  color: #BF9630;
+  border-color: #FFB600;
+}
+/* стиль при наведении для кнопки оранжевого цвета */
+.btnorange:hover{
+  color: #FFC840;
+  border-color: #FFC840;
+}
+ /* стиль для кнопки фиолетового цвета */
+ .btnpurple{
+  color: #313186;
+  border-color: #1B1BB3;
+}
+/* стиль при наведении для кнопки фиолетовогоцвета */
+.btnpurple:hover{
+  color: #4F4FD9;
+  border-color: #4F4FD9;
+}
+
+
+/* /Главная страница */
+
+/* стиль для кнопки зеленого цвета */
   .btngreen{ 
     color: #9dbb19;
     border-color: #9dbb19;
@@ -150,16 +195,6 @@ svg text {
     border-color: #9dbb19;
   }
  
-  /* стиль при наведении для кнопки категории зеленого цвета */
-  .btngreen_k:hover{
-    color: #3d3d3b;
-    border-color: #3d3d3b;
-  }
-  /* стиль для кнопки категории зеленого цвета */
-  .btngreen_k{
-    color: #08c408;
-    border-color: #08c408;
-  }
   /* стиль при наведении для кнопки зеленого цвета */
   .btngreen:hover{ 
     color: #a3071e;
@@ -169,26 +204,7 @@ svg text {
     color: #a3071e;
     border-color: #a3071e;
   }
-  /* стиль для кнопки темно-фиолетового цвета */
-  .btnred{
-    color: #22beb1;
-    border-color: #22beb1;
-  }
-  /* стиль при наведении для кнопки темно-фиолетового цвета */
-  .btnred:hover{
-    color: #a3071e;
-    border-color: #a3071e;
-  }
-  /* стиль для кнопки оранжевого цвета */
-  .btnorange{
-    color: #d46619;
-    border-color: #d46619;
-  }
-  /* стиль при наведении для кнопки оранжевого цвета */
-  .btnorange:hover{
-    color: #3d3d3b;
-    border-color: #3d3d3b;
-  }
+  
   /* стиль для скругления элементов */
   .btn-rounded{
     border-radius: 10px;
@@ -202,7 +218,7 @@ svg text {
   }
   /* стиль для фона вакансий и резюме в маленьком окне*/
   .border_search{
-    background-color: #eff3db69;
+    background-color: #eff3db1c;
     border: 2px solid;
     border-color: #9dbb19;
     border-radius: 10px;
@@ -235,9 +251,7 @@ svg text {
     background-color: #691c3a15;
     border: 2px solid;
     border-color: #e60d60cc;
-    border-radius: 10px;
-    padding-top: 2%;
-    margin-bottom: 2%;
+    padding: 3%;
   }
 
   .border_project{
@@ -249,12 +263,7 @@ svg text {
     padding: 1% 1% 1% 1%;
     margin-bottom: 2%;
   }
-  .project_img{
-   width: 50%;
-   height: 50%;
-   border-radius: 50%; /* Радиус скругления */
-   box-shadow: 0 0 0 3px #173955, 0 0 13px #333; /* Параметры теней */
-  }
+
   /* стиль для фона расширенного поиска*/
   .border_advanced_search{
     width: 100%;
@@ -263,15 +272,29 @@ svg text {
     border-color: #9dbb19;
     border-radius: 10px;
   }
+
+  .border_search_resume{
+    width: 100%;
+    background-color: #22beb16e;
+    padding: 2%;
+  }
+
   body {
     display: flex;
     flex-direction: column;
+    font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */ 
   }
   .blok_information{
     margin-left: 2%;
   }
   /* задаем относительное позиционирование контейнеру */
   .block{position:relative;}
+
+  .btn_iw{
+    margin-left: 15%;
+  }
+
+
 /*/b___________________________________________________________*/
 
 /*c____________________________________________________________*/
@@ -283,10 +306,17 @@ svg text {
     background-size: cover;
     background-position: center;
   }
+  .content1 {
+    flex: 1 0 auto;
+    background: url(/public/img/fon_work.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
   .compsearchavatar {
+    box-shadow: 0 0 0 2px #22beb16e, 0 0 13px #333; /* Параметры теней */
     width: 70%;
-    margin-left: 15%;
-    margin-bottom: 15%;
+    margin-left: 5%;
   }
 /*/c___________________________________________________________*/
 
@@ -295,6 +325,12 @@ svg text {
   .darkwindow{ 
     background-color: #0b0a0b;
   }
+
+  .documentswindow{
+    background-color: #c9c6c946;
+    border-radius: 10px;
+  }
+
   .darkwindow1{ 
     background-color: #d5d6d6;
     width: 80%;
@@ -308,6 +344,7 @@ svg text {
   /* стиль для цвета footer*/
   .dark{
     background-color: #161616;
+    padding: 1%;
   }
   .dropDownList{
     width: 100%;
@@ -341,11 +378,18 @@ svg text {
 /*h____________________________________________________________*/
   /* стиль для фоновой картинки главной страницы */
   .header{ 
-    background-image: url(/public/img/l.jpg);
+    background-image: url(/public/img/main_image.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    height: 80%!important;
+  }
+  .header2{ 
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
   }
+
   /* стиль для фоновой картинки страниц регистрации и авторизации */
   .header1{ 
     flex: 1 0 auto;
@@ -356,12 +400,14 @@ svg text {
     }
     /* стиль для размера окна */
   .hh-100{
-    height: 91%!important;
+    height: 90%!important;
   }
   /*Для прикрепления подвала к низу страницы начало*/
   html, body {
     height: 100%;
   }
+
+  
   /*Для прикрепления подвала к низу страницы конец*/
   /* Оформление скрытого элемента по умолчанию */ 
   .hidden{
@@ -391,12 +437,17 @@ svg text {
     border-color: #d6f054 transparent transparent transparent;
     z-index: 2;
   }
+  .heard{
+    width: 100%;
+  }
   /* Появление скрытого элемента при наведении */
   .hover:hover + .hidden{display: block;}
 /*/h___________________________________________________________*/
 
 /*i____________________________________________________________*/
-
+.img_iw{
+  width: 60%;
+}
 /*/i___________________________________________________________*/
 
 /*j____________________________________________________________*/
@@ -414,17 +465,15 @@ svg text {
   }
   /* стиль для логотипа подвала */
   #logofooter{
-    width: 17%;
+    width: 13%;
   }
   /*для отображения фотографии в личном кабинете*/
   .logo_user{
     width: 30%;
-    border-radius: 50%; /* Радиус скругления */
-    box-shadow: 0 0 0 3px #9dbb19, 0 0 13px #333; /* Параметры теней */
+    box-shadow: 0 0 0 1px #9dbb19, 0 0 13px #333; /* Параметры теней */
   }
   .logo_user1{
     width: 20%;
-    border-radius: 50%; /* Радиус скругления */
     box-shadow: 0 0 0 1px #22beb1, 0 0 13px #333; /* Параметры теней */
   }
   li {
@@ -521,6 +570,12 @@ svg text {
 
   }
   .project_img{
+    width: 50%;
+    height: 50%;
+    border-radius: 50%; /* Радиус скругления */
+    box-shadow: 0 0 0 3px #173955, 0 0 13px #333; /* Параметры теней */
+   }
+  .project_img{
     height: 30%;
     
     border-radius: 50%; /* Радиус скругления */
@@ -542,10 +597,9 @@ svg text {
 /*s____________________________________________________________*/
   /* стиль для аватарки в поиске и избранном/просмотренном */
   .searchavatar{
-    border-radius: 50%; /* Радиус скругления */
     box-shadow: 0 0 0 2px #c9105abb, 0 0 13px #333; /* Параметры теней */
-    width: 45%;
-    margin-left: 20%;
+    width: 70%;
+    margin-left: 5%;
   }
   .size_txt{
     font-size: 20px;
@@ -577,7 +631,12 @@ svg text {
 }
 .trashcan{
   width: 30%;
+}
 
+.text_indexwork{
+  margin-left: 15%;
+  margin-top: 12%;
+  font-size: 7vw;
 }
 /*/t___________________________________________________________*/
 
@@ -590,7 +649,9 @@ svg text {
 /*/v___________________________________________________________*/
 
 /*w____________________________________________________________*/
-
+.widht_search_resume{
+  width: 100%;
+}
 /*/w___________________________________________________________*/
 
 /*x____________________________________________________________*/
