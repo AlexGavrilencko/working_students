@@ -12,6 +12,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+use app\models\ArtCategory;
 
 /**
  * ArticleController implements the CRUD actions for article model.
@@ -161,5 +162,27 @@ class ArticleController extends Controller
 			'selectedTags'=>$selectedTags,
 			'tags'=>$tags
 		]);
-	}
+    }
+    
+    public function actionSetCategory($id)
+    {
+        $article = $this->findModel($id);
+        $selectedCategory = $article->category->id;
+        $categories = ArrayHelper::map(ArtCategory::find()->all(), 'id', 'title');
+
+        if(Yii::$app->request->isPost)
+        {
+            $category = Yii::$app->request->post('category');
+            if($article->saveCategory($category))
+            {
+                return $this->redirect(['view', 'id'=>$article->id]);
+            }
+        }
+
+        return $this->render('category', [
+            'article'=>$article,
+            'selectedCategory'=>$selectedCategory,
+            'categories'=>$categories
+        ]);
+    }
 }

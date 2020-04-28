@@ -156,6 +156,28 @@ class Article extends \yii\db\ActiveRecord
 		return $data;
 	}
 
+	
+
+    public function saveCategory($category_id)
+    {
+        $category = ArtCategory::findOne($category_id);
+        if($category != null)
+        {
+            $this->link('category', $category);
+            return true;            
+        }
+	}
+	public function getDate()
+    {
+        return Yii::$app->formatter->asDate($this->date);
+	}
+	
+	public function viewedCounter()
+    {
+        $this->viewed += 1;
+        return $this->save(false);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

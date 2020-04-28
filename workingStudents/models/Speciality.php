@@ -50,6 +50,11 @@ class Speciality extends \yii\db\ActiveRecord
         ];
     }
 
+    public function create()
+    {
+        return $this->save(false);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

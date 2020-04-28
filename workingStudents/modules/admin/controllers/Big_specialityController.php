@@ -4,6 +4,7 @@ namespace app\modules\admin\controllers;
 
 use Yii;
 use app\models\bigSpeciality;
+use app\models\Speciality;
 use app\models\Big_specialitySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;

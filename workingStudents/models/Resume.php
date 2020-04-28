@@ -47,11 +47,10 @@ class Resume extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'city_id', 'personalQualities_id', 'CareerObjective_id', 'ShowOrHide'], 'integer'],
+            [['user_id', 'city_id', 'CareerObjective_id', 'ShowOrHide','viewed'], 'integer'],
             [['dateBirth', 'dateAdd', 'dateChanges'], 'safe'],
-            [['skills', 'addinform'], 'string'],
+            [['skills', 'addinform','personalQualities'], 'string'],
             [['name', 'surname', 'patronymic', 'image', 'response'], 'string', 'max' => 255],
-            [['personalQualities_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['personalQualities_id' => 'id']],
             [['CareerObjective_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['CareerObjective_id' => 'id']],
             [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['city_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -73,7 +72,7 @@ class Resume extends \yii\db\ActiveRecord
             'dateBirth' => 'Дата рождения',
             'image' => 'Фото',
             'skills' => 'Навыки',
-            'personalQualities_id' => 'Персональные качества',
+            'personalQualities' => 'Персональные качества',
             'CareerObjective_id' => 'Желаемая должность',
             'dateAdd' => 'Дата добавления',
             'dateChanges' => 'Дата редактирования',
@@ -110,6 +109,17 @@ class Resume extends \yii\db\ActiveRecord
         $imageUploadModel = new ImageUpload();
         $imageUploadModel->deleteCurrentImage($this->image);
     }
+
+    public function viewedCounter()
+    {
+        $this->viewed += 1;
+        return $this->save(false);
+    }
+
+    public function getDate()
+    {
+        return Yii::$app->formatter->asDate($this->dateAdd);
+	}
 
     /**
      * @return \yii\db\ActiveQuery

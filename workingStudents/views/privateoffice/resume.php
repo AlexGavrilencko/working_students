@@ -62,28 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             echo $form->field($model, 'city_id')->dropDownList($items,$params);
                         ?>
 
-                        <?php
-                           // echo DatePicker::widget([
-                            //    'model' => $model,
-                            //    'name' => 'dateBirth' ,  
-                            //    'type' => DatePicker :: TYPE_COMPONENT_APPEND ,  
-                            //    'value' => '' ,  
-                            //    'pluginOptions' => [  
-                            //        'autoclose' => true ,
-                            //        'format' => 'dd-M-yyyy'  
-                            //    ]
-                            //]);
-
-                            // получаем все города из таблицы атрибутов
-                            $qualities = Attributes::find()->where(['type'=>'qualities'])->all();
-                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                            $items = ArrayHelper::map($qualities,'id','name');
-                            $params = [
-                                'multiple' => 'true'
-                            ];
-                            echo $form->field($model, 'personalQualities_id')->dropDownList($items,$params);
-                        
-                        ?>
+                        <?= $form->field($model, 'personalQualities')->textInput() ?>
                         
                         <?php
                             // получаем все города из таблицы атрибутов

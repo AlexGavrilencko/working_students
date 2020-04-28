@@ -102,6 +102,16 @@ class Vacancy extends \yii\db\ActiveRecord
     {
         return $this->save(false);
     }
+    public function viewedCounter()
+    {
+        $this->viewed += 1;
+        return $this->save(false);
+    }
+
+    public function getDate()
+    {
+        return Yii::$app->formatter->asDate($this->dateAdd);
+	}
 
     /**
      * @return \yii\db\ActiveQuery

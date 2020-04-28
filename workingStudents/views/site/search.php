@@ -16,12 +16,12 @@ use yii\widgets\ActiveForm;
 $this->title = 'Поиск';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<<<<<<< HEAD
+
 <?= ListView::widget([
     'dataProvider'=>$dataProvider,
 
 ])?>
-=======
+
 <script>
     function disp(div) {
         if (div.style.display == "none") {
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     ?>
                                     
                                 </div>
->>>>>>> f4d86ca36502376f976771f3a4c1f93a668a27e2
+
 
                                 <div class="col"> <!-- Ввод зарплаты -->
                                     <input class="form-control btn-none " type="search" placeholder="Зарплата от">
@@ -75,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <input class="form-control btn-none " type="search" placeholder="Профессия">
                                 </div>
 
-<<<<<<< HEAD
+
             <?php  ?>
                 <?php ActiveForm::end();?>
                     <?php Pjax::end(); ?> 
@@ -115,14 +115,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                         if($organization->image): ?>
                                                     <img class="searchavatar" src="/uploads/<?= $organization->image?>" alt="">
                                         <?php endif; ?>
-=======
+
                                 <div class="col"> <!-- Кнопка для поиска -->
                                     <input type="button" class="btn btn-secondary" value="Еще фильтры" onclick="disp(document.getElementById('form1'))" />
                                 </div>
 
                                 <div class="col"> <!-- Кнопка для поиска -->
                                     <button type="submit" class="btn btn-secondary">Найти</button>
->>>>>>> f4d86ca36502376f976771f3a4c1f93a668a27e2
+
                                 </div>
                             </div>
                         </div>

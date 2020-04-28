@@ -40,10 +40,17 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Home', 'url' => ['/admin/default/index']],
             ['label' => 'Пользователи', 'url' => ['/admin/user/index']],
+            ['label' => 'Организации', 'url' => ['/admin/organization/index']],
 			['label' => 'Статьи', 'url' => ['/admin/article/index']],
 			['label' => 'Тэги', 'url' => ['/admin/tag/index']],
 			['label' => 'Категории статей', 'url' => ['/admin/art_category/index']],
             ['label' => 'Атрибуты', 'url' => ['/admin/attributes/index']],
+            ['label' => 'Специальность по ОКСО', 'url' => ['/admin/big_speciality/index']],
+            ['label' => 'Специальность', 'url' => ['/admin/speciality/index']],
+            ['label' => 'Профстандарт', 'url' => ['/admin/profstand/index']],
+            ['label' => 'Категории профстандартов', 'url' => ['/admin/category_profstand/index']],
+            ['label' => 'Должность', 'url' => ['/admin/position/index']],
+            ['label' => 'Соединение специальностей и профстандарта', 'url' => ['/admin/special_profstand/index']],
             Yii::$app->user->isGuest ? (
             ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
