@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Tag', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Tag', ['create'], ['class' => 'btn  btn-secondary']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

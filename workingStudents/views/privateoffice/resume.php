@@ -41,13 +41,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                 <br>
 
-                        <?= $form->field($model, 'ShowOrHide')->radioList(array(0 => 'Показывать резюме при поиске', 1 => 'Скрывать резюме при поиске',), array('labelOptions'=>array('style'=>'display:inline'), 'separator'=>'&nbsp;&nbsp;&nbsp;</br>',)); ?>
+                        <?= $form->field($model, 'ShowOrHide')->radioList(array(0 => 'Показывать резюме при поиске', 1 => 
+                        'Скрывать резюме при поиске',), array('labelOptions'=>array('style'=>'display:inline'), 
+                        'separator'=>'&nbsp;&nbsp;&nbsp;</br>',))->label('Показать или скрыть <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                        "data-placement"=>"top", "title"=>"Хотите, чтобы ваше резюме отображалась всем пользователям?"]);; ?>
    
-                        <?= $form->field($model, 'surname')->textInput() ?>
+                        <?= $form->field($model, 'surname')->textInput(['placeholder'=>"Ваша фамилия"]) ?>
                         
-                        <?= $form->field($model, 'name')->textInput() ?>
+                        <?= $form->field($model, 'name')->textInput(['placeholder'=>"Ваше имя"]) ?>
 
-                        <?= $form->field($model, 'patronymic')->textInput() ?>
+                        <?= $form->field($model, 'patronymic')->textInput(['placeholder'=>"Ваше отчество"]) ?>
                         
                         <?php
                             $user = Yii::$app->user->identity;
@@ -57,22 +60,25 @@ $this->params['breadcrumbs'][] = $this->title;
                             // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
                             $items = ArrayHelper::map($city,'id','name');
                             $params = [
-                                'prompt' => 'Укажите город'
+                                'prompt' => 'Город'
                             ];
-                            echo $form->field($model, 'city_id')->dropDownList($items,$params);
+                            echo $form->field($model, 'city_id')->dropDownList($items,$params)->label('Город <strong><big><span class="vop">
+                            ?</span></big></strong>', ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Укажите город проживания"]);
                         ?>
 
-                        <?= $form->field($model, 'personalQualities')->textInput() ?>
-                        
+                        <?= $form->field($model, 'personalQualities')->textInput()->label('Персональные качества <strong><big><span class="vop">
+                            ?</span></big></strong>', ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Перечислите ваши персональные качества"]) ?>
+                        <p class="">Примеры: самостоятельность, стрессоустойчивость, ответственность, внимательность...</p>
                         <?php
                             // получаем все города из таблицы атрибутов
                             $objective = Attributes::find()->where(['type'=>'objective'])->all();
                             // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
                             $items = ArrayHelper::map($objective,'id','name');
                             $params = [
-                                'prompt' => 'Укажите желаемую должность'
+                                'prompt' => 'Желаемая должность'
                             ];
-                            echo $form->field($model, 'CareerObjective_id')->dropDownList($items,$params);
+                            echo $form->field($model, 'CareerObjective_id')->dropDownList($items,$params)->label('Желаемая должность <strong><big><span class="vop">
+                            ?</span></big></strong>', ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Выберете желаемую должность"]);
                         
                         ?>
 
@@ -89,10 +95,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <p>№</p>
                                     </div>
                                     <div class="col">
-                                        <p>Дата начала</p>
-                                    </div>
-                                    <div class="col">
-                                        <p>Дата окончания</p>
+                                        <p>Количество лет</p>
                                     </div>
                                     <div class="col">
                                         <p>Образование\работа</p>
@@ -120,9 +123,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                         </div>
                                         <div class="col">
                                             <p><?=$exp->dateStart?></p>
-                                        </div>
-                                        <div class="col">
-                                            <p><?=$exp->dateEnd?></p>
                                         </div>
                                         <div class="col">
                                             <p>

@@ -22,8 +22,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'bigspeciality_id') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton('Search', ['class' => 'btn btn-secondary']) ?>
+        <?= Html::resetButton('Reset', ['class' => 'btn btn-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

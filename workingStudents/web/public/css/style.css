@@ -670,6 +670,29 @@ svg text {
  
 
 
+.logoadmin{
+  width: 100%;
+}
+
+.footeradmin{
+  height: 60px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  padding: 1%;
+
+}
+
+.wrap {
+  min-height: 100%;
+  flex: 1 0 auto;
+  background: url(/public/img/fonadmin.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+
+}
+
+
 
 
 

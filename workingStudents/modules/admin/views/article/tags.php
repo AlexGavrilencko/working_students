@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
 	<?= Html::dropDownList('tags', $selectedTags, $tags, ['class'=>'form-control', 'multiple'=>true]) ?>
 
 	<div class="form-group">
-		<?= Html::submitButton('Submit', ['class' => 'btn btn-success']) ?>
+		<?= Html::submitButton('Submit', ['class' => 'btn btn-secondary']) ?>
 	</div>
 
 	<?php ActiveForm::end(); ?>

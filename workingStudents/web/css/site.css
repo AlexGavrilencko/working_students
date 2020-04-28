@@ -113,3 +113,16 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+
+.logoadmin{
+    width: 50%;
+  }
+
+  .content {
+    flex: 1 0 auto;
+    background: url(/public/img/fonadmin.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
