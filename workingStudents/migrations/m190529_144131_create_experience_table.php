@@ -17,7 +17,7 @@ class m190529_144131_create_experience_table extends Migration
             'resume_id' => $this->integer(),// резюме
             'years' => $this->integer(),//дата начала
             'StudyOrWork' => $this->boolean(),// флаг работа или учеба
-            'nameOrganiz_id' => $this->integer(),// организация
+            'nameOrganiz' => $this->string(),// организация
             'speciality_id' => $this->integer(),// специальность
             'description' => $this->text()->defaultValue(null)// описание
         ]);

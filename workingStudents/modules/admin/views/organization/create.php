@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Organization */
+/* @var $model app\models\organization */
 
 $this->title = 'Create Organization';
 $this->params['breadcrumbs'][] = ['label' => 'Organizations', 'url' => ['index']];

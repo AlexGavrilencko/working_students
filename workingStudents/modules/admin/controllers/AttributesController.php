@@ -3,14 +3,14 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Attributes;
+use app\models\attributes;
 use app\models\AttributesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AttributesController implements the CRUD actions for Attributes model.
+ * AttributesController implements the CRUD actions for attributes model.
  */
 class AttributesController extends Controller
 {
@@ -30,7 +30,7 @@ class AttributesController extends Controller
     }
 
     /**
-     * Lists all Attributes models.
+     * Lists all attributes models.
      * @return mixed
      */
     public function actionIndex()
@@ -45,7 +45,7 @@ class AttributesController extends Controller
     }
 
     /**
-     * Displays a single Attributes model.
+     * Displays a single attributes model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class AttributesController extends Controller
     }
 
     /**
-     * Creates a new Attributes model.
+     * Creates a new attributes model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Attributes();
+        $model = new attributes();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class AttributesController extends Controller
     }
 
     /**
-     * Updates an existing Attributes model.
+     * Updates an existing attributes model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class AttributesController extends Controller
     }
 
     /**
-     * Deletes an existing Attributes model.
+     * Deletes an existing attributes model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class AttributesController extends Controller
     }
 
     /**
-     * Finds the Attributes model based on its primary key value.
+     * Finds the attributes model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Attributes the loaded model
+     * @return attributes the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Attributes::findOne($id)) !== null) {
+        if (($model = attributes::findOne($id)) !== null) {
             return $model;
         }
 

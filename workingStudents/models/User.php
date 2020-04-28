@@ -1,10 +1,9 @@
 <?php
 
 namespace app\models;
-
-use Yii;
 use yii\web\IdentityInterface;
 use \yii\db\ActiveRecord;
+use Yii;
 
 /**
  * This is the model class for table "user".
@@ -18,6 +17,8 @@ use \yii\db\ActiveRecord;
  * @property int $rang
  * @property string $auth_key
  *
+ * @property Article[] $articles
+ * @property Organization[] $organizations
  * @property Project[] $projects
  * @property Response[] $responses
  * @property Resume[] $resumes
@@ -61,8 +62,6 @@ class User extends ActiveRecord implements IdentityInterface
             'auth_key' => 'Auth Key',
         ];
     }
-
-    
 
     public static function findIdentity($id)
     {
@@ -134,6 +133,22 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $imageUploadModel = new ImageUpload();
         $imageUploadModel->deleteCurrentImage($this->image);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getArticles()
+    {
+        return $this->hasMany(Article::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrganizations()
+    {
+        return $this->hasMany(Organization::className(), ['user_id' => 'id']);
     }
 
     /**

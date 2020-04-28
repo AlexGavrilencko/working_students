@@ -14,8 +14,9 @@ class m200318_032837_create_speciality_table extends Migration
     {
         $this->createTable('{{%speciality}}', [
             'id' => $this->primaryKey(),
-            'code' => $this->string(), 
-            'name' => $this->string(),
+            'code' => $this->string(), //код специальности типо 09.02.09
+            'name' => $this->string(), //наименование
+            'bigspecial_id' => $this->integer() // ид укрупненной группы
         ]);
     }
 

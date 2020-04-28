@@ -13,9 +13,9 @@ use Yii;
  * @property int $resume_id
  * @property int $ViewOrSelect
  *
- * @property Vacancy $vacancy
  * @property Resume $resume
  * @property User $user
+ * @property Vacancy $vacancy
  */
 class Scanned extends \yii\db\ActiveRecord
 {
@@ -34,9 +34,9 @@ class Scanned extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'vacancy_id', 'resume_id', 'ViewOrSelect'], 'integer'],
-            [['vacancy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vacancy::className(), 'targetAttribute' => ['vacancy_id' => 'id']],
             [['resume_id'], 'exist', 'skipOnError' => true, 'targetClass' => Resume::className(), 'targetAttribute' => ['resume_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['vacancy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vacancy::className(), 'targetAttribute' => ['vacancy_id' => 'id']],
         ];
     }
 
@@ -54,21 +54,10 @@ class Scanned extends \yii\db\ActiveRecord
         ];
     }
 
-
-
     public function create()
     {
         $this->save();
         return $this;
-    }
-
-    
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getVacancy()
-    {
-        return $this->hasOne(Vacancy::className(), ['id' => 'vacancy_id']);
     }
 
     /**
@@ -85,5 +74,13 @@ class Scanned extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVacancy()
+    {
+        return $this->hasOne(Vacancy::className(), ['id' => 'vacancy_id']);
     }
 }

@@ -11,13 +11,12 @@ use Yii;
  * @property int $resume_id
  * @property int $years
  * @property int $StudyOrWork
- * @property int $nameOrganiz_id
+ * @property string $nameOrganiz
  * @property int $speciality_id
  * @property string $description
  *
- * @property Attributes $speciality
- * @property Organization $nameOrganiz
  * @property Resume $resume
+ * @property Speciality $speciality
  */
 class Experience extends \yii\db\ActiveRecord
 {
@@ -35,11 +34,11 @@ class Experience extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['resume_id', 'years', 'StudyOrWork', 'nameOrganiz_id', 'speciality_id'], 'integer'],
+            [['resume_id', 'years', 'StudyOrWork', 'speciality_id'], 'integer'],
             [['description'], 'string'],
-            [['speciality_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['speciality_id' => 'id']],
-            [['nameOrganiz_id'], 'exist', 'skipOnError' => true, 'targetClass' => Organization::className(), 'targetAttribute' => ['nameOrganiz_id' => 'id']],
+            [['nameOrganiz'], 'string', 'max' => 255],
             [['resume_id'], 'exist', 'skipOnError' => true, 'targetClass' => Resume::className(), 'targetAttribute' => ['resume_id' => 'id']],
+            [['speciality_id'], 'exist', 'skipOnError' => true, 'targetClass' => Speciality::className(), 'targetAttribute' => ['speciality_id' => 'id']],
         ];
     }
 
@@ -53,7 +52,7 @@ class Experience extends \yii\db\ActiveRecord
             'resume_id' => 'Resume ID',
             'years' => 'Years',
             'StudyOrWork' => 'Study Or Work',
-            'nameOrganiz_id' => 'Name Organiz ID',
+            'nameOrganiz' => 'Name Organiz',
             'speciality_id' => 'Speciality ID',
             'description' => 'Description',
         ];
@@ -68,24 +67,16 @@ class Experience extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSpeciality()
-    {
-        return $this->hasOne(Attributes::className(), ['id' => 'speciality_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getNameOrganiz()
-    {
-        return $this->hasOne(Organization::className(), ['id' => 'nameOrganiz_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getResume()
     {
         return $this->hasOne(Resume::className(), ['id' => 'resume_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSpeciality()
+    {
+        return $this->hasOne(Speciality::className(), ['id' => 'speciality_id']);
     }
 }

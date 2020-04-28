@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Attributes */
+/* @var $model app\models\attributes */
 
 $this->title = 'Create Attributes';
 $this->params['breadcrumbs'][] = ['label' => 'Attributes', 'url' => ['index']];

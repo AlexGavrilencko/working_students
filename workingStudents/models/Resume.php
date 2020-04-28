@@ -17,17 +17,16 @@ use Yii;
  * @property string $image
  * @property string $skills
  * @property string $addinform
- * @property int $personalQualities_id
+ * @property string $personalQualities
  * @property int $CareerObjective_id
  * @property string $dateAdd
  * @property string $dateChanges
  * @property int $ShowOrHide
- * @property string $response
+ * @property int $viewed
  *
  * @property Experience[] $experiences
  * @property Response[] $responses
- * @property Attributes $personalQualities
- * @property Attributes $careerObjective
+ * @property Position $careerObjective
  * @property Attributes $city
  * @property User $user
  * @property Scanned[] $scanneds
@@ -131,17 +130,9 @@ class Resume extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPersonalQualities()
-    {
-        return $this->hasOne(Attributes::className(), ['id' => 'personalQualities_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getCareerObjective()
     {
-        return $this->hasOne(Attributes::className(), ['id' => 'CareerObjective_id']);
+        return $this->hasOne(Position::className(), ['id' => 'CareerObjective_id']);
     }
 
     /**

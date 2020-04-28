@@ -7,7 +7,6 @@ use yii\widgets\DetailView;
 /* @var $model app\models\User */
 
 $this->title = $model->id;
-$r= $model->rang;
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -15,19 +14,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="user-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    
+
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?php if($r==10){
-                echo(Html::a('Resume', ['set-resume', 'user_id' => $model->id], ['class' => 'btn btn-primary']));
-                echo(Html::a('Project', ['set-project', 'id' => $model->id], ['class' => 'btn btn-primary']));
-            }
-            ?>
-           <?php if($r==20){
-                 echo(Html::a('Vacancy', ['set-vacancy', 'id' => $model->id], ['class' => 'btn btn-primary']));
-                 echo(Html::a('Organization', ['set-org', 'id' => $model->id], ['class' => 'btn btn-primary']));
-                }
-            ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -47,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone',
             'ActInactUser',
             'rang',
+            'auth_key',
         ],
     ]) ?>
 

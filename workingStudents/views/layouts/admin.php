@@ -39,14 +39,11 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Home', 'url' => ['/admin/default/index']],
-            ['label' => 'User', 'url' => ['/admin/user/index']],
-            ['label' => 'Vacancy', 'url' => ['/admin/vacancy/index']],
-            ['label' => 'Resume', 'url' => ['/admin/resume/index']],
-            ['label' => 'Experience', 'url' => ['/admin/experience/index']],
-            ['label' => 'Project', 'url' => ['/admin/project/index']],
-            ['label' => 'Scanned', 'url' => ['/admin/scanned/index']],
-            ['label' => 'Organization', 'url' => ['/admin/organization/index']],
-            ['label' => 'Attributes', 'url' => ['/admin/attributes/index']],
+            ['label' => 'Пользователи', 'url' => ['/admin/user/index']],
+			['label' => 'Статьи', 'url' => ['/admin/article/index']],
+			['label' => 'Тэги', 'url' => ['/admin/tag/index']],
+			['label' => 'Категории статей', 'url' => ['/admin/art_category/index']],
+            ['label' => 'Атрибуты', 'url' => ['/admin/attributes/index']],
             Yii::$app->user->isGuest ? (
             ['label' => 'Login', 'url' => ['/site/login']]
             ) : (

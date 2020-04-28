@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Organization;
+use app\models\organization;
 
 /**
- * OrganizationSearch represents the model behind the search form of `app\models\Organization`.
+ * OrganizationSearch represents the model behind the search form of `app\models\organization`.
  */
-class OrganizationSearch extends Organization
+class OrganizationSearch extends organization
 {
     /**
      * {@inheritdoc}
@@ -17,7 +17,7 @@ class OrganizationSearch extends Organization
     public function rules()
     {
         return [
-            [['id', 'city_id'], 'integer'],
+            [['id', 'user_id', 'city_id', 'correctOrg'], 'integer'],
             [['name', 'adres', 'inn', 'ogrn', 'image'], 'safe'],
         ];
     }
@@ -40,7 +40,7 @@ class OrganizationSearch extends Organization
      */
     public function search($params)
     {
-        $query = Organization::find();
+        $query = organization::find();
 
         // add conditions that should always apply here
 
@@ -59,7 +59,9 @@ class OrganizationSearch extends Organization
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'user_id' => $this->user_id,
             'city_id' => $this->city_id,
+            'correctOrg' => $this->correctOrg,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

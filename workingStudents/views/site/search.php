@@ -16,7 +16,10 @@ use yii\widgets\ActiveForm;
 $this->title = 'Поиск';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<?= ListView::widget([
+    'dataProvider'=>$dataProvider,
 
+])?>
 
 <div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
     <div class="row">
@@ -147,7 +150,18 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div id="col"><?=$categoryg?> </div>  
                         
              <!-- Результаты поиска -->
-
+            <?php
+                if(isset($search1)) // проверяем существует ли переменая $search1
+                {
+                    // Существует - Делаем хлебные крошки для поискового запроса
+                    $this->params['breadcrumbs'][] = $this->title .' - '. $search1;
+                }
+                else
+                {
+                //Не существует - Делаем хлебные крошки для обычного отображения
+                $this->params['breadcrumbs'][] = $this->title ;
+                }
+            ?>
                 <div class="col-sm-6"> 
                     <?php
                             //$org таблица организация

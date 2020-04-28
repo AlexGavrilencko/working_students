@@ -10,6 +10,10 @@ use Yii;
  * @property int $id
  * @property string $code
  * @property string $name
+ * @property int $bigspecial_id
+ *
+ * @property Experience[] $experiences
+ * @property BigSpeciality $bigspecial
  */
 class Speciality extends \yii\db\ActiveRecord
 {
@@ -27,7 +31,9 @@ class Speciality extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['bigspecial_id'], 'integer'],
             [['code', 'name'], 'string', 'max' => 255],
+            [['bigspecial_id'], 'exist', 'skipOnError' => true, 'targetClass' => BigSpeciality::className(), 'targetAttribute' => ['bigspecial_id' => 'id']],
         ];
     }
 
@@ -40,6 +46,23 @@ class Speciality extends \yii\db\ActiveRecord
             'id' => 'ID',
             'code' => 'Code',
             'name' => 'Name',
+            'bigspecial_id' => 'Bigspecial ID',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getExperiences()
+    {
+        return $this->hasMany(Experience::className(), ['speciality_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBigspecial()
+    {
+        return $this->hasOne(BigSpeciality::className(), ['id' => 'bigspecial_id']);
     }
 }

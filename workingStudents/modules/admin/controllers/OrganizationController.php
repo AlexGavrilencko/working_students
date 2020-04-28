@@ -3,14 +3,14 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\Organization;
+use app\models\organization;
 use app\models\OrganizationSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * OrganizationController implements the CRUD actions for Organization model.
+ * OrganizationController implements the CRUD actions for organization model.
  */
 class OrganizationController extends Controller
 {
@@ -30,7 +30,7 @@ class OrganizationController extends Controller
     }
 
     /**
-     * Lists all Organization models.
+     * Lists all organization models.
      * @return mixed
      */
     public function actionIndex()
@@ -45,7 +45,7 @@ class OrganizationController extends Controller
     }
 
     /**
-     * Displays a single Organization model.
+     * Displays a single organization model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,13 +58,13 @@ class OrganizationController extends Controller
     }
 
     /**
-     * Creates a new Organization model.
+     * Creates a new organization model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Organization();
+        $model = new organization();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,7 +76,7 @@ class OrganizationController extends Controller
     }
 
     /**
-     * Updates an existing Organization model.
+     * Updates an existing organization model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +96,7 @@ class OrganizationController extends Controller
     }
 
     /**
-     * Deletes an existing Organization model.
+     * Deletes an existing organization model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -110,15 +110,15 @@ class OrganizationController extends Controller
     }
 
     /**
-     * Finds the Organization model based on its primary key value.
+     * Finds the organization model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Organization the loaded model
+     * @return organization the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Organization::findOne($id)) !== null) {
+        if (($model = organization::findOne($id)) !== null) {
             return $model;
         }
 

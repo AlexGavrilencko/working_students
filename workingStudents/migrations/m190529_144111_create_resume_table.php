@@ -22,13 +22,13 @@ class m190529_144111_create_resume_table extends Migration
             'dateBirth' => $this->date()->defaultValue(null),//дата рождения
             'image' => $this->string()->defaultValue(null),//фото
             'skills' => $this->text(),//навыки
-            'addinform' => $this->text(),//навыки
-            'personalQualities_id' => $this->integer(),//персональные качества
+            'addinform' => $this->text(),//дополнительная информация
+            'personalQualities' => $this->text(),//персональные качества
             'CareerObjective_id' => $this->integer(),//желаемая должность
             'dateAdd' => $this->date(),//дата добавления
             'dateChanges' => $this->date(),//дата редактирования
             'ShowOrHide' => $this->boolean(),//показывать или скрывать
-            'response' => $this->string()//отклик
+            'viewed'=>$this->integer()
         ]);
 
 

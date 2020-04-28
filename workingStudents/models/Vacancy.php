@@ -25,16 +25,17 @@ use Yii;
  * @property string $dateChanges
  * @property int $WorkOrPractice
  * @property int $ShowOrHide
- * @property string $response
+ * @property string $description
+ * @property int $viewed
  *
  * @property Response[] $responses
  * @property Scanned[] $scanneds
- * @property Attributes $category
+ * @property BigSpeciality $category
  * @property Attributes $city
  * @property Attributes $employment
  * @property Attributes $experience
  * @property Organization $organization
- * @property Attributes $position
+ * @property Position $position
  * @property Attributes $schedule
  * @property User $user
  */
@@ -54,16 +55,16 @@ class Vacancy extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'organization_id', 'city_id', 'experience_id', 'employment_id', 'schedule_id', 'salary', 'position_id', 'category_id', 'WorkOrPractice', 'ShowOrHide'], 'integer'],
-            [['duties', 'requirement', 'conditions'], 'string'],
+            [['user_id', 'organization_id', 'city_id', 'experience_id', 'employment_id', 'schedule_id', 'salary', 'position_id', 'category_id', 'WorkOrPractice', 'ShowOrHide', 'viewed'], 'integer'],
+            [['duties', 'requirement', 'conditions', 'description'], 'string'],
             [['dateAdd', 'dateChanges'], 'safe'],
-            [['name', 'response'], 'string', 'max' => 255],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['category_id' => 'id']],
+            [['name'], 'string', 'max' => 255],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => BigSpeciality::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['city_id' => 'id']],
             [['employment_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['employment_id' => 'id']],
             [['experience_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['experience_id' => 'id']],
             [['organization_id'], 'exist', 'skipOnError' => true, 'targetClass' => Organization::className(), 'targetAttribute' => ['organization_id' => 'id']],
-            [['position_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['position_id' => 'id']],
+            [['position_id'], 'exist', 'skipOnError' => true, 'targetClass' => Position::className(), 'targetAttribute' => ['position_id' => 'id']],
             [['schedule_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['schedule_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -93,11 +94,10 @@ class Vacancy extends \yii\db\ActiveRecord
             'dateChanges' => 'Date Changes',
             'WorkOrPractice' => 'Work Or Practice',
             'ShowOrHide' => 'Show Or Hide',
-            'response' => 'Response',
+            'description' => 'Description',
+            'viewed' => 'Viewed',
         ];
     }
-
-
     public function create()
     {
         return $this->save(false);
@@ -124,7 +124,7 @@ class Vacancy extends \yii\db\ActiveRecord
      */
     public function getCategory()
     {
-        return $this->hasOne(Attributes::className(), ['id' => 'category_id']);
+        return $this->hasOne(BigSpeciality::className(), ['id' => 'category_id']);
     }
 
     /**
@@ -164,7 +164,7 @@ class Vacancy extends \yii\db\ActiveRecord
      */
     public function getPosition()
     {
-        return $this->hasOne(Attributes::className(), ['id' => 'position_id']);
+        return $this->hasOne(Position::className(), ['id' => 'position_id']);
     }
 
     /**

@@ -8,11 +8,13 @@ use Yii;
  * This is the model class for table "position".
  *
  * @property int $id
- * @property int $attrcat_id
+ * @property int $categprofst_id
  * @property string $code
  * @property string $name
  *
- * @property Attributes $attrcat
+ * @property CategoryProfstand $categprofst
+ * @property Resume[] $resumes
+ * @property Vacancy[] $vacancies
  */
 class Position extends \yii\db\ActiveRecord
 {
@@ -30,9 +32,9 @@ class Position extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['attrcat_id'], 'integer'],
+            [['categprofst_id'], 'integer'],
             [['code', 'name'], 'string', 'max' => 255],
-            [['attrcat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['attrcat_id' => 'id']],
+            [['categprofst_id'], 'exist', 'skipOnError' => true, 'targetClass' => CategoryProfstand::className(), 'targetAttribute' => ['categprofst_id' => 'id']],
         ];
     }
 
@@ -43,7 +45,7 @@ class Position extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'attrcat_id' => 'Attrcat ID',
+            'categprofst_id' => 'Categprofst ID',
             'code' => 'Code',
             'name' => 'Name',
         ];
@@ -52,8 +54,24 @@ class Position extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAttrcat()
+    public function getCategprofst()
     {
-        return $this->hasOne(Attributes::className(), ['id' => 'attrcat_id']);
+        return $this->hasOne(CategoryProfstand::className(), ['id' => 'categprofst_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getResumes()
+    {
+        return $this->hasMany(Resume::className(), ['CareerObjective_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVacancies()
+    {
+        return $this->hasMany(Vacancy::className(), ['position_id' => 'id']);
     }
 }

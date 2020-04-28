@@ -7,7 +7,8 @@ use app\helper\ClassHelper;
 $this->title = 'Главная';
 $c = 0;
 ?>
-<div class="container"> 
+<div class="container">
+ 
 <div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения категорий -->
         <p class="h4 text-center m-2">Работа в Новосибирске</p> <!-- Надо сделать так, чтобы город был автоматически, как на других сайтах -->
     <div class="row">

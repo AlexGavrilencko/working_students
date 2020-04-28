@@ -31,7 +31,8 @@ class m190529_144014_create_vacancy_table extends Migration
             'dateChanges' => $this->date(),//дата изменения
             'WorkOrPractice' => $this->boolean(), //флаг практика или работа
             'ShowOrHide' => $this->boolean(), //флаг показывать или скрывать
-            'response' => $this->string()//отклик
+            'description' => $this->text(),//отклик
+            'viewed'=>$this->integer()
         ]);
 
 

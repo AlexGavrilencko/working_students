@@ -115,7 +115,7 @@ class m200504_111302_fk_attr_user extends Migration
             'fk-vacancy-position_id',
             'vacancy',
             'position_id',
-            'attributes',
+            'position',
             'id',
             'CASCADE'
         );
@@ -130,7 +130,7 @@ class m200504_111302_fk_attr_user extends Migration
             'fk-vacancy-category_id',
             'vacancy',
             'category_id',
-            'attributes',
+            'big_speciality',
             'id',
             'CASCADE'
         );
@@ -182,25 +182,11 @@ class m200504_111302_fk_attr_user extends Migration
             'fk-resume-CareerObjective_id',
             'resume',
             'CareerObjective_id',
-            'attributes',
+            'position',
             'id',
             'CASCADE'
         );
-        // creates index for column `personalQualities_id`
-        $this->createIndex(
-            'idx-resume-personalQualities_id',
-            'resume',
-            'personalQualities_id'
-        );
-        // add foreign key for table `attributes`
-        $this->addForeignKey(
-            'fk-resume-personalQualities_id',
-            'resume',
-            'personalQualities_id',
-            'attributes',
-            'id',
-            'CASCADE'
-        );
+        
 
 
 
@@ -224,21 +210,6 @@ class m200504_111302_fk_attr_user extends Migration
             'id',
             'CASCADE'
         );
-        // creates index for column `nameOrganiz_id`  EXPERIENCE
-        $this->createIndex(
-            'idx-experience-nameOrganiz_id',
-            'experience',
-            'nameOrganiz_id'
-        );
-        // add foreign key for table `organization`
-        $this->addForeignKey(
-            'fk-experience-nameOrganiz_id',
-            'experience',
-            'nameOrganiz_id',
-            'organization',
-            'id',
-            'CASCADE'
-        );
         // creates index for column `speciality_id`  EXPERIENCE
         $this->createIndex(
             'idx-experience-speciality_id',
@@ -250,7 +221,7 @@ class m200504_111302_fk_attr_user extends Migration
             'fk-experience-speciality_id',
             'experience',
             'speciality_id',
-            'attributes',
+            'speciality',
             'id',
             'CASCADE'
         );
@@ -342,30 +313,10 @@ class m200504_111302_fk_attr_user extends Migration
 
 
 
-        //Связи для таблицы ОРГАНИЗАЦИЯ
-        // creates index for column `city_id` or organization
-        $this->createIndex(
-            'idx-organization-city_id',
-            'organization',
-            'city_id'
-        );
-        // add foreign key for table `city`
-        $this->addForeignKey(
-            'fk-organization-city_id',
-            'organization',
-            'city_id',
-            'attributes',
-            'id',
-            'CASCADE'
-        );
-        
 
 
-
-
-
-        //Связи для таблицы отклик
-        // creates index for column `user_id` or response
+        //Связи для таблицы Отклик
+        // creates index for column `user_id`   response
         $this->createIndex(
             'idx-response-user_id',
             'response',
@@ -388,7 +339,7 @@ class m200504_111302_fk_attr_user extends Migration
         );
         // add foreign key for table `resume`
         $this->addForeignKey(
-            'fk-response-resume_id',
+            'fk-responsed-resume_id',
             'response',
             'resume_id',
             'resume',
@@ -418,22 +369,185 @@ class m200504_111302_fk_attr_user extends Migration
 
 
 
-        //Связи для таблицы должность
-        // creates index for column `attrcat_id` or position
+
+
+
+
+        //Связи для таблицы ОРГАНИЗАЦИЯ
+        // creates index for column `city_id` or organization
         $this->createIndex(
-            'idx-position-attrcat_id',
-            'position',
-            'attrcat_id'
+            'idx-organization-city_id',
+            'organization',
+            'city_id'
         );
         // add foreign key for table `city`
         $this->addForeignKey(
-            'fk-position-attrcat_id',
-            'position',
-            'attrcat_id',
+            'fk-organization-city_id',
+            'organization',
+            'city_id',
             'attributes',
             'id',
             'CASCADE'
         );
+        $this->createIndex(
+            'idx-organization-user_id',
+            'organization',
+            'user_id'
+        );
+        // add foreign key for table `city`
+        $this->addForeignKey(
+            'fk-organization-user_id',
+            'organization',
+            'user_id',
+            'user',
+            'id',
+            'CASCADE'
+        );
+
+
+
+
+
+
+
+
+
+
+        //Связи для таблицы должность
+        // creates index for column `attrcat_id` or position
+        $this->createIndex(
+            'idx-position-categprofst_id',
+            'position',
+            'categprofst_id'
+        );
+        // add foreign key for table `city`
+        $this->addForeignKey(
+            'fk-position-categprofst_id',
+            'position',
+            'categprofst_id',
+            'category_profstand',
+            'id',
+            'CASCADE'
+        );
+
+
+
+
+
+
+
+        //          ARTICLE
+        $this->createIndex(
+            'idx-article-user_id',
+            'article',
+            'user_id'
+        );
+        // add foreign key for table `city`
+        $this->addForeignKey(
+            'fk-article-user_id',
+            'article',
+            'user_id',
+            'user',
+            'id',
+            'CASCADE'
+        );
+        $this->createIndex(
+            'idx-article-category_id',
+            'article',
+            'category_id'
+        );
+        // add foreign key for table `city`
+        $this->addForeignKey(
+            'fk-article-category_id',
+            'article',
+            'category_id',
+            'art_category',
+            'id',
+            'CASCADE'
+        );
+
+
+
+
+
+
+        //          SPECIALITY
+        $this->createIndex(
+            'idx-speciality-bigspecial_id',
+            'speciality',
+            'bigspecial_id'
+        );
+        // add foreign key for table `city`
+        $this->addForeignKey(
+            'fk-speciality-bigspecial_id',
+            'speciality',
+            'bigspecial_id',
+            'big_speciality',
+            'id',
+            'CASCADE'
+        );
+        
+
+
+
+
+
+        
+        //          category_profstand
+        $this->createIndex(
+            'idx-category_profstand-profstand_id',
+            'category_profstand',
+            'profstand_id'
+        );
+        // add foreign key for table `city`
+        $this->addForeignKey(
+            'fk-category_profstand-profstand_id',
+            'category_profstand',
+            'profstand_id',
+            'profstand',
+            'id',
+            'CASCADE'
+        );
+
+
+
+
+
+
+
+
+
+        //          special_profstand
+        $this->createIndex(
+            'idx-special_profstand-categProfstand_id',
+            'special_profstand',
+            'categProfstand_id'
+        );
+        // add foreign key for table `city`
+        $this->addForeignKey(
+            'fk-special_profstand-categProfstand_id',
+            'special_profstand',
+            'categProfstand_id',
+            'category_profstand',
+            'id',
+            'CASCADE'
+        );
+        $this->createIndex(
+            'idx-special_profstand-bigspeciality_id',
+            'special_profstand',
+            'bigspeciality_id'
+        );
+        // add foreign key for table `city`
+        $this->addForeignKey(
+            'fk-special_profstand-bigspeciality_id',
+            'special_profstand',
+            'bigspeciality_id',
+            'big_speciality',
+            'id',
+            'CASCADE'
+        );
+
+
 
     }
 
@@ -455,6 +569,16 @@ class m200504_111302_fk_attr_user extends Migration
             'idx-organization-city_id',
             'organization'
         );
+        // drops foreign key for table `organization`
+        $this->dropForeignKey(
+            'fk-organization-user_id',
+            'organization'
+        );
+        // drops index for column `city_id`
+        $this->dropIndex(
+            'idx-organization-user_id',
+            'organization'
+        );
 
 
 
@@ -464,12 +588,12 @@ class m200504_111302_fk_attr_user extends Migration
         // position
         // drops foreign key for table `position`
         $this->dropForeignKey(
-            'fk-position-attrcat_id',
+            'fk-position-categprofst_id',
             'position'
         );
         // drops index for column `attrcat_id`
         $this->dropIndex(
-            'idx-position-attrcat_id',
+            'idx-position-categprofst_id',
             'position'
         );
 
@@ -633,16 +757,7 @@ class m200504_111302_fk_attr_user extends Migration
             'idx-resume-CareerObjective_id',
             'resume'
         );
-        // drops foreign key for table `attributes`
-        $this->dropForeignKey(
-            'fk-resume-personalQualities_id',
-            'resume'
-        );
-        // drops index for column `personalQualities_id`
-        $this->dropIndex(
-            'idx-resume-personalQualities_id',
-            'resume'
-        );
+        
 
 
 
@@ -660,16 +775,6 @@ class m200504_111302_fk_attr_user extends Migration
         // drops index for column `resume_id`
         $this->dropIndex(
             'idx-experience-resume_id',
-            'experience'
-        );
-        // drops foreign key for table `attributes`
-        $this->dropForeignKey(
-            'fk-experience-nameOrganiz_id',
-            'experience'
-        );
-        // drops index for column `nameOrganiz_id`
-        $this->dropIndex(
-            'idx-experience-nameOrganiz_id',
             'experience'
         );
         // drops foreign key for table `attributes`
@@ -744,20 +849,100 @@ class m200504_111302_fk_attr_user extends Migration
 
 
 
+
+
+
+
+        //  ARTICLE
+        // drops foreign key for table `user`
+        $this->dropForeignKey(
+            'fk-article-user_id',
+            'article'
+        );
+        // drops index for column `user_id`
+        $this->dropIndex(
+            'idx-article-user_id',
+            'article'
+        );
+        // drops foreign key for table `category_id`
+        $this->dropForeignKey(
+            'fk-article-category_id',
+            'article'
+        );
+        // drops index for column `category_id`
+        $this->dropIndex(
+            'idx-article-category_id',
+            'article'
+        );
+
+
+
+
+
+
+        //  speciality
+        // drops foreign key for table `speciality`
+        $this->dropForeignKey(
+            'fk-speciality-bigspecial_id',
+            'speciality'
+        );
+        // drops index for column `bigspecial_id`
+        $this->dropIndex(
+            'idx-speciality-bigspecial_id',
+            'speciality'
+        );
+
+
+
+
+
+
+        //  special_profstand
+        // drops foreign key for table `special_profstand`
+        $this->dropForeignKey(
+            'fk-special_profstand-categProfstand_id',
+            'special_profstand'
+        );
+        // drops index for column `categProfstand_id`
+        $this->dropIndex(
+            'idx-special_profstand-categProfstand_id',
+            'special_profstand'
+        );
+        // drops foreign key for table `special_profstand`
+        $this->dropForeignKey(
+            'fk-special_profstand-bigspeciality_id',
+            'special_profstand'
+        );
+        // drops index for column `bigspeciality_id`
+        $this->dropIndex(
+            'idx-special_profstand-bigspeciality_id',
+            'special_profstand'
+        );
+
+
+
+
+
+
+
+
+
+        //  category_profstand
+        // drops foreign key for table `category_profstand`
+        $this->dropForeignKey(
+            'fk-category_profstand-profstand_id',
+            'category_profstand'
+        );
+        // drops index for column `profstand_id`
+        $this->dropIndex(
+            'idx-category_profstand-profstand_id',
+            'category_profstand'
+        );
+
+
+
+
         return false;
     }
-     /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m190604_111302_fk_attr_user cannot be reverted.\n";
-
-        return false;
-    }
-    */
+     
 }

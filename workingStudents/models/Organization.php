@@ -17,8 +17,8 @@ use Yii;
  * @property string $image
  * @property int $correctOrg
  *
- * @property Experience[] $experiences
  * @property Attributes $city
+ * @property User $user
  * @property Vacancy[] $vacancies
  */
 class Organization extends \yii\db\ActiveRecord
@@ -40,6 +40,7 @@ class Organization extends \yii\db\ActiveRecord
             [['user_id', 'city_id', 'correctOrg'], 'integer'],
             [['name', 'adres', 'inn', 'ogrn', 'image'], 'string', 'max' => 255],
             [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['city_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -95,17 +96,17 @@ class Organization extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getExperiences()
+    public function getCity()
     {
-        return $this->hasMany(Experience::className(), ['nameOrganiz_id' => 'id']);
+        return $this->hasOne(Attributes::className(), ['id' => 'city_id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCity()
+    public function getUser()
     {
-        return $this->hasOne(Attributes::className(), ['id' => 'city_id']);
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
     /**

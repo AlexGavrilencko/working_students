@@ -13,6 +13,7 @@ use app\assets\PublicAsset;
 use app\models\Organization;
 use app\models\Resume;
 use app\models\Vacancy;
+use yii\helpers\Url;
 
 PublicAsset::register($this);
 ?>
@@ -102,15 +103,15 @@ PublicAsset::register($this);
 
 	                <div class="row">
                         <div class="col-12 col-md-10 col-lg-8">
-                            <form class="search">
+                            <form class="search" method="get" action="<?= Url::to(['/site/searchWordSt']) ?>">
                                 <div class="row no-gutters align-items-center">
 
                                     <div class="col-8">
-                                        <input class="form-control btn-none form-control-lg" type="search" placeholder="Профессия или должность">
+                                        <input class="form-control btn-none form-control-lg" type="name" name="search" placeholder="Профессия или должность">
                                     </div>
 
                                     <div class="col-auto">
-                                        <button type="submit" class="btn-none btn-lg btn btnwite">Найти</button>
+                                        <button type="submit" class="btn-none btn-lg btn btnwite" >Найти</button>
                                     </div>
                                 </div>    
                             </form>

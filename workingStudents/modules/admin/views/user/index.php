@@ -18,8 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
-    <?php ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone',
             //'ActInactUser',
             //'rang',
+            //'auth_key',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

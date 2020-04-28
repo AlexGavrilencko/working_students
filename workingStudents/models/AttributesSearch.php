@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Attributes;
+use app\models\attributes;
 
 /**
- * AttributesSearch represents the model behind the search form of `app\models\Attributes`.
+ * AttributesSearch represents the model behind the search form of `app\models\attributes`.
  */
-class AttributesSearch extends Attributes
+class AttributesSearch extends attributes
 {
     /**
      * {@inheritdoc}
@@ -40,7 +40,7 @@ class AttributesSearch extends Attributes
      */
     public function search($params)
     {
-        $query = Attributes::find();
+        $query = attributes::find();
 
         // add conditions that should always apply here
 

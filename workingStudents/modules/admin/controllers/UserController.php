@@ -124,22 +124,4 @@ class UserController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
-    public function actionSetResume($user_id)
-	{
-		$resume = ArrayHelper::map(Resume::find()->all()->where('user_id'==$user_id)); //$this->findModel($id);
-		$attributes = ArrayHelper::map(Attributes::find()->all());
-		$tags = ArrayHelper::map(Tag::find()->all());
-
-		if (Yii::$app->request->isPost) {
-			$tags = Yii::$app->request->post('tags');
-			$article->saveTags($tags);
-			return $this->redirect(['view', 'id'=>$article->id]);
-		}
-
-		return $this->render('tags', [
-			'selectedTags'=>$selectedTags,
-			'tags'=>$tags
-		]);
-	}
 }

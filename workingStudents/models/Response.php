@@ -13,9 +13,9 @@ use Yii;
  * @property int $resume_id
  * @property string $date
  *
+ * @property User $user
  * @property Vacancy $vacancy
  * @property Resume $resume
- * @property User $user
  */
 class Response extends \yii\db\ActiveRecord
 {
@@ -35,9 +35,9 @@ class Response extends \yii\db\ActiveRecord
         return [
             [['user_id', 'vacancy_id', 'resume_id'], 'integer'],
             [['date'], 'safe'],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['vacancy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vacancy::className(), 'targetAttribute' => ['vacancy_id' => 'id']],
             [['resume_id'], 'exist', 'skipOnError' => true, 'targetClass' => Resume::className(), 'targetAttribute' => ['resume_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -58,6 +58,14 @@ class Response extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getVacancy()
     {
         return $this->hasOne(Vacancy::className(), ['id' => 'vacancy_id']);
@@ -69,13 +77,5 @@ class Response extends \yii\db\ActiveRecord
     public function getResume()
     {
         return $this->hasOne(Resume::className(), ['id' => 'resume_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUser()
-    {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }

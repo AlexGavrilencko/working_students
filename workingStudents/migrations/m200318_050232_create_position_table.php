@@ -14,9 +14,9 @@ class m200318_050232_create_position_table extends Migration
     {
         $this->createTable('{{%position}}', [
             'id' => $this->primaryKey(),
-            'attrcat_id' => $this->integer(),
-            'code' => $this->string(),
-            'name' => $this->string()
+            'categprofst_id' => $this->integer(), //ид категории профстандарта
+            'code' => $this->string(),//код должности
+            'name' => $this->string()//
         ]);
     }
 
