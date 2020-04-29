@@ -295,6 +295,7 @@ class SiteController extends Controller
 
     public function actionIndexartic()
     {
+        $this->layout = 'article';
         $data = Article::getAll(5);
         $popular = Article::getPopular();
         $recent = Article::getRecent();
@@ -311,6 +312,7 @@ class SiteController extends Controller
     
     public function actionView($id)
     {
+        $this->layout = 'article';
         $article = Article::findOne($id);
         $popular = Article::getPopular();
         $recent = Article::getRecent();
@@ -330,7 +332,7 @@ class SiteController extends Controller
     
     public function actionCategory($id)
     {
-
+        $this->layout = 'article';
         $data = ArtCategory::getArticlesByCategory($id);
         $popular = Article::getPopular();
         $recent = Article::getRecent();
