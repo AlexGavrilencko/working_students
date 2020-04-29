@@ -36,9 +36,14 @@ $this->title = 'Просмотр резюме';
                                     <p> <?= $resum->surname ?> <?= $resum->name ?> <?= $resum->patronymic ?></p>
                                 </div>                  <!-- /Отображение ФИО -->
 
+                                <?php  if !(Yii::$app->user->isGuest){ ?>
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2"> 
                                     <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>"><!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">--></a>
                                 </div>
+                                <?php } else {?>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2"> 
+                                    </div>
+                                <?php }?>
 
                             </div>
 

@@ -99,11 +99,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <p> <?= $resum->surname ?> <?= $resum->name ?> <?= $resum->patronymic ?></p>
                                     </div>                  <!-- /Отображение ФИО -->
 
-                                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"> 
-                                        <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>"><!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">--></a>
-                                    </div> 
-
-
+                                    <?php  if !(Yii::$app->user->isGuest){ ?>
+                                        <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"> 
+                                            <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>">
+                                                <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">--></a>
+                                            </div>
+                                        <?php } else {?>
+                                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"> 
+                                            </div>
+                                        <?php }?>
                             </div>
 
                             <div class="row ml-1"> <!-- Отображение желаемой доолжности и города -->

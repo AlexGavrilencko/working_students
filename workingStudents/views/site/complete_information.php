@@ -113,9 +113,15 @@ $this->title = 'Просмотр вакансии';
                         </div> <!-- /Условия  -->
 
                         <div class="row ml-1"> <!-- Просмотры и дата -->
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                <p>В избранное</p>
-                            </div>
+                            <?php  if !(Yii::$app->user->isGuest){ ?>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
+                                    <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>">
+                                    <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">--></a>
+                                </div>
+                            <?php } else {?>
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
+                                    </div>
+                            <?php }?>
 
                             <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                 <p>Дата<?= $vacan->dateAdd ?> Количество просмотров</p>       
