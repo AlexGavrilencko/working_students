@@ -17,10 +17,7 @@ $this->title = 'Поиск';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?= ListView::widget([
-    'dataProvider'=>$dataProvider,
 
-])?>
 
 <script>
     function disp(div) {
@@ -35,217 +32,179 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
     <div class="row "> <!-- Для поиска -->
         <div class="border_search_resume">
+                    
                     <form class="search_resume">
-                        <div>
                             <div class="row">
-                                <div class="col"> <!-- Выбор города -->
-                                    <?php
-                                        $city = Attributes::find()->where(['type'=>'city'])->all();  // получаем все города из таблицы атрибутов
-                                            $items = ArrayHelper::map($city,'id','name'); // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                                                $params = [
-                                                    'prompt' => 'Город',
-                                                    'class' => 'dropDownList',
-                                                ];
-                                                echo Html::dropDownList('citty', 'null', $items, $params);
-                                    ?>
-                                    
-                                </div>
-
-
-                                <div class="col"> <!-- Ввод зарплаты -->
-                                    <input class="form-control btn-none " type="search" placeholder="Зарплата от">
-                                </div>
-
-                                <div class="col"> <!-- Выбор категории -->
-                                    <?php
+                                    <div class="col"> <!-- Выбор города -->
+                                        <?php
+                                            $city = Attributes::find()->where(['type'=>'city'])->all();  // получаем все города из таблицы атрибутов
+                                                $items = ArrayHelper::map($city,'id','name'); // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
+                                                    $params = [
+                                                        'prompt' => 'Город',
+                                                        'class' => 'dropDownList',
+                                                    ];
+                                                    echo Html::dropDownList('citty', 'null', $items, $params);
+                                        ?>
                                         
-                                        $category = Attributes::find()->where(['type'=>'category'])->all();
-                                        // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                                        $items = ArrayHelper::map($category,'id','name');
-                                        $params = [
-                                            'prompt' => 'Категории',
-                                            'class' => 'dropDownList',
-                                        ];
-                                        echo Html::dropDownList('category_id', 'null', $items, $params);
-                                        
-                                    ?>
-                                </div>
-
-                                <div class="col-sm-4"> <!-- Ввод должности или профессии -->
-                                    <input class="form-control btn-none " type="search" placeholder="Профессия">
-                                </div>
+                                    </div>
 
 
-            <?php  ?>
-                <?php ActiveForm::end();?>
-                    <?php Pjax::end(); ?> 
-                        <div id="col"><?=$categoryg?> </div>  
-                        
-             <!-- Результаты поиска -->
-            <?php
-                if(isset($search1)) // проверяем существует ли переменая $search1
-                {
-                    // Существует - Делаем хлебные крошки для поискового запроса
-                    $this->params['breadcrumbs'][] = $this->title .' - '. $search1;
-                }
-                else
-                {
-                //Не существует - Делаем хлебные крошки для обычного отображения
-                $this->params['breadcrumbs'][] = $this->title ;
-                }
-            ?>
-                <div class="col-sm-6"> 
-                    <?php
-                            //$org таблица организация
-                            //$atr таблица со всеми справочниками
-                            //$catvac все вакансии выбранной категории
-                            foreach ($catvac as $vacan)
-                            : 
+                                    <div class="col"> <!-- Ввод зарплаты -->
+                                        <input class="form-control btn-none " type="search" placeholder="Зарплата от">
+                                    </div>
 
-                            if ($vacan->ShowOrHide===0){ 
-                    ?>
-                    <div class="border_search">    
-                            <!-- результаты поиска -->
-                        <div class="row">
-                                <div class="col-sm-3">
-                                    <!-- для изображения -->
-                                    <?php
-                                        $o = $vacan->organization_id;
-                                        $organization = Organization::find()->where(['id'=>$o])->one();
-                                        if($organization->image): ?>
-                                                    <img class="searchavatar" src="/uploads/<?= $organization->image?>" alt="">
-                                        <?php endif; ?>
+                                    <div class="col"> <!-- Выбор категории -->
+                                        <?php
+                                            
+                                            $category = Attributes::find()->where(['type'=>'category'])->all();
+                                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
+                                            $items = ArrayHelper::map($category,'id','name');
+                                            $params = [
+                                                'prompt' => 'Категории',
+                                                'class' => 'dropDownList',
+                                            ];
+                                            echo Html::dropDownList('category_id', 'null', $items, $params);
+                                            
+                                        ?>
+                                    </div>
 
-                                <div class="col"> <!-- Кнопка для поиска -->
-                                    <input type="button" class="btn btn-secondary" value="Еще фильтры" onclick="disp(document.getElementById('form1'))" />
-                                </div>
+                                    <div class="col"> <!-- Ввод должности или профессии -->
+                                        <input class="form-control btn-none " type="search" placeholder="Профессия">
+                                    </div>
 
-                                <div class="col"> <!-- Кнопка для поиска -->
-                                    <button type="submit" class="btn btn-secondary">Найти</button>
+                                    <div class="col"> <!-- Кнопка для поиска -->
+                                        <input type="button" class="btn btn-secondary" value="Еще фильтры" onclick="disp(document.getElementById('form1'))">
+                                    </div>
 
-                                </div>
+                                    <div class="col"> <!-- Кнопка для поиска -->
+                                        <button type="submit" class="btn btn-secondary">Найти</button>
+                                    </div>
                             </div>
-                        </div>
-                        <br>
 
-                            <div id="form1" style="display: none;">
-                                <div class="row">
+                            <div class="row justify-content-center mt-1">
+                                        <div id="form1" style="display: none;">
+                                            <div class="row">
 
-                                    <div class="col-sm-2"></div>
+                                                
 
-                                    <div class="col">
-                                        <h4>График работы</h4>
-                                        <div class="row ml-1">
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                <label class="form-check-label" for="inlineCheckbox1">Полный рабочий день</label>
+                                                <div class="col">
+                                                        <h4>График работы</h4>
+                                                        <div class="row ml-1">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">Полный рабочий день</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row ml-1">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">Удаленная работа</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row ml-1">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">Гибкий график</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row ml-1">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">Сменный график</label>
+                                                            </div>
+                                                        </div>
+                                                </div>
+
+                                                <div class="col">
+                                                        <h4>Опыт работы</h4>
+                                                        <div class="row ml-1">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">без опыта</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row ml-1">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">до 1 года</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row ml-1">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">до 3 лет</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row ml-1">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">до 5 лет</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row ml-1">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">более 5 лет</label>
+                                                            </div>
+                                                        </div>
+                                                </div>
+
+                                                <div class="col">
+                                                        <h4>Тип занятости</h4>
+                                                        <div class="row ml-1">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">Полная занятость</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row ml-1">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">Частичная занятость</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row ml-1">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">вахта/переезд</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row ml-1">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">временная работа/freelance</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row ml-1">
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                                                <label class="form-check-label" for="inlineCheckbox1">стажировка</label>
+                                                            </div>
+                                                        </div>
+                                                </div>
+
+                                               
                                             </div>
+
+                                            <div class="row justify-content-center mt-5">                                
+                                                <button type="submit" class="btn btn-secondary">Найти</button>                       
+                                            </div>
+                                        
                                         </div>
-                                        <div class="row ml-1">
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                <label class="form-check-label" for="inlineCheckbox1">Удаленная работа</label>
-                                            </div>
-                                        </div>
-                                        <div class="row ml-1">
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                <label class="form-check-label" for="inlineCheckbox1">Гибкий график</label>
-                                            </div>
-                                        </div>
-                                        <div class="row ml-1">
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                <label class="form-check-label" for="inlineCheckbox1">Сменный график</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                            </div>
+                        </form>
+            
 
-                                    <div class="col">
-                                            <h4>Опыт работы</h4>
-                                            <div class="row ml-1">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                    <label class="form-check-label" for="inlineCheckbox1">без опыта</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="row ml-1">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                    <label class="form-check-label" for="inlineCheckbox1">до 1 года</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="row ml-1">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                    <label class="form-check-label" for="inlineCheckbox1">до 3 лет</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="row ml-1">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                    <label class="form-check-label" for="inlineCheckbox1">до 5 лет</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="row ml-1">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                    <label class="form-check-label" for="inlineCheckbox1">более 5 лет</label>
-                                                </div>
-                                            </div>
-                                    </div>
-
-                                    <div class="col">
-                                            <h4>Тип занятости</h4>
-                                            <div class="row ml-1">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                    <label class="form-check-label" for="inlineCheckbox1">Полная занятость</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="row ml-1">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                    <label class="form-check-label" for="inlineCheckbox1">Частичная занятость</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="row ml-1">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                    <label class="form-check-label" for="inlineCheckbox1">вахта/переезд</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="row ml-1">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                    <label class="form-check-label" for="inlineCheckbox1">временная работа/freelance</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="row ml-1">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                    <label class="form-check-label" for="inlineCheckbox1">стажировка</label>
-                                                </div>
-                                            </div>
-                                    </div>
-
-                                    <div class="col-sm-2"></div>  
-                                </div>
-
-                                <div class="row justify-content-center mt-5">                                
-                                    <button type="submit" class="btn btn-secondary">Найти</button>                       
-                                </div>
                             
-                            </div>
-                    </form>
+                    
         </div>
     </div>
 
@@ -353,4 +312,9 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
-<br>
+
+
+
+
+
+
