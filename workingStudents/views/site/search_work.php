@@ -99,7 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <p> <?= $resum->surname ?> <?= $resum->name ?> <?= $resum->patronymic ?></p>
                                     </div>                  <!-- /Отображение ФИО -->
 
-                                    <?php  if !(Yii::$app->user->isGuest){ ?>
+                                    <?php  if (!Yii::$app->user->isGuest){ ?>
                                         <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"> 
                                             <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>">
                                                 <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">--></a>

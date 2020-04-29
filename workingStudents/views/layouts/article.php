@@ -26,73 +26,130 @@ PublicAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<nav class="navbar main-menu navbar-default">
-    <div class="container">
-        <div class="menu-content">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+<header>          
+         <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->
+
+            <a href="/site/index" class="navbar-brad"><img src="/public/img/logo.jpg" alt="Logo"></a>  <!-- логотип в меню сайта -->
+
+                <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="/"><img src="/public/images/logo.jpg" alt=""></a>
-            </div>
+
+                 <div class="collapse navbar-collapse " id="collapsibleNavbar">
+
+                     
 
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <?php  if (Yii::$app->user->isGuest){ ?>
+                            <ul class="navbar-nav">  <!-- переходы в меню для гостя-->
 
-                <ul class="nav navbar-nav text-uppercase">
-                    <li><a data-toggle="dropdown" class="dropdown-toggle" href="/">Home</a>
+                                <li class="nav-item">
+                                    <a class="nav-link menugreen h6" href="#">Вакансии</a>
+                                </li>
+                        
+                                <li class="nav-item">
+                                    <a class="nav-link h6 menugreen" href="/site/search_work">Резюме</a>
+                                </li> 
 
-                    </li>
-                </ul>
-                <div class="i_con">
-                    <ul class="nav navbar-nav text-uppercase">
-                        <?php if(Yii::$app->user->isGuest):?>
-                            <li><a href="<?= Url::toRoute(['auth/login'])?>">Login</a></li>
-                            <li><a href="<?= Url::toRoute(['auth/signup'])?>">Register</a></li>
-                        <?php else: ?>
-                            <?= Html::beginForm(['/auth/logout'], 'post')
-                            . Html::submitButton(
-                                'Logout (' . Yii::$app->user->identity->login . ')',
-                                ['class' => 'btn btn-link logout', 'style'=>"padding-top:10px;"]
-                            )
-                            . Html::endForm() ?>
-                        <?php endif;?>
+                                <li class="nav-item">
+                                    <a class="nav-link h6 menugreen" href="/site/indexwork">Работодателю</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link h6 menugreen" href="/site/indexartic">Cтатьи</a>
+                                </li>
+                            </ul>
+
+                        <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
+
+                            <li class="nav-item">
+                                <a class=" nav-link menugreen_v h6" href="/auth/login" id="vxod">Вход</a>
+                             </li>
+                             <li class="nav-item">
+                                <a href="/auth/login" class="btn btn-secondary">Разместить резюме</a>
+                            </li>
+
+                        </ul>
+                        <?php } else {?>
+                            <?php $user = Yii::$app->user->identity;
+                            if($user->rang===10){ ?> <!-- Для студента -->
+
+                                <li class="nav-item dropdown ml-auto">
+                                     <a class="nav-link menugreen dropdown-toggle h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                         Личный кабинет
+                                     </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
+                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/resume">Мое резюме</a>
+                                         <!--   <a class="dropdown-item menugreen_v h6" href="/privateoffice/my_project">Достижения</a>-->
+                                            <a class="dropdown-item menugreen_v h6" href="#">Избранное</a>
+                                            <a class="dropdown-item menugreen_v h6" href="#">Просмотренное</a>
+                                            <a class="dropdown-item menugreen_v h6" href="<?= Url::toRoute(['site/search','id'=>'0']) ?>">Поиск вакансий</a>
+                                            <a class="dropdown-item menugreen_v h6" href="/auth/logout" id="exit"><div>Выход</div></a>
+                                        </div>
+                                </li>
+                            <?php }
+                            if($user->rang===20){ ?> <!-- Для работодателя -->
+
+                                <li class="nav-item dropdown ml-auto">
+                                     <a class="nav-link menugreen dropdown-toggle h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                         Личный кабинет
+                                     </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
+                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/vacancy">Составить вакансию</a>
+                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/my_vacancy">Мои вакансии</a>
+                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/organiz">Данные об организации</a>
+                                            <a class="dropdown-item menugreen_v h6" href="#">Избранное</a>
+                                            <a class="dropdown-item menugreen_v h6" href="#">Просмотренное</a>
+                                            <a class="dropdown-item menugreen_v h6" href="/site/search_work">Поиск резюме</a>
+                                            <a class="dropdown-item menugreen_v h6" href="/auth/logout" id="exit"><div>Выход</div></a>
+                                        </div>
+                                </li>
+                            <?php }
+                            ?>
+                        <?php }?>
+
                     </ul>
                 </div>
-
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-    </div>
-    <!-- /.container-fluid -->
-</nav>
+            </nav>
+    </header>
 
 
 <?= $content ?>
 
 
-<footer class="footer-widget-section">
-			
-			<div class="footer-copy">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="text-center">&copy; 2019
-								<a href="#">WorkingStudents Blog, </a> Built with
-								<i
-                            class="fa fa-heart"></i> by
-								<a href="#">V&A</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
+    <footer class="dark">
+             <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-light h6"   href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Документация
+                            </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item menugreen_v h6" href="/site/personal_data_protection">Защита персональных данных</a>
+                                    <a class="dropdown-item menugreen_v h6" href="/site/site_terms_of_use">Условие использования сайта</a>
+                                    <a class="dropdown-item menugreen_v h6" href="/site/the_agreement">Соглашение об оказании услуг</a>
+                                    <a class="dropdown-item menugreen_v h6" href="/site/rules_for_placement_of_vacancies">Правила размещения вакансий на ws.ru</a>
+                                </div>
+                        </li>
+                    </div>
+
+                    <div class="col">
+                        <div class="row justify-content-center">
+                            <a href="/site/index" id="logofooter" class="navbar-brad img-fluid"><img src="/public/img/logofooter1.png" alt="Logo"></a>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="text-center text-light text_foot ml-5" >
+                            &copy; 2019 WorkingStudents, Build with by V&A
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </footer>
 
 <?php $this->endBody() ?>
 </body>
