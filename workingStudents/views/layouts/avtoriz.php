@@ -51,6 +51,10 @@ PublicAsset::register($this);
                               <li class="nav-item">
                                 <a class="nav-link h6 menugreen" href="/site/indexwork">Работодателю</a>
                             </li>
+                            <li class="nav-item">
+                                    <a class="nav-link h6 menugreen" href="/site/indexartic">Cтатьи</a>
+                                </li>
+
                           </ul>
 
                             <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
