@@ -116,7 +116,7 @@ PublicAsset::register($this);
     </header>
 
 
-<?= $content ?>
+    <main class="content2"><?= $content ?></main>
 
 
     <footer class="dark">

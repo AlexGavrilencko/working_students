@@ -314,6 +314,15 @@ svg text {
     background-size: cover;
     background-position: center;
   }
+
+  .content2 {
+    flex: 1 0 auto;
+    background: url(/public/img/fonstat.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+
   .compsearchavatar {
     box-shadow: 0 0 0 2px #22beb16e, 0 0 13px #333; /* Параметры теней */
     width: 70%;
@@ -466,7 +475,7 @@ svg text {
   }
   /* стиль для логотипа подвала */
   #logofooter{
-    width: 13%;
+    width: 35%;
   }
   /*для отображения фотографии в личном кабинете*/
   .logo_user{
