@@ -55,7 +55,7 @@ class Organization extends \yii\db\ActiveRecord
             'name' => 'Наименование организации',
             'city_id' => 'Город',
             'adres' => 'Адрес',
-            'inn' => 'ИН',
+            'inn' => 'ИНН',
             'ogrn' => 'ОГРН',
             'image' => 'Логотип',
             'correctOrg' => 'correctOrg',

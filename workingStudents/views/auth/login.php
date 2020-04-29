@@ -30,9 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php $form = ActiveForm::begin(); ?>
                     <h3 class="text-center">Авторизация</h3>
 
-                    <?= $form->field($model, 'login')->textInput(['autofocus' => true, 'placeholder'=>"Введите ваш логин"]) ?> 
+                    <?= $form->field($model, 'login')->textInput(['autofocus' => true, 'placeholder'=>"Логин"]) ?> 
 
-                    <?= $form->field($model, 'password')->passwordInput(['placeholder'=>"Введите ваш пароль"]) ?>
+                    <?= $form->field($model, 'password')->passwordInput(['placeholder'=>"Пароль"]) ?>
 
                     <?= $form->field($model, 'rememberMe')->checkbox([
                         'template' => "<div class=\"col-lg-offset-1 col-lg-3 btn-rounded btngreen\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",

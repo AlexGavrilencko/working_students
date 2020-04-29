@@ -29,27 +29,67 @@ PublicAsset::register($this);
 
 
     <header>
-        <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->
-               
-             <a href="/site/indexwork" class="navbar-brad"><img src="/public/img/logo1.png" alt="Logo"></a>  <!-- логотип в меню сайта -->
-                        
+    <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->   
+            <a href="/site/index" class="navbar-brad ml-2"><img src="/public/img/logo1.png" alt="Logo"></a>  <!-- логотип в меню сайта --> 
+
                 <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 
-                    <div class="collapse navbar-collapse " id="collapsibleNavbar">
-                        <ul class="navbar-nav ml-auto">  <!-- переходы в меню -->
-                            <?php  if (Yii::$app->user->isGuest){ ?>
-                                <li class="nav-item">
-                                    <a class=" nav-link menugreen_v h6" href="/auth/login" id="vxod">Вход в личный кабинет</a>
-                                </li>
-                            <?php } else {?>
+                <div class="collapse navbar-collapse ml-4" id="collapsibleNavbar">
+                    <?php  if (Yii::$app->user->isGuest){ ?>
+                        <ul class="navbar-nav">  <!-- переходы в меню для гостя-->
+
+                            <li class="nav-item">
+                                <a class="nav-link menugreen h6" href="#">Вакансии</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link h6 menugreen" href="/site/search_work">Резюме</a>
+                            </li> 
+
+                            <li class="nav-item">
+                                <a class="nav-link h6 menugreen" href="/site/indexwork">Работодателю</a>
+                            </li>
+                        </ul>
+
+                        <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
+                            <li class="nav-item mr-2">
+                                <a class=" nav-link menugreen_v h6" href="/auth/login" id="vxod">Вход</a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a href="/auth/login" class="btn btn-secondary">Разместить резюме</a>
+                            </li>
+                        
+                        </ul>
+
+     <!-- удалить для других пользователей. оставить только для пользователя гость -->                   
+                        <?php } else {?>
+                            <?php $user = Yii::$app->user->identity;
+                            if($user->rang===10){ ?>
+                                <ul class="navbar-nav">  <!-- переходы в меню для студента ДОБАВЬ ССЫЛКУ НА ЛК-->
+                                    <li class="nav-item">
+                                        <a class="nav-link menured h6 text-decoration" href="/site/index">Студентам</a>
+                                    </li>
+                                </ul>
+                            <?php }
+                            if($user->rang===20){ ?>
+                                <ul class="navbar-nav">  <!-- переходы в меню для работадателя ДОБАВЬ ССЫЛКУ НА ЛК-->
+                                    <li class="nav-item">
+                                        <a class="nav-link h6 menugreen" href="/site/indexwork">Работодателям</a>
+                                    </li> 
+                                </ul>
+                            <?php }
+                            ?>
+                            <ul class="navbar-nav ml-auto">  <!-- переходы в меню ВЫХОД-->
                                 <li class="nav-item">
                                     <a class=" nav-link menugreen_v h6" href="/auth/logout" id="vixod">Выход</a>
                                 </li>
-                            <?php }?>
-                        </ul>
-                    </div>
+                            </ul>
+                        <?php }?>   
+
+                </div>
         </nav>
     </header>
 

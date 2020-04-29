@@ -47,14 +47,18 @@ PublicAsset::register($this);
                         <?php  if (Yii::$app->user->isGuest){ ?>
                             <ul class="navbar-nav">  <!-- переходы в меню для гостя-->
 
-                            <li class="nav-item">
-                                <a class="nav-link menugreen h6" href="/site/search">Вакансии</a>
-                            </li>
-                    
-                            <li class="nav-item">
-                                <a class="nav-link h6 menugreen" href="/site/search_work">Резюме</a>
-                            </li> 
-                        </ul>
+                                <li class="nav-item">
+                                    <a class="nav-link menugreen h6" href="#">Вакансии</a>
+                                </li>
+                        
+                                <li class="nav-item">
+                                    <a class="nav-link h6 menugreen" href="/site/search_work">Резюме</a>
+                                </li> 
+
+                                <li class="nav-item">
+                                    <a class="nav-link h6 menugreen" href="/site/indexwork">Работодателю</a>
+                                </li>
+                            </ul>
 
                         <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
 

@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ?> 
 
                 <div class="row justify-content-center">
-                        <?= Html::submitButton('Sign', ['class' => 'btn btn-rounded btngreen', 'name' => 'Save submit']) ?>
+                        <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-rounded btngreen btn-lg', 'name' => 'Save submit']) ?>
                 </div>
 
             
