@@ -58,7 +58,7 @@ class ArtCategory extends \yii\db\ActiveRecord
     
     public static function getAll()
     {
-        return Category::find()->all();
+        return ArtCategory::find()->all();
     }
     
     public static function getArticlesByCategory($id)
@@ -82,4 +82,5 @@ class ArtCategory extends \yii\db\ActiveRecord
         
         return $data;
     }
+    
 }
