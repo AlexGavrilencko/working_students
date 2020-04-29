@@ -15,6 +15,8 @@ use app\models\Vacancy;
 use app\models\Attributes;
 use app\models\Organization;
 use app\models\Scanned;
+use app\models\ArtCategory;
+use app\models\Article;
 
 class SiteController extends Controller
 {
@@ -288,6 +290,59 @@ class SiteController extends Controller
         ]);
 
         
+    }
+
+
+    public function actionIndexartic()
+    {
+        $data = Article::getAll(5);
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+        
+        return $this->render('indexart',[
+            'articles'=>$data['articles'],
+            'pagination'=>$data['pagination'],
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories
+        ]);
+    }
+    
+    public function actionView($id)
+    {
+        $article = Article::findOne($id);
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+        
+
+        $article->viewedCounter();
+        
+        return $this->render('single',[
+            'article'=>$article,
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories,
+            
+        ]);
+    }
+    
+    public function actionCategory($id)
+    {
+
+        $data = ArtCategory::getArticlesByCategory($id);
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+        
+        return $this->render('category',[
+            'articles'=>$data['articles'],
+            'pagination'=>$data['pagination'],
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories
+        ]);
     }
 
 }

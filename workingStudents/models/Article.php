@@ -178,6 +178,16 @@ class Article extends \yii\db\ActiveRecord
         return $this->save(false);
     }
 
+    public static function getPopular()
+    {
+        return Article::find()->orderBy('viewed desc')->limit(3)->all();
+    }
+    
+    public static function getRecent()
+    {
+        return Article::find()->orderBy('date asc')->limit(4)->all();
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

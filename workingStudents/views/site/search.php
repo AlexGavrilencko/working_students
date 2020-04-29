@@ -248,7 +248,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </form>
         </div>
     </div>
-
+    <?php  endforeach; ?>
     <div class="row"> <!-- Для отображения информации -->
 
             <div class="col-sm-3"> 
