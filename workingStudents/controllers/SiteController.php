@@ -97,6 +97,7 @@ class SiteController extends Controller
         $scanned->ViewOrSelect=0;
         $scanned->create();
         $vac=Vacancy::find()->where(['id' => $id])->one();
+        $resume->viewedCounter();
         return $this->render('complete_information',[
             'vac'=>$vac,
         ]);
@@ -112,6 +113,7 @@ class SiteController extends Controller
         $scanned->resume_id=$id;
         $scanned->ViewOrSelect=0;
         $resume=Resume::find()->where(['id' => $id])->one();
+        $resume->viewedCounter();
         return $this->render('complete_information_work',[
             'resum'=>$resume,
             ]);
@@ -187,7 +189,7 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionLogin()
+    /**public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
@@ -202,19 +204,20 @@ class SiteController extends Controller
         return $this->render('login', [
             'model' => $model,
         ]);
-    }
+    }*/
 
     /**
      * Logout action.
      *
      * @return Response
      */
-    public function actionLogout()    /* Это нужно удалить? */
+    /**public function actionLogout()    
     {
         Yii::$app->user->logout();
 
         return $this->goHome();
     }
+    */
 
     /**
      * Displays contact page.
