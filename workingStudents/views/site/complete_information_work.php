@@ -36,7 +36,7 @@ $this->title = 'Просмотр резюме';
                                     <p> <?= $resum->surname ?> <?= $resum->name ?> <?= $resum->patronymic ?></p>
                                 </div>                  <!-- /Отображение ФИО -->
 
-                                <?php  if !(Yii::$app->user->isGuest){ ?>
+                                <?php if(Yii::$app->user->identity){ ?>
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2"> 
                                     <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>"><!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">--></a>
                                 </div>
@@ -60,8 +60,8 @@ $this->title = 'Просмотр резюме';
                                             $city = Attributes::find()->where(['id'=>$c])->one();
                                             $obj=$resum->CareerObjective_id;
                                             $object = Attributes::find()->where(['id'=>$obj])->one();
-                                            $qal=$resum->personalQualities_id;
-                                            $qalit = Attributes::find()->where(['id'=>$qal])->all();
+                                            //$qal=$resum->personalQualities_id;
+                                            //$qalit = Attributes::find()->where(['id'=>$qal])->all();
                                                 if ($city == NULL)
                                                 {
                                                     echo 'Город не указан';
@@ -90,7 +90,7 @@ $this->title = 'Просмотр резюме';
                     </div><!-- /Образование -->
 
                     <div class="row ml-1"> <!-- Персональные качества -->
-                        <p><?= $qalit->name ?></p>
+                        <p><?= $resum->personalQualities ?></p>
                     </div> <!-- /Персональные качества -->
 
                     <div class="row ml-1"> <!-- Навыки -->

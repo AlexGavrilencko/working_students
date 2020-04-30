@@ -77,8 +77,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <br>  
 
                 <?php
+                
                     foreach ($resume as $resum): 
-                        if ($resum->ShowOrHide===0){
+                        if ($resum->ShowOrHide===1){
+                           // var_dump($resum);
                 ?>   
 <!-- _______________________________________________________________________________________________ -->
         <div class="border_search3 "> <!-- Фон для отображения -->

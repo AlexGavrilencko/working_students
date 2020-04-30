@@ -102,6 +102,7 @@ class Vacancy extends \yii\db\ActiveRecord
     {
         return $this->save(false);
     }
+    
     public function viewedCounter()
     {
         $this->viewed += 1;

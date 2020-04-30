@@ -43,10 +43,10 @@ PublicAsset::register($this);
                     <?php  if (Yii::$app->user->isGuest){ ?>
                         <ul class="navbar-nav">  <!-- переходы в меню для гостя-->
                             <li class="nav-item">
-                                <a class="nav-link  h6 menugreen" href="/site/search">Вакансии</a>  <!-- menured text-decoration-->
+                                <a class="nav-link  h6 menugreen" href="<?= Url::toRoute(['site/search','id'=>'0']) ?>">Вакансии</a>  <!-- menured text-decoration-->
                             </li>
                             <li class="nav-item ml-2">
-                                <a class="nav-link h6 menugreen" href="/site/search_work">Резюме</a>
+                                <a class="nav-link h6 menugreen" href="<?= Url::toRoute(['site/search_work','id'=>'0']) ?>">Резюме</a>
                             </li> 
                             <li class="nav-item">
                                 <a class="nav-link h6 menugreen" href="/site/indexwork">Работодателю</a>

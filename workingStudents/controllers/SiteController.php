@@ -20,15 +20,8 @@ use app\models\Article;
 
 class SiteController extends Controller
 {
-
-   
-
     public $layout = 'site';
 
-
-    /**
-     * {@inheritdoc}
-     */
     public function behaviors()   /* Это что? */
     {
         return [
@@ -52,9 +45,6 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function actions()   
     {
         return [
@@ -68,19 +58,12 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
+
     public function actionIndex()   /* Это для главной страницы студента */
     {
         $this->layout = 'home';
-        
         $category=Attributes::find()->where(['type'=>'category'])->all();
-
         $organizations = Organization::find()->orderBy('RAND()')->limit(8)->all();
-
 		return $this->render('index',[
 			'category'=>$category,
             'organizations' => $organizations
@@ -91,33 +74,43 @@ class SiteController extends Controller
     {
         $user=Yii::$app->user->identity;
         $user_id=$user->id;
-        $scanned=new Scanned();
-        $scanned->user_id=$user_id;
-        $scanned->vacancy_id=$id;
-        $scanned->ViewOrSelect=0;
-        $scanned->create();
+        if($user->id!=null){
+            $scanned=new Scanned();
+            $scanned->user_id=$user_id;
+            $scanned->vacancy_id=$id;
+            $scanned->ViewOrSelect=0;
+            $sc=Scanned::find()->where(['user_id' => $user_id,'vacancy_id' => $id,'ViewOrSelect' => 0])->all();
+            if($sc==null){
+                $scanned->create();
+            }
+        }
         $vac=Vacancy::find()->where(['id' => $id])->one();
-        $resume->viewedCounter();
+        $vac->viewedCounter();
         return $this->render('complete_information',[
             'vac'=>$vac,
         ]);
-        
     }
 
     public function actionComplete_information_work($id)   /* Это для просмотра отдельной страницы */
     {
         $user=Yii::$app->user->identity;
         $user_id=$user->id;
-        $scanned=new Scanned();
-        $scanned->user_id=$user_id;
-        $scanned->resume_id=$id;
-        $scanned->ViewOrSelect=0;
+        if($user->id!=null){
+            $scanned=new Scanned();
+            $scanned->user_id=$user_id;
+            $scanned->resume_id=$id;
+            $scanned->ViewOrSelect=0;
+            $sc=Scanned::find()->where(['user_id' => $user_id,'resume_id' => $id,'ViewOrSelect' => 0])->all();
+            if($sc==null){
+                $scanned->create();
+            }
+        }
         $resume=Resume::find()->where(['id' => $id])->one();
+        //var_dump($resume);
         $resume->viewedCounter();
         return $this->render('complete_information_work',[
             'resum'=>$resume,
-            ]);
-        
+        ]);
     }
 
     public function actionIndexwork()    /* Это для главной страницы работодателя */
@@ -127,7 +120,6 @@ class SiteController extends Controller
         return $this->render('indexwork',[
             'resume'=>$resume,
             ]);
-       
     }
 
     public function actionPersonal_data_protection()    /* Это для документа защиты персональных даннх */
@@ -152,7 +144,6 @@ class SiteController extends Controller
 
     public function actionSearch($id)      /* Страница поиска для студента */
     {
-        
         $this->layout = 'site';
         if($id===0){
             $catvac=Vacancy::findAll();
@@ -160,11 +151,9 @@ class SiteController extends Controller
         else{
             $catvac=Vacancy::find()->where(['category_id' => $id])->all();
         }
-       
         $atr=Attributes::find()->all();
         $org=Organization::find()->all();
         $vac=Vacancy::find()->all();
-        //$filter='';
         $idc=$id;
 		return $this->render('search',[
 		'catvac'=>$catvac,
@@ -174,62 +163,21 @@ class SiteController extends Controller
         'idc'=>$idc,
 		]);
     }
+
     public function actionSearch_work()      /* Страница поиска для компании */
     {
         $this->layout = 'site';
         $resume=Resume::find()->all();
-        
         return $this->render('search_work',[
             'resume' => $resume,   /* Заменить на резюме */
        ]);
     }
 
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
-    /**public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
-    }*/
-
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
-    /**public function actionLogout()    
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
-    */
-
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
     public function actionContact()
     {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
-
             return $this->refresh();
         }
         return $this->render('contact', [
@@ -237,36 +185,54 @@ class SiteController extends Controller
         ]);
     }
 
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
     public function actionAbout()     /* Это нужно удалить? */
     {
         return $this->render('about');
     }
-     public function actionSelected($id){
+
+    public function actionSelected($id){  /* Добавление в избранное у студента */
          $user=Yii::$app->user->identity;
          $user_id=$user->id;
-         $scanned=new Scanned();
-         $scanned->user_id=$user_id;
-         $scanned->vacancy_id=$id;
-         $scanned->ViewOrSelect=1;
-         $scanned->create();
-         return $this->redirect(Yii::$app->user->returnUrl); 
-     }
+         if($user->id!=null){
+            $sc=Scanned::find()->where(['user_id' => $user_id,'vacancy_id' => $id,'ViewOrSelect' => 1])->one();
+            if($sc==null){
+                $scanned=new Scanned();
+                $scanned->user_id=$user_id;
+                $scanned->vacancy_id=$id;
+                $scanned->ViewOrSelect=1;
+                $scanned->create();
+            }
+           // else{ Почему это не работает и как это исправить?
+           //     $sc->delete();
+            //};
+        };
+        $vac=Vacancy::find()->where(['id' => $id])->one();
+        return $this->render('complete_information',[
+            'vac'=>$vac,
+        ]); 
+    }
 
      public function actionSelected_r($id){
         $user=Yii::$app->user->identity;
         $user_id=$user->id;
-        $scanned=new Scanned();
-        $scanned->user_id=$user_id;
-        $scanned->resume_id=$id;
-        $scanned->ViewOrSelect=1;
-        $scanned->create();
-        return $this->render('search_work');
+        if($user->id!=null){
+            $scanned=new Scanned();
+            $scanned->user_id=$user_id;
+            $scanned->resume_id=$id;
+            $scanned->ViewOrSelect=1;
+            $sc=Scanned::find()->where(['user_id' => $user_id,'resume_id' => $id,'ViewOrSelect' => 0])->all();
+           // if($sc!=null){
+            //    $scanned->delete();
+            //}
+            if($sc==null){
+                $scanned->create();
+            }
+            
+        }
+        $resume=Resume::find()->where(['id' => $id])->one();
+        return $this->render('complete_information_work',[
+            'resum'=>$resume,
+        ]);
     }
 
     public function actionSearchWordSt(){
@@ -292,7 +258,6 @@ class SiteController extends Controller
             'search1'=>$search
         ]);
     }
-
 
     public function actionIndexartic()
     {
@@ -322,8 +287,7 @@ class SiteController extends Controller
             'article'=>$article,
             'popular'=>$popular,
             'recent'=>$recent,
-            'categories'=>$categories,
-            
+            'categories'=>$categories,  
         ]);
     }
     
@@ -334,7 +298,6 @@ class SiteController extends Controller
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
-        
         return $this->render('category',[
             'articles'=>$data['articles'],
             'pagination'=>$data['pagination'],

@@ -115,7 +115,7 @@ class Resume extends \yii\db\ActiveRecord
         $this->viewed += 1;
         return $this->save(false);
     }
-
+    
     public function getDate()
     {
         return Yii::$app->formatter->asDate($this->dateAdd);

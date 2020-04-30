@@ -21,8 +21,8 @@ class AuthController extends Controller
    public $e_mail;
    
 
-    public function actionLogin(){
-
+    public function actionLogin()
+    {
         $this->layout = 'avtoriz';
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
@@ -30,14 +30,11 @@ class AuthController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post())) {
             $user = User::find()->where(['login' => $model->login, 'password' => $model->password])->one();
-            
-
             if($user) {
                 Yii::$app->user->login($user); // <-- вот так логиним пользователя 
                 return $this->redirect(['privateoffice/personal_account']); //студент переходит на модель своего ЛК
                 } 
         }
-        
         return $this->render('login',['model' => $model,]);
     }
 
@@ -55,10 +52,8 @@ class AuthController extends Controller
                 if($model->rang=='10') {
                     return $this->redirect(['auth/login']); //студент переходит на модель своего ЛК
                 }
-               
             }
         }
-        
         return $this->render('signup', [
             'model'=>$model,
         ]);
@@ -68,16 +63,13 @@ class AuthController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
         return $this->goHome();
     }
 
     public function actionTest()
     {
         $user = User::findOne(1);
-
         Yii::$app->user->logout();
-
         if(Yii::$app->user->isGuest)
         {
             echo 'Пользователь гость';
@@ -90,28 +82,21 @@ class AuthController extends Controller
 
     public function actionSignupwork($rang)
     {
-      
         $this->layout = 'avtoriz';
         $model1= new SignupForm();
         $model2 = new Organization();
         $model1->rang=$rang;
         if(Yii::$app->request->isPost)
         {
-            
             $model1->load(Yii::$app->request->post());
             $user=$model1->signup(); //адо проверить на всякий
-
             //var_dump($model2);die();
-
             //$user = Yii::$app->user->identity;
-
             $model2->load(Yii::$app->request->post());
             $model2->user_id=$user->id;
             $model2->create(); //адо проверить на всякий
-            
             return $this->redirect(['auth/login']); //компания переходит на регистрацию организацию
         }
-        
         return $this->render('signupwork', ['model1'=>$model1,'model2'=>$model2]);
     }
 }

@@ -60,6 +60,12 @@ class Scanned extends \yii\db\ActiveRecord
         return $this;
     }
 
+    public function delete()
+    {
+        $this->delete();
+        return $this;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

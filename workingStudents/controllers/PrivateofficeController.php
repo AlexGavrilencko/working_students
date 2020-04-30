@@ -24,8 +24,6 @@ use yii\helpers\FileHelper;
 
 
 
-
-
 class PrivateofficeController extends Controller
 {
 
@@ -62,6 +60,8 @@ class PrivateofficeController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
     /* Загрузка фотографий длч резюме и логотип организаций */
     public function actionSetImage()
     {
@@ -115,14 +115,16 @@ class PrivateofficeController extends Controller
         }
         else{
             $model1 = Experience::find()->where(['resume_id'=>$model->id])->all();
+            $proj= Project::find()->where(['user_id'=>$user->id])->all();
+        
             if(Yii::$app->request->isPost)
             {
                 $model->load(Yii::$app->request->post());
                 $model->create(); 
             }
-            return $this->render('resume', ['model'=>$model,'model1'=>$model1]);
+            return $this->render('resume', ['model'=>$model,'model1'=>$model1,'project'=>$proj]);
         }
-        return $this->render('resume', ['model'=>$model,'model1'=>$model1]);
+        return $this->render('resume', ['model'=>$model,'model1'=>$model1,'project'=>$proj]);
     }
 
     //создание вакансии
@@ -168,7 +170,6 @@ class PrivateofficeController extends Controller
             'vac'=>$vac,
             'org'=>$org,
         ]);
-		
     }
 
     //функция обновления вакансии
@@ -268,20 +269,14 @@ class PrivateofficeController extends Controller
             $file = UploadedFile::getInstance($model, 'image');
                 if($project->saveImage($model->uploadFile($file, $project->image)))
                 {
-                    return $this->redirect(['privateoffice/my_project']);
+                    return $this->redirect(['privateoffice/resume']);
                 }
             }
         
         return $this->render('img', ['model'=>$model]);
     }
 
-    //отображение всех достижений одного пользователя
-    public function actionMy_project(){
-        $this->layout = 'site';
-        $user = Yii::$app->user->identity; 
-        $proj= Project::find()->where(['user_id'=>$user->id])->all();
-        return $this->render('my_project',['project'=>$proj]);
-    }
+    
     //функция удаления достижений
     public function actionProject_del($id)
     { 
@@ -289,7 +284,7 @@ class PrivateofficeController extends Controller
         $this->findModelProj($id)->deleteImage();
         $this->findModelProj($id)->delete();
         
-        return $this->redirect(['privateoffice/my_project']);
+        return $this->redirect(['privateoffice/resume']);
     }
 
     public function actionMy_select(){
