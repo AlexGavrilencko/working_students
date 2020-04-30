@@ -291,8 +291,6 @@ class SiteController extends Controller
             'dataProvider' => $dataProvider,
             'search1'=>$search
         ]);
-
-        
     }
 
 
@@ -303,7 +301,6 @@ class SiteController extends Controller
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
-        
         return $this->render('indexart',[
             'articles'=>$data['articles'],
             'pagination'=>$data['pagination'],
@@ -320,10 +317,7 @@ class SiteController extends Controller
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
-        
-
         $article->viewedCounter();
-        
         return $this->render('single',[
             'article'=>$article,
             'popular'=>$popular,
