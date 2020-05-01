@@ -289,8 +289,17 @@ class PrivateofficeController extends Controller
 
     public function actionMy_select(){
         $this->layout = 'site';
-        $user = Yii::$app->user->identity; 
-        $select= Scanned::find()->where(['user_id'=>$user->id])->all();
-        return $this->render('my_scanned',['select'=>$select]);
+        $user = Yii::$app->user->identity;
+        $vs=1; 
+        $select= Scanned::find()->where(['user_id'=>$user->id,'ViewOrSelect'=>$vs])->all();
+        return $this->render('my_scanned',['select'=>$select,'vs'=>$vs]);
+    }
+
+    public function actionMy_scan(){
+        $this->layout = 'site';
+        $user = Yii::$app->user->identity;
+        $vs=0; 
+        $select= Scanned::find()->where(['user_id'=>$user->id,'ViewOrSelect'=>$vs])->all();
+        return $this->render('my_scanned',['select'=>$select,'vs'=>$vs]);
     }
 }

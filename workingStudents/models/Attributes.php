@@ -45,8 +45,8 @@ class Attributes extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'type' => 'Type',
+            'name' => 'Наименование',
+            'type' => 'Тип',
         ];
     }
 

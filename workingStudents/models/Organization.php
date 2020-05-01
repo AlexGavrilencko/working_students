@@ -58,7 +58,7 @@ class Organization extends \yii\db\ActiveRecord
             'inn' => 'ИНН',
             'ogrn' => 'ОГРН',
             'image' => 'Логотип',
-            'correctOrg' => 'correctOrg',
+            'correctOrg' => 'Корректность организации',
         ];
     }
 

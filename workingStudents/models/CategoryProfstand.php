@@ -45,8 +45,8 @@ class CategoryProfstand extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'code' => 'Code',
-            'name' => 'Name',
+            'code' => 'Код',
+            'name' => 'Наименование',
             'profstand_id' => 'Profstand ID',
         ];
     }

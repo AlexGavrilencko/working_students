@@ -51,7 +51,7 @@ class Response extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'vacancy_id' => 'Vacancy ID',
             'resume_id' => 'Resume ID',
-            'date' => 'Date',
+            'date' => 'Дата',
         ];
     }
 

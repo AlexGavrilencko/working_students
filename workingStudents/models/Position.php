@@ -46,8 +46,8 @@ class Position extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'categprofst_id' => 'Categprofst ID',
-            'code' => 'Code',
-            'name' => 'Name',
+            'code' => 'Код',
+            'name' => 'Наименование',
         ];
     }
 

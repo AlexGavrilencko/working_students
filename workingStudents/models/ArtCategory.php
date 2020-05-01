@@ -39,7 +39,7 @@ class ArtCategory extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
+            'title' => 'Наименование категории',
         ];
     }
 
