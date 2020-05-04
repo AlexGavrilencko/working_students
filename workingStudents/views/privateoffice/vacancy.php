@@ -79,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ?>  
                             </p>
                             <div class="row justify-content-center"> 
-                                <a href="/privateoffice/organiz" class="btn-rounded btngreen btn">Добавить данные</a>
+                                <a href="/privateoffice/organiz" class="btn-rounded btngreen1 btn">Добавить данные</a>
                             </div>
                            
                     </div>

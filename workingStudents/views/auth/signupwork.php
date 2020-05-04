@@ -23,13 +23,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php
                // $form->field($model, 'rang')->$rang;
                 ?>
-                <?= $form->field($model1, 'login')->textInput(['class'=>'form-control','placeholder'=>"Введите логин, не менее 8 символов"]) ?>
+                <?= $form->field($model1, 'login')->textInput(['class'=>'form-control','placeholder'=>"Введите логин"])->label('Логин <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                        "data-placement"=>"top", "title"=>"Логин должен содержать минимум 8 символов, букв или цифр: gft564*dfhy"]); ?>
 
-                <?= $form->field($model1, 'e_mail')->textInput(['class'=>'form-control', 'placeholder'=>"Введите email"]) ?>
+                <?= $form->field($model1, 'e_mail')->textInput(['class'=>'form-control', 'placeholder'=>"Введите email"])->label('e_mail <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                        "data-placement"=>"top", "title"=>"Электронная почта: primer@gmail.com"]); ?>
 
-                <?= $form->field($model1, 'password')->passwordInput(['placeholder'=>"Введите пароль, не менее 8 символов"]) ?>
+                <?= $form->field($model1, 'password')->passwordInput(['placeholder'=>"Введите пароль"])->label('Пароль <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                        "data-placement"=>"top", "title"=>"Пароль должен содержать минимум 8 символов, букв или цифр"]); ?>
 
-                <?= $form->field($model1, 'password_repeat')->passwordInput(['placeholder'=>"Введите пароль еще раз"]) ?>
+                <?= $form->field($model1, 'password_repeat')->passwordInput(['placeholder'=>"Повторите пароль"]) ?>
 
                 <h3 class="text-center">Данные об организации</h3>
                 <?php   
@@ -47,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                       
                 ?>
 
-                <?= $form->field($model2, 'name')->textInput(['class'=>'form-control','placeholder'=>"Введите название вашей организации"]) ?>
+                <?= $form->field($model2, 'name')->textInput(['class'=>'form-control','placeholder'=>"Наименование организации"]) ?>
                 <?php
                 // получаем все города из таблицы атрибутов
                 $city = Attributes::find()->where(['type'=>'city'])->all();
@@ -59,18 +62,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 echo $form->field($model2, 'city_id')->dropDownList($items,$params);
                  ?>
 
-                <?= $form->field($model2, 'adres')->textInput(['class'=>'form-control','placeholder'=>"Введите адрес организации"]) ?>
+                <?= $form->field($model2, 'adres')->textInput(['class'=>'form-control','placeholder'=>"Адрес организации"]) ?>
 
-                <?= $form->field($model2, 'inn')->textInput(['class'=>'form-control','placeholder'=>"Введите ИНН вашей организации"]) ?>
+                <?= $form->field($model2, 'inn')->textInput(['class'=>'form-control','placeholder'=>"ИНН организации"])->label('ИНН <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                        "data-placement"=>"top", "title"=>"ИНН регистрируемой организации"]); ?>
 
-                <?= $form->field($model2, 'ogrn')->textInput(['class'=>'form-control', 'placeholder'=>"Введите ОГРН вашей организации"]) ?>
+                <?= $form->field($model2, 'ogrn')->textInput(['class'=>'form-control', 'placeholder'=>"ОГРН организации"])->label('ОГРН <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                        "data-placement"=>"top", "title"=>"ОГРН регистрируемой организации"]); ?>
 
                 <?php echo $form->field($model1, 'personaldate')->checkbox(['class'=>'show-password']);
                     //echo '<a href="/site/personal_data_protection">Согласие на обработку персональных данных</a>'; 
                 ?> 
 
                 <div class="row justify-content-center">
-                        <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-rounded btngreen btn-lg', 'name' => 'Save submit']) ?>
+                        <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-rounded btngreen', 'name' => 'Save submit']) ?>
                 </div>
 
             

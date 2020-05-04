@@ -119,9 +119,9 @@ PublicAsset::register($this);
     
     <footer class="dark">
              <div class="container">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <li class="nav-item dropdown">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-4 col-xl-4">
+                        <li class="nav-item dropdown" style="margin-left: 2%;">
                             <a class="nav-link dropdown-toggle text-light h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Документация
                             </a>
@@ -134,13 +134,13 @@ PublicAsset::register($this);
                         </li>
                     </div>
 
-                    <div class="col">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
                         <div class="row justify-content-center">
                             <a href="/site/index" id="logofooter" class="navbar-brad"><img src="/public/img/logofooter1.png" alt="Logo"></a>
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col-12 col-sm-12 col-md-3 col-lg-4 col-xl-4">
                         <div class="text-center text-light text_foot ml-5">
                             &copy; 2019 WorkingStudents, Build with by V&A
                         </div>

@@ -19,12 +19,15 @@ $this->params['breadcrumbs'][] = $this->title;
                // $form->field($model, 'rang')->$rang;
                 ?>
 
-<?= $form->field($model, 'login')->textInput(['class'=>'form-control','placeholder'=>"Введите логин, не менее 8 символов"]) ?>
+<?= $form->field($model, 'login')->textInput(['class'=>'form-control','placeholder'=>"Введите логин"])->label('Логин <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                        "data-placement"=>"top", "title"=>"Логин должен содержать минимум 8 символов, букв или цифр: gft564*dfhy"]); ?>
                 
 
-                <?= $form->field($model, 'e_mail')->textInput(['class'=>'form-control', 'placeholder'=>"Введите email"]) ?>
+                <?= $form->field($model, 'e_mail')->textInput(['class'=>'form-control', 'placeholder'=>"Введите email"])->label('e_mail <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                        "data-placement"=>"top", "title"=>"Электронная почта: primer@gmail.com"]); ?>
 
-                <?= $form->field($model, 'password')->passwordInput(['placeholder'=>"Введите пароль, не менее 8 символов"]) ?>
+                <?= $form->field($model, 'password')->passwordInput(['placeholder'=>"Введите пароль"])->label('Пароль <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                        "data-placement"=>"top", "title"=>"Пароль должен содержать минимум 8 символов, букв или цифр"]); ?>
 
                 <?= $form->field($model, 'password_repeat')->passwordInput(['placeholder'=>"Повторите пароль"]) ?>
 
@@ -33,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     
                 ?>          
                     <div class="row justify-content-center">
-                        <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-rounded btngreen btn-lg', 'name' => 'login-button']) ?>
+                        <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-rounded btngreen', 'name' => 'login-button']) ?>
                     </div>
               
                     

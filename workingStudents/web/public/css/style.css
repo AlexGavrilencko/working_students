@@ -227,16 +227,16 @@ svg text {
   }
   /* стиль для фона вакансий и резюме в маленьком окне*/
   .border_search1{
-    background-color: #f3b6870a;
+    background-color: #20b8970a;
     border: 2px solid;
-    border-color: #f57906cc;
+    border-color: #1d6d5cec;
     border-radius: 10px;
     padding-top: 2%;
   }
 
   .btngreen1{ 
-    color: #f57906;
-    border-color: #f57906;
+    color: #184b40;
+    border-color: #184b40;
   }
 
   .border_search2{
@@ -248,9 +248,9 @@ svg text {
   }
 
   .border_search3{
-    background-color: #691c3a15;
+    background-color: #55b8c515;
     border: 2px solid;
-    border-color: #e60d60cc;
+    border-color: #34575cdc;
     padding: 3%;
   }
 
@@ -1486,7 +1486,7 @@ Instagram
   text-decoration: none;
   list-style: none;
   margin: 0;
-  float: left;
+ 
 }
 
 
