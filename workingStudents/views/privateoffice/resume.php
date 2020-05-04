@@ -158,30 +158,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen', 'name' => 'Save submit']) ?>
                     </div>
                 </div>
-                <div class="text-center">
-        <p>Вы можете добавить изображения своих достижений</p>
-                </div>
-    <div class="col-sm-4"> 
-            <?= Html::a('Добавить фотографию', ['privateoffice/set-project'], ['class' => 'btn btn-rounded btnred']) ?>
-        </div>
-    <div class=row>
-        
-            <?php
-                foreach ($project as $pr): 
-            ?>
-                <div class="col-xs-12 col-md-4 col-lg-4 col-xl-4 p-2">
-                    <?php if($pr->image): ?>
-                   <!--     <div class="border_project">-->
-                            <img class="img-fluid project_img" src="/uploads/<?= $pr->image?>" alt="">
-                            <div class="row">
-                                <a href="<?= Url::toRoute(['privateoffice/set-project', 'id'=>$pr->id]); ?>" class='m-1'>Редактировать</a>
-                                <a href="<?= Url::toRoute(['privateoffice/project_del', 'id'=>$pr->id]); ?>" class='m-1'>Удалить</a>
-                            </div>
-                       <!--  </div>-->
-                    <?php endif; ?>
-                </div>
-            <?php  endforeach; ?>
-    </div>
+                
             </div>
 <?php ActiveForm::end(); ?>
 <br>

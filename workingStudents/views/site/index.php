@@ -32,7 +32,7 @@ btnred
             <button type="submit" class="btn btngreen_k  m-2">Прохождение практики</button>
         </div>-->
     </div>
-
+    <p class="h4 text-center m-2">Зарегистрированные организации</p>
     <div class="row p-2 my-3">
 
         <?php foreach ($organizations as $organization) : ?>

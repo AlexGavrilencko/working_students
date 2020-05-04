@@ -1,0 +1,35 @@
+<div class="text-center">
+                    <p>Вы можете добавить изображения своих достижений</p>
+                </div>
+    <div class="col-sm-4"> 
+            <?= Html::a('Добавить фотографию', ['privateoffice/set-project'], ['class' => 'btn btn-rounded btnred']) ?>
+        </div>
+    <div class=row>
+        <?php
+                foreach ($project as $pr): 
+            ?>
+                <div class="col-xs-12 col-md-4 col-lg-4 col-xl-4 p-2">
+                    <?php if($pr->image): ?>
+                   <!--     <div class="border_project">-->
+                            <img class="img-fluid project_img" src="/uploads/<?= $pr->image?>" alt="">
+                            <div class="row">
+                                <a href="<?= Url::toRoute(['privateoffice/set-project', 'id'=>$pr->id]); ?>" class='m-1'>Редактировать</a>
+                                <a href="<?= Url::toRoute(['privateoffice/project_del', 'id'=>$pr->id]); ?>" class='m-1'>Удалить</a>
+                            </div>
+                       <!--  </div>-->
+                    <?php endif; ?>
+                </div>
+            <?php  endforeach; ?>
+    
+    </div>
+
+Саня, сделай так как на главной
+<?php foreach ($organizations as $organization) : ?>
+    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3 p-1">
+        <img
+            src="/uploads/<?php echo $organization->image; ?>"
+            alt="<?php echo $organization->name; ?>"
+            class="img-fluid"
+        >
+    </div>
+<?php endforeach ?>
