@@ -13,7 +13,7 @@ foreach ($select as $sel):
 if($vs==0){
     $this->title = 'Просмотренное';
     if($user->rang==10){ //условие для вывода просмотренного для студента
-        var_dump($sel->id);?>
+        ?>
         <!-- Для отображения информации -->
     <div class="row mb-4"> 
             <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">     
@@ -22,7 +22,8 @@ if($vs==0){
         <div class="col-8 col-sm-8 col-md-8 col-lg-6 col-xl-6">  
                     <br>     
                 <?php
-                foreach ($vac as $vacan):    
+                foreach ($vac as $vacan): 
+                    if($sel->vacancy_id==$vacan->id){  
                 ?>                                <!-- Цикл для отображения вакансий -->
 <!-- ______________________________________Вид отображения_________________________________________________________ -->
                 <div class="border_search3"> <!-- Фон для отображения -->
@@ -107,14 +108,14 @@ if($vs==0){
                             <p>Дата<?= $vacan->dateAdd ?></p>       
                         </div>
                         <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
-                            <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>">
+                            <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
                                 <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
                             </a>
                         </div>
                     </div>
                 </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->
-            <?php  endforeach; ?>  <!-- /Цикл для отображения вакансий -->
+            <?php };  endforeach; ?>  <!-- /Цикл для отображения вакансий -->
         </div>
 
         <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">   
@@ -122,15 +123,16 @@ if($vs==0){
         </div>         
 
     </div>
-    <?}
+    <?};
     if($user->rang==20){ //условие для вывода просмотренного для работодателя
-        var_dump($sel->id);?>
+        ?>
         <div class="row justify-content-md-center mb-3"> <!-- Для отображения информации -->   
             <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-6">  
                 <br>  
                 <?php
                     foreach ($resume as $resum): 
-                        if ($resum->ShowOrHide===1){
+                        if($sel->resume_id==$resume->id){
+                            if ($resum->ShowOrHide===1){
                            // var_dump($resum);
                 ?>   
 <!-- _______________________________________________________________________________________________ -->
@@ -203,7 +205,7 @@ if($vs==0){
                     </div>
             </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->
-                <?php  }; ?>
+                <?php  };  }; ?>
             <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
         </div>
     </div>
@@ -212,7 +214,7 @@ if($vs==0){
 else{
     $this->title = 'Избранное';
     if($user->rang==10){//условие для вывода избранного для студента
-        var_dump($sel->id);?>
+        ?>
         <!-- Для отображения информации -->
     <div class="row mb-4"> 
             <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">     
@@ -221,7 +223,8 @@ else{
         <div class="col-8 col-sm-8 col-md-8 col-lg-6 col-xl-6">  
                     <br>     
                 <?php
-                foreach ($vac as $vacan):    
+                foreach ($vac as $vacan):  
+                    if($sel->vacancy_id==$vacan->id){  
                 ?>                                <!-- Цикл для отображения вакансий -->
 <!-- ______________________________________Вид отображения_________________________________________________________ -->
                 <div class="border_search3"> <!-- Фон для отображения -->
@@ -313,7 +316,7 @@ else{
                     </div>
                 </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->
-            <?php  endforeach; ?>  <!-- /Цикл для отображения вакансий -->
+            <?php }; endforeach; ?>  <!-- /Цикл для отображения вакансий -->
         </div>
 
         <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">   
@@ -323,12 +326,13 @@ else{
     </div>
    <? }
     if($user->rang==20){ //условие для вывода избранного для работодателя
-        var_dump($sel->id);?>
+        ?>
 <div class="row justify-content-md-center mb-3"> <!-- Для отображения информации -->   
             <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-6">  
                 <br>  
                 <?php
                     foreach ($resume as $resum): 
+                        if($sel->resume_id==$resume->id){
                         if ($resum->ShowOrHide===1){
                            // var_dump($resum);
                 ?>   
@@ -402,12 +406,12 @@ else{
                     </div>
             </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->
-                <?php  }; ?>
+                <?php  }; }; ?>
             <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
         </div>
     </div>
-   <? }
-}
+   <? };
+};
 endforeach; 
 ?>
           

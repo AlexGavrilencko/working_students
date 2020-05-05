@@ -282,7 +282,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <p>Дата<?= $vacan->dateAdd ?></p>       
                         </div>
                         <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
-                            <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>">
+                            <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
                                 <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
                             </a>
                         </div>

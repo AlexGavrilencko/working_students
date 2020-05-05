@@ -5,6 +5,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\ActiveField;
 use app\models\Attributes;
+use app\models\Position;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
@@ -71,9 +72,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p class="">Примеры: самостоятельность, стрессоустойчивость, ответственность, внимательность...</p>
                         <?php
                             // получаем все города из таблицы атрибутов
-                            $objective = Attributes::find()->where(['type'=>'objective'])->all();
+                            $objective = Position::find()->all();
                             // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                            $items = ArrayHelper::map($objective,'id','name');
+                            $items = ArrayHelper::map($objective,'id','name','code');
                             $params = [
                                 'prompt' => 'Желаемая должность'
                             ];
@@ -112,9 +113,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </div>
                                     <?php foreach($model1 as $exp): ?>
                                         <?php  
-                                            $org = Organization::find()->where(['id'=>$exp->nameOrganiz_id])->one();
-                                            $speciality = Attributes::find()->where(['id'=>$exp->speciality_id])->one();
-                                            $speciality=$speciality->name;
+                                            //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
+                                            $speciality = Speciality::find()->where(['id'=>$exp->speciality_id])->one();
+                                            //$speciality=$speciality->name;
                                         ?>
 
                                     <div class="row"> <!-- отобрежение цикла -->
@@ -135,10 +136,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                             </p>
                                         </div>
                                         <div class="col">
-                                            <p><?=$org->name?></p>
+                                            <p><?=$exp->nameOrganiz?></p>
                                         </div>
                                         <div class="col">
-                                            <p><?=$speciality?></p>
+                                            <p><?=$speciality->code?><?=$speciality->name?></p>
                                         </div>
                                         <div class="col">
                                             <?= Html::a('<img src="/public/img/pencil1.png" class="pencil">', ['experience_up', 'id' => $exp->id]) ?>
@@ -159,6 +160,33 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                 </div>
                 
+
+                <div class="text-center">
+                    <p>Вы можете добавить изображения своих достижений</p>
+                </div>
+    <div class="col-sm-4"> 
+            <?= Html::a('Добавить фотографию', ['privateoffice/set-project'], ['class' => 'btn btn-rounded btnred']) ?>
+        </div>
+    <div class=row>
+        <?php
+                foreach ($project as $pr): 
+            ?>
+                <div class="col-xs-12 col-md-4 col-lg-4 col-xl-4 p-2">
+                    <?php if($pr->image): ?>
+                   <!--     <div class="border_project">-->
+                            <img class="img-fluid project_img" src="/uploads/<?= $pr->image?>" alt="">
+                            <div class="row">
+                                <a href="<?= Url::toRoute(['privateoffice/set-project', 'id'=>$pr->id]); ?>" class='m-1'>Редактировать</a>
+                                <a href="<?= Url::toRoute(['privateoffice/project_del', 'id'=>$pr->id]); ?>" class='m-1'>Удалить</a>
+                            </div>
+                       <!--  </div>-->
+                    <?php endif; ?>
+                </div>
+            <?php  endforeach; ?>
+    
+    </div>
+
+
             </div>
 <?php ActiveForm::end(); ?>
 <br>

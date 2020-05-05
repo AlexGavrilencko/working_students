@@ -292,7 +292,9 @@ class PrivateofficeController extends Controller
         $user = Yii::$app->user->identity;
         $vs=1; 
         $select= Scanned::find()->where(['user_id'=>$user->id,'ViewOrSelect'=>$vs])->all();
-        return $this->render('my_scanned',['select'=>$select,'vs'=>$vs]);
+        $resume=Resume::find()->all();
+        $vac=Vacancy::find()->all();
+        return $this->render('my_scanned',['select'=>$select,'vs'=>$vs,'resume'=>$resume,'vac'=>$vac]);
     }
 
     public function actionMy_scan(){
@@ -300,6 +302,8 @@ class PrivateofficeController extends Controller
         $user = Yii::$app->user->identity;
         $vs=0; 
         $select= Scanned::find()->where(['user_id'=>$user->id,'ViewOrSelect'=>$vs])->all();
-        return $this->render('my_scanned',['select'=>$select,'vs'=>$vs]);
+        $resume=Resume::find()->all();
+        $vac=Vacancy::find()->all();
+        return $this->render('my_scanned',['select'=>$select,'vs'=>$vs,'resume'=>$resume,'vac'=>$vac]);
     }
 }
