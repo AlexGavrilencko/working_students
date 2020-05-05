@@ -81,7 +81,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                     ];
                                     echo $form->field($model, 'CareerObjective_id')->dropDownList($items,$params)->label('Желаемая должность <strong><big><span class="vop">
                                     ?</span></big></strong>', ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Выберете желаемую должность"]);
-                                
                                 ?>
 
                                 <p class="row justify-content-center">
@@ -127,12 +126,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                             ?>
 
                                                 <div class="row"> <!-- отобрежение цикла -->
+
                                                     <div class="col">
                                                         <p><?=$exp->id?></p>
                                                     </div>
+
                                                     <div class="col">
                                                         <p><?=$exp->dateStart?></p>
                                                     </div>
+
                                                     <div class="col">
                                                         <p>
                                                             <?php if($exp->StudyOrWork===0){
@@ -143,12 +145,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                                             ?>
                                                         </p>
                                                     </div>
+
                                                     <div class="col">
                                                         <p><?=$exp->nameOrganiz?></p>
                                                     </div>
+
                                                     <div class="col">
                                                         <p><?=$speciality->code?><?=$speciality->name?></p>
                                                     </div>
+
                                                     <div class="col">
                                                         <?= Html::a('<img src="/public/img/pencil1.png" class="pencil">', ['experience_up', 'id' => $exp->id]) ?>
                                                         <?= Html::a('<img src="/public/img/trashcan1.png" class="trashcan">', ['experience_del', 'id' => $exp->id], [
@@ -157,36 +162,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                         'method' => 'post',
                                                                     ],
                                                                 ]) ?>
-                                                    </div>                
+                                                    </div> 
+                                                                   
                                                 </div>
                                         <?php endforeach;?>
                                     </div>
-<<<<<<< HEAD
-                                </div>
-                                    <?php foreach($model1 as $exp): ?>
-                                        <?php  
-                                            //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
-                                            $speciality = Speciality::find()->where(['id'=>$exp->speciality_id])->one();
-                                            //$speciality=$speciality->name;
-                                        ?>
-
-                                    <div class="row"> <!-- отобрежение цикла -->
-                                        <div class="col">
-                                            <p><?=$exp->id?></p>
-                                        </div>
-                                        <div class="col">
-                                            <p><?=$exp->yearsS?></p>
-                                        </div>
-                                        <div class="col">
-                                            <p>
-                                                <?php if($exp->StudyOrWork===0){
-                                                        echo "Образование";
-                                                    }else{
-                                                        echo "Опыт работы";
-                                                    }
-                                                ?>
-                                            </p>
-=======
                                 <?php };?>
 
                
@@ -215,7 +195,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     </div>
                                             <!--  </div>-->
                                             <?php endif; ?>
->>>>>>> 1525cd4c13847c1c55458d1bdacf2895cb2f93c6
+
                                         </div>
                                 <?php  endforeach; ?>
                                 </div>
