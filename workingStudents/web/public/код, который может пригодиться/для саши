@@ -33,3 +33,41 @@
         >
     </div>
 <?php endforeach ?>
+
+
+<div class="proj mt-4 mb-4">
+                        <div class="text-center">
+                            <h4>Вы можете добавить изображения своих достижений</h4>
+                        </div>
+
+                        <div class="row justify-content-center"> 
+                            <?= Html::a('Добавить достижения', ['privateoffice/set-project'], ['class' => 'btn btn-rounded btngreen1']) ?>
+                        </div>
+
+                            <div class="row p-2 my-3 ">
+                                
+                                <?php
+                                    foreach ($project as $pr): ?>
+                                        <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3 p-1">
+                                            <?php if($pr->image): ?>
+                                        <!--     <div class="border_project">-->
+                                                    <a href="/uploads/<?= $pr->image?>" target="_blank">
+                                                        <img class="img-fluid img-thumbnail" style="width: 200px; object-fit: cover;  display: block;  height: 150px;" src="/uploads/<?= $pr->image?>" alt="">
+                                                    </a>
+                                                    <div class="row ml-1">
+                                                        <a href="<?= Url::toRoute(['privateoffice/set-project', 'id'=>$pr->id]); ?>" class='m-1 btngreen1'>Редактировать</a>
+                                                        <a href="<?= Url::toRoute(['privateoffice/project_del', 'id'=>$pr->id]); ?>" class='m-1 btngreen1'>Удалить</a>
+                                                    </div>
+                                            <!--  </div>-->
+                                            <?php endif; ?>
+                                        </div>
+                                <?php  endforeach; ?>
+                                </div>
+                            </div>
+
+
+                    <div class="row justify-content-center">
+                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen', 'name' => 'Save submit']) ?>
+                    </div>
+
+                </div>           
