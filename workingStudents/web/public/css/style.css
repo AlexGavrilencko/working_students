@@ -586,10 +586,16 @@ svg text {
     box-shadow: 0 0 0 3px #173955, 0 0 13px #333; /* Параметры теней */
    }
   .project_img{
-    height: 30%;
-    
+    width: 30%;
     border-radius: 50%; /* Радиус скругления */
     box-shadow: 0 0 0 3px #33141b, 0 0 13px #333; /* Параметры теней */
+  }
+
+  .proj{
+    background-color: #ffffff6e;
+    border: 1px solid #024423bd;
+    border-radius: 5px;
+    padding: 2%;
   }
 /*/p___________________________________________________________*/
 
