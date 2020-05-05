@@ -13,8 +13,10 @@ use Yii;
  * @property int $StudyOrWork
  * @property string $nameOrganiz
  * @property int $speciality_id
+ * @property int $position_id
  * @property string $description
  *
+ * @property Position $position
  * @property Resume $resume
  * @property Speciality $speciality
  */
@@ -34,9 +36,10 @@ class Experience extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['resume_id', 'years', 'StudyOrWork', 'speciality_id'], 'integer'],
+            [['resume_id', 'years', 'StudyOrWork', 'speciality_id', 'position_id'], 'integer'],
             [['description'], 'string'],
             [['nameOrganiz'], 'string', 'max' => 255],
+            [['position_id'], 'exist', 'skipOnError' => true, 'targetClass' => Position::className(), 'targetAttribute' => ['position_id' => 'id']],
             [['resume_id'], 'exist', 'skipOnError' => true, 'targetClass' => Resume::className(), 'targetAttribute' => ['resume_id' => 'id']],
             [['speciality_id'], 'exist', 'skipOnError' => true, 'targetClass' => Speciality::className(), 'targetAttribute' => ['speciality_id' => 'id']],
         ];
@@ -50,11 +53,12 @@ class Experience extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'resume_id' => 'Resume ID',
-            'years' => 'Количество лет',
+            'years' => 'Years',
             'StudyOrWork' => 'Study Or Work',
-            'nameOrganiz' => 'Наименование организации',
+            'nameOrganiz' => 'Name Organiz',
             'speciality_id' => 'Speciality ID',
-            'description' => 'Описание',
+            'position_id' => 'Position ID',
+            'description' => 'Description',
         ];
     }
 
@@ -62,6 +66,14 @@ class Experience extends \yii\db\ActiveRecord
     {
         $this->save();
         return $this;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPosition()
+    {
+        return $this->hasOne(Position::className(), ['id' => 'position_id']);
     }
 
     /**

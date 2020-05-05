@@ -3,6 +3,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Attributes;
 use app\models\Organization;
+use app\models\Position;
+use app\models\Profstand;
 use yii\db\ActiveRecord;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
@@ -134,9 +136,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             "data-placement"=>"top", "title"=>"Заработная плата"]) ?>
                     <?php
                             // получаем все города из таблицы атрибутов
-                            $position = Attributes::find()->where(['type'=>'objective'])->all();
+                            $position = Position::find()->all();
                             // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                            $items = ArrayHelper::map($position,'id','name');
+                            $items = ArrayHelper::map($position,'id','name','code');
                             $params = [
                                 'prompt' => 'Укажите должность'
                             ];
@@ -151,9 +153,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             "data-placement"=>"top", "title"=>"Условия"]) ?>
                     <?php
                             // получаем все города из таблицы атрибутов
-                            $category = Attributes::find()->where(['type'=>'category'])->all();
+                            $category = Profstand::find()->all();
                             // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                            $items = ArrayHelper::map($category,'id','name');
+                            $items = ArrayHelper::map($category,'id','name','code');
                             $params = [
                                 'prompt' => 'Укажите профобласть'
                             ];

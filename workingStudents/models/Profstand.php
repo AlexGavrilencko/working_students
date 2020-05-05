@@ -12,6 +12,8 @@ use Yii;
  * @property string $name
  *
  * @property CategoryProfstand[] $categoryProfstands
+ * @property SpecialProfstand[] $specialProfstands
+ * @property Vacancy[] $vacancies
  */
 class Profstand extends \yii\db\ActiveRecord
 {
@@ -40,8 +42,8 @@ class Profstand extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'code' => 'Код',
-            'name' => 'Наименование',
+            'code' => 'Code',
+            'name' => 'Name',
         ];
     }
 
@@ -51,5 +53,21 @@ class Profstand extends \yii\db\ActiveRecord
     public function getCategoryProfstands()
     {
         return $this->hasMany(CategoryProfstand::className(), ['profstand_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSpecialProfstands()
+    {
+        return $this->hasMany(SpecialProfstand::className(), ['categProfstand_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getVacancies()
+    {
+        return $this->hasMany(Vacancy::className(), ['category_id' => 'id']);
     }
 }

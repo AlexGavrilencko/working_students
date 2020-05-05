@@ -236,6 +236,7 @@ class SiteController extends Controller
     }
 
     public function actionSearchWordSt(){
+        $this->layout = 'site';
         // Разбераем запрос
         $search = Yii::$app->request->get('search');
         var_dump($search);
@@ -243,18 +244,18 @@ class SiteController extends Controller
         $search1 = str_replace(' ', '', $search);
         // Поисковый запрос с поиском и обрезанием пробелов
         $query = Vacancy::find()->where(['like', 'replace(name, " ", "")', $search1]);
-        $this->setMeta('Поиск', 'blog', 'workstud.ru');
+       // $this->setMeta('Поиск', 'blog', 'workstud.ru');
         //Строим ActiveDataProvider
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'pagination' =>[
-                'pageSize' => 3,
-            ],
-        ]);
-        var_dump($query);
+        //$dataProvider = new ActiveDataProvider([
+          //  'query' => $query,
+            //'pagination' =>[
+              //  'pageSize' => 3,
+            //],
+        //]);
+        //var_dump($query);
         // Передаём в вид index
         return $this->render('search',[
-            'dataProvider' => $dataProvider,
+           // 'dataProvider' => $dataProvider,
             'search1'=>$search
         ]);
     }

@@ -13,7 +13,6 @@ use Yii;
  *
  * @property SpecialProfstand[] $specialProfstands
  * @property Speciality[] $specialities
- * @property Vacancy[] $vacancies
  */
 class BigSpeciality extends \yii\db\ActiveRecord
 {
@@ -42,8 +41,8 @@ class BigSpeciality extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'code' => 'Код',
-            'name' => 'Наименование',
+            'code' => 'Code',
+            'name' => 'Name',
         ];
     }
 
@@ -61,13 +60,5 @@ class BigSpeciality extends \yii\db\ActiveRecord
     public function getSpecialities()
     {
         return $this->hasMany(Speciality::className(), ['bigspecial_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getVacancies()
-    {
-        return $this->hasMany(Vacancy::className(), ['category_id' => 'id']);
     }
 }

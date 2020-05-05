@@ -20,6 +20,7 @@ class m190529_143818_create_user_table extends Migration
             'phone' => $this->string(),// телефон
             'ActInactUser' => $this->boolean(),// статус пользователя
             'rang' => $this->tinyInteger(),// ранг пользователя
+            'date' => $this->date(),//дата
             'auth_key' => $this->string()
         ]);
     }

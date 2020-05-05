@@ -14,7 +14,6 @@ use Yii;
  *
  * @property Profstand $profstand
  * @property Position[] $positions
- * @property SpecialProfstand[] $specialProfstands
  */
 class CategoryProfstand extends \yii\db\ActiveRecord
 {
@@ -45,8 +44,8 @@ class CategoryProfstand extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'code' => 'Код',
-            'name' => 'Наименование',
+            'code' => 'Code',
+            'name' => 'Name',
             'profstand_id' => 'Profstand ID',
         ];
     }
@@ -65,13 +64,5 @@ class CategoryProfstand extends \yii\db\ActiveRecord
     public function getPositions()
     {
         return $this->hasMany(Position::className(), ['categprofst_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getSpecialProfstands()
-    {
-        return $this->hasMany(SpecialProfstand::className(), ['categProfstand_id' => 'id']);
     }
 }

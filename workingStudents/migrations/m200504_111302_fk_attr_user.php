@@ -130,7 +130,7 @@ class m200504_111302_fk_attr_user extends Migration
             'fk-vacancy-category_id',
             'vacancy',
             'category_id',
-            'big_speciality',
+            'profstand',
             'id',
             'CASCADE'
         );
@@ -222,6 +222,21 @@ class m200504_111302_fk_attr_user extends Migration
             'experience',
             'speciality_id',
             'speciality',
+            'id',
+            'CASCADE'
+        );
+        // creates index for column `position_id`  EXPERIENCE
+        $this->createIndex(
+            'idx-experience-position_id',
+            'experience',
+            'position_id'
+        );
+        // add foreign key for table `position`
+        $this->addForeignKey(
+            'fk-experience-position_id',
+            'experience',
+            'position_id',
+            'position',
             'id',
             'CASCADE'
         );
@@ -528,7 +543,7 @@ class m200504_111302_fk_attr_user extends Migration
             'fk-special_profstand-categProfstand_id',
             'special_profstand',
             'categProfstand_id',
-            'category_profstand',
+            'profstand',
             'id',
             'CASCADE'
         );
@@ -785,6 +800,16 @@ class m200504_111302_fk_attr_user extends Migration
         // drops index for column `speciality_id`
         $this->dropIndex(
             'idx-experience-speciality_id',
+            'experience'
+        );
+        // drops foreign key for table `position`
+        $this->dropForeignKey(
+            'fk-experience-position_id',
+            'experience'
+        );
+        // drops index for column `position_id`
+        $this->dropIndex(
+            'idx-experience-position_id',
             'experience'
         );
 

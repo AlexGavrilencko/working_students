@@ -11,11 +11,12 @@ use Yii;
  * @property int $user_id
  * @property int $vacancy_id
  * @property int $resume_id
+ * @property string $date
  * @property int $ViewOrSelect
  *
+ * @property Vacancy $vacancy
  * @property Resume $resume
  * @property User $user
- * @property Vacancy $vacancy
  */
 class Scanned extends \yii\db\ActiveRecord
 {
@@ -34,9 +35,10 @@ class Scanned extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'vacancy_id', 'resume_id', 'ViewOrSelect'], 'integer'],
+            [['date'], 'safe'],
+            [['vacancy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vacancy::className(), 'targetAttribute' => ['vacancy_id' => 'id']],
             [['resume_id'], 'exist', 'skipOnError' => true, 'targetClass' => Resume::className(), 'targetAttribute' => ['resume_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
-            [['vacancy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vacancy::className(), 'targetAttribute' => ['vacancy_id' => 'id']],
         ];
     }
 
@@ -50,6 +52,7 @@ class Scanned extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'vacancy_id' => 'Vacancy ID',
             'resume_id' => 'Resume ID',
+            'date' => 'Date',
             'ViewOrSelect' => 'View Or Select',
         ];
     }
@@ -69,6 +72,14 @@ class Scanned extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getVacancy()
+    {
+        return $this->hasOne(Vacancy::className(), ['id' => 'vacancy_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getResume()
     {
         return $this->hasOne(Resume::className(), ['id' => 'resume_id']);
@@ -80,13 +91,5 @@ class Scanned extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getVacancy()
-    {
-        return $this->hasOne(Vacancy::className(), ['id' => 'vacancy_id']);
     }
 }

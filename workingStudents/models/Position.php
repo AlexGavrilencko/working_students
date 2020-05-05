@@ -12,6 +12,7 @@ use Yii;
  * @property string $code
  * @property string $name
  *
+ * @property Experience[] $experiences
  * @property CategoryProfstand $categprofst
  * @property Resume[] $resumes
  * @property Vacancy[] $vacancies
@@ -46,9 +47,17 @@ class Position extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'categprofst_id' => 'Categprofst ID',
-            'code' => 'Код',
-            'name' => 'Наименование',
+            'code' => 'Code',
+            'name' => 'Name',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getExperiences()
+    {
+        return $this->hasMany(Experience::className(), ['position_id' => 'id']);
     }
 
     /**

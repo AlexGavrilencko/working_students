@@ -123,7 +123,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                             <p><?=$exp->id?></p>
                                         </div>
                                         <div class="col">
-                                            <p><?=$exp->dateStart?></p>
+                                            <p><?=$exp->yearsS?></p>
                                         </div>
                                         <div class="col">
                                             <p>

@@ -30,7 +30,7 @@ use Yii;
  *
  * @property Response[] $responses
  * @property Scanned[] $scanneds
- * @property BigSpeciality $category
+ * @property Profstand $category
  * @property Attributes $city
  * @property Attributes $employment
  * @property Attributes $experience
@@ -59,7 +59,7 @@ class Vacancy extends \yii\db\ActiveRecord
             [['duties', 'requirement', 'conditions', 'description'], 'string'],
             [['dateAdd', 'dateChanges'], 'safe'],
             [['name'], 'string', 'max' => 255],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => BigSpeciality::className(), 'targetAttribute' => ['category_id' => 'id']],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profstand::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['city_id' => 'id']],
             [['employment_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['employment_id' => 'id']],
             [['experience_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['experience_id' => 'id']],
@@ -98,6 +98,7 @@ class Vacancy extends \yii\db\ActiveRecord
             'viewed' => 'Количнство просмотров',
         ];
     }
+
     public function create()
     {
         return $this->save(false);
@@ -135,7 +136,7 @@ class Vacancy extends \yii\db\ActiveRecord
      */
     public function getCategory()
     {
-        return $this->hasOne(BigSpeciality::className(), ['id' => 'category_id']);
+        return $this->hasOne(Profstand::className(), ['id' => 'category_id']);
     }
 
     /**

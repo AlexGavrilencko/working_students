@@ -12,7 +12,7 @@ use Yii;
  * @property int $bigspeciality_id
  *
  * @property BigSpeciality $bigspeciality
- * @property CategoryProfstand $categProfstand
+ * @property Profstand $categProfstand
  */
 class SpecialProfstand extends \yii\db\ActiveRecord
 {
@@ -32,7 +32,7 @@ class SpecialProfstand extends \yii\db\ActiveRecord
         return [
             [['categProfstand_id', 'bigspeciality_id'], 'integer'],
             [['bigspeciality_id'], 'exist', 'skipOnError' => true, 'targetClass' => BigSpeciality::className(), 'targetAttribute' => ['bigspeciality_id' => 'id']],
-            [['categProfstand_id'], 'exist', 'skipOnError' => true, 'targetClass' => CategoryProfstand::className(), 'targetAttribute' => ['categProfstand_id' => 'id']],
+            [['categProfstand_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profstand::className(), 'targetAttribute' => ['categProfstand_id' => 'id']],
         ];
     }
 
@@ -61,6 +61,6 @@ class SpecialProfstand extends \yii\db\ActiveRecord
      */
     public function getCategProfstand()
     {
-        return $this->hasOne(CategoryProfstand::className(), ['id' => 'categProfstand_id']);
+        return $this->hasOne(Profstand::className(), ['id' => 'categProfstand_id']);
     }
 }

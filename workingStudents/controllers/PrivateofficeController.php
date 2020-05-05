@@ -106,12 +106,13 @@ class PrivateofficeController extends Controller
         if($model===null){
             $resum=new Resume();
             $resum->user_id=$user->id;
+            $proj= Project::find()->where(['user_id'=>$user->id])->all();
             if(Yii::$app->request->isPost)
             {
                 $resum->load(Yii::$app->request->post());
                 $resum->create(); 
             }
-            return $this->render('resume', ['model'=>$resum,'model1'=>$model1]);
+            return $this->render('resume', ['model'=>$resum,'model1'=>$model1,'project'=>$proj]);
         }
         else{
             $model1 = Experience::find()->where(['resume_id'=>$model->id])->all();

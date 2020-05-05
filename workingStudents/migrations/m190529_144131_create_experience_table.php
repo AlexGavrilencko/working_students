@@ -19,6 +19,7 @@ class m190529_144131_create_experience_table extends Migration
             'StudyOrWork' => $this->boolean(),// флаг работа или учеба
             'nameOrganiz' => $this->string(),// организация
             'speciality_id' => $this->integer(),// специальность
+            'position_id' => $this->integer(),//должность
             'description' => $this->text()->defaultValue(null)// описание
         ]);
 

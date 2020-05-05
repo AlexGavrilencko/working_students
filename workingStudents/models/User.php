@@ -4,7 +4,6 @@ namespace app\models;
 use yii\web\IdentityInterface;
 use \yii\db\ActiveRecord;
 use Yii;
-
 /**
  * This is the model class for table "user".
  *
@@ -15,6 +14,7 @@ use Yii;
  * @property string $phone
  * @property int $ActInactUser
  * @property int $rang
+ * @property string $date
  * @property string $auth_key
  *
  * @property Article[] $articles
@@ -42,10 +42,10 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             [['ActInactUser', 'rang'], 'integer'],
+            [['date'], 'safe'],
             [['login', 'password', 'e_mail', 'phone', 'auth_key'], 'string', 'max' => 255],
         ];
     }
-
 
     /**
      * {@inheritdoc}
@@ -61,6 +61,7 @@ class User extends ActiveRecord implements IdentityInterface
             'ActInactUser' => 'Act Inact User',
             'rang' => 'Rang',
             'auth_key' => 'Auth Key',
+            'date' => 'Date',
         ];
     }
 

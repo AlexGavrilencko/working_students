@@ -17,7 +17,8 @@ class m190604_072335_create_scanned_table extends Migration
             'user_id' => $this->integer(), //пользователь
             'vacancy_id' => $this->integer(),//вакансия
             'resume_id' => $this->integer(),//резюме
-            'ViewOrSelect' => $this->boolean()//флаг просмотренное или избранное
+            'date' => $this->date(),//дата
+            'ViewOrSelect' => $this->boolean()//флаг просмотренное или избранное 
         ]);
 
 
