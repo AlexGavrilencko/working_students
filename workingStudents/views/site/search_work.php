@@ -153,5 +153,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
         </div>
     </div>
-    
+    <?= $this->render('/partials/sidebar', [
+                'popular'=>$popular,
+                'recent'=>$recent,
+                'categories'=>$categories
+            ]);?>
 </div>

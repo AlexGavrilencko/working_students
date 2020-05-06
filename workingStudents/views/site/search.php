@@ -15,6 +15,7 @@ use yii\widgets\ActiveForm;
 
 $this->title = 'Поиск';
 $this->params['breadcrumbs'][] = $this->title;
+//варя переменная $vall это переменная содержащая все вакансии
 ?>
 
 
@@ -300,6 +301,11 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>         
 
     </div>
+    <?= $this->render('/partials/sidebar', [
+                'popular'=>$popular,
+                'recent'=>$recent,
+                'categories'=>$categories
+            ]);?>
 </div>
 
 

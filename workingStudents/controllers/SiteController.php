@@ -17,6 +17,7 @@ use app\models\Organization;
 use app\models\Scanned;
 use app\models\ArtCategory;
 use app\models\Article;
+use yii\data\ActiveDataProvider;
 
 class SiteController extends Controller
 {
@@ -86,8 +87,14 @@ class SiteController extends Controller
         }
         $vac=Vacancy::find()->where(['id' => $id])->one();
         $vac->viewedCounter();
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
         return $this->render('complete_information',[
             'vac'=>$vac,
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories
         ]);
     }
 
@@ -108,8 +115,14 @@ class SiteController extends Controller
         $resume=Resume::find()->where(['id' => $id])->one();
         //var_dump($resume);
         $resume->viewedCounter();
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
         return $this->render('complete_information_work',[
             'resum'=>$resume,
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories
         ]);
     }
 
@@ -155,12 +168,18 @@ class SiteController extends Controller
         $org=Organization::find()->all();
         $vac=Vacancy::find()->all();
         $idc=$id;
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
 		return $this->render('search',[
 		'catvac'=>$catvac,
 		'cat'=>$cat,
         'vac'=>$vac,
         'org'=>$org,
         'idc'=>$idc,
+        'popular'=>$popular,
+        'recent'=>$recent,
+        'categories'=>$categories
 		]);
     }
 
@@ -168,8 +187,14 @@ class SiteController extends Controller
     {
         $this->layout = 'site';
         $resume=Resume::find()->all();
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
         return $this->render('search_work',[
             'resume' => $resume,   /* Заменить на резюме */
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories
        ]);
     }
 
@@ -235,28 +260,25 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionSearchWordSt(){
+    public function actionSearchws(){
         $this->layout = 'site';
         // Разбераем запрос
         $search = Yii::$app->request->get('search');
-        var_dump($search);
+        ///var_dump($search);
         // Обрезаем пробелы
         $search1 = str_replace(' ', '', $search);
         // Поисковый запрос с поиском и обрезанием пробелов
-        $query = Vacancy::find()->where(['like', 'replace(name, " ", "")', $search1]);
-       // $this->setMeta('Поиск', 'blog', 'workstud.ru');
-        //Строим ActiveDataProvider
-        //$dataProvider = new ActiveDataProvider([
-          //  'query' => $query,
-            //'pagination' =>[
-              //  'pageSize' => 3,
-            //],
-        //]);
-        //var_dump($query);
-        // Передаём в вид index
+        $query = Vacancy::find()->filterWhere(['like','name', $search1])->all();
+        $vall=Vacancy::find()->all();
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
         return $this->render('search',[
-           // 'dataProvider' => $dataProvider,
-            'search1'=>$search
+            'vac'=>$query,
+            'vall'=>$vall,
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories
         ]);
     }
 

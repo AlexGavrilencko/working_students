@@ -16,6 +16,7 @@ use kartik\date\DatePicker;
 
 $this->title = 'Резюме';
 $this->params['breadcrumbs'][] = $this->title;
+//ShowOrHide,viewed,addinform
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
@@ -88,7 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <?= Html::a('Добавить образование', ['experience_cr','res_id'=>$model->id,'or'=>'0'], ['class' => 'btn btn-rounded btngreen ml-1']) ?>
                                 </p>
                         
-                                <?php if($model1 != null){ ?> 
+                            <?php if($model1 != null): ?> 
 
                                     <div class="container-fluid">
                                             <div class="row"> <!-- отображение заголовков таблицы -->
@@ -167,7 +168,37 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 </div>
                                         <?php endforeach;?>
                                     </div>
+<<<<<<< HEAD
+
+                                </div>
+                                    <?php foreach($model1 as $exp): ?>
+                                        <?php  
+                                            //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
+                                            $speciality = Speciality::find()->where(['id'=>$exp->speciality_id])->one();
+                                            //$speciality=$speciality->name;
+                                        ?>
+
+                                    <div class="row"> <!-- отобрежение цикла -->
+                                        <div class="col">
+                                            <p><?=$exp->id?></p>
+                                        </div>
+                                        <div class="col">
+                                            <p><?=$exp->yearsS?></p>
+                                        </div>
+                                        <div class="col">
+                                            <p>
+                                                <?php if($exp->StudyOrWork===0){
+                                                        echo "Образование";
+                                                    }else{
+                                                        echo "Опыт работы";
+                                                    }
+                                                ?>
+                                            </p>
+
+                    <?php endif; ?>
+=======
                                 <?php };?>
+>>>>>>> 52c1235ded60f927c1aa47c1fbaac2c3112e7bcc
 
                
                     <div class="proj mt-4 mb-4">

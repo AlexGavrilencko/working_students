@@ -78,6 +78,8 @@ class Resume extends \yii\db\ActiveRecord
             'dateChanges' => 'Дата редактирования',
             'ShowOrHide' => 'Показывать\Скрывать',
             'response' => 'Отклик',
+            'addinform' => 'Дополнительная информация',
+            'viewed' => 'Просмотры',
         ];
     }
     public function create()
