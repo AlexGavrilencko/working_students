@@ -80,9 +80,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div><!-- div ROW -->
 
                             <!-- Отображения дополнительных фильтров -->
-                                <div class="row justify-content-center mt-1">
+                                <div class="row justify-content-center mt-1" >
                                     <div id="form1" style="display: none;">
-                                        <div class="row ml-1 mt-3">
+                                        <div class="row ml-1 mt-3" style="border-top: solid;">
                                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                                                 <h4>График работы</h4>
                                                 <div class="row ml-1">
@@ -191,10 +191,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 <!-- Для отображения информации -->
-    <div class="row mb-4"> 
-            <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">     
-            </div>
-
+    <div class="row justify-content-md-center mb-3"> 
         <div class="col-8 col-sm-8 col-md-8 col-lg-6 col-xl-6">  
                     <br>     
                 <?php
@@ -296,16 +293,14 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php  endforeach; ?>  <!-- /Цикл для отображения вакансий -->
         </div>
 
-        <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">   
-            <!-- добавить фигню сбоку -->
-        </div>         
+        <?= $this->render('/partials/sidebar', [
+                    'popular'=>$popular,
+                    'recent'=>$recent,
+                    'categories'=>$categories
+                ]);?> 
 
     </div>
-    <?= $this->render('/partials/sidebar', [
-                'popular'=>$popular,
-                'recent'=>$recent,
-                'categories'=>$categories
-            ]);?>
+  
 </div>
 
 

@@ -2,7 +2,7 @@
 use yii\helpers\Url;
 ?>
 <div class="col-md-4" data-sticky_column>
-    <div class="primary-sidebar">
+    <div class="primary-sidebar mt-4">
 
         <aside class="widget">
             <h3 class="widget-title text-uppercase text-center">Popular Posts</h3>

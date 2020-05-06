@@ -15,6 +15,13 @@ use yii\helpers\ArrayHelper;
 $this->title = 'Поиск';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<style>
+    a.disabled {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #999; /* цвет текста для нективной ссылки */
+}
+</style>
 
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
             <div class="row "> <!-- Для поиска -->
@@ -72,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <div class="row justify-content-md-center mb-3"> <!-- Для отображения информации -->   
-            <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-6">  
+        <div class="col-8 col-sm-8 col-md-8 col-lg-6 col-xl-6">  
                 <br>  
                 <?php
                     foreach ($resume as $resum): 
@@ -80,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
                            // var_dump($resum);
                 ?>   
 <!-- _______________________________________________________________________________________________ -->
-        <div class="border_search3 "> <!-- Фон для отображения -->
+            <div class="border_search3 "> <!-- Фон для отображения -->
                 
                 <div class="row"> 
 
@@ -106,6 +113,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                         </div>
                                     <?php } else {?>
                                             <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"> 
+                                            <a href="#" class="disabled">
+                                                <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                            </a>
                                             </div>
                                         <?php }?>
                             </div>
@@ -152,10 +162,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php  }; ?>
             <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
         </div>
+
+       
+            <?= $this->render('/partials/sidebar', [
+                    'popular'=>$popular,
+                    'recent'=>$recent,
+                    'categories'=>$categories
+                ]);?>
+       
     </div>
-    <?= $this->render('/partials/sidebar', [
-                'popular'=>$popular,
-                'recent'=>$recent,
-                'categories'=>$categories
-            ]);?>
+    
 </div>

@@ -1,24 +1,4 @@
-<?php
-
-
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use yii\widgets\ActiveField;
-use app\models\Attributes;
-use app\models\Position;
-use yii\db\ActiveRecord;
-use yii\helpers\Url;
-use yii\helpers\ArrayHelper;
-use yii\widgets\DetailView;	
-use yii\grid\GridView;
-use app\models\Organization;
-use kartik\date\DatePicker;
-
-$this->title = 'Резюме';
-$this->params['breadcrumbs'][] = $this->title;
-//ShowOrHide,viewed,addinform
-?>
-
+Для коррекции файла, если добавится лишний код
 <?php $form = ActiveForm::begin(); ?>
 <br>
     <div class="text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
@@ -29,7 +9,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                         <div class="row justify-content-center">
-                            <a href="/privateoffice/set-image" class="btn btn-rounded btn-sm btngreen">Загрузите личную фотографию</a>
+                            <a href="/privateoffice/set-image" class="btn btn-rounded btngreen">Загрузите личную фотографию</a>
                         </div>
 
                         <br>
@@ -85,8 +65,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ?>
 
                                 <p class="row justify-content-center">
-                                    <?= Html::a('Добавить опыт работы', ['experience_cr','res_id'=>$model->id,'or'=>'1'], ['class' => 'btn btn-sm btn-rounded btngreen ml-1']) ?>
-                                    <?= Html::a('Добавить образование', ['experience_cr','res_id'=>$model->id,'or'=>'0'], ['class' => 'btn btn-sm btn-rounded btngreen ml-1']) ?>
+                                    <?= Html::a('Добавить опыт работы', ['experience_cr','res_id'=>$model->id,'or'=>'1'], ['class' => 'btn btn-rounded btngreen ml-1']) ?>
+                                    <?= Html::a('Добавить образование', ['experience_cr','res_id'=>$model->id,'or'=>'0'], ['class' => 'btn btn-rounded btngreen ml-1']) ?>
                                 </p>
                         
                             <?php if($model1 != null): ?> 
@@ -179,7 +159,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                         <div class="row justify-content-center"> 
-                            <?= Html::a('Добавить достижения', ['privateoffice/set-project'], ['class' => 'btn btn-sm btn-rounded btngreen1']) ?>
+                            <?= Html::a('Добавить достижения', ['privateoffice/set-project'], ['class' => 'btn btn-rounded btngreen1']) ?>
                         </div>
 
                             <div class="row p-2 my-3 ">
@@ -206,7 +186,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
                     <div class="row justify-content-center">
-                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-sm btn-rounded btngreen', 'name' => 'Save submit']) ?>
+                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen', 'name' => 'Save submit']) ?>
                     </div>
 
                 </div>           
