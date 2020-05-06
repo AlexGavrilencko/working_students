@@ -11,6 +11,7 @@ use yii\helpers\ArrayHelper;
 
 $this->title = 'Вакансия';
 $this->params['breadcrumbs'][] = $this->title;
+//description,viewed
 ?>
 <?php $form = ActiveForm::begin(); ?>
    <!-- <div class="row d-flex text-light flex-row justify-content-center m-2 p-1">

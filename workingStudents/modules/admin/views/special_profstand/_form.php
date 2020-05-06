@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\BigSpeciality;
 use yii\helpers\ArrayHelper;
-use app\models\CategoryProfstand;
+use app\models\Profstand;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\specialProfstand */
@@ -28,7 +28,7 @@ use app\models\CategoryProfstand;
 
     <?php
         // получаем все города из таблицы атрибутов
-        $bigsp = CategoryProfstand::find()->all();
+        $bigsp = Profstand::find()->all();
         // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
         $items = ArrayHelper::map($bigsp,'id','code','name');
             $params = [

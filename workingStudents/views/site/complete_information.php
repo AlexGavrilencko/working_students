@@ -130,6 +130,11 @@ $this->title = 'Просмотр вакансии';
                 </div>
             </div>
         </div> 
+        <?= $this->render('/partials/sidebar', [
+                'popular'=>$popular,
+                'recent'=>$recent,
+                'categories'=>$categories
+            ]);?>
     </div>
                        
               

@@ -114,7 +114,7 @@ PublicAsset::register($this);
 
 	                <div class="row">
                         <div class="col-12 col-md-10 col-lg-8">
-                            <form class="search" method="get" action="<?= Url::to(['/site/searchWordSt']) ?>">
+                            <form class="search" method="get" action="<?= Url::toRoute(['site/searchws']) ?>">
                                 <div class="row no-gutters align-items-center">
 
                                     <div class="col-8">

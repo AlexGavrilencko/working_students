@@ -16,6 +16,7 @@ use kartik\date\DatePicker;
 
 $this->title = 'Резюме';
 $this->params['breadcrumbs'][] = $this->title;
+//ShowOrHide,viewed,addinform
 ?>
 
 <?php $form = ActiveForm::begin(); ?>
@@ -89,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <?= Html::a('Добавить образование', ['experience_cr','res_id'=>$model->id,'or'=>'0'], ['class' => 'btn btn-rounded btngreen ml-1']) ?>
                                 </p>
                         
-                                <?php if($model1 != null){ ?> 
+                            <?php if($model1 != null): ?> 
 
                                     <div class="container-fluid">
                                             <div class="row"> <!-- отображение заголовков таблицы -->
@@ -161,7 +162,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 </div>
                                         <?php endforeach;?>
                                     </div>
-<<<<<<< HEAD
+
                                 </div>
                                     <?php foreach($model1 as $exp): ?>
                                         <?php  
@@ -186,8 +187,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     }
                                                 ?>
                                             </p>
-=======
-                                <?php };?>
+
+                    <?php endif; ?>
 
                
                     <div class="proj mt-4 mb-4">
@@ -215,7 +216,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     </div>
                                             <!--  </div>-->
                                             <?php endif; ?>
->>>>>>> 1525cd4c13847c1c55458d1bdacf2895cb2f93c6
+
                                         </div>
                                 <?php  endforeach; ?>
                                 </div>
