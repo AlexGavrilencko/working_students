@@ -82,8 +82,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             <!-- Отображения дополнительных фильтров -->
                                 <div class="row justify-content-center mt-1">
                                     <div id="form1" style="display: none;">
-                                        <div class="row">
-                                            <div class="col">
+                                        <div class="row ml-1 mt-3">
+                                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                                                 <h4>График работы</h4>
                                                 <div class="row ml-1">
                                                     <div class="form-check form-check-inline">
@@ -110,7 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     </div>
                                                 </div>
                                             </div><!-- div COL -->
-                                            <div class="col">
+                                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                                                 <h4>Опыт работы</h4>
                                                 <div class="row ml-1">
                                                     <div class="form-check form-check-inline">
@@ -143,7 +143,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     </div>
                                                 </div>
                                             </div><!-- div COL -->
-                                            <div class="col">
+                                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                                                 <h4>Тип занятости</h4>
                                                 <div class="row ml-1">
                                                     <div class="form-check form-check-inline">
@@ -265,16 +265,19 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>  <!-- div /Отображение информации правее фотографии -->
                     </div>
                     <div class="row ml-3 mt-3"> <!-- Отображение дополнительной информации для соискателя -->
-                        <p>Добавить краткую инфу
+                        <h6>Описание:</h6>
+                    </div>
+                    <div class="row ml-3">
+                        <p>
                             <?php
-                                $duties = $vacan->duties;
+                                $duties = $vacan->description;
                                 if ($duties == NULL){
-                                    echo 'Обязанности не указаны';
+                                    echo ' не указаны';
                                 }
                                 else echo $duties;
                             ?>
                         </p>
-                    </div>                      <!-- /Отображение дополнительной информации для соискателя -->
+                    </div>                          <!-- /Отображение дополнительной информации для соискателя -->
                     <div class="row"> <!-- кнопок действия и даты -->
                         <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                             <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a>
