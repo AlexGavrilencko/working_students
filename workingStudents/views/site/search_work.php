@@ -112,17 +112,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             <div class="row"> <!-- Отображение желаемой доолжности и города -->
                                 <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8">
-                                    <p><?= $vacan->name ?></p>
+                                    <p>Желаемая вакансия: <?= $vacan->name ?></p>
                                 </div>    
                                 
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-                                    <p> 
+                                    <p> Город
                                         <?php
                                             $c = $vacan->city_id;
                                             $city = Attributes::find()->where(['id'=>$c])->one();
                                             if ($city == NULL) 
                                             { 
-                                                echo 'Город не указан'; 
+                                                echo 'не указан'; 
                                             }
                                             else echo $city->name;
                                             ?>

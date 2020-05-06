@@ -91,7 +91,7 @@ PublicAsset::register($this);
 
                     <div class="col">
                         <div class="text-center text_foot ml-5" >
-                            &copy; 2019 WorkingStudents, Build with by V&A
+                            &copy; <?= date('Y') ?> WorkingStudents, V&A
                         </div>
                     </div>
                 </div>
