@@ -1,6 +1,6 @@
 <?php
 
-
+//СТРАНИЦА для составления данных Организации
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;

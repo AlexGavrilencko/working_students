@@ -1,4 +1,5 @@
 <?php
+//СТРАНИЦА составления вакансии
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Attributes;

@@ -1,5 +1,5 @@
 <?php
-
+//СТРАНИЦА составления резюме
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;

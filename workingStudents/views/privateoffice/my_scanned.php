@@ -1,5 +1,5 @@
 <?php
-
+//СТРАНИЦА Избранное/Просмотренное
 use yii\widgets\ActiveForm;
 use app\models\Attributes;
 use yii\widgets\LinkPager;

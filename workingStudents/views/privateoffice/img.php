@@ -1,5 +1,5 @@
 <?php
-
+//СТРАНИЦА Загрузки изображения
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;

@@ -1,7 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-
+//СТРАНИЦА Регистрации Соискателя
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 

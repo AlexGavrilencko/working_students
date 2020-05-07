@@ -1,5 +1,5 @@
 <?php
-
+//СТРАНИЦА просмотра вакансии
 
 use app\models\Attributes;
 use app\models\Organization;
