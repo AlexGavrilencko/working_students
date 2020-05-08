@@ -79,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <div class="row justify-content-md-center mb-3"> <!-- Для отображения информации -->   
-        <div class="col-8 col-sm-8 col-md-8 col-lg-6 col-xl-6">  
+        <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7">  
                 <br>  
                 <?php
                     foreach ($resume as $resum): 
@@ -94,7 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение фотографии -->
                             <?php
                                 if($resum->image): ?>
-                                    <img class="searchavatar" src="/uploads/<?= $resum->image?>" alt="">
+                                    <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $resum->image?>" alt="">
                             <?php endif; ?>
                         </div>                 <!-- /Отображение фотографии -->
 

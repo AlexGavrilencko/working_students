@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?php   
                                     $user = Yii::$app->user->identity;
                                         if($model->image): ?>
-                                            <img class=" logo_user1" src="/uploads/<?= $model->image?>" alt="">
+                                            <img class="img-fluid img-thumbnail" style="width: 300px; object-fit: cover;  display: block;  height: 200px;" src="/uploads/<?= $model->image?>" alt="">
                                         <?php endif; 
                                 ?>
                             </div>

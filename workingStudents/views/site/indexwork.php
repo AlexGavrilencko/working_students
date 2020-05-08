@@ -26,7 +26,7 @@ $this->title = 'Главная';
             
                 <div class="row" style="margin-left: 13%; margin-top: 15%; margin-right: 3%">
                     <div class="col-sm">
-                        <img class="img_iw" src="/public/img/Work_1.jpg" alt="">
+                        <img class="img_iw img-fluid img-thumbnail" src="/public/img/Work_1.jpg" alt="">
                     </div>
                     <div class="col-sm">
                         <p style="font-size: 2.5vw; margin-top: 15%;"><strong>Вам будут доступны<br> резюме</strong></p>
@@ -40,14 +40,14 @@ $this->title = 'Главная';
                         пользователям</strong></p>
                     </div>
                     <div class="col-sm">
-                        <img class="img_iw" src="/public/img/Work_2.jpg" alt="">
+                        <img class="img_iw img-fluid img-thumbnail" src="/public/img/Work_2.jpg" alt="">
                     </div>
                 </div>
 
 
                 <div class="row" style="margin-left: 13%; margin-bottom: 5%; margin-right: 3%">
                     <div class="col-sm">
-                        <img class="img_iw" src="/public/img/Work_3_1.jpg" alt="">
+                        <img class="img_iw img-fluid img-thumbnail" src="/public/img/Work_3_1.jpg" alt="">
                     </div>
                     <div class="col-sm">
                         <p style="font-size: 2.5vw; margin-top: 15%;"><strong>На Workind Students<br> могут 

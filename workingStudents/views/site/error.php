@@ -17,7 +17,7 @@ $this->title = $name;
 <div class="site-error pole">
 
     
-    <img src="/public/img/404.jpg" alt="404" class="A404">
+    <img src="/public/img/404.png" alt="404" class="A404">
 
     <div class="alert alert-danger">
         <?= nl2br(Html::encode($message)) ?>

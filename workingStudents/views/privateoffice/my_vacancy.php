@@ -15,11 +15,10 @@ $this->title = 'Мои вакансии';
           
 <br>
 <!-- Для отображения информации -->
-<div class="row mb-4"> 
-            <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">     
-            </div>
+<div class="row justify-content-md-center mb-4"> 
+            
 
-        <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">  
+        <div class="col-12 col-sm-10 col-md-8 col-lg-8 col-xl-8 ml-4">  
                     <br>     
                 <?php
                 foreach ($vac as $vacan):    
@@ -33,7 +32,7 @@ $this->title = 'Мои вакансии';
                                 $o = $vacan->organization_id;
                                 $organization = Organization::find()->where(['id'=>$o])->one();
                                 if($organization->image): ?>
-                                    <img class="searchavatar" src="/uploads/<?= $organization->image?>" alt="">
+                                    <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $organization->image?>" alt="">
                                 <?php endif; ?>
                         </div>                 <!-- /Отображение фотографии -->
 

@@ -40,7 +40,8 @@ btnred
                 <img
                     src="/uploads/<?php echo $organization->image; ?>"
                     alt="<?php echo $organization->name; ?>"
-                    class="img-fluid"
+                    class="img-fluid img-thumbnail" 
+                    style="width: 300px; object-fit: cover;  display: block;  height: 200px;"
                 >
             </div>
         <?php endforeach ?>
