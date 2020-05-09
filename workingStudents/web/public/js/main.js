@@ -14,8 +14,9 @@ function toggleType() {
     }
 }
 
-
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
-
+$('.mydate').daterangepicker({
+    singleDatePicker: true,
+    locale: {
+   format: 'DD.MM.YYYY'
+    }
+   });
