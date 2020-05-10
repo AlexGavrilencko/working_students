@@ -5,94 +5,111 @@ use app\models\Attributes;
 use app\models\Organization;
 use app\models\User;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\widgets\LinkPager;
 use yii\helpers\Url;
-
+use yii\helpers\ArrayHelper;
+use yii\widgets\Pjax;
+use yii\db\ActiveRecord;
+use yii\widgets\ActiveForm;
 
 $this->title = 'Просмотр вакансии';
 ?>
 
-<!-- вакансии -->
-    <div class="container-fluid padding_search d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
-        <div class="row justify-content-md-center">
-            <div class="col-12 col-sm-10 col-md-10 col-lg-10 col-xl-10"> 
-                <div class="border_search"> 
+<div class="container-fluid d-flex flex-row bd-highlight flex-column">
 
-                    <div class="row"> 
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                                <?php
+    
+
+
+<!-- Для отображения информации -->
+    <div class="row justify-content-md-center mb-3"> 
+        <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">  
+                    <br>     
+              
+<!-- ______________________________________Вид отображения_________________________________________________________ -->
+                <div class="border_search3"> <!-- Фон для отображения -->
+                    <div class="row mb-4"> 
+
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение фотографии -->
+                            <?php
                                 $o = $vac->organization_id;
                                 $organization = Organization::find()->where(['id'=>$o])->one();
                                 $p=$vac->position_id;
                                 $pos = Attributes::find()->where(['id'=>$p])->one();
                                 if($organization->image): ?>
-                                    <img class="compsearchavatar" src="/uploads/<?= $organization->image?>" alt="Логотип компании">
+                                    <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $organization->image?>" alt="Логотип компании">
                                 <?php endif; ?>
-                        </div> 
+                        </div>                 <!-- /Отображение фотографии -->
 
-                        <div class="col-5 col-sm-5 col-md-7 col-lg-7 col-xl-7"> <!-- Отображение информации правее фотографии -->
-                       
-                            <div class="row">
+                        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->
+                                <div class="row">
+                                    <p>Название вакансии:<?= $vacan->name ?></p>
+                                </div>
 
-                                <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-10">  <!-- Отображение вакансии-->
-                                    <p><?= $pos->name ?></p> 
-                                </div>                  <!-- /Отображение вакансии -->
-
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">  <!-- Отображение з/п-->
-                                    <p>    
-                                        <?php
-                                            $salary = $vac->salary;
-                                                if ($salary == NULL)
-                                                {
-                                                    echo 'Не указано';
+                                <div class="row">
+                                    <p>Зарплата: 
+                                            <?php
+                                                $salary = $vacan->salary;
+                                                if ($salary == NULL){
+                                                    echo 'не указано';
                                                 }
                                                 else echo $salary;
-                                        ?>
+                                            ?>
                                     </p>
-                                </div> <!-- /Отображение з/п-->
+                                </div>
 
-                            </div>
-
-                            <div class="row "> <!-- Отображение названия организации и города -->
-
-                                <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-10">
-                                    <p>    <!-- Название организации -->
-                                        <?php
-                                            
-                                                if ($organization == NULL)
-                                                {
-                                                    echo 'Не указано';
-                                                }
-                                                else echo $organization->name;
-                                        ?>
+                            <div class="row"> <!-- Отображение названия организации и города -->
+                                    <p> 
+                                        Предложение о работе или о практике
                                     </p>
-                                </div>    
-                                
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                    <p>    <!-- Город $vacan->city_id -->
-                                        <?php
-                                            $c = $vac->city_id;
-                                            $city = Attributes::find()->where(['id'=>$c])->one();
-                                                if ($city == NULL)
-                                                {
-                                                    echo 'Не указано';
-                                                }
-                                                else echo $city->name;
-                                        ?>
-                                    </p>
-                                </div>  
-                            </div>                 <!-- /Названия организации и города-->
+                            </div>  
+                        </div> <!-- div /Отображение информации правее фотографии -->
+                    </div>
+
+                        <div class="date_org">
+                            <p class="text-center">Данные о вашей организации</p>                       
+                                <p>Название организации:
+                                    <?  if ($org->name == NULL){
+                                            echo 'Не указано';
+                                        }
+                                        else echo $org->name;
+                                    ?>  
+                                </p>
+                                <p>Город:  
+                                    <?  if ($city == NULL){
+                                            echo 'Не указано';
+                                        }
+                                        else echo $city->name;
+                                    ?>
+                                </p>
+                                <p>Адрес:
+                                    <?  if ($org->adres == NULL){
+                                            echo 'Не указано';
+                                        }
+                                        else echo $org->adres;
+                                    ?>
+                                </p>
+                                <p>ИНН:  
+                                    <?  if ($org->inn == NULL){
+                                            echo 'Не указано';
+                                        }
+                                        else echo $org->inn;
+                                    ?>
+                                </p>
+                                <p>ОГРН:
+                                    <?  if ($org->ogrn == NULL){
+                                            echo 'Не указано';
+                                        }
+                                        else echo $org->ogrn;
+                                    ?>  
+                                </p>
                         </div>
-                    </div> 
 
-                                <?php 
-                                $exp=$vac->experience_id;
-                                $emp=$vac->employment_id;
-                                $exp = Attributes::find()->where(['id'=>$exp])->one();
-                                $emp = Attributes::find()->where(['id'=>$emp])->one();
-                                ?>
 
-                        <div class="row ml-3"> <!-- Опыт работы -->
+
+                   <!-- Отображение дополнительной информации для соискателя -->
+
+
+                   <div class="row ml-3"> <!-- Опыт работы -->
                             <p>Опыт: <?= $exp->name ?></p> <!-- опыт подгрузка из базы -->
                         </div><!-- /Опыт работы -->
 
@@ -111,7 +128,7 @@ $this->title = 'Просмотр вакансии';
                         <div class="row ml-3"> <!-- Условия -->
                             <p>Условия: <?= $vac->conditions ?></p> <!-- условия подгрузка из базы -->
                         </div> <!-- /Условия  -->
-
+ <!-- /Отображение дополнительной информации для соискателя -->
                         <div class="row ml-1"> <!-- Просмотры и дата -->
                             <?php if(Yii::$app->user->identity){ ?>
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
@@ -120,21 +137,27 @@ $this->title = 'Просмотр вакансии';
                                 </div>
                             <?php  } else {?>
                                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
+                                        <a href="#" class="disabled">
+                                                <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                        </a>
                                     </div>
                             <?php }?>
 
-                            <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                <p>Дата<?= $vacan->dateAdd ?> Количество просмотров</p>       
-                            </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                    <p>Дата<?= $vacan->dateAdd ?> Количество просмотров</p>       
+                                </div>
                         </div> <!-- /Просмотры и дата -->
-                </div>
-            </div>
-        </div> 
+                </div> <!-- /Фон для отображения -->
+<!-- _______________________________________________________________________________________________ -->
+         
+        </div>
+
         <?= $this->render('/partials/sidebar', [
-                'popular'=>$popular,
-                'recent'=>$recent,
-                'categories'=>$categories
-            ]);?>
+                    'popular'=>$popular,
+                    'recent'=>$recent,
+                    'categories'=>$categories
+                ]);?> 
+
     </div>
-                       
-              
+  
+</div>

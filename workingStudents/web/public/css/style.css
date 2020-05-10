@@ -225,6 +225,14 @@ svg text {
     padding-top: 2%;
     margin-bottom: 2%;
   }
+  .border_contact{
+    background-color: #aa770a0e;
+    border: 2px solid;
+    border-color: #aa770a;
+    border-radius: 10px;
+    padding-top: 2%;
+    margin-bottom: 2%;
+  }
   /* стиль для фона вакансий и резюме в маленьком окне*/
   .border_search1{
     background-color: #20b8970a;
@@ -317,11 +325,12 @@ svg text {
 
   .content2 {
     flex: 1 0 auto;
-    background: url(/public/img/fonstat.jpg);
+    background: url(/public/img/fon_stat_1.jpg);
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
   }
+  
 
   .compsearchavatar {
     box-shadow: 0 0 0 2px #22beb16e, 0 0 13px #333; /* Параметры теней */
@@ -557,8 +566,6 @@ svg text {
   /* стиль для фона поял регистрации и авторизации */
   .pole{
     width: 80%;
-    height: 50%;
-    opacity: 0.9;
     padding: 2%;
   }
   /*Отступы в блоке в отображении краткой информации*/

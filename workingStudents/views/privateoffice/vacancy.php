@@ -45,6 +45,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         $city=$city_id->name;
                     ?>
 
+                    <?= $form->field($model, 'description')->textarea(['placeholder'=>"Введите описание"])->label('Описание <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                            "data-placement"=>"top", "title"=>"Это описание будут видеть при поиске вакансий"]) ?>
+
                     <div class="date_org">
                             <p class="text-center">Данные о вашей организации</p>                       
                             <p>Название организации:
@@ -83,9 +86,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ?>  
                             </p>
                             <div class="row justify-content-center"> 
-                                <a href="/privateoffice/organiz" class="btn-rounded btngreen1 btn">Добавить данные</a>
+                                <a href="/privateoffice/organiz" class="btn-rounded btn-sm btngreen1 btn">Добавить данные</a>
                             </div>
-                           
                     </div>
                     
                     <br>
@@ -166,7 +168,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ?>
                     <?= $form->field($model, 'WorkOrPractice')->radioList(array(0 => 'Предложение по работе', 1 => 'Предложение по практике',), array('labelOptions'=>array('style'=>'display:inline'), 'separator'=>'&nbsp;&nbsp;&nbsp;</br>',)); ?>
                     <div class="row justify-content-center">
-                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen', 'name' => 'Save submit']) ?>
+                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btn-sm btngreen', 'name' => 'Save submit']) ?>
                     </div>
                 </div>
             </div>

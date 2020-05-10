@@ -282,11 +282,19 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                             <p>Дата<?= $vacan->dateAdd ?></p>       
                         </div>
-                        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
-                            <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
-                                <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
-                            </a>
-                        </div>
+                                <?php  if (!Yii::$app->user->isGuest){ ?>
+                                        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
+                                            <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>">
+                                                <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                            </a>
+                                        </div>
+                                    <?php } else {?>
+                                            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
+                                            <a href="#" class="disabled">
+                                                <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                            </a>
+                                            </div>
+                                        <?php }?>
                     </div>
                 </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->

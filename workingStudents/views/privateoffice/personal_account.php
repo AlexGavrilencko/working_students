@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= $form->field($model, 'phone')->textInput()->label('Номер телефона <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Изменение номера телефона"]) ?>
 
                                 <div class="row justify-content-center">
-                                     <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btngreen1 m-3', 'name' => 'Save submit']) ?>
+                                     <?= Html::submitButton('Сохранить', ['class' => 'btn btn-sm btn-rounded btngreen1 m-3', 'name' => 'Save submit']) ?>
                                 </div>
                         </div>
                 </div>

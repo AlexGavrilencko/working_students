@@ -44,7 +44,7 @@ PublicAsset::register($this);
                             <ul class="navbar-nav">  <!-- переходы в меню для гостя-->
 
                                 <li class="nav-item">
-                                    <a class="nav-link menugreen h6" href="#">Вакансии</a>
+                                    <a class="nav-link menugreen h6" href="<?= Url::toRoute(['site/search','id'=>'0']) ?>">Вакансии</a>
                                 </li>
                         
                                 <li class="nav-item">
