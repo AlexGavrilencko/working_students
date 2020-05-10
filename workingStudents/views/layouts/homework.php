@@ -75,14 +75,14 @@ PublicAsset::register($this);
                             if($user->rang===10){ ?>
                                 <ul class="navbar-nav">  <!-- переходы в меню для студента ДОБАВЬ ССЫЛКУ НА ЛК-->
                                     <li class="nav-item">
-                                        <a class="nav-link menured h6 text-decoration" href="/site/index">Студентам</a>
+                                        <a class="dropdown-item menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
                                     </li>
                                 </ul>
                             <?php }
                             if($user->rang===20){ ?>
                                 <ul class="navbar-nav">  <!-- переходы в меню для работадателя ДОБАВЬ ССЫЛКУ НА ЛК-->
                                     <li class="nav-item">
-                                        <a class="nav-link h6 menugreen" href="/site/indexwork">Работодателям</a>
+                                        <a class="dropdown-item menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
                                     </li> 
                                 </ul>
                             <?php }

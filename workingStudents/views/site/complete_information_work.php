@@ -10,51 +10,41 @@ use yii\helpers\Url;
 
 $this->title = 'Просмотр резюме';
 ?>
-          
+<?php $form = ActiveForm::begin(); ?>          
 <!-- резюме -->
+<div class="container-fluid d-flex flex-row bd-highlight flex-column">
+<!-- Для отображения информации -->
+    <div class="row justify-content-md-center mb-3"> 
+        <div class="col-12 col-sm-12 col-md-10 col-lg-8 col-xl-8">  
+                    <br>     
+              
+<!-- ______________________________________Вид отображения_________________________________________________________ -->
+                <div class="border_vacancy"> <!-- Фон для отображения -->
+                    <div class="row mb-4"> 
 
-    <div class="container-fluid padding_search d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения поиска-->
-        <div class="row justify-content-md-center">
-            <div class="col-12 col-sm-10 col-md-10 col-lg-10 col-xl-10"> 
-<!-- _______________________________________________________________________________________________ -->
-                <div class="border_search">     <!-- Фон для отображения -->
-
-                    <div class="row"> 
-                    
-                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение фотографии -->
                             <?php if($resum->image): ?>
-                                <img class="compsearchavatar" src="/uploads/<?= $resum->image?>" alt="">
+                                <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $resum->image?>" alt="">
                             <?php endif; ?>
-                        </div> 
-                        
+                        </div>                 <!-- /Отображение фотографии -->
 
-                        <div class="col-5 col-sm-5 col-md-7 col-lg-7 col-xl-7"> <!-- Отображение информации правее фотографии -->
-                            <!-- для описания -->
-                            <div class="row">
-
-                                <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-10">  <!-- Отображение ФИО -->
-                                    <p> <?= $resum->surname ?> <?= $resum->name ?> <?= $resum->patronymic ?></p>
-                                </div>                  <!-- /Отображение ФИО -->
-
-                                <?php if(Yii::$app->user->identity){ ?>
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2"> 
-                                    <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>"><!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">--></a>
-                                </div>
-                                <?php } else {?>
-                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2"> 
+                        <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->
+                                <div class="row">
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                        <p> <?= $resum->surname ?> <?= $resum->name ?> <?= $resum->patronymic ?></p>
                                     </div>
-                                <?php }?>
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                        <p>Дата рождения <?= $resum->dateBirth ?></p>
+                                    </div> 
+                                </div>
 
-                            </div>
+                                <div class="row">
+                                    <p>Желаемая должность: 
+                                           
+                                    </p>
+                                </div>
 
-                            <div class="row "> <!-- Отображение даты рождения и города -->
-
-                                <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-10">
-                                    <p>Возраст<?= $resum->dateBirth ?></p> <!-- дата рождения подгрузка из базы -->
-                                </div>    
-                                
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-2">
-                                    <p> 
+                            <div class="row"> <!-- Отображение названия организации и города -->
                                         <?php
                                             $c = $resum->city_id;
                                             $city = Attributes::find()->where(['id'=>$c])->one();
@@ -68,55 +58,72 @@ $this->title = 'Просмотр резюме';
                                                 }
                                                 else echo $city->name;
                                         ?>
-                                    </p>
-                                </div>  
-                            </div>                 <!-- /Отображение даты рождения и города-->
+                            </div>  
+                        </div> <!-- div /Отображение информации правее фотографии -->
+                    </div>
 
-                            <div class="row "> <!-- Отображение желаемой доолжности -->
-                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                    <p><?= $object->name ?>  Желаемая должность</p>
-                                </div>    
-                            </div>                 <!-- /Отображение желаемой доолжности-->
-                        </div>
-                    </div> 
+                  
 
 
-                    <div class="row ml-1"> <!-- Опыт работы -->
 
-                    </div><!-- /Опыт работы -->
+                   <!-- Отображение дополнительной информации для работодателя -->
 
-                    <div class="row ml-1"><!-- Образование -->
+                        <div class="row ml-3"> <!-- Опыт работы -->
+                            <p>Навыки: <?= $exp->name ?></p> <!-- опыт подгрузка из базы -->
+                        </div><!-- /Опыт работы -->
 
-                    </div><!-- /Образование -->
+                        <div class="row ml-3"><!-- График -->
+                            <p>Персональные качества <?= $emp->name ?></p> <!-- график работы подгрузка из базы -->
+                        </div><!-- /График -->
+                       
+                    <!-- /Отображение дополнительной информации для работодателя -->
 
-                    <div class="row ml-1"> <!-- Персональные качества -->
-                        <p><?= $resum->personalQualities ?></p>
-                    </div> <!-- /Персональные качества -->
 
-                    <div class="row ml-1"> <!-- Навыки -->
-                        <p><?= $resum->skills ?></p>                          
-                    </div> <!-- /Навыки -->
 
-                    <div class="row ml-1"> <!-- Достижения -->
-
-                    </div> <!-- /Достижения -->
-
-                    <div class="row ml-1"> <!-- Просмотры и дата -->
-                        <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                            <p>количество просмотров</p>
+                    <div class="proj mt-4 mb-4">
+                        <div class="text-center">
+                            <h4>Достижения</h4>
                         </div>
 
-                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                            <p>Дата<?= $resum->dateAdd ?></p>       
-                        </div>
-                    </div> <!-- /Просмотры и дата -->
-                </div>
-            </div>
-        </div> 
+                            <div class="row p-2 my-3 "> 
+                                Для проектов
+                            </div>
+                     </div>
+
+                        <div class="row ml-1"> <!-- Просмотры и дата -->
+                            <?php if(Yii::$app->user->identity){ ?>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
+                                    <a href="<?= Url::toRoute(['site/selected', 'id'=>$vac->id]); ?>">
+                                    <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">--></a>
+                                </div>
+                            <?php  } else {?>
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
+                                        <a href="#" class="disabled">
+                                                <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                        </a>
+                                    </div>
+                            <?php }?>
+
+                                <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                                    <p>Дата<?= $vacan->dateAdd ?></p>       
+                                </div>
+                                <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                                    <p>Количество просмотров</p>       
+                                </div>
+                        </div> <!-- /Просмотры и дата -->
+                </div> <!-- /Фон для отображения -->
+<!-- _______________________________________________________________________________________________ -->
+         
+        </div>
+
         <?= $this->render('/partials/sidebar', [
-                'popular'=>$popular,
-                'recent'=>$recent,
-                'categories'=>$categories
-            ]);?>
+                    'popular'=>$popular,
+                    'recent'=>$recent,
+                    'categories'=>$categories
+                ]);?> 
+
     </div>
-              
+  
+</div>
+
+<?php ActiveForm::end(); ?>

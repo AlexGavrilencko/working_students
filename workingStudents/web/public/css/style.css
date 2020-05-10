@@ -262,6 +262,13 @@ svg text {
     padding: 3%;
   }
 
+  .border_vacancy{
+    background-color: #1ee48115;
+    border: 2px solid;
+    border-color: #0a5e34;
+    padding: 3%;
+  }
+
   .border_project{
     background-color: #aed1ec36;
     border: 2px solid;
