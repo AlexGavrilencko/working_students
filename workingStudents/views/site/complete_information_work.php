@@ -79,16 +79,183 @@ $this->title = 'Просмотр резюме';
                     <!-- /Отображение дополнительной информации для работодателя -->
 
 
+               
+    <!--_________________Опыт работы отображение________________________________-->
+                            <?php if($model1 != null): ?> 
+                                <div class="proj mt-4 mb-4">
+                                    <div class="text-center">
+                                        <h4>Опыт работы</h4>
+                                    </div>
+                                    <div class="container-fluid">
+                                        <div class="row"> <!-- отображение заголовков таблицы -->
+                                            <div class="col">
+                                                <p>№</p>
+                                            </div>
 
+                                            <div class="col">
+                                                <p>Количество лет</p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p>Наименование организации</p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p>Специальность</p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p>Действия</p>
+                                            </div>
+                                        </div>
+
+                                    <?php foreach($model1 as $exp): ?>
+
+                                        <?php  
+                                            //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
+                                            $speciality = Speciality::find()->where(['id'=>$exp->speciality_id])->one();
+                                            //$speciality=$speciality->name;
+                                        ?>
+
+                                        <div class="row"> <!-- отобрежение цикла -->
+
+                                            <div class="col">
+                                                <p><?=$exp->id?></p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p><?=$exp->dateStart?></p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p><?=$exp->nameOrganiz?></p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p><?=$speciality->code?><?=$speciality->name?></p>
+                                            </div>
+
+                                            <div class="col">
+                                                <?= Html::a('<img src="/public/img/pencil1.png" class="pencil">', ['experience_up', 'id' => $exp->id]) ?>
+                                                <?= Html::a('<img src="/public/img/trashcan1.png" class="trashcan">', ['experience_del', 'id' => $exp->id], [
+                                                            'data' => [
+                                                                'confirm' => 'Вы действительно хотите удалить эти данные?',
+                                                                'method' => 'post',
+                                                            ],
+                                                        ]) ?>
+                                            </div> 
+                                                        
+                                        </div>
+                                    <?php endforeach;?>
+                                    </div>
+                                </div>
+                        <?php endif; ?>
+<!--_________________/Опыт работы отображение________________________________-->
+
+
+
+ <!--_________________Образование отображение________________________________-->
+                            <?php if($model1 != null): ?> 
+                                <div class="proj mt-4 mb-4">
+                                    <div class="text-center">
+                                        <h4>Образование</h4>
+                                    </div>
+
+                                    <div class="container-fluid">
+                                        <div class="row"> <!-- отображение заголовков таблицы -->
+                                            <div class="col">
+                                                <p>№</p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p>Количество лет</p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p>Наименование организации</p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p>Специальность</p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p>Действия</p>
+                                            </div>
+                                        </div>
+
+                                    <?php foreach($model1 as $exp): ?>
+
+                                        <?php  
+                                            //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
+                                            $speciality = Speciality::find()->where(['id'=>$exp->speciality_id])->one();
+                                            //$speciality=$speciality->name;
+                                        ?>
+
+                                        <div class="row"> <!-- отобрежение цикла -->
+
+                                            <div class="col">
+                                                <p><?=$exp->id?></p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p><?=$exp->dateStart?></p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p><?=$exp->nameOrganiz?></p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p><?=$speciality->code?><?=$speciality->name?></p>
+                                            </div>
+
+                                            <div class="col">
+                                                <?= Html::a('<img src="/public/img/pencil1.png" class="pencil">', ['experience_up', 'id' => $exp->id]) ?>
+                                                <?= Html::a('<img src="/public/img/trashcan1.png" class="trashcan">', ['experience_del', 'id' => $exp->id], [
+                                                            'data' => [
+                                                                'confirm' => 'Вы действительно хотите удалить эти данные?',
+                                                                'method' => 'post',
+                                                            ],
+                                                        ]) ?>
+                                            </div> 
+
+                                        </div>
+                                    <?php endforeach;?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
+<!--_________________/Образование отображение________________________________-->
+
+
+                <?php if($model1 != null): ?> 
                     <div class="proj mt-4 mb-4">
                         <div class="text-center">
-                            <h4>Достижения</h4>
+                            <h4>Проекты</h4>
                         </div>
 
-                            <div class="row p-2 my-3 "> 
-                                Для проектов
+                        <div class="row p-2 my-3 ">
+                                
+                                <?php foreach ($project as $pr): ?>
+                                        <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3 p-1">
+                                            <?php if($pr->image): ?>
+                                        <!--     <div class="border_project">-->
+                                                    <a href="/uploads/<?= $pr->image?>" target="_blank">
+                                                        <img class="img-fluid img-thumbnail" style="width: 200px; object-fit: cover;  display: block;  height: 150px;" src="/uploads/<?= $pr->image?>" alt="">
+                                                    </a>
+                                                    <div class="row ml-1">
+                                                        <a href="<?= Url::toRoute(['privateoffice/set-project', 'id'=>$pr->id]); ?>" class='m-1 btngreen1'>Редактировать</a>
+                                                        <a href="<?= Url::toRoute(['privateoffice/project_del', 'id'=>$pr->id]); ?>" class='m-1 btngreen1'>Удалить</a>
+                                                    </div>
+                                            <!--  </div>-->
+                                            <?php endif; ?>
+
+                                        </div>
+                                <?php  endforeach; ?>
                             </div>
                      </div>
+                <?php endif; ?>
 
                         <div class="row ml-1"> <!-- Просмотры и дата -->
                             <?php if(Yii::$app->user->identity){ ?>

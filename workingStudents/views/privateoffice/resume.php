@@ -280,8 +280,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             <div class="row p-2 my-3 ">
                                 
-                                <?php
-                                    foreach ($project as $pr): ?>
+                                <?php foreach ($project as $pr): ?>
                                         <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3 p-1">
                                             <?php if($pr->image): ?>
                                         <!--     <div class="border_project">-->
@@ -297,8 +296,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                         </div>
                                 <?php  endforeach; ?>
-                                </div>
                             </div>
+                        </div>
 <!--___________________/Проекты______________________________________________________--> 
 
                     <div class="row justify-content-center">
