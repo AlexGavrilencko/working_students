@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= $form->field($model, 'image')->fileInput(['maxlength' => true]) ?>
 
                     <div class="form-group">
-                        <?= Html::submitButton('Сохранить', ['class' => 'btn-rounded btngreen btn btn-lg m-2']) ?>
+                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-lg btn-rounded btngreen1 m-2']) ?>
                     </div>
 
                         <?php ActiveForm::end(); ?>
