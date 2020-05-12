@@ -1,6 +1,8 @@
 <?php
 
 namespace app\models;
+use yii\data\Pagination;
+use yii\helpers\ArrayHelper;
 
 use Yii;
 
@@ -170,4 +172,24 @@ class Resume extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Scanned::className(), ['resume_id' => 'id']);
     }
+
+    public static function getAll($pageSize = 5)
+	{
+		$query = Resume::find();
+
+		$count = $query->count();
+
+		$pagination = new Pagination(['totalCount' => $count, 'pageSize'=>$pageSize]);
+
+		$resume = $query->offset($pagination->offset)
+		->limit($pagination->limit)
+		->all();
+
+		$data['resume'] = $resume;
+		$data['pagination'] = $pagination;
+
+		return $data;
+	}
+
+
 }

@@ -166,10 +166,13 @@ class PrivateofficeController extends Controller
         $user = Yii::$app->user->identity; 
         $org = Organization::find()->where(['user_id'=>$user->id])->one();
         $vac = Vacancy::find()->where(['user_id'=>$user->id])->all();
+        $data = Vacancy::getAll(5);
         //var_dump($vac);
         return $this->render('my_vacancy',[
             'vac'=>$vac,
             'org'=>$org,
+            'pagination'=>$data['pagination'],
+            'vacancy'=>$data['vacancy'],
         ]);
     }
 

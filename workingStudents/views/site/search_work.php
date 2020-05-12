@@ -82,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7">  
                 <br>  
                 <?php
-                    foreach ($resume as $resum): 
+                    foreach ($resump as $resum): 
                         if ($resum->ShowOrHide===1){
                            // var_dump($resum);
                 ?>   
@@ -161,9 +161,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <!-- _______________________________________________________________________________________________ -->
                 <?php  }; ?>
             <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
+            <?php
+                    echo LinkPager::widget([
+                        'pagination' => $pagination,
+                    ]);
+                ?>
         </div>
-
-       
+     
             <?= $this->render('/partials/sidebar', [
                     'popular'=>$popular,
                     'recent'=>$recent,
@@ -171,5 +175,5 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]);?>
        
     </div>
-    
+      
 </div>

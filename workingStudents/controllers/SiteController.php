@@ -193,11 +193,14 @@ class SiteController extends Controller
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
+        $data = Resume::getAll(5);
         return $this->render('search_work',[
             'resume' => $resume,   /* Заменить на резюме */
             'popular'=>$popular,
             'recent'=>$recent,
-            'categories'=>$categories
+            'categories'=>$categories,
+            'pagination'=>$data['pagination'],
+            'resump'=>$data['resume'],
        ]);
     }
 

@@ -300,6 +300,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->
             <?php  endforeach; ?>  <!-- /Цикл для отображения вакансий -->
+            <?php
+                    echo LinkPager::widget([
+                        'pagination' => $pagination,
+                    ]);
+                ?>
         </div>
 
         <?= $this->render('/partials/sidebar', [
@@ -310,11 +315,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
     
-    <?php
-                    echo LinkPager::widget([
-                        'pagination' => $pagination,
-                    ]);
-                ?>
+    
   
 </div>
 

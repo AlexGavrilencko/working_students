@@ -15,13 +15,12 @@ $this->title = 'Мои вакансии';
           
 <br>
 <!-- Для отображения информации -->
-<div class="row justify-content-md-center mb-4"> 
-            
-
+<div class="container-fluid d-flex flex-row bd-highlight flex-column">
+    <div class="row justify-content-md-center mb-4"> 
         <div class="col-12 col-sm-10 col-md-8 col-lg-8 col-xl-8 ml-4">  
                     <br>     
                 <?php
-                foreach ($vac as $vacan):    
+                foreach ($vacancy as $vacan):    
                 ?>                                <!-- Цикл для отображения вакансий -->
 <!-- ______________________________________Вид отображения_________________________________________________________ -->
                 <div class="border_search3"> <!-- Фон для отображения -->
@@ -102,15 +101,15 @@ $this->title = 'Мои вакансии';
                         </p>
                     </div>                      <!-- /Отображение дополнительной информации для соискателя -->
                     <div class="row"> <!-- кнопок действия и даты -->
-                            <div class="col">
+                            <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 ml-3">
                                 <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a>
                             </div>
 
-                            <div class="col">
+                            <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 mr-3">
                                 <a href="<?= Url::toRoute(['privateoffice/vacancy_up', 'id'=>$vacan->id]); ?>">Редактировать</a>
                             </div>
 
-                            <div class="col">
+                            <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                                 <?= Html::a('Удалить', ['privateoffice/vacancy_del', 'id'=>$vacan->id], [
                                     'class' => 'row blok_information',
                                     'data' => [
@@ -119,15 +118,23 @@ $this->title = 'Мои вакансии';
                                     ],
                                 ]); ?>
                             </div>
+                            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"></div>
 
-                            <div class="col">
+                            <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                                 <p>Дата<?= $vacan->dateAdd ?></p>       
                             </div>
                     </div>
                 </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->
             <?php  endforeach; ?>  <!-- /Цикл для отображения вакансий -->
+            
+                <?php
+                    echo LinkPager::widget([
+                        'pagination' => $pagination,
+                    ]);
+                ?>
+           
+           
         </div>
     </div>
-
-                            
+</div>
