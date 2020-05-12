@@ -196,7 +196,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7">  
                     <br>     
                 <?php
-                foreach ($vac as $vacan):    
+                foreach ($vacancy as $vacan):    
                 ?>                                <!-- Цикл для отображения вакансий -->
 <!-- ______________________________________Вид отображения_________________________________________________________ -->
                 <div class="border_search3"> <!-- Фон для отображения -->
