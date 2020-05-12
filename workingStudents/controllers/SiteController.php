@@ -171,16 +171,19 @@ class SiteController extends Controller
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
-		return $this->render('search',[
-		'catvac'=>$catvac,
-		'cat'=>$cat,
-        'vac'=>$vac,
-        'org'=>$org,
-        'idc'=>$idc,
-        'popular'=>$popular,
-        'recent'=>$recent,
-        'categories'=>$categories
-		]);
+        $data = Vacancy::getAll(5);
+            return $this->render('search',[
+            'catvac'=>$catvac,
+            'cat'=>$cat,
+            'vac'=>$vac,
+            'org'=>$org,
+            'idc'=>$idc,
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories,
+            'pagination'=>$data['pagination'],
+            'vacancy'=>$data['vacancy'],
+            ]);
     }
 
     public function actionSearch_work()      /* Страница поиска для компании */

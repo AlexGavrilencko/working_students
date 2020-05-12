@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\data\Pagination;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "vacancy".
@@ -104,6 +106,27 @@ class Vacancy extends \yii\db\ActiveRecord
         return $this->save(false);
     }
     
+
+
+	public static function getAll($pageSize = 5)
+	{
+		$query = Vacancy::find();
+
+		$count = $query->count();
+
+		$pagination = new Pagination(['totalCount' => $count, 'pageSize'=>$pageSize]);
+
+		$vacancy = $query->offset($pagination->offset)
+		->limit($pagination->limit)
+		->all();
+
+		$data['vacancy'] = $vacancy;
+		$data['pagination'] = $pagination;
+
+		return $data;
+	}
+
+
     public function viewedCounter()
     {
         $this->viewed += 1;
