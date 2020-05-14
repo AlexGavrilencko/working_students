@@ -150,7 +150,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     
                     <div class="row ml-1 "> <!-- кнопок действия и даты -->
         
-                            <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                            <div class="col-8 col-sm-8 col-md-10 col-lg-10 col-xl-10">
                                 <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>">Подробнее</a>
                             </div>
                             <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
@@ -161,11 +161,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <!-- _______________________________________________________________________________________________ -->
                 <?php  }; ?>
             <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
-            <?php
-                    echo LinkPager::widget([
-                        'pagination' => $pagination,
-                    ]);
-                ?>
+           
+               
+            
         </div>
      
             <?= $this->render('/partials/sidebar', [
@@ -175,5 +173,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]);?>
        
     </div>
-      
+       <?php
+                    echo LinkPager::widget([
+                        'pagination' => $pagination,
+                    ]);
+                ?>
 </div>

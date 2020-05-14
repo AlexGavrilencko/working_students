@@ -101,40 +101,21 @@ $this->title = 'Мои вакансии';
                         </p>
                     </div>                      <!-- /Отображение дополнительной информации для соискателя -->
                     <div class="row justify-content-md-center"> <!-- кнопок действия и даты -->
-                            <div class="col-5 col-sm-5 col-md-3 col-lg-3 col-xl-3 ">
+                            <div class="col-6 col-sm-6 col-md-9 col-lg-9 col-xl-9 ">
                                 <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a>
                             </div>
-
-                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                                <a href="<?= Url::toRoute(['privateoffice/vacancy_up', 'id'=>$vacan->id]); ?>">Редактировать</a>
-                            </div>
-
                             <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                                <?= Html::a('Удалить', ['privateoffice/vacancy_del', 'id'=>$vacan->id], [
-                                    
-                                    'data' => [
-                                    'confirm' => 'Вы действительно хотите удалить данную вакансию?',
-                                    'method' => 'post',
-                                    ],
-                                ]); ?>
-                            </div>
-
-                            <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl-3">
                                 <p>Дата<?= $vacan->dateAdd ?></p>       
                             </div>
                     </div>
                 </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->
-            <?php  endforeach; ?>  <!-- /Цикл для отображения вакансий -->
-            
-               
-           
+            <?php  endforeach; ?>  <!-- /Цикл для отображения вакансий -->        
         </div>
     </div>
-    <?php
+                <?php
                     echo LinkPager::widget([
                         'pagination' => $pagination,
                     ]);
-                ?>
-           
+                ?>   
 </div>

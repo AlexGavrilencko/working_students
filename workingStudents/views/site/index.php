@@ -50,11 +50,6 @@ btnred
 
 </div>
 
-
-    <div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения работодателей -->
-
-    </div>
-
 </div>
 
 

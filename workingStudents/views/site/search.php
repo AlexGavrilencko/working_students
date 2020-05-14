@@ -19,7 +19,13 @@ $this->params['breadcrumbs'][] = $this->title;
 //варя переменная $vall это переменная содержащая все вакансии
 ?>
 
-
+<style>
+    a.disabled {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #999; /* цвет текста для нективной ссылки */
+}
+</style>
 
 <script>
     function disp(div) {
@@ -283,28 +289,23 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                             <p>Дата<?= $vacan->dateAdd ?></p>       
                         </div>
-                                    <?php  if (!Yii::$app->user->isGuest){ ?>
-                                        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
-                                            <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>">
-                                                <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
-                                            </a>
-                                        </div>
-                                    <?php } else {?>
-                                            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
-                                            <a href="#" class="disabled">
-                                                <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
-                                            </a>
-                                            </div>
-                                        <?php }?>
+                            <?php  if (Yii::$app->user->isGuest){ ?>
+                                <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
+                                    <a href="#" class="disabled" >
+                                        <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                    </a>
+                                </div>
+                            <?php } else {?>
+                                <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
+                                    <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
+                                        <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                    </a>
+                                </div>
+                            <?php }?>
                     </div>
                 </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->
             <?php  endforeach; ?>  <!-- /Цикл для отображения вакансий -->
-            <?php
-                    echo LinkPager::widget([
-                        'pagination' => $pagination,
-                    ]);
-                ?>
         </div>
 
         <?= $this->render('/partials/sidebar', [
@@ -315,7 +316,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </div>
     
-    
+    <?php
+                    echo LinkPager::widget([
+                        'pagination' => $pagination,
+                    ]);
+                ?>
   
 </div>
 

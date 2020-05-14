@@ -1,11 +1,11 @@
 <?php
 use yii\helpers\Url;
 ?>
-<div class="col-md-4" data-sticky_column>
+<div class=" col-12 col-sm-12 col-md-10 col-lg-4 col-xl-4" data-sticky_column>
     <div class="primary-sidebar mt-4">
 
         <aside class="widget">
-            <h3 class="widget-title text-uppercase text-center">Popular Posts</h3>
+            <h3 class="widget-title text-uppercase text-center">Популярнве статьи</h3>
             <?php
 
             foreach($popular as $article):?>
@@ -25,7 +25,7 @@ use yii\helpers\Url;
 
         </aside>
         <aside class="widget pos-padding">
-            <h3 class="widget-title text-uppercase text-center">Recent Posts</h3>
+            <h3 class="widget-title text-uppercase text-center">Недавние статьи</h3>
             <?php foreach($recent as $article):?>
                 <div class="thumb-latest-posts">
                     
@@ -43,7 +43,7 @@ use yii\helpers\Url;
             <?php endforeach;?>
         </aside>
         <aside class="widget border pos-padding">
-            <h3 class="widget-title text-uppercase text-center">Categories</h3>
+            <h3 class="widget-title text-uppercase text-center">Категории</h3>
             <ul>
                 <?php foreach($categories as $category):?>
                     <li>

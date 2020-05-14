@@ -125,7 +125,7 @@ PublicAsset::register($this);
 
     <main class="content"><?= $content ?></main>
 
-    <footer class="dark">
+    <footer class="dark mt-4">
              <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-sm-12 col-md-3 col-lg-4 col-xl-4">
