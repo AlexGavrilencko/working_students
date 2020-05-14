@@ -35,14 +35,19 @@ $this->params['breadcrumbs'][] = $this->title;
             div.style.display = "none";
         }
     }
-</script>
+
+
+</script> 
+
+
+
 
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
         <div class="row"> <!-- Для поиска -->
                 <div class="border_search_resume">
                         <form class="search_resume">
                             <div class="row justify-content-center">
-
+                               
                                 <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Выбор города -->
                                     <?php
                                         $city = Attributes::find()->where(['type'=>'city'])->all();  // получаем все города из таблицы атрибутов
@@ -90,6 +95,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <div class="row justify-content-center mt-1" >
                                     <div id="form1" style="display: none;">
                                         <div class="row ml-1 mt-3" style="border-top: solid;">
+                                        
                                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                                                 <h4>График работы</h4>
                                                 <div class="row ml-1">
@@ -194,8 +200,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         </form>                   
                 </div><!-- border_search_resume -->
         </div><!-- ROW для поиска -->
-    
-
+  
+        <select class="selectpicker" data-live-search="true">
+            <option data-tokens="">Город</option>  
+                <?php                           
+                    foreach ($city as $city): ?> 
+                        <option data-tokens=""><?php echo $city->name;?></option>  
+                    <?php endforeach;?>    
+        </select>
 
 <!-- Для отображения информации -->
     <div class="row justify-content-md-center mb-3"> 

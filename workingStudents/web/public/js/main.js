@@ -20,3 +20,5 @@ $('.mydate').daterangepicker({
    format: 'DD.MM.YYYY'
     }
    });
+
+
