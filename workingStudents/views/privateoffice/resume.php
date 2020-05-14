@@ -12,11 +12,14 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\DetailView;	
 use yii\grid\GridView;
 use app\models\Organization;
+use app\models\Speciality;
 use kartik\date\DatePicker;
 
 $this->title = 'Резюме';
 $this->params['breadcrumbs'][] = $this->title;
 //ShowOrHide,viewed,addinform
+//поля для опыта работы years  nameOrganiz position_id
+//поля для обр years  nameOrganiz speciality_id
 ?>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
@@ -76,7 +79,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <input type="button" class="btn btn-sm btn-rounded btngreen1 ml-1" value="Добавить опыт работы" onclick="disp(document.getElementById('form1'))">
                                 </div>
                                 <div id="form1" style="display: none;">
-                                    <p>Получилось</p>
+                                <?= $form->field($expir, 'years')->textInput(['placeholder'=>"Ваша фамилия"]) ?>
+                                
+                                <?= $form->field($expir, 'nameOrganiz')->textInput(['placeholder'=>"Ваше имя"]) ?>
+
+                                <?= $form->field($expir, 'position_id')->textInput(['placeholder'=>"Ваше отчество"]) ?>
+
                                 </div>
     <!--_________________Опыт работы отображение________________________________-->
                                     <?php if($model1 != null): ?> 
@@ -119,11 +127,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 </div>
 
                                                 <div class="col">
-                                                    <p><?=$exp->dateStart?></p>
+                                                    
                                                 </div>
 
                                                 <div class="col">
-                                                    <p><?=$exp->nameOrganiz?></p>
+                                                   
                                                 </div>
 
                                                 <div class="col">
@@ -197,7 +205,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </div>
 
                                 <div class="col">
-                                    <p><?=$exp->dateStart?></p>
+                                    <p><?=$exp->years?></p>
                                 </div>
 
                                 <div class="col">

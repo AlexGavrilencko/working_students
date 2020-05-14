@@ -107,25 +107,34 @@ class PrivateofficeController extends Controller
             $resum=new Resume();
             $resum->user_id=$user->id;
             $proj= Project::find()->where(['user_id'=>$user->id])->all();
+            $expir=new Experience();
             if(Yii::$app->request->isPost)
             {
                 $resum->load(Yii::$app->request->post());
-                $resum->create(); 
+                $resum->create();
+                $expir->resume_id=$resum->id;
+
+                $expir->load(Yii::$app->request->post());
+                $expir->create(); 
             }
-            return $this->render('resume', ['model'=>$resum,'model1'=>$model1,'project'=>$proj]);
+            return $this->render('resume', ['model'=>$resum,'expir'=>$expir,'model1'=>$model1,'project'=>$proj]);
         }
         else{
             $model1 = Experience::find()->where(['resume_id'=>$model->id])->all();
             $proj= Project::find()->where(['user_id'=>$user->id])->all();
-        
+            $expir=new Experience();
             if(Yii::$app->request->isPost)
             {
                 $model->load(Yii::$app->request->post());
-                $model->create(); 
+                $model->create();
+                $expir->resume_id=$model->id;
+                $expir->StudyOrWork=0;
+                $expir->load(Yii::$app->request->post());
+                $expir->create(); 
             }
-            return $this->render('resume', ['model'=>$model,'model1'=>$model1,'project'=>$proj]);
+            return $this->render('resume', ['model'=>$model,'expir'=>$expir,'model1'=>$model1,'project'=>$proj]);
         }
-        return $this->render('resume', ['model'=>$model,'model1'=>$model1,'project'=>$proj]);
+        return $this->render('resume', ['model'=>$model,'expir'=>$expir,'model1'=>$model1,'project'=>$proj]);
     }
 
     //создание вакансии
