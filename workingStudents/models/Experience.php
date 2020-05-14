@@ -53,12 +53,12 @@ class Experience extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'resume_id' => 'Resume ID',
-            'years' => 'Years',
+            'years' => 'Количество лет',
             'StudyOrWork' => 'Study Or Work',
-            'nameOrganiz' => 'Name Organiz',
-            'speciality_id' => 'Speciality ID',
-            'position_id' => 'Position ID',
-            'description' => 'Description',
+            'nameOrganiz' => 'Название организации',
+            'speciality_id' => 'Специальность',
+            'position_id' => 'Должность',
+            'description' => 'Описание',
         ];
     }
 

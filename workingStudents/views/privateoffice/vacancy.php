@@ -20,8 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="border_search padding_search">-->
             <br>
     <div class="site-registration">
-        <div class="text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
-            <div class="pole border_search padding_search">
+        <div class=" text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
+            <div class="pole border_search padding_search ">
                 <div class="form">
                     <div class="text-center">
                         <h1><?= Html::encode($this->title) ?></h1>

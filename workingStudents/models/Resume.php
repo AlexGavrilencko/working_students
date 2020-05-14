@@ -188,7 +188,7 @@ class Resume extends \yii\db\ActiveRecord
 		$data['resume'] = $resume;
 		$data['pagination'] = $pagination;
 
-		return $data;
+        return $data;
 	}
 
 
