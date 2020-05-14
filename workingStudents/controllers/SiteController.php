@@ -288,6 +288,111 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionSearchfilt(){
+        $this->layout = 'site';
+        // Разбераем запрос
+        $citty = Yii::$app->request->get('citty');
+        $categ = Yii::$app->request->get('categ');
+        $posit = Yii::$app->request->get('posit');
+        $salar = Yii::$app->request->get('salar');
+        if($citty!=null){
+            if($categ!=null){
+                if($posit!=null){
+                    if($salar!=null){
+                        $query=Vacancy::find()->where(['city_id' => $citty,'posit' => $posit,'salary' => $salar,'categ' => $categ])->all();
+                    }
+                    else{
+                        $query=Vacancy::find()->where(['city_id' => $citty,'posit' => $posit,'categ' => $categ])->all();
+                    }
+                }
+                else{
+                    if($salar!=null){
+                        $query=Vacancy::find()->where(['city_id' => $citty,'salary' => $salar,'categ' => $categ])->all();
+                    }
+                    else{
+                        $query=Vacancy::find()->where(['city_id' => $citty,'categ' => $categ])->all();
+                    }
+                }
+            }
+            else{
+                if($posit!=null){
+                    if($salar!=null){
+                        $query=Vacancy::find()->where(['city_id' => $citty,'posit' => $posit,'salary' => $salar])->all();
+                    }
+                    else{
+                        $query=Vacancy::find()->where(['city_id' => $citty,'posit' => $posit])->all();
+                    }
+                }
+                else{
+                    if($salar!=null){
+                        $query=Vacancy::find()->where(['city_id' => $citty,'salary' => $salar])->all();
+                    }
+                    else{
+                        $query=Vacancy::find()->where(['city_id' => $citty])->all();
+                    }
+                }
+            }
+        }
+        else{
+            if($categ!=null){
+                if($posit!=null){
+                    if($salar!=null){
+                        $query=Vacancy::find()->where(['posit' => $posit,'salary' => $salar,'categ' => $categ])->all();
+                    }
+                    else{
+                        $query=Vacancy::find()->where(['posit' => $posit,'categ' => $categ])->all();
+                    }
+                }
+                else{
+                    if($salar!=null){
+                        $query=Vacancy::find()->where(['salary' => $salar,'categ' => $categ])->all();
+                    }
+                    else{
+                        $query=Vacancy::find()->where(['categ' => $categ])->all();
+                    }
+                }
+            }
+            else{
+                if($posit!=null){
+                    if($salar!=null){
+                        $query=Vacancy::find()->where(['posit' => $posit,'salary' => $salar])->all();
+                    }
+                    else{
+                        $query=Vacancy::find()->where(['posit' => $posit])->all();
+                    }
+                }
+                else{
+                    if($salar!=null){
+                        $query=Vacancy::find()->where(['salary' => $salar])->all();
+                    }
+                    else{
+                        $query=Vacancy::find()->all();
+                    }
+                }
+            }
+        }
+        //var_dump($search);
+        // Обрезаем пробелы
+        //$search1 = str_replace(' ', '', $search);
+        // Поисковый запрос с поиском и обрезанием пробелов
+        //$query = Vacancy::find()->filterWhere(['like','name', $search1])->all();
+       
+        $vall=Vacancy::find()->all();
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+        $data = Vacancy::getAll(5);
+        return $this->render('search',[
+            'vacancy'=>$query,
+            'vall'=>$vall,
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories,
+            'pagination'=>$data['pagination'],
+            'vacanc'=>$data['vacancy'],
+        ]);
+    }
+
     public function actionIndexartic()
     {
         $this->layout = 'article';
