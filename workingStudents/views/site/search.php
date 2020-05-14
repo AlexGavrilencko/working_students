@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
         <div class="row"> <!-- Для поиска -->
                 <div class="border_search_resume">
-                        <form class="search_resume">
+                        <form class="search_resume" method="get" action="<?= Url::toRoute(['site/searchfilt'])?>">
                             <div class="row justify-content-center">
 
                                 <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Выбор города -->
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </div>
 
                                 <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Ввод зарплаты -->
-                                    <input class="form-control btn-none " type="search" placeholder="Зарплата от">
+                                    <input class="form-control btn-none " type="search" name="salar" placeholder="Зарплата от">
                                 </div>
 
                                 <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Выбор категории -->
@@ -62,12 +62,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                             'prompt' => 'Категории',
                                             'class' => 'dropDownList',
                                         ];
-                                            echo Html::dropDownList('category_id', 'null', $items, $params);
+                                            echo Html::dropDownList('categ', 'null', $items, $params);
                                     ?>
                                 </div>
 
                                 <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Ввод должности или профессии -->
-                                    <input class="form-control btn-none " type="search" placeholder="Профессия">
+                                    <input class="form-control btn-none " type="search" name="posit" placeholder="Профессия">
                                 </div>
 
                                 <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Кнопка для поиска -->
