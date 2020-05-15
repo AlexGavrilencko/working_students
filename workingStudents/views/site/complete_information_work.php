@@ -7,7 +7,9 @@ use app\models\Attributes;
 use app\models\Organization;
 use app\models\User;
 use yii\helpers\Url;
-
+//$exp эта переменная хранит данные об опыте работы
+//$educ эта переменная хранит данные об образовании
+//var_dump($educ);
 $this->title = 'Просмотр резюме';
 ?>
 <?php $form = ActiveForm::begin(); ?>          
@@ -260,7 +262,7 @@ $this->title = 'Просмотр резюме';
                         <div class="row ml-1"> <!-- Просмотры и дата -->
                             <?php if(Yii::$app->user->identity){ ?>
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
-                                    <a href="<?= Url::toRoute(['site/selected', 'id'=>$vac->id]); ?>">
+                                    <a href="<?= Url::toRoute(['site/selected_r', 'id'=>$resum->id]); ?>">
                                     <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">--></a>
                                 </div>
                             <?php  } else {?>
