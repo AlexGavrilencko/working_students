@@ -15,6 +15,7 @@ use app\models\Vacancy;
 use app\models\Attributes;
 use app\models\Organization;
 use app\models\Scanned;
+use app\models\Experience;
 use app\models\ArtCategory;
 use app\models\Article;
 use yii\data\ActiveDataProvider;
@@ -113,6 +114,8 @@ class SiteController extends Controller
             }
         }
         $resume=Resume::find()->where(['id' => $id])->one();
+        $exp=Experience::find()->where(['resume_id' => $id,'StudyOrWork'=>1])->all();//опыт работы
+        $educ=Experience::find()->where(['resume_id' => $id,'StudyOrWork'=>0])->all();//образование
         //var_dump($resume);
         $resume->viewedCounter();
         $popular = Article::getPopular();
@@ -122,7 +125,9 @@ class SiteController extends Controller
             'resum'=>$resume,
             'popular'=>$popular,
             'recent'=>$recent,
-            'categories'=>$categories
+            'categories'=>$categories,
+            'exp'=>$exp,
+            'educ'=>$educ,
         ]);
     }
 
@@ -233,13 +238,18 @@ class SiteController extends Controller
                 $scanned->ViewOrSelect=1;
                 $scanned->create();
             }
-           // else{ Почему это не работает и как это исправить?
-           //     $sc->delete();
-            //};
+           
         };
         $vac=Vacancy::find()->where(['id' => $id])->one();
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+        
         return $this->render('complete_information',[
             'vac'=>$vac,
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories
         ]); 
     }
 
@@ -251,18 +261,23 @@ class SiteController extends Controller
             $scanned->user_id=$user_id;
             $scanned->resume_id=$id;
             $scanned->ViewOrSelect=1;
-            $sc=Scanned::find()->where(['user_id' => $user_id,'resume_id' => $id,'ViewOrSelect' => 0])->all();
+            $sc=Scanned::find()->where(['user_id' => $user_id,'resume_id' => $id,'ViewOrSelect' => 1])->all();
            // if($sc!=null){
             //    $scanned->delete();
             //}
             if($sc==null){
                 $scanned->create();
             }
-            
         }
         $resume=Resume::find()->where(['id' => $id])->one();
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
         return $this->render('complete_information_work',[
             'resum'=>$resume,
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories
         ]);
     }
 
@@ -291,10 +306,12 @@ class SiteController extends Controller
     public function actionSearchfilt(){
         $this->layout = 'site';
         // Разбераем запрос
-        $citty = Yii::$app->request->get('citty');
+        $city = Yii::$app->request->get('city');
         $categ = Yii::$app->request->get('categ');
         $posit = Yii::$app->request->get('posit');
-        $salar = Yii::$app->request->get('salar');
+        $salaro = Yii::$app->request->get('salaro');
+        $salard = Yii::$app->request->get('salard');
+        var_dump($city,$salaro,$salard,$schelude);
         if($citty!=null){
             if($categ!=null){
                 if($posit!=null){

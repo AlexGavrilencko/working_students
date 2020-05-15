@@ -48,37 +48,41 @@ $this->params['breadcrumbs'][] = $this->title;
                         <form class="search_resume" method="get" action="<?= Url::toRoute(['site/searchfilt'])?>">
                             <div class="row justify-content-center">
                                
-                                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Выбор города -->
-                                    <?php
-                                        $city = Attributes::find()->where(['type'=>'city'])->all();  // получаем все города из таблицы атрибутов
-                                        $items = ArrayHelper::map($city,'id','name'); // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                                        $params = [
-                                            'prompt' => 'Город',
-                                            'class' => 'dropDownList',
-                                        ];
-                                            echo Html::dropDownList('citty', 'null', $items, $params);
-                                    ?>    
+                                <?php
+                                    $city = Attributes::find()->where(['type'=>'city'])->all();  // получаем все города из таблицы атрибутов 
+                                ?>    
+                                
+                                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Ввод зарплаты -->                                   
+                                    <select class="selectpicker" data-live-search="true" name="city">
+                                        <option data-tokens="">Город</option>  
+                                        <?php                           
+                                            foreach ($city as $city): ?> 
+                                            <option data-tokens="" value="<?=$city->id?>"><?=$city->name?></option>  
+                                        <?php endforeach;?>    
+                                    </select>
                                 </div>
-
                                 <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Ввод зарплаты -->
-                                    <input class="form-control btn-none " type="search" name="salar" placeholder="Зарплата от">
+                                    <input class="form-control btn-none " type="search" name="salaro" placeholder="Зарплата от">
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Ввод зарплаты -->
+                                    <input class="form-control btn-none " type="search" name="salard" placeholder="Зарплата до">
                                 </div>
 
                                 <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Выбор категории -->
                                     <?php
                                         $category = Attributes::find()->where(['type'=>'category'])->all();
-                                        // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                                        $items = ArrayHelper::map($category,'id','name');
-                                        $params = [
-                                            'prompt' => 'Категории',
-                                            'class' => 'dropDownList',
-                                        ];
-                                            echo Html::dropDownList('categ', 'null', $items, $params);
                                     ?>
+                                    <select class="selectpicker" data-live-search="true" name="categ">
+                                    <option data-tokens="">Категория</option>  
+                                    <?php                           
+                                        foreach ($category as $category): ?> 
+                                        <option data-tokens="" value="<?=$category->id?>"><?=$category->name?></option>  
+                                    <?php endforeach;?>    
+                                </select>
                                 </div>
 
                                 <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Ввод должности или профессии -->
-                                    <input class="form-control btn-none " type="search" name="posit" placeholder="Профессия">
+                                    <input class="form-control btn-none " type="search" name="posit" placeholder="Название вакансии...">
                                 </div>
 
                                 <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Кнопка для поиска -->
@@ -98,96 +102,45 @@ $this->params['breadcrumbs'][] = $this->title;
                                         
                                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                                                 <h4>График работы</h4>
-                                                <div class="row ml-1">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                        <label class="form-check-label" for="inlineCheckbox1">Полный рабочий день</label>
+                                                <?php
+                                                    $schelude = Attributes::find()->where(['type'=>'schelude'])->all();  // получаем все города из таблицы атрибутов 
+                                                ?>
+                                                <?php   foreach ($schelude as $sch): ?> 
+                                                    <div class="row ml-1">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox" id="<?$sch->id?>" value="option1" name="schelude">
+                                                            <label class="form-check-label" for="inlineCheckbox1"><?=$sch->name?></label>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row ml-1">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                        <label class="form-check-label" for="inlineCheckbox1">Удаленная работа</label>
-                                                    </div>
-                                                </div>
-                                                <div class="row ml-1">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                        <label class="form-check-label" for="inlineCheckbox1">Гибкий график</label>
-                                                    </div>
-                                                </div>
-                                                <div class="row ml-1">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                        <label class="form-check-label" for="inlineCheckbox1">Сменный график</label>
-                                                    </div>
-                                                </div>
+                                                <?php endforeach;?>
                                             </div><!-- div COL -->
                                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                                                 <h4>Опыт работы</h4>
-                                                <div class="row ml-1">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                        <label class="form-check-label" for="inlineCheckbox1">без опыта</label>
+                                                <?php
+                                                    $experience = Attributes::find()->where(['type'=>'experience'])->all();  // получаем все города из таблицы атрибутов 
+                                                ?>
+                                                <?php   foreach ($experience as $exp): ?> 
+                                                    <div class="row ml-1">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox" id="<?$exp->id?>" value="option1">
+                                                            <label class="form-check-label" for="inlineCheckbox1"><?=$exp->name?></label>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row ml-1">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                        <label class="form-check-label" for="inlineCheckbox1">до 1 года</label>
-                                                    </div>
-                                                </div>
-                                                <div class="row ml-1">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                        <label class="form-check-label" for="inlineCheckbox1">до 3 лет</label>
-                                                    </div>
-                                                </div>
-                                                <div class="row ml-1">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                        <label class="form-check-label" for="inlineCheckbox1">до 5 лет</label>
-                                                    </div>
-                                                </div>
-                                                <div class="row ml-1">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                        <label class="form-check-label" for="inlineCheckbox1">более 5 лет</label>
-                                                    </div>
-                                                </div>
+                                                <?php endforeach;?>
                                             </div><!-- div COL -->
                                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                                                 <h4>Тип занятости</h4>
-                                                <div class="row ml-1">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                        <label class="form-check-label" for="inlineCheckbox1">Полная занятость</label>
+                                                <?php
+                                                    $employment = Attributes::find()->where(['type'=>'employment'])->all();  // получаем все города из таблицы атрибутов 
+                                                ?>
+                                                <?php   foreach ($employment as $emp): ?> 
+                                                    <div class="row ml-1">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="checkbox" id="<?$emp->id?>" value="option1">
+                                                            <label class="form-check-label" for="inlineCheckbox1"><?=$emp->name?></label>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row ml-1">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                        <label class="form-check-label" for="inlineCheckbox1">Частичная занятость</label>
-                                                    </div>
-                                                </div>
-                                                <div class="row ml-1">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                        <label class="form-check-label" for="inlineCheckbox1">вахта/переезд</label>
-                                                    </div>
-                                                </div>
-                                                <div class="row ml-1">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                        <label class="form-check-label" for="inlineCheckbox1">временная работа/freelance</label>
-                                                    </div>
-                                                </div>
-                                                <div class="row ml-1">
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                                        <label class="form-check-label" for="inlineCheckbox1">стажировка</label>
-                                                    </div>
-                                                </div>
+                                                <?php endforeach;?>
                                             </div><!-- div COL -->
                                         </div><!-- div ROW -->
                                         <div class="row justify-content-center mt-5">                                
@@ -201,13 +154,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div><!-- border_search_resume -->
         </div><!-- ROW для поиска -->
   
-        <select class="selectpicker" data-live-search="true">
-            <option data-tokens="">Город</option>  
-                <?php                           
-                    foreach ($city as $city): ?> 
-                        <option data-tokens=""><?php echo $city->name;?></option>  
-                    <?php endforeach;?>    
-        </select>
+        
 
 <!-- Для отображения информации -->
     <div class="row justify-content-md-center mb-3"> 

@@ -142,7 +142,7 @@ if($vs==0){
                     foreach ($resume as $resum): 
                         if($sel->resume_id==$resume->id){
                             if ($resum->ShowOrHide===1){
-                           // var_dump($resum);
+                            
                 ?>   
 <!-- _______________________________________________________________________________________________ -->
                     <div class="border_search3 "> <!-- Фон для отображения -->
