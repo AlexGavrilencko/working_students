@@ -129,77 +129,71 @@ PublicAsset::register($this);
                         </div>
                     </div>
 
-<!--                   
-                <div class="margin_statistic">
+                    <h4 class="text-light mt-5">Сейчас на сайте "Working Students"</h4>
+                <div class="margin_statistic justify-content-center">
+              
                     <div class="row ">
-                        <div class="col">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <p class="text-light size_txt">Вакансии</p>
+                        <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12">
+                                <div class="row">
+                                    <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                                        <h3 class="text-light size_txt">Вакансий</h3>
+                                    </div>
+                                    <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                                        <h3 class="text-light size_txt">Резюме</h3>
+                                    </div>
+                                    <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                                        <h3 class="text-light size_txt">Организаций</h3>
+                                    </div>
                                 </div>
-                                <div class="col-sm">
-                                    <h5 class="text-light size_txt">Резюме</p>
-                                </div>
-                                <div class="col-sm">
-                                    <p class="text-light size_txt">Организации</p>
-                                </div>
-                            </div>
                         </div>
-                        <div class="col">
-                            
-                        </div>
-                    </div>
+                    
 
-                    <div class="row">
-                        <div class="col">
+                    
+                        <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12">
                             <div class="row">
-                                <div class="col">
-                                    <p class="text-light size_txt">
-                                        <?php $model = Vacancy::find()->count();
+                                    <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                                        <h3 class="text-light size_txt">
+                                            <?php $model = Vacancy::find()->count();
+                                                if ($model == NULL)
+                                                {
+                                                    echo '0';
+                                                }
+
+                                                else echo $model;
+                                            ?>
+                                        </h3>
+                                    </div>
+
+                                    <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                                        <h3 class="text-light size_txt">
+                                        <?php $model = Resume::find()->count();
                                             if ($model == NULL)
                                             {
-                                                //echo '0';
+                                                echo '0';
                                             }
 
-                                            else //echo $model;
-                                        ?>
-                                    </p>
-                                </div>
+                                            else echo $model;
+                                            ?>
+                                        </h3>
+                                    </div>
 
-                                <div class="col">
-                                    <h5 class="text-light size_txt">
-                                    <?php $model = Resume::find()->count();
-                                        if ($model == NULL)
-                                        {
-                                            //echo '0';
-                                        }
+                                    <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                                        <h3 class="text-light size_txt">
+                                            <?php $model = Organization::find()->count();
+                                            if ($model == NULL)
+                                            {
+                                                echo '0';
+                                            }
 
-                                        else //echo $model;
-                                        ?>
-                                    </p>
-                                </div>
-
-                                <div class="col">
-                                    <p class="text-light size_txt">
-                                        <?php $model = Organization::find()->count();
-                                        if ($model == NULL)
-                                        {
-                                           // echo '0';
-                                        }
-
-                                        else //echo $model;
-                                        ?>
-                                    </p>
-                                </div>
+                                            else echo $model;
+                                            ?>
+                                        </h3>
+                                    </div>
                             </div>
-                        </div>
-
-                        <div class="col">
-                            
                         </div>
                     </div>
                 </div>
---> 
+
 </div>
 
 
