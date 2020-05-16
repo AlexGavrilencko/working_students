@@ -1,3 +1,93 @@
+ДЛЯ ОТКЛИКА НАЧАЛО (Работодатель)
+<div class="table-responsive-sm table-responsive-md">
+                <table class="table table-bordered table-hover table-sm mt-3">
+                    <thead> <!--Строка с заголовками-->
+                        <tr>
+                            <th scope="col">№</th>
+                            <th scope="col">Вакансия</th>
+                            <th scope="col">ФИО</th>
+                            <th scope="col">e-mail</th>
+                            <th scope="col">Номер телефона</th>
+                            <th scope="col">Действия</th>
+                        </tr>
+                    </thead> <!--/Строка с заголовками-->
+                    <tbody> <!--Тело таблицы-->
+                    <?php foreach($model1 as $exp): ?> <!--Цыкл для отображения-->
+                        <?php  
+                            //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
+                            $speciality = Speciality::find()->where(['id'=>$exp->speciality_id])->one();
+                            //$speciality=$speciality->name;
+                        ?>
+                        <tr>
+                            <th scope="row"></th> <!-- № -->
+                            <td></th> <!-- Вакансия -->
+                            <td></th> <!-- ФИО -->
+                            <td>></th> <!-- e-mail -->
+                            <td>></th> <!-- Номер телефона -->
+                            <td><?= Html::a('Редактировать', ['experience_up', 'id' => $exp->id]) ?>
+                                <?= Html::a('Удалить', ['experience_del', 'id' => $exp->id], [
+                                            'data' => [
+                                                'confirm' => 'Вы действительно хотите удалить эти данные?',
+                                                'method' => 'post',
+                                            ],
+                                ]) ?>
+                            </th>
+                        </tr>
+                        <?php endforeach;?> <!--/Цыкл для отображения-->
+                    </tbody> <!--/Тело таблицы-->
+                </table>
+            </div>
+
+ДЛЯ ОТКЛИКА КОНЕЦ
+
+ДЛЯ ОТКЛИКА НАЧАЛО (Соискатель)
+<div class="table-responsive-sm table-responsive-md">
+                <table class="table table-bordered table-hover table-sm mt-3">
+                    <thead> <!--Строка с заголовками-->
+                        <tr>
+                            <th scope="col">№</th>
+                            <th scope="col">Организация</th>
+                            <th scope="col">e-mail</th>
+                            <th scope="col">Номер телефона</th>
+                            <th scope="col">Действия</th>
+                        </tr>
+                    </thead> <!--/Строка с заголовками-->
+                    <tbody> <!--Тело таблицы-->
+                    <?php foreach($model1 as $exp): ?> <!--Цыкл для отображения-->
+                        <?php  
+                            //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
+                            $speciality = Speciality::find()->where(['id'=>$exp->speciality_id])->one();
+                            //$speciality=$speciality->name;
+                        ?>
+                        <tr>
+                            <th scope="row"></th> <!-- № -->
+                            <td></th> <!-- Организация -->
+                            <td>></th> <!-- e-mail -->
+                            <td>></th> <!-- Номер телефона -->
+                            <td><?= Html::a('Редактировать', ['experience_up', 'id' => $exp->id]) ?>
+                                <?= Html::a('Удалить', ['experience_del', 'id' => $exp->id], [
+                                            'data' => [
+                                                'confirm' => 'Вы действительно хотите удалить эти данные?',
+                                                'method' => 'post',
+                                            ],
+                                ]) ?>
+                            </th>
+                        </tr>
+                        <?php endforeach;?> <!--/Цыкл для отображения-->
+                    </tbody> <!--/Тело таблицы-->
+                </table>
+            </div>
+
+
+ДЛЯ ОТКЛИКА КОНЕЦ
+
+
+
+
+
+
+
+
 <div class="text-center">
                     <p>Вы можете добавить изображения своих достижений</p>
                 </div>

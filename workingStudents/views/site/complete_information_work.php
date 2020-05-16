@@ -65,10 +65,6 @@ $this->title = 'Просмотр резюме';
                         </div> <!-- div /Отображение информации правее фотографии -->
                     </div>
 
-                  
-
-
-
                    <!-- Отображение дополнительной информации для работодателя -->
 
                         <div class="row ml-3"> <!-- Опыт работы -->
@@ -83,6 +79,7 @@ $this->title = 'Просмотр резюме';
 
 
                
+<<<<<<< HEAD
     <!--_________________Опыт работы отображение________________________________-->
                             <?php if($exp != null): ?> 
                                 <div class="proj mt-4 mb-4">
@@ -145,19 +142,53 @@ $this->title = 'Просмотр резюме';
                                                                 'confirm' => 'Вы действительно хотите удалить эти данные?',
                                                                 'method' => 'post',
                                                             ],
-                                                        ]) ?>
-                                            </div> 
-                                                        
-                                        </div>
-                                    <?php endforeach;?>
-                                    </div>
-                                </div>
-                        <?php endif; ?>
-<!--_________________/Опыт работы отображение________________________________-->
+=======
+  <!--_________________Опыт работы отображение________________________________-->
+                                <?php if($model1 != null): ?> 
+                                    <div class="table-responsive-sm table-responsive-md">
+                                        <table class="table table-bordered table-hover table-sm mt-3">
+                                            <thead> <!--Строка с заголовками-->
+                                                <tr>
+                                                    <th scope="col">№</th>
+                                                    <th scope="col">Количество</th>
+                                                    <th scope="col">Организация</th>
+                                                    <th scope="col">Должность</th>
+                                                    <th scope="col">Действия</th>
+                                                </tr>
+                                            </thead> <!--/Строка с заголовками-->
+                                            <tbody> <!--Тело таблицы-->
+                                            <?php foreach($model1 as $exp): ?> <!--Цыкл для отображения-->
 
+                                                <?php  
+                                                    //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
+                                                    $position = Position::find()->where(['id'=>$exp->position_id])->one();
+                                                    //$speciality=$speciality->name;
+                                                ?>
+                                                <tr>
+                                                    <th scope="row"><?=$exp->id?></th>
+                                                    <td><?=$exp->years?></th>
+                                                    <td><?=$exp->nameOrganiz?></th>
+                                                    <td><?=$position->name?></th>
+                                                    <td><?= Html::a('Редактировать', ['experience_up', 'id' => $exp->id]) ?>
+                                                        <?= Html::a('Удалить', ['experience_del', 'id' => $exp->id], [
+                                                                    'data' => [
+                                                                        'confirm' => 'Вы действительно хотите удалить эти данные?',
+                                                                        'method' => 'post',
+                                                                    ],
+>>>>>>> 89e56e879f0589184a95fbb4c9041e34d0b39b97
+                                                        ]) ?>
+                                                    </th>
+                                                </tr>
+                                                <?php endforeach;?> <!--/Цыкл для отображения-->
+                                            </tbody> <!--/Тело таблицы-->
+                                        </table>
+                                    </div>      
+                                <?php endif; ?>
+    <!--_________________/Опыт работы отображение________________________________-->
 
 
  <!--_________________Образование отображение________________________________-->
+<<<<<<< HEAD
                             <?php if($educ != null): ?> 
                                 <div class="proj mt-4 mb-4">
                                     <div class="text-center">
@@ -228,6 +259,47 @@ $this->title = 'Просмотр резюме';
                                     </div>
                                 </div>
                             <?php endif; ?>
+=======
+         <?php if($model1 != null): ?> 
+
+            <div class="table-responsive-sm table-responsive-md">
+                <table class="table table-bordered table-hover table-sm mt-3">
+                    <thead> <!--Строка с заголовками-->
+                        <tr>
+                            <th scope="col">№</th>
+                            <th scope="col">Количество</th>
+                            <th scope="col">Организация</th>
+                            <th scope="col">Должность</th>
+                            <th scope="col">Действия</th>
+                        </tr>
+                    </thead> <!--/Строка с заголовками-->
+                    <tbody> <!--Тело таблицы-->
+                    <?php foreach($model1 as $exp): ?> <!--Цыкл для отображения-->
+                        <?php  
+                            //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
+                            $speciality = Speciality::find()->where(['id'=>$exp->speciality_id])->one();
+                            //$speciality=$speciality->name;
+                        ?>
+                        <tr>
+                            <th scope="row"><?=$exp->id?></th>
+                            <td><?=$exp->years?></th>
+                            <td><?=$exp->nameOrganiz?></th>
+                            <td><?=$speciality->code?><?=$speciality->name?></th>
+                            <td><?= Html::a('Редактировать', ['experience_up', 'id' => $exp->id]) ?>
+                                <?= Html::a('Удалить', ['experience_del', 'id' => $exp->id], [
+                                            'data' => [
+                                                'confirm' => 'Вы действительно хотите удалить эти данные?',
+                                                'method' => 'post',
+                                            ],
+                                ]) ?>
+                            </th>
+                        </tr>
+                        <?php endforeach;?> <!--/Цыкл для отображения-->
+                    </tbody> <!--/Тело таблицы-->
+                </table>
+            </div>      
+        <?php endif; ?>
+>>>>>>> 89e56e879f0589184a95fbb4c9041e34d0b39b97
 
 <!--_________________/Образование отображение________________________________-->
 
