@@ -79,7 +79,7 @@ $this->title = 'Просмотр резюме';
 
 
                
-<<<<<<< HEAD
+
     <!--_________________Опыт работы отображение________________________________-->
                             <?php if($exp != null): ?> 
                                 <div class="proj mt-4 mb-4">
@@ -137,12 +137,7 @@ $this->title = 'Просмотр резюме';
 
                                             <div class="col">
                                                 <?= Html::a('<img src="/public/img/pencil1.png" class="pencil">', ['experience_up', 'id' => $exp->id]) ?>
-                                                <?= Html::a('<img src="/public/img/trashcan1.png" class="trashcan">', ['experience_del', 'id' => $exp->id], [
-                                                            'data' => [
-                                                                'confirm' => 'Вы действительно хотите удалить эти данные?',
-                                                                'method' => 'post',
-                                                            ],
-=======
+                                                
   <!--_________________Опыт работы отображение________________________________-->
                                 <?php if($model1 != null): ?> 
                                     <div class="table-responsive-sm table-responsive-md">
@@ -175,7 +170,7 @@ $this->title = 'Просмотр резюме';
                                                                         'confirm' => 'Вы действительно хотите удалить эти данные?',
                                                                         'method' => 'post',
                                                                     ],
->>>>>>> 89e56e879f0589184a95fbb4c9041e34d0b39b97
+
                                                         ]) ?>
                                                     </th>
                                                 </tr>
@@ -188,7 +183,7 @@ $this->title = 'Просмотр резюме';
 
 
  <!--_________________Образование отображение________________________________-->
-<<<<<<< HEAD
+
                             <?php if($educ != null): ?> 
                                 <div class="proj mt-4 mb-4">
                                     <div class="text-center">
@@ -259,7 +254,7 @@ $this->title = 'Просмотр резюме';
                                     </div>
                                 </div>
                             <?php endif; ?>
-=======
+
          <?php if($model1 != null): ?> 
 
             <div class="table-responsive-sm table-responsive-md">
@@ -299,7 +294,7 @@ $this->title = 'Просмотр резюме';
                 </table>
             </div>      
         <?php endif; ?>
->>>>>>> 89e56e879f0589184a95fbb4c9041e34d0b39b97
+
 
 <!--_________________/Образование отображение________________________________-->
 

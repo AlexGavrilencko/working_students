@@ -363,8 +363,14 @@ class SiteController extends Controller
         $posit = Yii::$app->request->get('posit');
         $salaro = Yii::$app->request->get('salaro');
         $salard = Yii::$app->request->get('salard');
-        var_dump($city,$salaro,$salard,$schelude);
-        if($citty!=null){
+        if($salaro===""){
+            $salaro=0;
+        }
+        if($salard===""){
+            $salard=2147483648;
+        }
+        //var_dump($city,$salaro,$salard,$schelude);
+        /*if($citty!=null){
             if($categ!=null){
                 if($posit!=null){
                     if($salar!=null){
@@ -439,13 +445,14 @@ class SiteController extends Controller
                     }
                 }
             }
-        }
-        //var_dump($search);
+        }*/
+        //var_dump($salard);
         // Обрезаем пробелы
         //$search1 = str_replace(' ', '', $search);
         // Поисковый запрос с поиском и обрезанием пробелов
         //$query = Vacancy::find()->filterWhere(['like','name', $search1])->all();
-       
+        $query=Vacancy::find()->where(['city_id' => $city])->andFilterWhere(['between', 'salary', $salaro, $salard])->all();
+        //var_dump($query);
         $vall=Vacancy::find()->all();
         $popular = Article::getPopular();
         $recent = Article::getRecent();
