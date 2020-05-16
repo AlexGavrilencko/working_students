@@ -7,7 +7,7 @@ use app\models\ImageUpload;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\web\Response;
+use app\models\Response;
 use yii\filters\VerbFilter;
 use app\models\Vacancy;
 use app\models\Resume;
@@ -318,5 +318,25 @@ class PrivateofficeController extends Controller
         $resume=Resume::find()->all();
         $vac=Vacancy::find()->all();
         return $this->render('my_scanned',['select'=>$select,'vs'=>$vs,'resume'=>$resume,'vac'=>$vac]);
+    }
+
+    public function actionResponse(){
+        $this->layout = 'site';
+        $user = Yii::$app->user->identity;
+        if($user->rang===10){
+            $r=Resume::find()->where(['user_id'=>$user->id])->one();
+            $response= Response::find()->where(['resume_id'=>$r->id])->all();
+            //var_dump($response);
+        }
+        if($user->rang===20){
+            $v=Vacancy::find()->where(['user_id'=>$user->id])->all();
+            //var_dump($v->id);
+            //foreach($v as $v):
+                $response= Response::find()->all();
+            //endforeach;
+            //var_dump($response);
+        }
+        //$response= Response::find()->where(['user_id'=>$user->id])->all();
+        return $this->render('response',['response'=>$response]);
     }
 }

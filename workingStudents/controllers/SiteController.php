@@ -5,7 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\web\Response;
+use app\models\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
@@ -15,6 +15,7 @@ use app\models\Vacancy;
 use app\models\Attributes;
 use app\models\Organization;
 use app\models\Scanned;
+use app\models\Project;
 use app\models\Experience;
 use app\models\ArtCategory;
 use app\models\Article;
@@ -114,9 +115,11 @@ class SiteController extends Controller
             }
         }
         $resume=Resume::find()->where(['id' => $id])->one();
+        $userID=$resume->user_id;
         $exp=Experience::find()->where(['resume_id' => $id,'StudyOrWork'=>1])->all();//опыт работы
         $educ=Experience::find()->where(['resume_id' => $id,'StudyOrWork'=>0])->all();//образование
-        //var_dump($resume);
+        $project=Project::find()->where(['user_id'=>$userID])->all();
+        
         $resume->viewedCounter();
         $popular = Article::getPopular();
         $recent = Article::getRecent();
@@ -128,6 +131,7 @@ class SiteController extends Controller
             'categories'=>$categories,
             'exp'=>$exp,
             'educ'=>$educ,
+            'project'=>$project,
         ]);
     }
 
@@ -275,6 +279,54 @@ class SiteController extends Controller
         $categories = ArtCategory::getAll();
         return $this->render('complete_information_work',[
             'resum'=>$resume,
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories
+        ]);
+    }
+
+    public function actionResponse($id){
+        $user=Yii::$app->user->identity;
+        $user_id=$user->id;
+        if($user_id!=null){
+            $response=new Response();
+            $response->user_id=$user_id;
+            $response->resume_id=$id;
+            $rs=Response::find()->where(['user_id' =>$user_id,'resume_id' => $id])->all();
+            if($rs==null){
+                $response->create();
+            }
+        }
+        $resume=Resume::find()->where(['id' => $id])->one();
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+        return $this->render('complete_information_work',[
+            'resum'=>$resume,
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories
+        ]);
+    }
+
+    public function actionResponsest($id){
+        $user=Yii::$app->user->identity;
+        $user_id=$user->id;
+        if($user_id!=null){
+            $response=new Response();
+            $response->user_id=$user_id;
+            $response->vacancy_id=$id;
+            $rs=Response::find()->where(['user_id' =>$user_id,'vacancy_id' => $id])->all();
+            if($rs==null){
+                $response->create();
+            }
+        }
+        $vac=Vacancy::find()->where(['id' => $id])->one();
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+        return $this->render('complete_information',[
+            'vac'=>$vac,
             'popular'=>$popular,
             'recent'=>$recent,
             'categories'=>$categories

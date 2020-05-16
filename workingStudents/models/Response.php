@@ -55,6 +55,18 @@ class Response extends \yii\db\ActiveRecord
         ];
     }
 
+    public function create()
+    {
+        $this->save();
+        return $this;
+    }
+
+    public function delete()
+    {
+        $this->delete();
+        return $this;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */

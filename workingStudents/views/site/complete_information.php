@@ -147,6 +147,18 @@ $this->title = 'Просмотр вакансии';
                                         </a>
                                     </div>
                             <?php }?>
+                            <?php if(Yii::$app->user->identity){ ?>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
+                                    <a href="<?= Url::toRoute(['site/responsest', 'id'=>$vac->id]); ?>">
+                                    <!--<img class="heard" src="/public/img/heard.png" alt="-->Откликнуться на вакансию<!--">--></a>
+                                </div>
+                            <?php  } else {?>
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
+                                        <a href="#" class="disabled">
+                                                <!--<img class="heard" src="/public/img/heard.png" alt="-->Откликнуться на вакансию<!--">-->
+                                        </a>
+                                    </div>
+                            <?php }?>
 
                                 <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                                     <p>Дата<?= $vacan->dateAdd ?></p>       

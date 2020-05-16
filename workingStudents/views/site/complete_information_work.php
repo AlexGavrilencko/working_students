@@ -5,11 +5,12 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\models\Attributes;
 use app\models\Organization;
+use app\models\Speciality;
 use app\models\User;
 use yii\helpers\Url;
-//$exp эта переменная хранит данные об опыте работы
-//$educ эта переменная хранит данные об образовании
-//var_dump($educ);
+//$exp !!!!!!!!!!!    эта переменная хранит данные об опыте работы
+//$educ !!!!!!!!!!!!!    эта переменная хранит данные об образовании
+
 $this->title = 'Просмотр резюме';
 ?>
 <?php $form = ActiveForm::begin(); ?>          
@@ -83,7 +84,7 @@ $this->title = 'Просмотр резюме';
 
                
     <!--_________________Опыт работы отображение________________________________-->
-                            <?php if($model1 != null): ?> 
+                            <?php if($exp != null): ?> 
                                 <div class="proj mt-4 mb-4">
                                     <div class="text-center">
                                         <h4>Опыт работы</h4>
@@ -111,7 +112,7 @@ $this->title = 'Просмотр резюме';
                                             </div>
                                         </div>
 
-                                    <?php foreach($model1 as $exp): ?>
+                                    <?php foreach($exp as $exp): ?>
 
                                         <?php  
                                             //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
@@ -126,7 +127,7 @@ $this->title = 'Просмотр резюме';
                                             </div>
 
                                             <div class="col">
-                                                <p><?=$exp->dateStart?></p>
+                                                <p><?=$exp->years?></p>
                                             </div>
 
                                             <div class="col">
@@ -157,7 +158,7 @@ $this->title = 'Просмотр резюме';
 
 
  <!--_________________Образование отображение________________________________-->
-                            <?php if($model1 != null): ?> 
+                            <?php if($educ != null): ?> 
                                 <div class="proj mt-4 mb-4">
                                     <div class="text-center">
                                         <h4>Образование</h4>
@@ -186,7 +187,7 @@ $this->title = 'Просмотр резюме';
                                             </div>
                                         </div>
 
-                                    <?php foreach($model1 as $exp): ?>
+                                    <?php foreach($educ as $educ): ?>
 
                                         <?php  
                                             //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
@@ -201,7 +202,7 @@ $this->title = 'Просмотр резюме';
                                             </div>
 
                                             <div class="col">
-                                                <p><?=$exp->dateStart?></p>
+                                                <p><?=$exp->years?></p>
                                             </div>
 
                                             <div class="col">
@@ -231,7 +232,7 @@ $this->title = 'Просмотр резюме';
 <!--_________________/Образование отображение________________________________-->
 
 
-                <?php if($model1 != null): ?> 
+                <?php if($project!= null): ?> 
                     <div class="proj mt-4 mb-4">
                         <div class="text-center">
                             <h4>Проекты</h4>
@@ -269,6 +270,18 @@ $this->title = 'Просмотр резюме';
                                     <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
                                         <a href="#" class="disabled">
                                                 <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                        </a>
+                                    </div>
+                            <?php }?>
+                            <?php if(Yii::$app->user->identity){ ?>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
+                                    <a href="<?= Url::toRoute(['site/response', 'id'=>$resum->id]); ?>">
+                                    <!--<img class="heard" src="/public/img/heard.png" alt="-->Откликнуться на резюме<!--">--></a>
+                                </div>
+                            <?php  } else {?>
+                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
+                                        <a href="#" class="disabled">
+                                                <!--<img class="heard" src="/public/img/heard.png" alt="-->Откликнуться на резюме<!--">-->
                                         </a>
                                     </div>
                             <?php }?>
