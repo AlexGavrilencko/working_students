@@ -19,6 +19,7 @@ use app\models\Project;
 use app\models\Experience;
 use app\models\ArtCategory;
 use app\models\Article;
+use app\models\ArticleTag;
 use yii\data\ActiveDataProvider;
 
 class SiteController extends Controller
@@ -363,8 +364,14 @@ class SiteController extends Controller
         $posit = Yii::$app->request->get('posit');
         $salaro = Yii::$app->request->get('salaro');
         $salard = Yii::$app->request->get('salard');
-        var_dump($city,$salaro,$salard,$schelude);
-        if($citty!=null){
+        if($salaro===""){
+            $salaro=0;
+        }
+        if($salard===""){
+            $salard=2147483648;
+        }
+        //var_dump($city,$salaro,$salard,$schelude);
+        /*if($citty!=null){
             if($categ!=null){
                 if($posit!=null){
                     if($salar!=null){
@@ -439,13 +446,14 @@ class SiteController extends Controller
                     }
                 }
             }
-        }
-        //var_dump($search);
+        }*/
+        //var_dump($salard);
         // Обрезаем пробелы
         //$search1 = str_replace(' ', '', $search);
         // Поисковый запрос с поиском и обрезанием пробелов
         //$query = Vacancy::find()->filterWhere(['like','name', $search1])->all();
-       
+        $query=Vacancy::find()->where(['city_id' => $city])->andFilterWhere(['between', 'salary', $salaro, $salard])->all();
+        //var_dump($query);
         $vall=Vacancy::find()->all();
         $popular = Article::getPopular();
         $recent = Article::getRecent();
@@ -469,12 +477,14 @@ class SiteController extends Controller
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
+        
         return $this->render('indexart',[
             'articles'=>$data['articles'],
             'pagination'=>$data['pagination'],
             'popular'=>$popular,
             'recent'=>$recent,
-            'categories'=>$categories
+            'categories'=>$categories,
+            
         ]);
     }
     
@@ -486,13 +496,34 @@ class SiteController extends Controller
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
         $article->viewedCounter();
+        
         return $this->render('single',[
             'article'=>$article,
             'popular'=>$popular,
             'recent'=>$recent,
             'categories'=>$categories,  
+            
         ]);
     }
+
+    public function actionTagview($id)
+	{
+        $this->layout = 'article';
+		$tagarticles=ArticleTag::find()->where(['tag_id' => $id])->all();
+		$data = Article::getAll(5);
+        $data1=Article::find()->all();
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+		return $this->render('tag',[
+		'art'=>$tagarticles,
+        'article'=>$data1,
+        'popular'=>$popular,
+        'recent'=>$recent,
+        'categories'=>$categories,	
+        'id'=>$id
+		]);
+	}
     
     public function actionCategory($id)
     {

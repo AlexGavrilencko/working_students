@@ -87,8 +87,70 @@ $this->title = 'Просмотр резюме';
 
 
                
+<<<<<<< HEAD
 
     
+=======
+
+    <!--_________________Опыт работы отображение________________________________-->
+                            <?php if($exp != null): ?> 
+                                <div class="proj mt-4 mb-4">
+                                    <div class="text-center">
+                                        <h4>Опыт работы</h4>
+                                    </div>
+                                    <div class="container-fluid">
+                                        <div class="row"> <!-- отображение заголовков таблицы -->
+                                            <div class="col">
+                                                <p>№</p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p>Количество лет</p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p>Наименование организации</p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p>Специальность</p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p>Действия</p>
+                                            </div>
+                                        </div>
+
+                                    <?php foreach($exp as $exp): ?>
+
+                                        <?php  
+                                            //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
+                                            $speciality = Speciality::find()->where(['id'=>$exp->speciality_id])->one();
+                                            //$speciality=$speciality->name;
+                                        ?>
+
+                                        <div class="row"> <!-- отобрежение цикла -->
+
+                                            <div class="col">
+                                                <p><?=$exp->id?></p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p><?=$exp->years?></p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p><?=$exp->nameOrganiz?></p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p><?=$speciality->code?><?=$speciality->name?></p>
+                                            </div>
+
+                                            <div class="col">
+                                                <?= Html::a('<img src="/public/img/pencil1.png" class="pencil">', ['experience_up', 'id' => $exp->id]) ?>
+                                                
+>>>>>>> 0e8ad8546c45e8910c37b736c7de25e33802fbfa
   <!--_________________Опыт работы отображение________________________________-->
                                 <?php if($model1 != null): ?> 
                                     <div class="table-responsive-sm table-responsive-md">
@@ -134,7 +196,82 @@ $this->title = 'Просмотр резюме';
 
 
  <!--_________________Образование отображение________________________________-->
+<<<<<<< HEAD
 
+=======
+
+                            <?php if($educ != null): ?> 
+                                <div class="proj mt-4 mb-4">
+                                    <div class="text-center">
+                                        <h4>Образование</h4>
+                                    </div>
+
+                                    <div class="container-fluid">
+                                        <div class="row"> <!-- отображение заголовков таблицы -->
+                                            <div class="col">
+                                                <p>№</p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p>Количество лет</p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p>Наименование организации</p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p>Специальность</p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p>Действия</p>
+                                            </div>
+                                        </div>
+
+                                    <?php foreach($educ as $educ): ?>
+
+                                        <?php  
+                                            //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
+                                            $speciality = Speciality::find()->where(['id'=>$exp->speciality_id])->one();
+                                            //$speciality=$speciality->name;
+                                        ?>
+
+                                        <div class="row"> <!-- отобрежение цикла -->
+
+                                            <div class="col">
+                                                <p><?=$exp->id?></p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p><?=$exp->years?></p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p><?=$exp->nameOrganiz?></p>
+                                            </div>
+
+                                            <div class="col">
+                                                <p><?=$speciality->code?><?=$speciality->name?></p>
+                                            </div>
+
+                                            <div class="col">
+                                                <?= Html::a('<img src="/public/img/pencil1.png" class="pencil">', ['experience_up', 'id' => $exp->id]) ?>
+                                                <?= Html::a('<img src="/public/img/trashcan1.png" class="trashcan">', ['experience_del', 'id' => $exp->id], [
+                                                            'data' => [
+                                                                'confirm' => 'Вы действительно хотите удалить эти данные?',
+                                                                'method' => 'post',
+                                                            ],
+                                                        ]) ?>
+                                            </div> 
+
+                                        </div>
+                                    <?php endforeach;?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
+>>>>>>> 0e8ad8546c45e8910c37b736c7de25e33802fbfa
          <?php if($model1 != null): ?> 
 
             <div class="table-responsive-sm table-responsive-md">
@@ -174,6 +311,11 @@ $this->title = 'Просмотр резюме';
                 </table>
             </div>      
         <?php endif; ?>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 0e8ad8546c45e8910c37b736c7de25e33802fbfa
 <!--_________________/Образование отображение________________________________-->
 
 

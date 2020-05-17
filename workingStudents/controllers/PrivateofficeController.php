@@ -125,7 +125,9 @@ class PrivateofficeController extends Controller
             $expir=new Experience();
             if(Yii::$app->request->isPost)
             {
+                //$model->dateChanges=null;
                 $model->load(Yii::$app->request->post());
+                
                 $model->create();
                 $expir->resume_id=$model->id;
                 $expir->StudyOrWork=0;

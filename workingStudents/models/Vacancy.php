@@ -59,7 +59,10 @@ class Vacancy extends \yii\db\ActiveRecord
         return [
             [['user_id', 'organization_id', 'city_id', 'experience_id', 'employment_id', 'schedule_id', 'salary', 'position_id', 'category_id', 'WorkOrPractice', 'ShowOrHide', 'viewed'], 'integer'],
             [['duties', 'requirement', 'conditions', 'description'], 'string'],
-            [['dateAdd', 'dateChanges'], 'safe'],
+            [['dateAdd'], 'date', 'format'=>'php:Y-m-d'],
+            [['dateAdd'], 'default', 'value' => date('Y-m-d')],
+            [['dateChanges'], 'date', 'format'=>'php:Y-m-d'],
+            [['dateChanges'], 'default', 'value' => date('Y-m-d')],
             [['name'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profstand::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['city_id' => 'id']],
@@ -101,6 +104,11 @@ class Vacancy extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getDate()
+    {
+        return Yii::$app->formatter->asDate($this->dateAdd);
+	}
+
     public function create()
     {
         return $this->save(false);
@@ -133,10 +141,7 @@ class Vacancy extends \yii\db\ActiveRecord
         return $this->save(false);
     }
 
-    public function getDate()
-    {
-        return Yii::$app->formatter->asDate($this->dateAdd);
-	}
+    
 
     /**
      * @return \yii\db\ActiveQuery

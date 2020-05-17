@@ -42,7 +42,8 @@ class Article extends \yii\db\ActiveRecord
     {
         return [
             [['description', 'content'], 'string'],
-            [['date'], 'safe'],
+            [['date'], 'date', 'format'=>'php:Y-m-d'],
+            [['date'], 'default', 'value' => date('Y-m-d')],
             [['viewed', 'user_id', 'status', 'category_id'], 'integer'],
             [['title', 'image'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => ArtCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
@@ -185,7 +186,7 @@ class Article extends \yii\db\ActiveRecord
     
     public static function getRecent()
     {
-        return Article::find()->orderBy('date asc')->limit(4)->all();
+        return Article::find()->orderBy('date asc')->limit(3)->all();
     }
 
     /**

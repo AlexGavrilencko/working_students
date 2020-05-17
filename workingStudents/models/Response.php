@@ -34,7 +34,8 @@ class Response extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'vacancy_id', 'resume_id'], 'integer'],
-            [['date'], 'safe'],
+            [['date'], 'date', 'format'=>'php:Y-m-d'],
+            [['date'], 'default', 'value' => date('Y-m-d')],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['vacancy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vacancy::className(), 'targetAttribute' => ['vacancy_id' => 'id']],
             [['resume_id'], 'exist', 'skipOnError' => true, 'targetClass' => Resume::className(), 'targetAttribute' => ['resume_id' => 'id']],
@@ -54,6 +55,11 @@ class Response extends \yii\db\ActiveRecord
             'date' => 'Дата',
         ];
     }
+
+    public function getDate()
+    {
+        return Yii::$app->formatter->asDate($this->date);
+	}
 
     public function create()
     {

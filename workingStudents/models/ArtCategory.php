@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models;
+use yii\data\Pagination;
 
 use Yii;
 
@@ -50,6 +51,8 @@ class ArtCategory extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Article::className(), ['category_id' => 'id']);
     }
+
+    
 
     public function getArticlesCount()
     {
