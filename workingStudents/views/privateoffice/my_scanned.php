@@ -47,17 +47,21 @@ if($vs==0){
                                                                 <p>Название вакансии:<?= $vacan->name ?></p>
                                                             </div>                  <!-- /Отображение названии вакансии -->
 
-                                                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение зарплаты -->
-                                                                    <p>Зарплата: 
-                                                                        <?php
-                                                                            $salary = $vacan->salary;
-                                                                            if ($salary == NULL){
-                                                                                echo 'не указана';
-                                                                            }
-                                                                            else echo $salary;
-                                                                        ?>
-                                                                    </p>
-                                                                </div>                  <!-- /Отображение зарплаты -->
+                                                                <!-- Отображение зарплаты -->
+                                                                <?php  if (!Yii::$app->user->isGuest){ ?>
+                                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
+                                                                        <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
+                                                                            <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                                                        </a>
+                                                                    </div>
+                                                                <?php } else {?>
+                                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
+                                                                        <a href="#" class="disabled">
+                                                                            <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                                                        </a>
+                                                                    </div>
+                                                                <?php }?>
+                                                                                <!-- /Отображение зарплаты -->
                                                         </div> <!-- /ROW  -->
 
                                                         <div class="row"> <!-- ROW Отображение названия организации и города -->
@@ -88,7 +92,18 @@ if($vs==0){
                                                                             ?>
                                                                         </p>
                                                                     </div><!-- Отображение города -->
-                                                        </div>   <!-- ROW Отображение названия организации и города -->  
+                                                        </div>   <!-- ROW Отображение названия организации и города --> 
+                                                        <div class="row ml-1">
+                                                                <p>Зарплата: 
+                                                                    <?php
+                                                                        $salary = $vacan->salary;
+                                                                        if ($salary == NULL){
+                                                                            echo 'не указано';
+                                                                        }
+                                                                        else echo $salary;
+                                                                    ?>
+                                                                </p>
+                                                        </div> 
 <!--div /Отображение информации правее фотографии-->  </div> 
                                 </div>  <!-- ROW  ДЛЯ ЧАСТИ С ИЗОБРАЖЕНИМ-->  
 
@@ -109,27 +124,13 @@ if($vs==0){
                                     </div>                          <!-- /Отображение дополнительной информации для соискателя -->
 
                                     <div class="row"> <!-- кнопок действия и даты -->
-                                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
                                             <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a>
                                         </div>
 
                                         <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                                             <p>Дата<?= $vacan->dateAdd ?></p>       
                                         </div>
-
-                                        <?php  if (!Yii::$app->user->isGuest){ ?>
-                                            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
-                                                <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
-                                                    <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
-                                                </a>
-                                            </div>
-                                        <?php } else {?>
-                                            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
-                                                <a href="#" class="disabled">
-                                                    <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
-                                                </a>
-                                            </div>
-                                        <?php }?>
                                     </div>
                             </div> <!-- /Фон для отображения -->
         <!-- _____________________Вид отображения (КОНЕЦ)_________________________________ -->
