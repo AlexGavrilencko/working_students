@@ -14,7 +14,13 @@ use yii\widgets\ActiveForm;
 
 $this->title = 'Просмотр вакансии';
 ?>
-
+<style>
+    a.disabled {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #999; /* цвет текста для нективной ссылки */
+}
+</style>
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
 
 <!-- Для отображения информации -->
@@ -136,24 +142,12 @@ $this->title = 'Просмотр вакансии';
  <!-- /Отображение дополнительной информации для соискателя -->
                         <div class="row ml-1"> <!-- Просмотры и дата -->
                             <?php if(Yii::$app->user->identity){ ?>
-                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
-                                    <a href="<?= Url::toRoute(['site/selected', 'id'=>$vac->id]); ?>">
-                                    <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">--></a>
-                                </div>
-                            <?php  } else {?>
-                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
-                                        <a href="#" class="disabled">
-                                                <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
-                                        </a>
-                                    </div>
-                            <?php }?>
-                            <?php if(Yii::$app->user->identity){ ?>
-                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
+                                <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"> 
                                     <a href="<?= Url::toRoute(['site/responsest', 'id'=>$vac->id]); ?>">
                                     <!--<img class="heard" src="/public/img/heard.png" alt="-->Откликнуться на вакансию<!--">--></a>
                                 </div>
                             <?php  } else {?>
-                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
+                                    <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"> 
                                         <a href="#" class="disabled">
                                                 <!--<img class="heard" src="/public/img/heard.png" alt="-->Откликнуться на вакансию<!--">-->
                                         </a>
@@ -163,6 +157,22 @@ $this->title = 'Просмотр вакансии';
                                 <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                                     <p>Дата<?= $vacan->dateAdd ?></p>       
                                 </div>
+
+                            <?php if(Yii::$app->user->identity){ ?>
+                                <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"> 
+                                    <a href="<?= Url::toRoute(['site/selected', 'id'=>$vac->id]); ?>">
+                                    <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">--></a>
+                                </div>
+                            <?php  } else {?>
+                                    <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"> 
+                                        <a href="#" class="disabled">
+                                                <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                        </a>
+                                    </div>
+                            <?php }?>
+                           
+
+                              
                                 <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                                     <p>Количество просмотров</p>       
                                 </div>
