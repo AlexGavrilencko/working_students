@@ -85,10 +85,10 @@ PublicAsset::register($this);
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
                                             <a class="dropdown-item menugreen_v h6" href="/privateoffice/resume">Мое резюме</a>
-                                         <!--   <a class="dropdown-item menugreen_v h6" href="/privateoffice/my_project">Достижения</a>-->
+                                            <a class="dropdown-item menugreen_v h6" href="<?= Url::toRoute(['site/search','id'=>'0']) ?>">Поиск вакансий</a>
                                             <a class="dropdown-item menugreen_v h6" href="<?= Url::toRoute(['privateoffice/my_select']) ?>">Избранное</a>
                                             <a class="dropdown-item menugreen_v h6" href="<?= Url::toRoute(['privateoffice/my_scan']) ?>">Просмотренное</a>
-                                            <a class="dropdown-item menugreen_v h6" href="<?= Url::toRoute(['site/search','id'=>'0']) ?>">Поиск вакансий</a>
+                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/response">Отклики</a>
                                             <a class="dropdown-item menugreen_v h6" href="/site/indexartic">Cтатьи</a>
                                             <a class="dropdown-item menugreen_v h6" href="/auth/logout" id="exit"><div>Выход</div></a>
                                         </div>
@@ -105,9 +105,10 @@ PublicAsset::register($this);
                                             <a class="dropdown-item menugreen_v h6" href="/privateoffice/vacancy">Составить вакансию</a>
                                             <a class="dropdown-item menugreen_v h6" href="/privateoffice/my_vacancy">Мои вакансии</a>
                                             <a class="dropdown-item menugreen_v h6" href="/privateoffice/organiz">Данные об организации</a>
+                                            <a class="dropdown-item menugreen_v h6" href="/site/search_work">Поиск резюме</a>
                                             <a class="dropdown-item menugreen_v h6" href="<?= Url::toRoute(['privateoffice/my_select']) ?>">Избранное</a>
                                             <a class="dropdown-item menugreen_v h6" href="<?= Url::toRoute(['privateoffice/my_scan']) ?>">Просмотренное</a>
-                                            <a class="dropdown-item menugreen_v h6" href="/site/search_work">Поиск резюме</a>
+                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/response">Отклики</a>
                                             <a class="dropdown-item menugreen_v h6" href="/site/indexartic">Cтатьи</a>
                                             <a class="dropdown-item menugreen_v h6" href="/auth/logout" id="exit"><div>Выход</div></a>
                                         </div>
