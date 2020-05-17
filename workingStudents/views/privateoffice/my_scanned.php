@@ -4,6 +4,7 @@ use yii\widgets\ActiveForm;
 use app\models\Attributes;
 use yii\widgets\LinkPager;
 use app\models\User;
+use app\models\Vacancy;
 use app\models\Organization;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -51,7 +52,7 @@ if($vs==0){
                                                                         <?php
                                                                             $salary = $vacan->salary;
                                                                             if ($salary == NULL){
-                                                                                echo 'не указано';
+                                                                                echo 'не указана';
                                                                             }
                                                                             else echo $salary;
                                                                         ?>
@@ -118,7 +119,7 @@ if($vs==0){
 
                                         <?php  if (!Yii::$app->user->isGuest){ ?>
                                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
-                                                <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>">
+                                                <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
                                                     <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
                                                 </a>
                                             </div>
@@ -184,13 +185,13 @@ if($vs==0){
 
                                 <div class="row"> <!-- Отображение желаемой доолжности и города -->
                                     <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8">
-                                        <p>Желаемая вакансия: <?= $vacan->name ?></p>
+                                        <p>Желаемая вакансия: </p>
                                     </div>    
                                 
                                     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                                         <p> Город
                                             <?php
-                                                $c = $vacan->city_id;
+                                                $c = $resum->city_id;
                                                 $city = Attributes::find()->where(['id'=>$c])->one();
                                                 if ($city == NULL) 
                                                 { 
@@ -215,7 +216,7 @@ if($vs==0){
                                         <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>">Подробнее</a>
                                     </div>
                                     <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                                        <p>Дата<?= $vacan->dateAdd ?></p>       
+                                        <p>Дата<?= $resum->dateAdd ?></p>       
                                     </div>
                             </div>
                     </div> <!-- /Фон для отображения -->
@@ -330,7 +331,7 @@ if($vs==0){
                                         </div>
                                         <?php  if (!Yii::$app->user->isGuest){ ?>
                                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
-                                                <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>">
+                                                <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
                                                     <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
                                                 </a>
                                             </div>
@@ -395,13 +396,13 @@ if($vs==0){
 
                                 <div class="row"> <!-- Отображение желаемой доолжности и города -->
                                     <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8">
-                                        <p>Желаемая вакансия: <?= $vacan->name ?></p>
+                                        <p>Желаемая вакансия:</p>
                                     </div>    
                                 
                                     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                                         <p> Город
                                             <?php
-                                                $c = $vacan->city_id;
+                                                $c = $resum->city_id;
                                                 $city = Attributes::find()->where(['id'=>$c])->one();
                                                 if ($city == NULL) 
                                                 { 
@@ -426,7 +427,7 @@ if($vs==0){
                                         <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>">Подробнее</a>
                                     </div>
                                     <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                                        <p>Дата<?= $vacan->dateAdd ?></p>       
+                                        <p>Дата<?= $resum->dateAdd ?></p>       
                                     </div>
                             </div>
                     </div> <!-- /Фон для отображения -->

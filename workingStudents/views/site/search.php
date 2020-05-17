@@ -182,17 +182,21 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <p>Название вакансии:<?= $vacan->name ?></p>
                                 </div>                  <!-- /Отображение названии вакансии -->
 
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение зарплаты -->
-                                    <p>Зарплата: 
-                                        <?php
-                                            $salary = $vacan->salary;
-                                            if ($salary == NULL){
-                                                echo 'не указано';
-                                            }
-                                            else echo $salary;
-                                        ?>
-                                    </p>
-                                </div>                  <!-- /Отображение зарплаты -->
+                                 <!-- Отображение зарплаты -->
+                                <?php  if (Yii::$app->user->isGuest){ ?>
+                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
+                                    <a href="#" class="disabled" >
+                                        <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                    </a>
+                                </div>
+                            <?php } else {?>
+                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
+                                    <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
+                                        <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                    </a>
+                                </div>
+                            <?php }?>
+                                                  <!-- /Отображение зарплаты -->
                             </div>
 
                             <div class="row"> <!-- Отображение названия организации и города -->
@@ -223,13 +227,24 @@ $this->params['breadcrumbs'][] = $this->title;
                                         ?>
                                     </p>
                                 </div><!-- Отображение города -->
-                            </div>   <!-- ROW ml-1 Отображение названия организации и города -->  
+                            </div>   <!-- ROW ml-1 Отображение названия организации и города --> 
+                            <div class="row ml-1">
+                                    <p>Зарплата: 
+                                        <?php
+                                            $salary = $vacan->salary;
+                                            if ($salary == NULL){
+                                                echo 'не указано';
+                                            }
+                                            else echo $salary;
+                                        ?>
+                                    </p>
+                            </div> 
                         </div>  <!-- div /Отображение информации правее фотографии -->
                     </div>
-                    <div class="row ml-3 mt-3"> <!-- Отображение дополнительной информации для соискателя -->
+                    <div class="row ml-1 mt-3"> <!-- Отображение дополнительной информации для соискателя -->
                         <h6>Описание:</h6>
                     </div>
-                    <div class="row ml-3">
+                    <div class="row ml-1">
                         <p>
                             <?php
                                 $duties = $vacan->description;
