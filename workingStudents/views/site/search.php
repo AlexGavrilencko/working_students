@@ -172,9 +172,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?php
                                 $o = $vacan->organization_id;
                                 $organization = Organization::find()->where(['id'=>$o])->one();
-                                if($organization->image): ?>
+                                if($organization->image): 
+                                    if ($organization->image!=NULL){?>
                                     <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $organization->image?>" alt="">
-                                <?php endif; ?>
+                                <?php }; endif; ?>
                         </div>                 <!-- /Отображение фотографии -->
 
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->
@@ -241,6 +242,18 @@ $this->params['breadcrumbs'][] = $this->title;
                                         ?>
                                     </p>
                             </div> 
+                            <?php   
+                            $exp=Attributes::find()->where(['id'=>$vacan->experience_id])->one();//опыт
+                            $emp=Attributes::find()->where(['id'=>$vacan->employment_id])->one();//тип з
+                        ?>
+                            <div class="row">
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                    <p>Опыт<?= $exp->name ?></p>
+                                </div>
+                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                    <p>Тип занятости <?= $emp->name ?></p>
+                                </div>
+                            </div>
                         </div>  <!-- div /Отображение информации правее фотографии -->
                     </div>
                     <div class="row ml-1 mt-3"> <!-- Отображение дополнительной информации для соискателя -->
@@ -256,7 +269,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 else echo $duties;
                             ?>
                         </p>
-                    </div>                          <!-- /Отображение дополнительной информации для соискателя -->
+                    </div>                          <!-- /Отображение дополнительной информации для соискателя -->          
+
                     <div class="row"> <!-- кнопок действия и даты -->
                         <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
                             <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a>

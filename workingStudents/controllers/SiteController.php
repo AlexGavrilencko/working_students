@@ -347,13 +347,18 @@ class SiteController extends Controller
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
+        $data = Vacancy::getAll(5);
         return $this->render('search',[
-            'vac'=>$query,
+            'vacancy'=>$query,
             'vall'=>$vall,
             'popular'=>$popular,
             'recent'=>$recent,
-            'categories'=>$categories
+            'categories'=>$categories,
+            'pagination'=>$data['pagination'],
+            'vac'=>$data['vacancy'],
         ]);
+
+       
     }
 
     public function actionSearchfilt(){
@@ -544,7 +549,8 @@ class SiteController extends Controller
             'pagination'=>$data['pagination'],
             'popular'=>$popular,
             'recent'=>$recent,
-            'categories'=>$categories
+            'categories'=>$categories,
+            'id'=>$id,
         ]);
     }
 

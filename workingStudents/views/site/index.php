@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Url;
 use app\helper\ClassHelper;
+use app\models\Profstand;
 /* @var $this yii\web\View */
 
 
@@ -12,24 +13,28 @@ $c = 0;
         <p class="h4 text-center m-2">Найдите работу в вашем городе</p> <!-- Надо сделать так, чтобы город был автоматически, как на других сайтах -->
             <div class="row">
 
+                <?php $profstand=Profstand::find()->all();?>
 
-                <?php foreach($category as $cat): ?>
-                    <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3">  
-                            <a type="submit" class="btn d-block mx-auto <?php ClassHelper::getColor($c) ?> m-2" 
-                                href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
-                            <?php $c++; ?>
-                    </div>  
+                <?php foreach($profstand as $cat): ?>
+                        <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3">  
+                                <a type="submit" class="btn d-block mx-auto <?php ClassHelper::getColor($c) ?> m-2" 
+                                    href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
+                                <?php $c++; ?>
+                        </div>  
                 <?php endforeach;?>
 
             </div>
                 <p class="h4 text-center m-2">Зарегистрированные организации</p>
 
                     <div class="row p-2 my-3">
-                        <?php foreach ($organizations as $organization) : ?>
-                            <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3 p-1">
-                                <a href="#"><img src="/uploads/<?php echo $organization->image; ?>" alt="<?php echo $organization->name; ?>" class="img-fluid img-thumbnail" style="width: 300px; object-fit: cover;  display: block;  height: 200px;"></a>
-                            </div>
-                        <?php endforeach ?>
+                        <?php foreach ($organizations as $organization) : 
+                            if ($organization->image!=NULL){?>
+
+                                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3 p-1">
+                                    <a href="<?= Url::toRoute(['site/org_vacancy','id'=>$organization->id]) ?>"><img src="/uploads/<?php echo $organization->image; ?>" alt="<?php echo $organization->name; ?>" class="img-fluid img-thumbnail" style="width: 300px; object-fit: cover;  display: block;  height: 200px;"></a>
+                                </div>
+
+                        <?php }; endforeach ?>
                     </div>
     </div>
 </div>

@@ -1,10 +1,13 @@
 <?php
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
-
+use app\models\ArtCategory;
+$t=ArtCategory::find()->where(['id'=>$id])->one();
 ?>
 
-
+<div class=" text-center text-uppercase">
+<h4 class="entry-title">Статьи по категории: <i><?= $t->title?></i></h3>
+</div>
 
 <!--main content start-->
 <div class="main-content">

@@ -8,7 +8,7 @@ use yii\helpers\Url;
             <div class="col-md-8">
                 <article class="post">
                     <div class="post-thumb">
-                        <a href="blog.html"><img src="<?= $article->getImage();?>" alt=""></a>
+                        <img src="<?= $article->getImage();?>" alt="">
                     </div>
                     <div class="post-content">
                         <header class="entry-header text-center text-uppercase">

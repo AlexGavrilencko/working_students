@@ -7,6 +7,7 @@ use app\models\Attributes;
 use app\models\Organization;
 use app\models\Speciality;
 use app\models\User;
+use app\models\Position;
 use app\models\Experience;
 use yii\helpers\Url;
 //$exp !!!!!!!!!!!    эта переменная хранит данные об опыте работы
@@ -49,13 +50,13 @@ $this->title = 'Просмотр резюме';
                                     </div> 
                                 </div>
 
-                                <div class="row ml-1">
-                                    <p>Желаемая должность: 
+                                <div class="row">
+                                    <div class="col-7 col-sm-7 col-md-7 col-lg-7 col-xl-7">
+                                            <p>Желаемая должность: 
                                            
-                                    </p>
-                                </div>
-
-                            <div class="row ml-1"> <!-- Отображение названия организации и города -->
+                                           </p>
+                                    </div>
+                                    <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                                         <?php
                                             $c = $resum->city_id;
                                             $city = Attributes::find()->where(['id'=>$c])->one();
@@ -69,18 +70,25 @@ $this->title = 'Просмотр резюме';
                                                 }
                                                 else echo $city->name;
                                         ?>
-                            </div>  
+                                    </div> 
+                                    
+                                </div>
+
+                         
                         </div> <!-- div /Отображение информации правее фотографии -->
                     </div>
 
                    <!-- Отображение дополнительной информации для работодателя -->
 
                         <div class="row ml-3"> <!-- Опыт работы -->
-                            <p>Навыки: <?= $exp->name ?></p> <!-- опыт подгрузка из базы -->
+                            <p>Навыки: <?= $resum->skills ?></p> <!-- опыт подгрузка из базы -->
                         </div><!-- /Опыт работы -->
 
                         <div class="row ml-3"><!-- График -->
-                            <p>Персональные качества <?= $emp->name ?></p> <!-- график работы подгрузка из базы -->
+                            <p>Персональные качества <?= $resum->personalQualities?></p> <!-- график работы подгрузка из базы -->
+                        </div><!-- /График -->
+                        <div class="row ml-3"><!-- График -->
+                            <p>Доп Инфа <?= $resum->addinform?></p> <!-- график работы подгрузка из базы -->
                         </div><!-- /График -->
                        
                     <!-- /Отображение дополнительной информации для работодателя -->
@@ -89,7 +97,11 @@ $this->title = 'Просмотр резюме';
                
 
   <!--_________________Опыт работы отображение________________________________-->
-                                <?php if($model1 != null): ?> 
+                            <?php if($exp != null): ?> 
+                                <div class="proj mt-4 mb-4">
+                                    <div class="text-center">
+                                        <h4>Опыт работы</h4>
+                                    </div>
                                     <div class="table-responsive-sm table-responsive-md">
                                         <table class="table table-bordered table-hover table-sm mt-3">
                                             <thead> <!--Строка с заголовками-->
@@ -98,7 +110,6 @@ $this->title = 'Просмотр резюме';
                                                     <th scope="col">Количество</th>
                                                     <th scope="col">Организация</th>
                                                     <th scope="col">Должность</th>
-                                                    <th scope="col">Действия</th>
                                                 </tr>
                                             </thead> <!--/Строка с заголовками-->
                                             <tbody> <!--Тело таблицы-->
@@ -114,28 +125,23 @@ $this->title = 'Просмотр резюме';
                                                     <td><?=$exps->years?></th>
                                                     <td><?=$exps->nameOrganiz?></th>
                                                     <td><?=$position->name?></th>
-                                                    <td><?= Html::a('Редактировать', ['experience_up', 'id' => $exp->id]) ?>
-                                                        <?= Html::a('Удалить', ['experience_del', 'id' => $exp->id], [
-                                                                    'data' => [
-                                                                        'confirm' => 'Вы действительно хотите удалить эти данные?',
-                                                                        'method' => 'post',
-                                                                    ],
-
-                                                        ]) ?>
-                                                    </th>
                                                 </tr>
                                                 <?php endforeach;?> <!--/Цыкл для отображения-->
                                             </tbody> <!--/Тело таблицы-->
                                         </table>
-                                    </div>      
-                                <?php endif; ?>
+                                    </div>
+                                </div>     
+                            <?php endif; ?>
     <!--_________________/Опыт работы отображение________________________________-->
 
 
  <!--_________________Образование отображение________________________________-->
      
-         <?php if($model1 != null): ?> 
-
+         <?php if($educ != null): ?> 
+            <div class="proj mt-4 mb-4">
+                    <div class="text-center">
+                        <h4>Образование</h4>
+                    </div>
             <div class="table-responsive-sm table-responsive-md">
                 <table class="table table-bordered table-hover table-sm mt-3">
                     <thead> <!--Строка с заголовками-->
@@ -144,7 +150,6 @@ $this->title = 'Просмотр резюме';
                             <th scope="col">Количество</th>
                             <th scope="col">Организация</th>
                             <th scope="col">Должность</th>
-                            <th scope="col">Действия</th>
                         </tr>
                     </thead> <!--/Строка с заголовками-->
                     <tbody> <!--Тело таблицы-->
@@ -159,19 +164,12 @@ $this->title = 'Просмотр резюме';
                             <td><?=$educs->years?></th>
                             <td><?=$educs->nameOrganiz?></th>
                             <td><?=$speciality->code?><?=$speciality->name?></th>
-                            <td><?= Html::a('Редактировать', ['experience_up', 'id' => $exp->id]) ?>
-                                <?= Html::a('Удалить', ['experience_del', 'id' => $exp->id], [
-                                            'data' => [
-                                                'confirm' => 'Вы действительно хотите удалить эти данные?',
-                                                'method' => 'post',
-                                            ],
-                                ]) ?>
-                            </th>
                         </tr>
                         <?php endforeach;?> <!--/Цыкл для отображения-->
                     </tbody> <!--/Тело таблицы-->
                 </table>
-            </div>      
+            </div>     
+            </div>   
         <?php endif; ?>
 
 <!--_________________/Образование отображение________________________________-->
@@ -233,7 +231,7 @@ $this->title = 'Просмотр резюме';
                             <?php }?>
    
                                 <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                                    <p>Количество просмотров</p>       
+                                    <p>Количество просмотров <?= $resum->viewed ?></p>       
                                 </div>
                         </div> <!-- /Просмотры и дата -->
                 </div> <!-- /Фон для отображения -->

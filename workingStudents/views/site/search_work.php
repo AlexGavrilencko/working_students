@@ -97,9 +97,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение фотографии -->
                             <?php
-                                if($resum->image): ?>
-                                    <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $resum->image?>" alt="">
-                            <?php endif; ?>
+                                if($resum->image): 
+                                    if ($resum->image!=null){?>
+                                        <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $resum->image?>" alt="">
+                                    <?php } else ?> 
+                                        <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/nofoto.png" alt="">
+                            <?php ; endif; ?>
                         </div>                 <!-- /Отображение фотографии -->
 
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->
@@ -126,13 +129,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             <div class="row"> <!-- Отображение желаемой доолжности и города -->
                                 <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8">
-                                    <p>Желаемая вакансия: <?= $vacan->name ?></p>
+                                    <p>Желаемая вакансия: <?= $resum->CareerObjective_id?></p>
                                 </div>    
                                 
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                                     <p> Город
                                         <?php
-                                            $c = $vacan->city_id;
+                                            $c = $resum->city_id;
                                             $city = Attributes::find()->where(['id'=>$c])->one();
                                             if ($city == NULL) 
                                             { 
@@ -147,10 +150,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
 
                         <div class="row ml-3 mt-3"> <!-- Отображение дополнительной информации для соискателя -->
-                            <p>Последнее место работы:
-                                
-                            </p>
+                            <p>Персональные качества:
+                                <?= $resum->personalQualities?>
+                            </p> 
                         </div>                      <!-- /Отображение дополнительной информации для соискателя -->
+                        <div class="row ml-3 mt-3"> <!-- -->
+                            <p>Доп инфа:
+                                <?= $resum->addinform?>
+                            </p> 
+                        </div>  
                     
                     <div class="row ml-1 "> <!-- кнопок действия и даты -->
         
@@ -158,7 +166,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>">Подробнее</a>
                             </div>
                             <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                                <p>Дата<?= $vacan->dateAdd ?></p>       
+                                <p>Дата<?= $resum->dateAdd ?></p>       
                             </div>
                     </div>
             </div> <!-- /Фон для отображения -->
