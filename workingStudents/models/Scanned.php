@@ -35,7 +35,8 @@ class Scanned extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'vacancy_id', 'resume_id', 'ViewOrSelect'], 'integer'],
-            [['date'], 'safe'],
+            [['date'], 'date', 'format'=>'php:Y-m-d'],
+            [['date'], 'default', 'value' => date('Y-m-d')],
             [['vacancy_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vacancy::className(), 'targetAttribute' => ['vacancy_id' => 'id']],
             [['resume_id'], 'exist', 'skipOnError' => true, 'targetClass' => Resume::className(), 'targetAttribute' => ['resume_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -56,6 +57,11 @@ class Scanned extends \yii\db\ActiveRecord
             'ViewOrSelect' => 'View Or Select',
         ];
     }
+
+    public function getDate()
+    {
+        return Yii::$app->formatter->asDate($this->date);
+	}
 
     public function create()
     {

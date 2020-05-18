@@ -42,7 +42,8 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             [['ActInactUser', 'rang'], 'integer'],
-            [['date'], 'safe'],
+            [['date'], 'date', 'format'=>'php:Y-m-d'],
+            [['date'], 'default', 'value' => date('Y-m-d')],
             [['login', 'password', 'e_mail', 'phone', 'auth_key'], 'string', 'max' => 255],
         ];
     }
@@ -64,6 +65,11 @@ class User extends ActiveRecord implements IdentityInterface
             'date' => 'Date',
         ];
     }
+
+    public function getDate()
+    {
+        return Yii::$app->formatter->asDate($this->date);
+	}
 
     public static function findIdentity($id)
     {

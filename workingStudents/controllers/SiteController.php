@@ -19,6 +19,7 @@ use app\models\Project;
 use app\models\Experience;
 use app\models\ArtCategory;
 use app\models\Article;
+use app\models\ArticleTag;
 use yii\data\ActiveDataProvider;
 
 class SiteController extends Controller
@@ -476,12 +477,14 @@ class SiteController extends Controller
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
+        
         return $this->render('indexart',[
             'articles'=>$data['articles'],
             'pagination'=>$data['pagination'],
             'popular'=>$popular,
             'recent'=>$recent,
-            'categories'=>$categories
+            'categories'=>$categories,
+            
         ]);
     }
     
@@ -493,13 +496,34 @@ class SiteController extends Controller
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
         $article->viewedCounter();
+        
         return $this->render('single',[
             'article'=>$article,
             'popular'=>$popular,
             'recent'=>$recent,
             'categories'=>$categories,  
+            
         ]);
     }
+
+    public function actionTagview($id)
+	{
+        $this->layout = 'article';
+		$tagarticles=ArticleTag::find()->where(['tag_id' => $id])->all();
+		$data = Article::getAll(5);
+        $data1=Article::find()->all();
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+		return $this->render('tag',[
+		'art'=>$tagarticles,
+        'article'=>$data1,
+        'popular'=>$popular,
+        'recent'=>$recent,
+        'categories'=>$categories,	
+        'id'=>$id
+		]);
+	}
     
     public function actionCategory($id)
     {

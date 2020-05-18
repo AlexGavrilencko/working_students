@@ -50,7 +50,11 @@ class Resume extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'city_id', 'CareerObjective_id', 'ShowOrHide','viewed'], 'integer'],
-            [['dateBirth', 'dateAdd', 'dateChanges'], 'safe'],
+            [['dateBirth'], 'safe'],
+            [['dateAdd'], 'date', 'format'=>'php:Y-m-d'],
+            [['dateAdd'], 'default', 'value' => date('Y-m-d')],
+            [['dateChanges'], 'date', 'format'=>'php:Y-m-d'],
+            [['dateChanges'], 'default', 'value' => date('Y-m-d')],
             [['skills', 'addinform','personalQualities'], 'string'],
             [['name', 'surname', 'patronymic', 'image', 'response'], 'string', 'max' => 255],
             [['CareerObjective_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['CareerObjective_id' => 'id']],
@@ -84,6 +88,16 @@ class Resume extends \yii\db\ActiveRecord
             'viewed' => 'Просмотры',
         ];
     }
+    
+    public function DateAdd()
+    {
+        return Yii::$app->formatter->asDate($this->dateAdd);
+    }
+    
+    public function getDateChanges()
+    {
+        return Yii::$app->formatter->asDate($this->dateChanges);
+	}
     public function create()
     {
         return $this->save(false);
@@ -120,10 +134,7 @@ class Resume extends \yii\db\ActiveRecord
         return $this->save(false);
     }
     
-    public function getDate()
-    {
-        return Yii::$app->formatter->asDate($this->dateAdd);
-	}
+    
 
     /**
      * @return \yii\db\ActiveQuery
