@@ -28,47 +28,49 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="border_search_resume">
                     <form class="search_resume">
                         <div class="row">
-                            <div class="col-sm mt-1"> <!-- Выбор города -->
+                            <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Выбор города -->
                                 <?php
-                                    $city = Attributes::find()->where(['type'=>'city'])->all();  // получаем все города из таблицы атрибутов
-                                        $items = ArrayHelper::map($city,'id','name'); // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                                            $params = [
-                                                'prompt' => 'Город',
-                                                'class' => 'dropDownList',
-                                            ];
-                                            echo Html::dropDownList('citty', 'null', $items, $params);
+                                    $city = Attributes::find()->where(['type'=>'city'])->all();  // получаем все города из таблицы атрибутов 
                                 ?>
+                            <select class="selectpicker" data-live-search="true" name="city">
+                                        <option data-tokens="">Город</option>  
+                                        <?php                           
+                                            foreach ($city as $city): ?> 
+                                            <option data-tokens="" value="<?=$city->id?>"><?=$city->name?></option>  
+                                        <?php endforeach;?>    
+                                    </select>
                                 
                             </div>
 
-                            <div class="col-sm mt-1"> <!-- Выбор категории -->
-                                <?php
-                                    // получаем все города из таблицы атрибутов
-                                    $category = Attributes::find()->where(['type'=>'category'])->all();
-                                    // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                                    $items = ArrayHelper::map($category,'id','name');
-                                    $params = [
-                                        'prompt' => 'Категории',
-                                        'class' => 'dropDownList',
-                                    ];
-                                    echo Html::dropDownList('category_id', 'null', $items, $params);
-                                    
-                                ?>
+                            <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Выбор категории -->
+                            <?php
+                                        $category = Attributes::find()->where(['type'=>'category'])->all();
+                                    ?>
+                                    <select class="selectpicker" data-live-search="true" name="categ">
+                                        <option data-tokens="">Категория</option>  
+                                        <?php                           
+                                            foreach ($category as $category): ?> 
+                                                <option data-tokens="" value="<?=$category->id?>"><?=$category->name?></option>  
+                                            <?php endforeach;?>    
+                                    </select>
                             </div>
 
                         <!-- <div class="col-sm-2">  Для выбора стажа 
 
                             </div>-->
 
-                            <div class="col-sm mt-1"> <!-- Ввод зарплаты -->
+                            <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Ввод зарплаты -->
                                 <input class="form-control btn-none " type="search" placeholder="Зарплата от">
                             </div>
+                            <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Ввод зарплаты -->
+                                    <input class="form-control btn-none " type="search" name="salard" placeholder="Зарплата до">
+                            </div>
 
-                            <div class="col-sm mt-1"> <!-- Ввод должности или профессии -->
+                            <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Ввод должности или профессии -->
                                 <input class="form-control btn-none " type="search" placeholder="Профессия">
                             </div>
 
-                            <div class="col-sm-2 mt-1"> <!-- Кнопка для поиска -->
+                            <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Кнопка для поиска -->
                                 <button type="submit" class="btn btn-secondary mb-1">Найти</button>
                             </div>
                         </div>

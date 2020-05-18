@@ -38,7 +38,7 @@ PublicAsset::register($this);
                 </button>
                 
                 <div class="collapse navbar-collapse ml-4" id="collapsibleNavbar">
-                    <?php  if (Yii::$app->user->isGuest){ ?>
+                  
                         <ul class="navbar-nav">  <!-- переходы в меню для гостя-->
 
                             <li class="nav-item">
@@ -68,32 +68,6 @@ PublicAsset::register($this);
                             </li>
                         
                         </ul>
-
-     <!-- удалить для других пользователей. оставить только для пользователя гость -->                   
-                        <?php } else {?>
-                            <?php $user = Yii::$app->user->identity;
-                            if($user->rang===10){ ?>
-                                <ul class="navbar-nav">  <!-- переходы в меню для студента ДОБАВЬ ССЫЛКУ НА ЛК-->
-                                    <li class="nav-item">
-                                        <a class="dropdown-item menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
-                                    </li>
-                                </ul>
-                            <?php }
-                            if($user->rang===20){ ?>
-                                <ul class="navbar-nav">  <!-- переходы в меню для работадателя ДОБАВЬ ССЫЛКУ НА ЛК-->
-                                    <li class="nav-item">
-                                        <a class="dropdown-item menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
-                                    </li> 
-                                </ul>
-                            <?php }
-                            ?>
-                            <ul class="navbar-nav ml-auto">  <!-- переходы в меню ВЫХОД-->
-                                <li class="nav-item">
-                                    <a class=" nav-link menugreen_v h6" href="/auth/logout" id="vixod">Выход</a>
-                                </li>
-                            </ul>
-                        <?php }?>   
-
                 </div>
         </nav>
     </header>

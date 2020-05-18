@@ -7,37 +7,81 @@ use app\models\Resume;
 use app\models\Vacancy;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use app\models\Organization;
 
 $user = Yii::$app->user->identity;
+?>
+      <div class="response text-center" style="width: 90%">   
+            <div class="table-responsive-sm table-responsive-md">
+                <table class="table table-bordered table-hover table-sm mt-3">
+                    <thead> <!--Строка с заголовками-->
+                        <tr class="">
+                            <th scope="col">№</th>
+                            <th scope="col">Вакансия</th>
+                            <th scope="col">ФИО</th>
+                            <th scope="col">e-mail</th>
+                            <th scope="col">Номер телефона</th>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Действие</th>
+                        </tr>
+                    </thead> <!--/Строка с заголовками-->
+                <tbody> <!--Тело таблицы-->
+                    <?php
+                    foreach($response as $res):
+                        if($user->rang===10){ 
+                            $r=Resume::find()->where(['user_id'=>$user->id])->one();
+                            $u=User::find()->where(['id'=>$res->user_id])->one();
+                            $org = Organization::find()->where(['user_id'=>$user->id])->one();
+                            //var_dump($res);?>
+                                <tr>
+                                    <th scope="row">НОМЕР</th> <!-- № -->
+                                    <td><a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$res->resume_id]); ?>">Ваше резюме</a></th>
+                                    <td><a href="<?= Url::toRoute(['site/org_vacancy', 'id'=>$res->user_id]); ?>"><?=$org->name?></a></th> <!-- Вакансия -->
+                                    <td><?=$u->e_mail?></th> <!-- e-mail -->
+                                    <td><?=$u->phone?></th> <!-- Номер телефона -->
+                                    <td><?= $res->date ?></th>
+                                    <td>
+                                        <?= Html::a('Удалить', ['', 'id'=>], [
+                                            
+                                            'data' => [
+                                            'confirm' => 'Вы действительно хотите удалить данную вакансию?',
+                                            'method' => 'post',
+                                            ],
+                                            ]); 
+                                        ?>
+                                    </th>
+                                </tr>
+                    <?php }
+                        if($user->rang===20){ 
+                            $v=Vacancy::find()->where(['user_id'=>$user->id])->all();
+                            $u=User::find()->where(['id'=>$res->user_id])->one();
+                            $rr=Resume::find()->where(['user_id'=>$res->user_id])->one();
+                            //var_dump($res->user_id);
+                            foreach($v as $vac):
+                                if($res->vacancy_id===$vac->id){ ?> <!--Цыкл для отображения-->
+                                    <tr>
+                                        <th scope="row">НОМЕР</th> <!-- № -->
+                                        <td><a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vac->id]); ?>"><?=$vac->name?></a></th> <!-- Вакансия -->
+                                        <td><a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$rr->id]); ?>">ФИО СТУДЕНТА</a></th> <!-- ФИО -->
+                                        <td><?=$u->e_mail?></th> <!-- e-mail -->
+                                        <td><?=$u->phone?></th> <!-- Номер телефона -->
+                                        <td><?= $res->date ?></th>
+                                        <td> <!--Саня, добавь ФИО студента и называние организации-->
+                                            <?= Html::a('Удалить', ['', 'id'=>], [
+                                                
+                                                'data' => [
+                                                'confirm' => 'Вы действительно хотите удалить данную вакансию?',
+                                                'method' => 'post',
+                                                ],
+                                                ]); 
+                                            ?>
+                                        </th>
+                                    </tr>
 
-foreach($response as $res):
-    if($user->rang===10){ 
-        $r=Resume::find()->where(['user_id'=>$user->id])->one();
-        $u=User::find()->where(['id'=>$res->user_id])->one();
-        //var_dump($res);
-        //Варя нужно будет изменить ссылку у слова организация,чтобы был переход на вакансии организации?>
-        <div class="col-8 col-sm-8 col-md-10 col-lg-10 col-xl-10">
-            На ваше <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$res->resume_id]); ?>">резюме</a> откликнулась <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$res->user_id]); ?>">организация</a>
-            Данные для связи с организацией емаил:<?=$u->e_mail?> телефон:<?=$u->phone?>
+                        <?php  } endforeach; ?> <!--/Цыкл для отображения-->
+                        <?php }
+                    endforeach;?>
+                </tbody> <!--/Тело таблицы-->
+            </table>
         </div>
-        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-            <p>Дата<?= $res->date ?></p>       
-        </div>
-<?php }
-    if($user->rang===20){ 
-        $v=Vacancy::find()->where(['user_id'=>$user->id])->all();
-        $u=User::find()->where(['id'=>$res->user_id])->one();
-        $rr=Resume::find()->where(['user_id'=>$res->user_id])->one();
-        //var_dump($res->user_id);
-        foreach($v as $vac):
-        if($res->vacancy_id===$vac->id){
-            ?>
-            <div class="col-8 col-sm-8 col-md-10 col-lg-10 col-xl-10">
-                На вашy вакансию<a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vac->id]); ?>"><?=$vac->name?></a> откликнулся пользователь с резюме <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$rr->id]); ?>">организация</a>
-                Данные для связи с организацией емаил:<?=$u->e_mail?> телефон:<?=$u->phone?>
-            </div>
-            <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                <p>Дата<?= $res->date ?></p>       
-            </div>
-        <?php   } endforeach; }
-endforeach;?>
+    </div> 

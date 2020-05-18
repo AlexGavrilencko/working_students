@@ -36,8 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
             div.style.display = "none";
         }
     }
-
-
 </script> 
 
 
@@ -48,11 +46,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="border_search_resume">
                         <form class="search_resume" method="get" action="<?= Url::toRoute(['site/searchfilt'])?>">
                             <div class="row justify-content-center">
-                               
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mt-1"> <!-- Ввод должности или профессии -->
+                                    <input class="form-control btn-none " type="search" name="posit" placeholder="Название вакансии...">
+                                </div>
+
                                 <?php
                                     $city = Attributes::find()->where(['type'=>'city'])->all();  // получаем все города из таблицы атрибутов 
                                 ?>    
-                                
                                 <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Ввод зарплаты -->                                   
                                     <select class="selectpicker" data-live-search="true" name="city">
                                         <option data-tokens="">Город</option>  
@@ -62,28 +62,27 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <?php endforeach;?>    
                                     </select>
                                 </div>
-                                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Ввод зарплаты -->
-                                    <input class="form-control btn-none " type="search" name="salaro" placeholder="Зарплата от">
-                                </div>
-                                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Ввод зарплаты -->
-                                    <input class="form-control btn-none " type="search" name="salard" placeholder="Зарплата до">
-                                </div>
 
+                               
                                 <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Выбор категории -->
                                     <?php
                                         $category = Profstand::find()->all();
                                     ?>
                                     <select class="selectpicker" data-live-search="true" name="categ">
-                                    <option data-tokens="">Категория</option>  
-                                    <?php                           
-                                        foreach ($category as $category): ?> 
-                                        <option data-tokens="" value="<?=$category->id?>"><?=$category->name?></option>  
-                                    <?php endforeach;?>    
-                                </select>
+                                        <option data-tokens="">Категория</option>  
+                                        <?php                           
+                                            foreach ($category as $category): ?> 
+                                                <option data-tokens="" value="<?=$category->id?>"><?=$category->name?></option>  
+                                            <?php endforeach;?>    
+                                    </select>
+                                </div>
+                                
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 mt-1"> <!-- Ввод зарплаты -->
+                                    <input class="form-control btn-none " type="search" name="salaro" placeholder="Зарплата от">
                                 </div>
 
-                                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Ввод должности или профессии -->
-                                    <input class="form-control btn-none " type="search" name="posit" placeholder="Название вакансии...">
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 mt-1"> <!-- Ввод зарплаты -->
+                                    <input class="form-control btn-none " type="search" name="salard" placeholder="Зарплата до">
                                 </div>
 
                                 <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Кнопка для поиска -->
@@ -97,7 +96,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div><!-- div ROW -->
 
                             <!-- Отображения дополнительных фильтров -->
-                                <div class="row justify-content-center mt-1" >
+                                <div class="row justify-content-center" >
                                     <div id="form1" style="display: none;">
                                         <div class="row ml-1 mt-3" style="border-top: solid;">
                                         
@@ -184,17 +183,21 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <p>Название вакансии:<?= $vacan->name ?></p>
                                 </div>                  <!-- /Отображение названии вакансии -->
 
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение зарплаты -->
-                                    <p>Зарплата: 
-                                        <?php
-                                            $salary = $vacan->salary;
-                                            if ($salary == NULL){
-                                                echo 'не указано';
-                                            }
-                                            else echo $salary;
-                                        ?>
-                                    </p>
-                                </div>                  <!-- /Отображение зарплаты -->
+                                 <!-- Отображение зарплаты -->
+                                <?php  if (Yii::$app->user->isGuest){ ?>
+                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
+                                    <a href="#" class="disabled" >
+                                        <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                    </a>
+                                </div>
+                            <?php } else {?>
+                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
+                                    <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
+                                        <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                    </a>
+                                </div>
+                            <?php }?>
+                                                  <!-- /Отображение зарплаты -->
                             </div>
 
                             <div class="row"> <!-- Отображение названия организации и города -->
@@ -225,13 +228,24 @@ $this->params['breadcrumbs'][] = $this->title;
                                         ?>
                                     </p>
                                 </div><!-- Отображение города -->
-                            </div>   <!-- ROW ml-1 Отображение названия организации и города -->  
+                            </div>   <!-- ROW ml-1 Отображение названия организации и города --> 
+                            <div class="row ml-1">
+                                    <p>Зарплата: 
+                                        <?php
+                                            $salary = $vacan->salary;
+                                            if ($salary == NULL){
+                                                echo 'не указано';
+                                            }
+                                            else echo $salary;
+                                        ?>
+                                    </p>
+                            </div> 
                         </div>  <!-- div /Отображение информации правее фотографии -->
                     </div>
-                    <div class="row ml-3 mt-3"> <!-- Отображение дополнительной информации для соискателя -->
+                    <div class="row ml-1 mt-3"> <!-- Отображение дополнительной информации для соискателя -->
                         <h6>Описание:</h6>
                     </div>
-                    <div class="row ml-3">
+                    <div class="row ml-1">
                         <p>
                             <?php
                                 $duties = $vacan->description;
@@ -243,25 +257,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         </p>
                     </div>                          <!-- /Отображение дополнительной информации для соискателя -->
                     <div class="row"> <!-- кнопок действия и даты -->
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
                             <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a>
                         </div>
                         <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                             <p>Дата<?= $vacan->dateAdd ?></p>       
                         </div>
-                            <?php  if (Yii::$app->user->isGuest){ ?>
-                                <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
-                                    <a href="#" class="disabled" >
-                                        <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
-                                    </a>
-                                </div>
-                            <?php } else {?>
-                                <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
-                                    <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
-                                        <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
-                                    </a>
-                                </div>
-                            <?php }?>
                     </div>
                 </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->

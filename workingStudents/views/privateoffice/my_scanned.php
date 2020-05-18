@@ -4,6 +4,7 @@ use yii\widgets\ActiveForm;
 use app\models\Attributes;
 use yii\widgets\LinkPager;
 use app\models\User;
+use app\models\Vacancy;
 use app\models\Organization;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -46,17 +47,21 @@ if($vs==0){
                                                                 <p>Название вакансии:<?= $vacan->name ?></p>
                                                             </div>                  <!-- /Отображение названии вакансии -->
 
-                                                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение зарплаты -->
-                                                                    <p>Зарплата: 
-                                                                        <?php
-                                                                            $salary = $vacan->salary;
-                                                                            if ($salary == NULL){
-                                                                                echo 'не указано';
-                                                                            }
-                                                                            else echo $salary;
-                                                                        ?>
-                                                                    </p>
-                                                                </div>                  <!-- /Отображение зарплаты -->
+                                                                <!-- Отображение зарплаты -->
+                                                                <?php  if (!Yii::$app->user->isGuest){ ?>
+                                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
+                                                                        <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
+                                                                            <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                                                        </a>
+                                                                    </div>
+                                                                <?php } else {?>
+                                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
+                                                                        <a href="#" class="disabled">
+                                                                            <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                                                        </a>
+                                                                    </div>
+                                                                <?php }?>
+                                                                                <!-- /Отображение зарплаты -->
                                                         </div> <!-- /ROW  -->
 
                                                         <div class="row"> <!-- ROW Отображение названия организации и города -->
@@ -87,7 +92,18 @@ if($vs==0){
                                                                             ?>
                                                                         </p>
                                                                     </div><!-- Отображение города -->
-                                                        </div>   <!-- ROW Отображение названия организации и города -->  
+                                                        </div>   <!-- ROW Отображение названия организации и города --> 
+                                                        <div class="row ml-1">
+                                                                <p>Зарплата: 
+                                                                    <?php
+                                                                        $salary = $vacan->salary;
+                                                                        if ($salary == NULL){
+                                                                            echo 'не указано';
+                                                                        }
+                                                                        else echo $salary;
+                                                                    ?>
+                                                                </p>
+                                                        </div> 
 <!--div /Отображение информации правее фотографии-->  </div> 
                                 </div>  <!-- ROW  ДЛЯ ЧАСТИ С ИЗОБРАЖЕНИМ-->  
 
@@ -108,27 +124,13 @@ if($vs==0){
                                     </div>                          <!-- /Отображение дополнительной информации для соискателя -->
 
                                     <div class="row"> <!-- кнопок действия и даты -->
-                                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
                                             <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a>
                                         </div>
 
                                         <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                                             <p>Дата<?= $vacan->dateAdd ?></p>       
                                         </div>
-
-                                        <?php  if (!Yii::$app->user->isGuest){ ?>
-                                            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
-                                                <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>">
-                                                    <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
-                                                </a>
-                                            </div>
-                                        <?php } else {?>
-                                            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
-                                                <a href="#" class="disabled">
-                                                    <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
-                                                </a>
-                                            </div>
-                                        <?php }?>
                                     </div>
                             </div> <!-- /Фон для отображения -->
         <!-- _____________________Вид отображения (КОНЕЦ)_________________________________ -->
@@ -184,13 +186,13 @@ if($vs==0){
 
                                 <div class="row"> <!-- Отображение желаемой доолжности и города -->
                                     <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8">
-                                        <p>Желаемая вакансия: <?= $vacan->name ?></p>
+                                        <p>Желаемая вакансия: </p>
                                     </div>    
                                 
                                     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                                         <p> Город
                                             <?php
-                                                $c = $vacan->city_id;
+                                                $c = $resum->city_id;
                                                 $city = Attributes::find()->where(['id'=>$c])->one();
                                                 if ($city == NULL) 
                                                 { 
@@ -215,7 +217,7 @@ if($vs==0){
                                         <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>">Подробнее</a>
                                     </div>
                                     <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                                        <p>Дата<?= $vacan->dateAdd ?></p>       
+                                        <p>Дата<?= $resum->dateAdd ?></p>       
                                     </div>
                             </div>
                     </div> <!-- /Фон для отображения -->
@@ -330,7 +332,7 @@ if($vs==0){
                                         </div>
                                         <?php  if (!Yii::$app->user->isGuest){ ?>
                                             <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
-                                                <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>">
+                                                <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
                                                     <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
                                                 </a>
                                             </div>
@@ -395,13 +397,13 @@ if($vs==0){
 
                                 <div class="row"> <!-- Отображение желаемой доолжности и города -->
                                     <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8">
-                                        <p>Желаемая вакансия: <?= $vacan->name ?></p>
+                                        <p>Желаемая вакансия:</p>
                                     </div>    
                                 
                                     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                                         <p> Город
                                             <?php
-                                                $c = $vacan->city_id;
+                                                $c = $resum->city_id;
                                                 $city = Attributes::find()->where(['id'=>$c])->one();
                                                 if ($city == NULL) 
                                                 { 
@@ -426,7 +428,7 @@ if($vs==0){
                                         <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>">Подробнее</a>
                                     </div>
                                     <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                                        <p>Дата<?= $vacan->dateAdd ?></p>       
+                                        <p>Дата<?= $resum->dateAdd ?></p>       
                                     </div>
                             </div>
                     </div> <!-- /Фон для отображения -->

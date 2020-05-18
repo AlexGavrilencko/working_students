@@ -10,11 +10,15 @@ use app\models\Tag;
 <div class="col-md-8">
 
 <?php
+$t=Tag::find()->where(['id'=>$id])->one();?>
+<div class=" text-center text-uppercase">
+<h4 class="entry-title">Статьи по тэгу: <i><?= $t->title?></i></h3>
+</div>
+<?php
 foreach ($art as $articl)
 	: 
 	//echo $articl->tag_id;
-	$t=Tag::find()->where(['id'=>$id])->one();
-	echo "Все статьи по тегу:".$t->title;
+	
 	$post=$articl->article_id;
 	foreach ($article as $articles)
 		: 
@@ -26,27 +30,23 @@ foreach ($art as $articl)
 					<a href="<?= Url::toRoute(['site/view', 'id'=>$articles->id]); ?>"><img src="<?= $articles->getImage(); ?>" alt=""></a>
 
 					<a href="<?= Url::toRoute(['site/view', 'id'=>$articles->id]); ?>" class="post-thumb-overlay text-center">
-						<div class="text-uppercase text-center">View Post</div>
+						<div class="text-uppercase text-center">Просмотр</div>
 					</a>
 				</div>
 				<div class="post-content">
 					<header class="entry-header text-center text-uppercase">
-
-
 						<h1 class="entry-title">
-							<a href="<?= Url::toRoute(['site/view', 'id'=>$articles->id]); ?>"><?= $articles->title ?></a></h1>
-
-
+							<a href="<?= Url::toRoute(['site/view', 'id'=>$articles->id]); ?>"><?= $articles->title ?></a>
+						</h1>
 					</header>
 					<div class="entry-content">
 						<p><?= $articles->description ?>
 						</p>
 
 						<div class="btn-continue-reading text-center text-uppercase">
-							<a href="<?= Url::toRoute(['site/view', 'id'=>$articles->id]); ?>" class="more-link">Continue Reading</a>
+							<a href="<?= Url::toRoute(['site/view', 'id'=>$articles->id]); ?>" class="more-link">Продолжить чтение</a>
 						</div>
 					</div>
-
 				</div>
 			</article>
 

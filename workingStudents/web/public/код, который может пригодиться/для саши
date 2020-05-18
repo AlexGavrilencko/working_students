@@ -40,6 +40,16 @@
 
 ДЛЯ ОТКЛИКА КОНЕЦ
 
+
+        <div class="col-8 col-sm-8 col-md-10 col-lg-10 col-xl-10">
+            На ваше <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$res->resume_id]); ?>">резюме</a> откликнулась <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$res->user_id]); ?>">организация</a>
+            Данные для связи с организацией емаил:<?=$u->e_mail?> телефон:<?=$u->phone?>
+        </div>
+        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+            <p>Дата<?= $res->date ?></p>       
+        </div>
+
+
 ДЛЯ ОТКЛИКА НАЧАЛО (Соискатель)
 <div class="table-responsive-sm table-responsive-md">
                 <table class="table table-bordered table-hover table-sm mt-3">

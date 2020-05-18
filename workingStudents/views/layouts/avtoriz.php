@@ -10,6 +10,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\assets\PublicAsset;
+use yii\helpers\Url;
 
 PublicAsset::register($this);
 ?>
@@ -37,11 +38,11 @@ PublicAsset::register($this);
                 </button>
                   
                       <div class="collapse navbar-collapse " id="collapsibleNavbar">
-                      <?php  if (Yii::$app->user->isGuest){ ?>
+
                           <ul class="navbar-nav">  <!-- переходы в меню -->
                       
                               <li class="nav-item">
-                                  <a class="nav-link menugreen h6" href="#">Вакансии</a>
+                                  <a class="nav-link menugreen h6" href="<?= Url::toRoute(['site/search','id'=>'0']) ?>">Вакансии</a>
                               </li>
                       
                               <li class="nav-item">
@@ -64,50 +65,7 @@ PublicAsset::register($this);
                                 <li class="nav-item">
                                     <a href="/auth/login" class="btn btn-secondary">Разместить резюме</a>
                                 </li>
-                            </ul>
-
-                            <?php } else {?>
-                            <?php $user = Yii::$app->user->identity;
-                            if($user->rang===10){ ?> <!-- Для студента -->
-
-                                <li class="nav-item dropdown ml-auto">
-                                     <a class="nav-link menugreen dropdown-toggle h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                         Личный кабинет
-                                     </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
-                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/resume">Мое резюме</a>
-                                            <a class="dropdown-item menugreen_v h6" href="#">Достижения</a>
-                                            <a class="dropdown-item menugreen_v h6" href="#">Избранное</a>
-                                            <a class="dropdown-item menugreen_v h6" href="#">Просмотренное</a>
-                                            <a class="dropdown-item menugreen_v h6" href="/site/search">Поиск вакансий</a>
-                                            <a class="dropdown-item menugreen_v h6" href="/site/indexartic">Cтатьи</a>
-                                            <a class="dropdown-item menugreen_v h6" href="/auth/logout" id="exit"><div>Выход</div></a>
-                                        </div>
-                                </li>
-                            <?php }
-                            if($user->rang===20){ ?> <!-- Для работодателя -->
-
-                                <li class="nav-item dropdown ml-auto">
-                                     <a class="nav-link menugreen dropdown-toggle h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                         Личный кабинет
-                                     </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
-                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/vacancy">Составить вакансию</a>
-                                            <a class="dropdown-item menugreen_v h6" href="#">Мои вакансии</a>
-                                            <a class="dropdown-item menugreen_v h6" href="/privateoffice/organiz">Данные об организации</a>
-                                            <a class="dropdown-item menugreen_v h6" href="#">Избранное</a>
-                                            <a class="dropdown-item menugreen_v h6" href="#">Просмотренное</a>
-                                            <a class="dropdown-item menugreen_v h6" href="/site/search_work">Поиск резюме</a>
-                                            <a class="dropdown-item menugreen_v h6" href="/site/indexartic">Cтатьи</a>
-                                            <a class="dropdown-item menugreen_v h6" href="/auth/logout" id="exit"><div>Выход</div></a>
-                                        </div>
-                                </li>
-                            <?php }
-                            ?>
-                        <?php }?>
-                            
+                            </ul>  
                       </div>
           </nav>
 
