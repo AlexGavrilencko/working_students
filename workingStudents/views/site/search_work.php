@@ -27,8 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="row "> <!-- Для поиска -->
                 <div class="border_search_resume">
                     <form class="search_resume">
-                        <div class="row">
-                            <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Выбор города -->
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Выбор города -->
                                 <?php
                                     $city = Attributes::find()->where(['type'=>'city'])->all();  // получаем все города из таблицы атрибутов 
                                 ?>
@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 
                             </div>
 
-                            <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Выбор категории -->
+                            <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Выбор категории -->
                             <?php
                                         $category = Attributes::find()->where(['type'=>'category'])->all();
                                     ?>
@@ -58,19 +58,21 @@ $this->params['breadcrumbs'][] = $this->title;
                         <!-- <div class="col-sm-2">  Для выбора стажа 
 
                             </div>-->
-
-                            <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Ввод зарплаты -->
+                            <div class="col-12 col-sm-10 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Ввод зарплаты -->
                                 <input class="form-control btn-none " type="search" placeholder="Зарплата от">
                             </div>
-                            <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Ввод зарплаты -->
+                            <div class="col-12 col-sm-10 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Ввод зарплаты -->
                                     <input class="form-control btn-none " type="search" name="salard" placeholder="Зарплата до">
                             </div>
-
-                            <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Ввод должности или профессии -->
+                            <div class="col-12 col-sm-10 col-md-6 col-lg-8 col-xl-8 mt-1"> <!-- Ввод должности или профессии -->
                                 <input class="form-control btn-none " type="search" placeholder="Профессия">
                             </div>
 
-                            <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Кнопка для поиска -->
+                            
+
+                            
+
+                            <div class="col-12 col-sm-10 col-md-2 col-lg-4 col-xl-4 mt-1"> <!-- Кнопка для поиска -->
                                 <button type="submit" class="btn btn-secondary mb-1">Найти</button>
                             </div>
                         </div>

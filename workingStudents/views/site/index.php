@@ -33,20 +33,13 @@ btnred
         </div>-->
     </div>
     <p class="h4 text-center m-2">Зарегистрированные организации</p>
-    <div class="row p-2 my-3">
-
-        <?php foreach ($organizations as $organization) : ?>
-            <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3 p-1">
-                <img
-                    src="/uploads/<?php echo $organization->image; ?>"
-                    alt="<?php echo $organization->name; ?>"
-                    class="img-fluid img-thumbnail" 
-                    style="width: 300px; object-fit: cover;  display: block;  height: 200px;"
-                >
-            </div>
-        <?php endforeach ?>
-
-    </div>
+        <div class="row p-2 my-3">
+            <?php foreach ($organizations as $organization) : ?>
+                <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3 p-1">
+                    <a href="#"><img src="/uploads/<?php echo $organization->image; ?>" alt="<?php echo $organization->name; ?>" class="img-fluid img-thumbnail" style="width: 300px; object-fit: cover;  display: block;  height: 200px;"></a>
+                </div>
+            <?php endforeach ?>
+        </div>
 
 </div>
 

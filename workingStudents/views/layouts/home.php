@@ -69,23 +69,20 @@ PublicAsset::register($this);
 
      <!-- удалить для других пользователей. оставить только для пользователя гость -->                   
                         <?php } else {?>
+                           
+                            <ul class="navbar-nav ml-auto">  <!-- переходы в меню ВЫХОД-->
                             <?php $user = Yii::$app->user->identity;
                             if($user->rang===10){ ?>
-                                <ul class="navbar-nav ml-auto">  <!-- переходы в меню для студента ДОБАВЬ ССЫЛКУ НА ЛК-->
                                     <li class="nav-item">
-                                        <a class="dropdown-item menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
+                                        <a class="nav-link menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
                                     </li>
-                                </ul>
                             <?php }
-                            if($user->rang===20){ ?>
-                                <ul class="navbar-nav ml-auto">  <!-- переходы в меню для работадателя ДОБАВЬ ССЫЛКУ НА ЛК-->
+                            if($user->rang===20){ ?>            
                                     <li class="nav-item">
-                                        <a class="dropdown-item menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
+                                        <a class="nav-link menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
                                     </li> 
-                                </ul>
                             <?php }
                             ?>
-                            <ul class="navbar-nav ml-auto">  <!-- переходы в меню ВЫХОД-->
                                 <li class="nav-item">
                                     <a class=" nav-link menugreen_v h6" href="/auth/logout" id="vixod">Выход</a>
                                 </li>

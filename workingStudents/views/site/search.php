@@ -45,14 +45,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="border_search_resume">
                         <form class="search_resume" method="get" action="<?= Url::toRoute(['site/searchfilt'])?>">
                             <div class="row justify-content-center">
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mt-1"> <!-- Ввод должности или профессии -->
+                                <div class="col-12 col-sm-10 col-md-6 col-lg-65 col-xl-6 mt-1"> <!-- Ввод должности или профессии -->
                                     <input class="form-control btn-none " type="search" name="posit" placeholder="Название вакансии...">
+                                </div>
+
+                                <div class="col-12 col-sm-10 col-md-3 col-lg-3 col-xl-3 mt-1"> <!-- Ввод зарплаты -->
+                                    <input class="form-control btn-none " type="search" name="salaro" placeholder="Зарплата от">
+                                </div>
+
+                                <div class="col-12 col-sm-10 col-md-3 col-lg-3 col-xl-3 mt-1"> <!-- Ввод зарплаты -->
+                                    <input class="form-control btn-none " type="search" name="salard" placeholder="Зарплата до">
                                 </div>
 
                                 <?php
                                     $city = Attributes::find()->where(['type'=>'city'])->all();  // получаем все города из таблицы атрибутов 
                                 ?>    
-                                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Ввод зарплаты -->                                   
+                                <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Ввод зарплаты -->                                   
                                     <select class="selectpicker" data-live-search="true" name="city">
                                         <option data-tokens="">Город</option>  
                                         <?php                           
@@ -63,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </div>
 
                                
-                                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Выбор категории -->
+                                <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Выбор категории -->
                                     <?php
                                         $category = Attributes::find()->where(['type'=>'category'])->all();
                                     ?>
@@ -76,19 +84,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </select>
                                 </div>
                                 
-                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 mt-1"> <!-- Ввод зарплаты -->
-                                    <input class="form-control btn-none " type="search" name="salaro" placeholder="Зарплата от">
-                                </div>
-
-                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 mt-1"> <!-- Ввод зарплаты -->
-                                    <input class="form-control btn-none " type="search" name="salard" placeholder="Зарплата до">
-                                </div>
-
-                                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Кнопка для поиска -->
+                             
+                                <div class="col-6 col-sm-5 col-md-2 col-lg-3 col-xl-3 mt-1"> <!-- Кнопка для поиска -->
                                     <input type="button" class="btn btn-secondary" value="Еще фильтры" onclick="disp(document.getElementById('form1'))">
                                 </div>
 
-                                <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 mt-1"> <!-- Кнопка для поиска -->
+                                <div class="col-6 col-sm-5 col-md-2 col-lg-3 col-xl-3 mt-1"> <!-- Кнопка для поиска -->
                                     <button type="submit" class="btn btn-secondary">Найти</button>
                                 </div>
 
