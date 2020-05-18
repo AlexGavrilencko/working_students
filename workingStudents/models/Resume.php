@@ -89,7 +89,7 @@ class Resume extends \yii\db\ActiveRecord
         ];
     }
     
-    public function DateAdd()
+    public function getDateAdd()
     {
         return Yii::$app->formatter->asDate($this->dateAdd);
     }

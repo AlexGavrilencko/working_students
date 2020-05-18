@@ -37,12 +37,13 @@ btnred
 
         <?php foreach ($organizations as $organization) : ?>
             <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3 p-1">
-                <img
+            <a href="<?= Url::toRoute(['site/org_vacancy', 'id'=>$organization->id]);?>">
+            <img
                     src="/uploads/<?php echo $organization->image; ?>"
                     alt="<?php echo $organization->name; ?>"
                     class="img-fluid img-thumbnail" 
                     style="width: 300px; object-fit: cover;  display: block;  height: 200px;"
-                >
+                ></a>
             </div>
         <?php endforeach ?>
 
