@@ -138,7 +138,7 @@ $this->title = 'Просмотр резюме';
  <!--_________________Образование отображение________________________________-->
      
          <?php if($educ != null): ?> 
-            <div class="proj mt-4 mb-4">
+            <div class="proj  mt-4 mb-4">
                     <div class="text-center">
                         <h4>Образование</h4>
                     </div>
