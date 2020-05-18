@@ -12,6 +12,7 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\Pjax;
 use yii\db\ActiveRecord;
 use yii\widgets\ActiveForm;
+use app\models\Profstand;
 
 
 $this->title = 'Поиск';
@@ -73,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                
                                 <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Выбор категории -->
                                     <?php
-                                        $category = Attributes::find()->where(['type'=>'category'])->all();
+                                        $category = Profstand::find()->all();
                                     ?>
                                     <select class="selectpicker" data-live-search="true" name="categ">
                                         <option data-tokens="">Категория</option>  
@@ -108,7 +109,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <?php   foreach ($schelude as $sch): ?> 
                                                     <div class="row ml-1">
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="checkbox" id="<?$sch->id?>" value="option1" name="schelude">
+                                                            <input class="form-check-input" type="checkbox" id="" value="<?$sch->id?>" name="schelude">
                                                             <label class="form-check-label" for="inlineCheckbox1"><?=$sch->name?></label>
                                                         </div>
                                                     </div>

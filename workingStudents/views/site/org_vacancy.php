@@ -12,7 +12,7 @@ use yii\helpers\ArrayHelper;
 
 $this->title = 'Мои вакансии';
 ?>
-          
+    <?= $org->name ?>      
 <br>
 <!-- Для отображения информации -->
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
@@ -20,7 +20,7 @@ $this->title = 'Мои вакансии';
         <div class="col-10 col-sm-10 col-md-8 col-lg-8 col-xl-8 ml-4">  
                     <br>     
                 <?php
-                foreach ($vacancy as $vacan):    
+                foreach ($vac as $vacan):    
                 ?>                                <!-- Цикл для отображения вакансий -->
 <!-- ______________________________________Вид отображения_________________________________________________________ -->
                 <div class="border_search3"> <!-- Фон для отображения -->

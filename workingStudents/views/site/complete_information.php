@@ -3,6 +3,8 @@
 
 use app\models\Attributes;
 use app\models\Organization;
+use app\models\Position;
+use app\models\Profstand;
 use app\models\User;
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
@@ -34,10 +36,17 @@ $this->title = 'Просмотр вакансии';
 
                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение фотографии -->
                             <?php
-                                $o = $vac->organization_id;
+                                $exp=Attributes::find()->where(['id'=>$vacan->experience_id])->one();//опыт
+                                $emp=Attributes::find()->where(['id'=>$vacan->employment_id])->one();//тип з
+                                $schedule=Attributes::find()->where(['id'=>$vacan->schedule_id])->one();//график
+                                $cityv=Attributes::find()->where(['id'=>$vacan->city_id])->one();// город вакансии
+                                $o = $vacan->organization_id;
                                 $organization = Organization::find()->where(['id'=>$o])->one();
-                                $p=$vac->position_id;
-                                $pos = Attributes::find()->where(['id'=>$p])->one();
+                                $cityo=Attributes::find()->where(['id'=>$organization->city_id])->one();// город организации
+                                //var_dump($organization);
+                                $category = Profstand::find()->where(['id'=>$vacan->category_id])->all();//категория
+                                $p=$vacan->position_id;
+                                $pos = Position::find()->where(['id'=>$p])->one();
                                 if($organization->image): ?>
                                     <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $organization->image?>" alt="Логотип компании">
                                 <?php endif; ?>
@@ -59,7 +68,8 @@ $this->title = 'Просмотр вакансии';
                                             ?>
                                     </p>
                                 </div>
-
+                                <?= $vacan->description ?>
+                                <?= $category->name ?>
                             <div class="row"> <!-- Отображение названия организации и города -->
                                     <p> 
                                         Предложение о работе или о практике
@@ -71,38 +81,38 @@ $this->title = 'Просмотр вакансии';
                         <div class="date_org">
                             <p class="text-center">Данные о вашей организации</p>                       
                                 <p>Название организации:
-                                    <?  if ($org->name == NULL){
+                                    <?  if ($organization->name == NULL){
                                             echo 'Не указано';
                                         }
-                                        else echo $org->name;
+                                        else echo $organization->name;
                                     ?>  
                                 </p>
                                 <p>Город:  
-                                    <?  if ($city == NULL){
+                                    <?  if ($cityo == NULL){
                                             echo 'Не указано';
                                         }
                                         else echo $city->name;
                                     ?>
                                 </p>
                                 <p>Адрес:
-                                    <?  if ($org->adres == NULL){
+                                    <?  if ($organization->adres == NULL){
                                             echo 'Не указано';
                                         }
-                                        else echo $org->adres;
+                                        else echo $organization->adres;
                                     ?>
                                 </p>
                                 <p>ИНН:  
-                                    <?  if ($org->inn == NULL){
+                                    <?  if ($organization->inn == NULL){
                                             echo 'Не указано';
                                         }
-                                        else echo $org->inn;
+                                        else echo $organization->inn;
                                     ?>
                                 </p>
                                 <p>ОГРН:
-                                    <?  if ($org->ogrn == NULL){
+                                    <?  if ($organization->ogrn == NULL){
                                             echo 'Не указано';
                                         }
-                                        else echo $org->ogrn;
+                                        else echo $organization->ogrn;
                                     ?>  
                                 </p>
                         </div>
@@ -110,26 +120,32 @@ $this->title = 'Просмотр вакансии';
 
 
                    <!-- Отображение дополнительной информации для соискателя -->
-
+                        <div class="row ml-3"> <!-- Опыт работы -->
+                            <p>Город: <?= $cityv->name ?></p> <!-- опыт подгрузка из базы -->
+                        </div><!-- /Опыт работы -->
 
                         <div class="row ml-3"> <!-- Опыт работы -->
                             <p>Опыт: <?= $exp->name ?></p> <!-- опыт подгрузка из базы -->
                         </div><!-- /Опыт работы -->
 
                         <div class="row ml-3"><!-- График -->
-                            <p>График: <?= $emp->name ?></p> <!-- график работы подгрузка из базы -->
+                            <p>Тип занятости <?= $emp->name ?></p> <!-- график работы подгрузка из базы -->
+                        </div><!-- /График -->
+
+                        <div class="row ml-3"><!-- График -->
+                            <p>График: <?= $schedule->name ?></p> <!-- график работы подгрузка из базы -->
                         </div><!-- /График -->
 
                         <div class="row ml-3"> <!-- Обязанности -->
-                            <p>Обязанности: <?= $vac->duties ?></p> <!-- обязанности подгрузка из базы -->
+                            <p>Обязанности: <?= $vacan->duties ?></p> <!-- обязанности подгрузка из базы -->
                         </div> <!-- /Обязанности -->
 
                         <div class="row ml-3"> <!-- Требование -->
-                            <p>Требование: <?= $vac->requirement ?></p> <!-- требование  подгрузка из базы -->              
+                            <p>Требование: <?= $vacan->requirement ?></p> <!-- требование  подгрузка из базы -->              
                         </div> <!-- /Требование-->
 
                         <div class="row ml-3"> <!-- Условия -->
-                            <p>Условия: <?= $vac->conditions ?></p> <!-- условия подгрузка из базы -->
+                            <p>Условия: <?= $vacan->conditions ?></p> <!-- условия подгрузка из базы -->
                         </div> <!-- /Условия  -->
 
                         <div class="row ml-3"> <!-- Тип занятости -->
@@ -137,13 +153,13 @@ $this->title = 'Просмотр вакансии';
                         </div><!-- /Тип занятости -->
 
                         <div class="row ml-3"> <!-- Должность -->
-                            <p>Должность: </p> <!-- Должность подгрузка из базы -->
+                            <p>Должность: </p><?= $pos->name ?> <!-- Должность подгрузка из базы -->
                         </div><!-- /Должность -->
  <!-- /Отображение дополнительной информации для соискателя -->
                         <div class="row ml-1"> <!-- Просмотры и дата -->
                             <?php if(Yii::$app->user->identity){ ?>
                                 <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"> 
-                                    <a href="<?= Url::toRoute(['site/responsest', 'id'=>$vac->id]); ?>">
+                                    <a href="<?= Url::toRoute(['site/responsest', 'id'=>$vacan->id]); ?>">
                                     <!--<img class="heard" src="/public/img/heard.png" alt="-->Откликнуться на вакансию<!--">--></a>
                                 </div>
                             <?php  } else {?>
@@ -160,7 +176,7 @@ $this->title = 'Просмотр вакансии';
 
                             <?php if(Yii::$app->user->identity){ ?>
                                 <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"> 
-                                    <a href="<?= Url::toRoute(['site/selected', 'id'=>$vac->id]); ?>">
+                                    <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
                                     <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">--></a>
                                 </div>
                             <?php  } else {?>
@@ -174,7 +190,7 @@ $this->title = 'Просмотр вакансии';
 
                               
                                 <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                                    <p>Количество просмотров</p>       
+                                    <p>Количество просмотров</p><?= $vacan->viewed ?>       
                                 </div>
                         </div> <!-- /Просмотры и дата -->
                 </div> <!-- /Фон для отображения -->
