@@ -2,18 +2,19 @@
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 use app\models\Tag;
+$t=Tag::find()->where(['id'=>$id])->one();
 ?>
+
+<div class=" text-center text-uppercase mt-2">
+	<h4 class="entry-title">Статьи по тэгу: <i><?= $t->title?></i></h3>
+</div>
 <!--main content start-->
 <div class="main-content">
 <div class="container">
 <div class="row">
 <div class="col-md-8">
 
-<?php
-$t=Tag::find()->where(['id'=>$id])->one();?>
-<div class=" text-center text-uppercase">
-<h4 class="entry-title">Статьи по тэгу: <i><?= $t->title?></i></h3>
-</div>
+
 <?php
 foreach ($art as $articl)
 	: 

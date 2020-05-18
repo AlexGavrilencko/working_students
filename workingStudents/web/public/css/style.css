@@ -261,11 +261,24 @@ svg text {
     border-color: #34575cdc;
     padding: 3%;
   }
+  .border_search4{
+    background-color: #bb9df115;
+    border: 2px solid;
+    border-color: #231e25dc;
+    padding: 3%;
+  }
 
   .border_vacancy{
     background-color: #1ee48115;
     border: 2px solid;
     border-color: #0a5e34;
+    padding: 3%;
+  }
+
+  .border_vacancy1{
+    background-color: #94e2170c;
+    border: 2px solid;
+    border-color: #183801;
     padding: 3%;
   }
 
@@ -332,7 +345,7 @@ svg text {
 
   .content2 {
     flex: 1 0 auto;
-    background: url(/public/img/fon_stat_7.jpg);
+    background: url(/public/img/fon_stat_7_1.png);
     background-attachment: fixed;
     background-size: cover;
     background-position: center;

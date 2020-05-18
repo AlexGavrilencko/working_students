@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="border_search_resume">
                         <form class="search_resume" method="get" action="<?= Url::toRoute(['site/searchfilt'])?>">
                             <div class="row justify-content-center">
-                                <div class="col-12 col-sm-10 col-md-6 col-lg-65 col-xl-6 mt-1"> <!-- Ввод должности или профессии -->
+                                <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-6 mt-1"> <!-- Ввод должности или профессии -->
                                     <input class="form-control btn-none " type="search" name="posit" placeholder="Название вакансии...">
                                 </div>
 
@@ -181,19 +181,19 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->
                             <div class="row">
 
-                                <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение названии вакансии -->
+                                <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение названии вакансии -->
                                     <p>Название вакансии:<?= $vacan->name ?></p>
                                 </div>                  <!-- /Отображение названии вакансии -->
 
                                  <!-- Отображение зарплаты -->
                                 <?php  if (Yii::$app->user->isGuest){ ?>
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
                                     <a href="#" class="disabled" >
                                         <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
                                     </a>
                                 </div>
                             <?php } else {?>
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
                                     <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
                                         <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
                                     </a>
@@ -204,7 +204,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             <div class="row"> <!-- Отображение названия организации и города -->
 
-                                <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8"><!-- Отображение названия организации -->
+                                <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8"><!-- Отображение названия организации -->
                                     <p> Название организации:
                                         <?php
                                             $o = $vacan->organization_id;
@@ -217,7 +217,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </p>
                                 </div><!-- /Отображение названия организации -->
 
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение города -->
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение города -->
                                     <p> Город:
                                         <?php
                                             $c = $vacan->city_id;
@@ -247,10 +247,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             $emp=Attributes::find()->where(['id'=>$vacan->employment_id])->one();//тип з
                         ?>
                             <div class="row">
-                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                     <p>Опыт<?= $exp->name ?></p>
                                 </div>
-                                <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                     <p>Тип занятости <?= $emp->name ?></p>
                                 </div>
                             </div>

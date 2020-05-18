@@ -54,16 +54,16 @@ $this->title = 'Просмотр вакансии';
 
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->
                                 <div class="row">
-                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                    <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                         <p>Название вакансии:<?= $vacan->name ?></p>
                                     </div>
                                     <?php if(Yii::$app->user->identity){ ?>
-                                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
+                                        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
                                             <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
                                              <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">--></a>
                                         </div>
                                     <?php  } else {?>
-                                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
+                                        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
                                             <a href="#" class="disabled">
                                                 <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
                                             </a>
@@ -72,7 +72,7 @@ $this->title = 'Просмотр вакансии';
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                    <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                         <p>Зарплата: 
                                                 <?php
                                                     $salary = $vacan->salary;
@@ -83,7 +83,7 @@ $this->title = 'Просмотр вакансии';
                                                 ?>
                                         </p>
                                     </div>
-                                    <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                                    <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                         <p>Город: <?= $cityv->name ?></p>
                                     </div>
                                         
@@ -98,41 +98,44 @@ $this->title = 'Просмотр вакансии';
                     </div>
 
                         <div class="date_org">
-                            <p class="text-center">Данные о вашей организации</p>                       
-                                <p>Название организации:
+                            <h4 class="text-center">Данные об организации</h4>                       
+                                <p><strong>Название организации:</strong>
                                     <?  if ($organization->name == NULL){
                                             echo 'Не указано';
                                         }
                                         else echo $organization->name;
                                     ?>  
                                 </p>
-                                <p>Город:  
+                                <p><strong>Город:</strong>
                                     <?  if ($cityo == NULL){
                                             echo 'Не указано';
                                         }
                                         else echo $city->name;
                                     ?>
                                 </p>
-                                <p>Адрес:
+                                <p><strong>Адрес:</strong>
                                     <?  if ($organization->adres == NULL){
                                             echo 'Не указано';
                                         }
                                         else echo $organization->adres;
                                     ?>
                                 </p>
-                                <p>ИНН:  
+                                <p><strong>ИНН:</strong>  
                                     <?  if ($organization->inn == NULL){
                                             echo 'Не указано';
                                         }
                                         else echo $organization->inn;
                                     ?>
                                 </p>
-                                <p>ОГРН:
+                                <p><strong>ОГРН:</strong>
                                     <?  if ($organization->ogrn == NULL){
                                             echo 'Не указано';
                                         }
                                         else echo $organization->ogrn;
                                     ?>  
+                                </p>
+                                <p><strong>e-mail:</strong>
+                                    
                                 </p>
                         </div>
 
@@ -223,27 +226,27 @@ $this->title = 'Просмотр вакансии';
 
                     
  <!-- /Отображение дополнительной информации для соискателя -->
-                        <div class="row ml-1"> <!-- Просмотры и дата -->
+                        <div class="row"> <!-- Просмотры и дата -->
                             <?php if(Yii::$app->user->identity){ ?>
-                                <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"> 
+                                <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8"> 
                                     <a href="<?= Url::toRoute(['site/responsest', 'id'=>$vacan->id]); ?>">
                                     <!--<img class="heard" src="/public/img/heard.png" alt="-->Откликнуться на вакансию<!--">--></a>
                                 </div>
                             <?php  } else {?>
-                                    <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9"> 
+                                    <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8"> 
                                         <a href="#" class="disabled">
                                                 <!--<img class="heard" src="/public/img/heard.png" alt="-->Откликнуться на вакансию<!--">-->
                                         </a>
                                     </div>
                             <?php }?>
 
-                                <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                                <div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-2">
                                     <p>Дата<?= $vacan->dateAdd ?></p>       
                                 </div>
-                        </div> <!-- /Просмотры и дата -->
-                                <div class="text-center">
-                                    <p>Количество просмотров <?= $vacan->viewed ?> </p>      
+                                <div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-2">
+                                    <img src="/public/img/eye.png" alt="eye" style="width: 32px;"><?= $vacan->viewed ?>        
                                 </div>
+                        </div> <!-- /Просмотры и дата -->
                 </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->
          

@@ -5,7 +5,7 @@ use app\models\ArtCategory;
 $t=ArtCategory::find()->where(['id'=>$id])->one();
 ?>
 
-<div class=" text-center text-uppercase">
+<div class=" text-center text-uppercase mt-2">
 <h4 class="entry-title">Статьи по категории: <i><?= $t->title?></i></h3>
 </div>
 

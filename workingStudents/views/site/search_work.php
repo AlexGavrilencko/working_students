@@ -28,6 +28,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="border_search_resume">
                     <form class="search_resume">
                         <div class="row justify-content-center">
+
+                                <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-6 mt-1"> <!-- Ввод должности или профессии -->
+                                    <input class="form-control btn-none " type="search" placeholder="Профессия">
+                                </div>
+                                <div class="col-12 col-sm-10 col-md-3 col-lg-3 col-xl-3 mt-1"> <!-- Ввод зарплаты -->
+                                <input class="form-control btn-none " type="search" placeholder="Зарплата от">
+                            </div>
+                            <div class="col-12 col-sm-10 col-md-3 col-lg-3 col-xl-3 mt-1"> <!-- Ввод зарплаты -->
+                                    <input class="form-control btn-none " type="search" name="salard" placeholder="Зарплата до">
+                            </div>
+
+
+
                             <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Выбор города -->
                                 <?php
                                     $city = Attributes::find()->where(['type'=>'city'])->all();  // получаем все города из таблицы атрибутов 
@@ -58,21 +71,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         <!-- <div class="col-sm-2">  Для выбора стажа 
 
                             </div>-->
-                            <div class="col-12 col-sm-10 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Ввод зарплаты -->
-                                <input class="form-control btn-none " type="search" placeholder="Зарплата от">
-                            </div>
-                            <div class="col-12 col-sm-10 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Ввод зарплаты -->
-                                    <input class="form-control btn-none " type="search" name="salard" placeholder="Зарплата до">
-                            </div>
-                            <div class="col-12 col-sm-10 col-md-6 col-lg-8 col-xl-8 mt-1"> <!-- Ввод должности или профессии -->
-                                <input class="form-control btn-none " type="search" placeholder="Профессия">
-                            </div>
+                           
+                            
 
                             
 
                             
 
-                            <div class="col-12 col-sm-10 col-md-2 col-lg-4 col-xl-4 mt-1"> <!-- Кнопка для поиска -->
+                            <div class="col-12 col-sm-10 col-md-4 col-lg-6 col-xl-6 mt-1"> <!-- Кнопка для поиска -->
                                 <button type="submit" class="btn btn-secondary mb-1">Найти</button>
                             </div>
                         </div>
@@ -108,18 +114,18 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->
                             <div class="row">
 
-                                    <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение ФИО -->
+                                    <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение ФИО -->
                                         <p> <?= $resum->surname ?> <?= $resum->name ?> <?= $resum->patronymic ?></p>
                                     </div>                  <!-- /Отображение ФИО -->
 
                                     <?php  if (!Yii::$app->user->isGuest){ ?>
-                                        <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
+                                        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
                                             <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>">
                                                 <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
                                             </a>
                                         </div>
                                     <?php } else {?>
-                                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"> 
+                                            <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
                                             <a href="#" class="disabled">
                                                 <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
                                             </a>
@@ -128,11 +134,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
 
                             <div class="row"> <!-- Отображение желаемой доолжности и города -->
-                                <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8">
+                                <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">
                                     <p>Желаемая вакансия: <?= $resum->CareerObjective_id?></p>
                                 </div>    
                                 
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                                     <p> Город
                                         <?php
                                             $c = $resum->city_id;

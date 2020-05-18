@@ -38,11 +38,11 @@ $this->title = 'Мои вакансии';
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->
                             <div class="row">
 
-                                <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение названии вакансии -->
+                                <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение названии вакансии -->
                                     <p>Название вакансии:<?= $vacan->name ?></p>
                                 </div>                  <!-- /Отображение названии вакансии -->
 
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение зарплаты -->
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение зарплаты -->
                                     <p>Зарплата: 
                                         <?php
                                             $salary = $vacan->salary;
@@ -57,7 +57,7 @@ $this->title = 'Мои вакансии';
 
                             <div class="row"> <!-- Отображение названия организации и города -->
 
-                                <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8"><!-- Отображение названия организации -->
+                                <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8"><!-- Отображение названия организации -->
                                     <p> Название организации:
                                         <?php
                                             $o = $vacan->organization_id;
@@ -70,7 +70,7 @@ $this->title = 'Мои вакансии';
                                     </p>
                                 </div><!-- /Отображение названия организации -->
 
-                                <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение города -->
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение города -->
                                     <p> Город:
                                         <?php
                                             $c = $vacan->city_id;
