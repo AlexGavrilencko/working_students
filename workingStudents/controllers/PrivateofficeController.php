@@ -311,7 +311,7 @@ class PrivateofficeController extends Controller
         $select= Scanned::find()->where(['user_id'=>$user->id,'ViewOrSelect'=>$vs])->all();
         $resume=Resume::find()->all();
         $vac=Vacancy::find()->all();
-        return $this->render('my_scanned',['select'=>$select,'vs'=>$vs,'resume'=>$resume,'vac'=>$vac]);
+        return $this->render('my_select',['select'=>$select,'vs'=>$vs,'resume'=>$resume,'vac'=>$vac]);
     }
 
     public function actionMy_scan(){
@@ -343,4 +343,8 @@ class PrivateofficeController extends Controller
         //$response= Response::find()->where(['user_id'=>$user->id])->all();
         return $this->render('response',['response'=>$response]);
     }
+
+
+
+
 }

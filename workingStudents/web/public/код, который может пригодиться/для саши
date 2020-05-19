@@ -208,3 +208,10 @@
     </li>
   </ul>
 </nav>
+
+
+
+
+
+->label('Показать или скрыть <strong><big><span class="vop">?</span></big></strong>', 
+["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Хотите, чтобы ваше резюме отображалась всем пользователям?"]);
