@@ -11,6 +11,7 @@ use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use app\models\Position;
 
 $this->title = 'Поиск';
 $this->params['breadcrumbs'][] = $this->title;
@@ -103,12 +104,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение фотографии -->
                             <?php
-                                if($resum->image): 
-                                    if ($resum->image!=null){?>
-                                        <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $resum->image?>" alt="">
-                                    <?php } else ?> 
-                                        <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/nofoto.png" alt="">
-                            <?php ; endif; ?>
+                                $pos=Position::find()->where(['id'=>$resum->CareerObjective_id])->one();
+                                if ($resum->image!=null){?>
+                                    <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $resum->image?>" alt="">
+                                <?php } else {?> 
+                                    <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/nofoto.png" alt="">
+                                <?php }  ?>
                         </div>                 <!-- /Отображение фотографии -->
 
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->
@@ -135,7 +136,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             <div class="row"> <!-- Отображение желаемой доолжности и города -->
                                 <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">
-                                    <p>Желаемая вакансия: <?= $resum->CareerObjective_id?></p>
+                                    <p>Желаемая должность: <?= $pos->name ?></p>
                                 </div>    
                                 
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">

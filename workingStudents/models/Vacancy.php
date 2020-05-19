@@ -132,6 +132,26 @@ class Vacancy extends \yii\db\ActiveRecord
 		$data['pagination'] = $pagination;
 
 		return $data;
+    }
+    
+
+    public static function getSearch($query)
+	{
+        //var_dump($query);
+		$pageSize = 5;
+        $count = $query->count();
+        //var_dump($query->count());
+
+		$pagination = new Pagination(['totalCount' => $count, 'pageSize'=>$pageSize]);
+
+		$vacancy = $query->offset($pagination->offset)
+		->limit($pagination->limit)
+		->all();
+
+		$data['vacancy'] = $vacancy;
+		$data['pagination'] = $pagination;
+
+		return $data;
 	}
 
 

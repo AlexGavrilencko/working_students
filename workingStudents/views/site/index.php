@@ -18,7 +18,7 @@ $c = 0;
                 <?php foreach($profstand as $cat): ?>
                         <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3">  
                                 <a type="submit" class="btn d-block mx-auto <?php ClassHelper::getColor($c) ?> m-2" 
-                                    href="<?= Url::toRoute(['site/search','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
+                                    href="<?= Url::toRoute(['site/searchcat','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
                                 <?php $c++; ?>
                         </div>  
                 <?php endforeach;?>

@@ -67,6 +67,7 @@ $this->title = 'Просмотр резюме';
                                     </div>
                                     <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                                         <?php
+                                            $pos=Position::find()->where(['id'=>$resum->CareerObjective_id])->one();
                                             $c = $resum->city_id;
                                             $city = Attributes::find()->where(['id'=>$c])->one();
                                             $obj=$resum->CareerObjective_id;
@@ -84,7 +85,7 @@ $this->title = 'Просмотр резюме';
                                 </div>
                                     <div class="row ml-1">
                                             <p>Желаемая должность: 
-                                           
+                                            <?= $pos->name ?>
                                            </p>
                                     </div>
 

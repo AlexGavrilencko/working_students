@@ -107,12 +107,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     $schelude = Attributes::find()->where(['type'=>'schelude'])->all();  // получаем все города из таблицы атрибутов 
                                                 ?>
                                                 <?php   foreach ($schelude as $sch): ?> 
-                                                    <div class="row ml-1">
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="checkbox" id="" value="<?$sch->id?>" name="schelude">
-                                                            <label class="form-check-label" for="inlineCheckbox1"><?=$sch->name?></label>
-                                                        </div>
-                                                    </div>
+                                                    <input type="checkbox" name="schelude" value="<?$sch->id?>"><?=$sch->name?><Br>
+                                                    
                                                 <?php endforeach;?>
                                             </div><!-- div COL -->
                                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
@@ -123,7 +119,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <?php   foreach ($experience as $exp): ?> 
                                                     <div class="row ml-1">
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="checkbox" id="<?$exp->id?>" value="option1">
+                                                            <input class="form-check-input" type="checkbox" name="exper" value="<?$exp->id?>">
                                                             <label class="form-check-label" for="inlineCheckbox1"><?=$exp->name?></label>
                                                         </div>
                                                     </div>
@@ -144,9 +140,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <?php endforeach;?>
                                             </div><!-- div COL -->
                                         </div><!-- div ROW -->
-                                        <div class="row justify-content-center mt-5">                                
-                                           <button type="submit" class="btn btn-secondary">Найти</button>                       
-                                        </div>
+                                        
                                     </div><!-- div FORM1 -->
                                 </div> <!-- div row justify-content-center mt-1 -->
                             <!-- /Отображения дополнительных фильтров -->
