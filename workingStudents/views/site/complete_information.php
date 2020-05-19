@@ -47,9 +47,11 @@ $this->title = 'Просмотр вакансии';
                                 $category = Profstand::find()->where(['id'=>$vacan->category_id])->all();//категория
                                 $p=$vacan->position_id;
                                 $pos = Position::find()->where(['id'=>$p])->one();
-                                if($organization->image): ?>
-                                    <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $organization->image?>" alt="Логотип компании">
-                                <?php endif; ?>
+                                if ($organization->image!=null){?>
+                                    <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $organization->image?>" alt="">
+                                <?php } else {?> 
+                                    <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/nofoto.png" alt="">
+                                <?php }  ?>
                         </div>                 <!-- /Отображение фотографии -->
 
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->

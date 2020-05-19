@@ -35,9 +35,11 @@ if($vs==0){
                                         <?php
                                             $o = $vacan->organization_id;
                                             $organization = Organization::find()->where(['id'=>$o])->one();
-                                            if($organization->image): ?>
+                                            if ($organization->image!=null){?>
                                                 <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $organization->image?>" alt="">
-                                        <?php endif; ?>
+                                            <?php } else {?> 
+                                                <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/nofoto.png" alt="">
+                                            <?php }  ?>
   <!-- /Отображение фотографии -->  </div>            
 
  <!-- Отображение информации правее фотографии --> <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> 

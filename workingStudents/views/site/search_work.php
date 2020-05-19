@@ -103,8 +103,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row"> 
 
                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение фотографии -->
-                            <?php
-                                $pos=Position::find()->where(['id'=>$resum->CareerObjective_id])->one();
+                                <?php
+                                    $pos=Position::find()->where(['id'=>$resum->CareerObjective_id])->one();
                                 if ($resum->image!=null){?>
                                     <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $resum->image?>" alt="">
                                 <?php } else {?> 
