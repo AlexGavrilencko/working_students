@@ -73,9 +73,8 @@ class PrivateofficeController extends Controller
         {
             $res=Resume::find()->where(['user_id'=>$id])->one();
             $resume = $this->findModel($res->id);
-            if (Yii::$app->request->isPost)
-            {
-            $file = UploadedFile::getInstance($model, 'image');
+            if (Yii::$app->request->isPost){
+                $file = UploadedFile::getInstance($model, 'image');
                 if($resume->saveImage($model->uploadFile($file, $resume->image)))
                 {
                     return $this->redirect(['privateoffice/resume']);
@@ -102,42 +101,39 @@ class PrivateofficeController extends Controller
     public function actionResume(){
         $this->layout = 'site';
         $user = Yii::$app->user->identity; 
-        $model = Resume::findOne(['user_id'=>Yii::$app->user->id]);
-        if($model===null){
-            $resum=new Resume();
-            $resum->user_id=$user->id;
+        $resume = Resume::findOne(['user_id'=>Yii::$app->user->id]);
+        if($resume===null){
+            $res=new Resume();
+            $res->user_id=$user->id;
             $proj= Project::find()->where(['user_id'=>$user->id])->all();
             $expir=new Experience();
             if(Yii::$app->request->isPost)
             {
-                //$model->getDateAdd();
-                $resum->load(Yii::$app->request->post());
-                $resum->create();
-                $expir->resume_id=$resum->id;
-
+                $res->load(Yii::$app->request->post());
+                $res->create();
+                $expir->resume_id=$res->id;
                 $expir->load(Yii::$app->request->post());
                 $expir->create(); 
             }
-            return $this->render('resume', ['model'=>$resum,'expir'=>$expir,'model1'=>$model1,'project'=>$proj]);
+            return $this->render('resume', ['model'=>$res,'expir'=>$experience,'model1'=>$model1,'project'=>$proj]);
         }
         else{
-            $model1 = Experience::find()->where(['resume_id'=>$model->id])->all();
+            $experience = Experience::find()->where(['resume_id'=>$resume->id])->all();
             $proj= Project::find()->where(['user_id'=>$user->id])->all();
             $expir=new Experience();
             if(Yii::$app->request->isPost)
             {
-                $model->getDateAdd();
-                $model->load(Yii::$app->request->post());
-                
-                $model->create();
-                $expir->resume_id=$model->id;
+                $experience->getDateAdd();
+                $experience->load(Yii::$app->request->post());
+                $experience->create();
+                $expir->resume_id=$experience->id;
                 $expir->StudyOrWork=0;
                 $expir->load(Yii::$app->request->post());
                 $expir->create(); 
             }
-            return $this->render('resume', ['model'=>$model,'expir'=>$expir,'model1'=>$model1,'project'=>$proj]);
+            return $this->render('resume', ['model'=>$resume,'expir'=>$expir,'model1'=>$experience,'project'=>$proj]);
         }
-        return $this->render('resume', ['model'=>$model,'expir'=>$expir,'model1'=>$model1,'project'=>$proj]);
+        return $this->render('resume', ['model'=>$resume,'expir'=>$expir,'model1'=>$experience,'project'=>$proj]);
     }
 
     //создание вакансии
@@ -179,8 +175,6 @@ class PrivateofficeController extends Controller
         $org = Organization::find()->where(['user_id'=>$user->id])->one();
         $vac = Vacancy::find()->where(['user_id'=>$user->id]);
         $data = Vacancy::getSearch($vac);
-        //$data = Vacancy::getAll(5);
-        //var_dump($vac);
         return $this->render('my_vacancy',[
             'vac'=>$vac,
             'org'=>$org,
@@ -281,15 +275,13 @@ class PrivateofficeController extends Controller
         $id=$user->id;
         $project = new Project();
         $project->user_id=$id;
-            if (Yii::$app->request->isPost)
-            {
-            $file = UploadedFile::getInstance($model, 'image');
+            if (Yii::$app->request->isPost){
+                $file = UploadedFile::getInstance($model, 'image');
                 if($project->saveImage($model->uploadFile($file, $project->image)))
                 {
                     return $this->redirect(['privateoffice/resume']);
                 }
             }
-        
         return $this->render('img', ['model'=>$model]);
     }
 
@@ -297,10 +289,8 @@ class PrivateofficeController extends Controller
     //функция удаления достижений
     public function actionProject_del($id)
     { 
-        //$imageUploadModel = new Project();
         $this->findModelProj($id)->deleteImage();
-        $this->findModelProj($id)->delete();
-        
+        $this->findModelProj($id)->delete();       
         return $this->redirect(['privateoffice/resume']);
     }
 
@@ -330,17 +320,11 @@ class PrivateofficeController extends Controller
         if($user->rang===10){
             $r=Resume::find()->where(['user_id'=>$user->id])->one();
             $response= Response::find()->where(['resume_id'=>$r->id])->all();
-            //var_dump($response);
         }
         if($user->rang===20){
             $v=Vacancy::find()->where(['user_id'=>$user->id])->all();
-            //var_dump($v->id);
-            //foreach($v as $v):
-                $response= Response::find()->all();
-            //endforeach;
-            //var_dump($response);
+            $response= Response::find()->all();
         }
-        //$response= Response::find()->where(['user_id'=>$user->id])->all();
         return $this->render('response',['response'=>$response]);
     }
 }

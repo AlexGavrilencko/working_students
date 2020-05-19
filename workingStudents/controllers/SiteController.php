@@ -121,7 +121,6 @@ class SiteController extends Controller
         $exp=Experience::find()->where(['resume_id' => $id,'StudyOrWork'=>1])->all();//опыт работы
         $educ=Experience::find()->where(['resume_id' => $id,'StudyOrWork'=>0])->all();//образование
         $project=Project::find()->where(['user_id'=>$userID])->all();
-        
         $resume->viewedCounter();
         $popular = Article::getPopular();
         $recent = Article::getRecent();
@@ -204,7 +203,7 @@ class SiteController extends Controller
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
-            return $this->render('search',[
+        return $this->render('search',[
             'catvac'=>$catvac,
             'cat'=>$cat,
             'vac'=>$vac,
@@ -216,7 +215,7 @@ class SiteController extends Controller
             'pagination'=>$data['pagination'],
             'vacancy'=>$data['vacancy'],
             
-            ]);
+        ]);
     }
 
     public function actionSearch_work()      /* Страница поиска для компании */
@@ -271,8 +270,7 @@ class SiteController extends Controller
         $vac=Vacancy::find()->where(['id' => $id])->one();
         $popular = Article::getPopular();
         $recent = Article::getRecent();
-        $categories = ArtCategory::getAll();
-        
+        $categories = ArtCategory::getAll();        
         return $this->render('complete_information',[
             'vac'=>$vac,
             'popular'=>$popular,
@@ -290,9 +288,6 @@ class SiteController extends Controller
             $scanned->resume_id=$id;
             $scanned->ViewOrSelect=1;
             $sc=Scanned::find()->where(['user_id' => $user_id,'resume_id' => $id,'ViewOrSelect' => 1])->all();
-           // if($sc!=null){
-            //    $scanned->delete();
-            //}
             if($sc==null){
                 $scanned->create();
             }
@@ -404,7 +399,6 @@ class SiteController extends Controller
         if($categ==="Категория"){
             $categ=null;
         }
-        //var_dump($city,$salaro,$salard,$schelude);
         if($city!=null){
             if($categ!=null){
                 if($posit!=null){
@@ -514,8 +508,7 @@ class SiteController extends Controller
         $data = Article::getAll(5);
         $popular = Article::getPopular();
         $recent = Article::getRecent();
-        $categories = ArtCategory::getAll();
-        
+        $categories = ArtCategory::getAll();       
         return $this->render('indexart',[
             'articles'=>$data['articles'],
             'pagination'=>$data['pagination'],
@@ -533,8 +526,7 @@ class SiteController extends Controller
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
-        $article->viewedCounter();
-        
+        $article->viewedCounter();    
         return $this->render('single',[
             'article'=>$article,
             'popular'=>$popular,
