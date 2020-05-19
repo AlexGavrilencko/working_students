@@ -577,11 +577,10 @@ class SiteController extends Controller
         $this->layout = 'site';
         $user = Yii::$app->user->identity; 
         $org = Organization::find()->where(['id'=>$id])->one();
-        $vac = Vacancy::find()->where(['organization_id'=>$org->id])->all();
-        $data = Vacancy::getAll(5);
+        $query=Vacancy::find()->where(['organization_id'=>$org->id]);
+        $data = Vacancy::getSearch($query);
         //var_dump($vac);
         return $this->render('org_vacancy',[
-            'vac'=>$vac,
             'org'=>$org,
             'pagination'=>$data['pagination'],
             'vacancy'=>$data['vacancy'],

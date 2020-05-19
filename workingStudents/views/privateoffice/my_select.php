@@ -15,11 +15,10 @@ $user = Yii::$app->user->identity;
 foreach ($select as $sel):
     var_dump($sel->id);
 
-    $this->title = 'Просмотренное';
-// ______________________________________ВСЕ ДЛЯ ПРОСМОТРЕННОГО_________________________________________________________ 
-        if($user->rang==10){ //условие для вывода просмотренного для студента ?>
-
-        <!-- ____________________ОТОБРАЖЕНИЕ ИНФОРМАЦИЯ ПРОСМОТРЕННОГО ДЛЯ СТУДЕНТА_____________-->
+        $this->title = 'Избранное';
+// ______________________________________ВСЕ ДЛЯ ИЗБРАННОГО_________________________________________________________ 
+            if($user->rang==10){//условие для вывода избранного для студента?>
+        <!-- Для отображения информации -->
                 <div class="row justify-content-md-center "> 
                     <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7">  
 
@@ -27,12 +26,11 @@ foreach ($select as $sel):
                             foreach ($vac as $vacan): 
                                  if($sel->vacancy_id==$vacan->id){  
                         ?>   <!-- Цикл для отображения вакансий -->
-
-                        <!-- _____________________Вид отображения_________________________________ -->
-                            <div class="border_search3"> <!-- Фон для отображения -->
+<!-- ______________________________________Вид отображения_________________________________________________________ -->
+                            <div class="border_search4"> <!-- Фон для отображения -->
                                 
-                                <div class="row"> <!-- ROW  ДЛЯ ЧАСТИ С ИЗОБРАЖЕНИМ-->   
- <!-- Отображение фотографии -->    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> 
+                                <div class="row"> 
+                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение фотографии -->
                                         <?php
                                             $o = $vacan->organization_id;
                                             $organization = Organization::find()->where(['id'=>$o])->one();
@@ -41,74 +39,59 @@ foreach ($select as $sel):
                                             <?php } else {?> 
                                                 <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/nofoto.png" alt="">
                                             <?php }  ?>
-  <!-- /Отображение фотографии -->  </div>            
+                                    </div>                 <!-- /Отображение фотографии -->
 
- <!-- Отображение информации правее фотографии --> <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> 
-                                                        <div class="row"> <!-- ROW  -->
+                                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->
+                                        <div class="row">
 
-                                                            <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение названии вакансии -->
-                                                                <p>Название вакансии:<?= $vacan->name ?></p>
-                                                            </div>                  <!-- /Отображение названии вакансии -->
+                                            <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение названии вакансии -->
+                                                <p>Название вакансии:<?= $vacan->name ?></p>
+                                            </div>                  <!-- /Отображение названии вакансии -->
 
-                                                                <!-- Отображение зарплаты -->
-                                                                <?php  if (!Yii::$app->user->isGuest){ ?>
-                                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
-                                                                        <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
-                                                                            <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
-                                                                        </a>
-                                                                    </div>
-                                                                <?php } else {?>
-                                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
-                                                                        <a href="#" class="disabled">
-                                                                            <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
-                                                                        </a>
-                                                                    </div>
-                                                                <?php }?>
-                                                                                <!-- /Отображение зарплаты -->
-                                                        </div> <!-- /ROW  -->
+                                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение зарплаты -->
+                                                <p>Зарплата: 
+                                                    <?php
+                                                        $salary = $vacan->salary;
+                                                        if ($salary == NULL){
+                                                            echo 'не указано';
+                                                        }
+                                                        else echo $salary;
+                                                    ?>
+                                                </p>
+                                            </div>                  <!-- /Отображение зарплаты -->
+                                        </div>
 
-                                                        <div class="row"> <!-- ROW Отображение названия организации и города -->
+                                        <div class="row"> <!-- Отображение названия организации и города -->
 
-                                                                <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8"><!-- Отображение названия организации -->
-                                                                    <p> Название организации:
-                                                                        <?php
-                                                                            $o = $vacan->organization_id;
-                                                                            $organization = Organization::find()->where(['id'=>$o])->one();
-                                                                            if ($organization == NULL){
-                                                                                echo 'Не указано';
-                                                                            }
-                                                                            else echo $organization->name;
-                                                                        ?>
-                                                                    </p>
-                                                                </div><!-- /Отображение названия организации -->
+                                            <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8"><!-- Отображение названия организации -->
+                                                <p> Название организации:
+                                                    <?php
+                                                        $o = $vacan->organization_id;
+                                                        $organization = Organization::find()->where(['id'=>$o])->one();
+                                                        if ($organization == NULL){
+                                                            echo 'Не указано';
+                                                        }
+                                                        else echo $organization->name;
+                                                    ?>
+                                                </p>
+                                            </div><!-- /Отображение названия организации -->
 
-                                                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение города -->
-                                                                        <p> Город:
-                                                                            <?php
-                                                                                $c = $vacan->city_id;
-                                                                                $city = Attributes::find()->where(['id'=>$c])->one();
-                                                                                if ($city == NULL) 
-                                                                                { 
-                                                                                    echo 'Город не указан'; 
-                                                                                }
-                                                                                else echo $city->name;
-                                                                            ?>
-                                                                        </p>
-                                                                    </div><!-- Отображение города -->
-                                                        </div>   <!-- ROW Отображение названия организации и города --> 
-                                                        <div class="row ml-1">
-                                                                <p>Зарплата: 
-                                                                    <?php
-                                                                        $salary = $vacan->salary;
-                                                                        if ($salary == NULL){
-                                                                            echo 'не указано';
-                                                                        }
-                                                                        else echo $salary;
-                                                                    ?>
-                                                                </p>
-                                                        </div> 
-<!--div /Отображение информации правее фотографии-->  </div> 
-                                </div>  <!-- ROW  ДЛЯ ЧАСТИ С ИЗОБРАЖЕНИМ-->  
+                                            <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение города -->
+                                                <p> Город:
+                                                    <?php
+                                                        $c = $vacan->city_id;
+                                                        $city = Attributes::find()->where(['id'=>$c])->one();
+                                                        if ($city == NULL) 
+                                                        { 
+                                                            echo 'Город не указан'; 
+                                                        }
+                                                        else echo $city->name;
+                                                    ?>
+                                                </p>
+                                            </div><!-- Отображение города -->
+                                        </div>   <!-- ROW Отображение названия организации и города -->  
+                                    </div>  <!-- div /Отображение информации правее фотографии -->
+                                </div>  <!-- ROW  -->  
 
                                     <div class="row ml-3 mt-3"> <!-- Отображение дополнительной информации для соискателя -->
                                         <h6>Описание:</h6>
@@ -127,24 +110,36 @@ foreach ($select as $sel):
                                     </div>                          <!-- /Отображение дополнительной информации для соискателя -->
 
                                     <div class="row"> <!-- кнопок действия и даты -->
-                                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                             <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a>
                                         </div>
 
                                         <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                                             <p>Дата<?= $vacan->dateAdd ?></p>       
                                         </div>
+                                        <?php  if (!Yii::$app->user->isGuest){ ?>
+                                            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
+                                                <a href="<?= Url::toRoute(['site/selected', 'id'=>$vacan->id]); ?>">
+                                                    <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                                </a>
+                                            </div>
+                                        <?php } else {?>
+                                            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"> 
+                                                <a href="#" class="disabled">
+                                                    <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
+                                                </a>
+                                            </div>
+                                        <?php }?>
                                     </div>
                             </div> <!-- /Фон для отображения -->
-        <!-- _____________________Вид отображения (КОНЕЦ)_________________________________ -->
-                        <?php };  endforeach; ?>  <!-- /Цикл для отображения вакансий -->
+<!-- _______________________________________________________________________________________________ -->
+                        <?php };  // if($sel->vacancy_id==$vacan->id){ 
+                        endforeach; ?>  <!-- /Цикл для отображения вакансий -->
                     </div>        
                 </div>
-        <!-- ________ОТОБРАЖЕНИЕ ИНФОРМАЦИЯ ПРОСМОТРЕННОГО ДЛЯ СТУДЕНТА (КОНЕЦ)__________-->
-        <?}; //условие для вывода просмотренного для студента (КОНЕЦ)
+            <? } //if($user->rang==10)
 
-    if($user->rang==20){ //условие вывода просмотренного для работодателя ?>
-    <!-- ________ОТОБРАЖЕНИЕ ИНФОРМАЦИЯ ПРОСМОТРЕННОГО ДЛЯ рАБОТОДАТЕЛЯ__________-->
+    if($user->rang==20){ //условие для вывода избранного для работодателя?>
         <div class="row justify-content-md-center mb-3"> <!-- Для отображения информации -->   
             <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7">  
                  
@@ -152,10 +147,10 @@ foreach ($select as $sel):
                     foreach ($resume as $resum): 
                         if($sel->resume_id==$resume->id){
                             if ($resum->ShowOrHide===1){
-                            
+                           // var_dump($resum);
                 ?>   
 <!-- _______________________________________________________________________________________________ -->
-                    <div class="border_search3 "> <!-- Фон для отображения -->
+                    <div class="border_search4 "> <!-- Фон для отображения -->
                 
                         <div class="row"> 
                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение фотографии -->
@@ -189,7 +184,7 @@ foreach ($select as $sel):
 
                                 <div class="row"> <!-- Отображение желаемой доолжности и города -->
                                     <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8">
-                                        <p>Желаемая вакансия: </p>
+                                        <p>Желаемая вакансия:</p>
                                     </div>    
                                 
                                     <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
@@ -225,11 +220,11 @@ foreach ($select as $sel):
                             </div>
                     </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->
-                        <?php  };//$sel->resume_id==$resume->id
-                    }; //$resum->ShowOrHide===1?> 
+                    <?php  }; //if ($resum->ShowOrHide===1){
+                  }; //if($sel->resume_id==$resume->id){?> 
                 <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
             </div>
         </div>
-    <?} //if($user->rang==20){ 
+   <? }; //условие для вывода избранного для работодателя
 endforeach;  //foreach ($select as $sel):?> 
           

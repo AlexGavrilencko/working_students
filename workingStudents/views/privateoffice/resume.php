@@ -67,11 +67,116 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 <?= $form->field($model, 'ShowOrHide')->radioList(array(0 => 'Показывать резюме при поиске', 1 => 
                                 'Скрывать резюме при поиске',), array('labelOptions'=>array('style'=>'display:inline'), 
-                                'separator'=>'&nbsp;&nbsp;&nbsp;</br>',))->label('Показать или скрыть <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
-                                "data-placement"=>"top", "title"=>"Хотите, чтобы ваше резюме отображалась всем пользователям?"]); ?>
+                                'separator'=>'&nbsp;&nbsp;&nbsp;</br>',))->label('Показать или скрыть <strong><big><span class="vop">?</span></big></strong>', 
+                                ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Хотите, чтобы ваше резюме отображалась всем пользователям?"]); ?>
    
-<!--____________________________ Опыт и образование______________________________________________________-->
-                        <div class="proj mt-4 mb-4">   
+                              
+                                
+                                <?= $form->field($model, 'surname')->textInput(['placeholder'=>"Ваша фамилия"]) ?>
+                                
+                                <?= $form->field($model, 'name')->textInput(['placeholder'=>"Ваше имя"]) ?>
+
+                                <?= $form->field($model, 'patronymic')->textInput(['placeholder'=>"Ваше отчество"]) ?>
+
+                                <p>Дата рождения:</p>
+                                <input type="date" class="form-control" class="mydate" name="date" placeholder="Дата">
+
+
+                        
+                                <?php
+                                    $user = Yii::$app->user->identity;
+                                    $model->user_id=$user->id;
+                                    // получаем все города из таблицы атрибутов
+                                    $city = Attributes::find()->where(['type'=>'city'])->all();
+                                    // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
+                                    $items = ArrayHelper::map($city,'id','name');
+                                    $params = [
+                                        'prompt' => 'Город'
+                                    ];
+                                    echo $form->field($model, 'city_id')->dropDownList($items,$params)->label('Город <strong><big><span class="vop">
+                                    ?</span></big></strong>', ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Укажите город проживания"]);
+                                ?>
+
+                                <?= $form->field($model, 'personalQualities')->textInput()->label('Персональные качества <strong><big><span class="vop">
+                                    ?</span></big></strong>', ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Перечислите ваши персональные качества"]) ?>
+                                <p class="">Примеры: самостоятельность, стрессоустойчивость, ответственность, внимательность...</p>
+
+                                <?php
+                                    // получаем все города из таблицы атрибутов
+                                    $objective = Position::find()->all();
+                                    // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
+                                    $items = ArrayHelper::map($objective,'id','name','code');
+                                    $params = [
+                                        'prompt' => 'Желаемая должность'
+                                    ];
+                                    echo $form->field($model, 'CareerObjective_id')->dropDownList($items,$params)->label('Желаемая должность <strong><big><span class="vop">
+                                    ?</span></big></strong>', ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Выберете желаемую должность"]);
+                                ?>
+
+                                    <?= $form->field($model, 'skills')->textInput()->label('Навыки <strong><big><span class="vop">
+                                    ?</span></big></strong>', ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Перечислите ваши навыки"]) ?>
+                                    
+                                    <?= $form->field($model, 'addinform')->textarea()->label('Дополнительная информация <strong><big><span class="vop">
+                                    ?</span></big></strong>', ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Поле для дополнительной информации"]) ?>
+
+                <!--____________________________ Опыт и образование______________________________________________________-->
+
+                <div class="proj mt-4 mb-4">
+                    <div class="text-center">
+                        <h4>Образование</h4>
+                    </div>
+                                <div class="row justify-content-center">
+                                    <input type="button" class="btn btn-sm btn-rounded btngreen1 ml-1" value="Добавить образование" onclick="disp1(document.getElementById('form2'))">
+                                </div>
+                                <div id="form2" style="display: none;">
+                                    <p>Получилось</p>
+                                </div>
+    <!--_________________Образование отображение________________________________-->
+                    <?php if($model1 != null): ?> 
+
+                        <div class="table-responsive-sm table-responsive-md">
+                                        <table class="table table-bordered table-hover table-sm mt-3">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">№</th>
+                                                    <th scope="col">Количество</th>
+                                                    <th scope="col">Организация</th>
+                                                    <th scope="col">Должность</th>
+                                                    <th scope="col">Действия</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php foreach($model1 as $exp): ?>
+                                                <?php  
+                                                    //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
+                                                    $speciality = Speciality::find()->where(['id'=>$exp->speciality_id])->one();
+                                                    //$speciality=$speciality->name;
+                                                ?>
+                                                <tr>
+                                                    <th scope="row"><?=$exp->id?></th>
+                                                    <td><?=$exp->years?></th>
+                                                    <td><?=$exp->nameOrganiz?></th>
+                                                    <td><?=$speciality->code?><?=$speciality->name?></th>
+                                                    <td><?= Html::a('Редактировать', ['experience_up', 'id' => $exp->id]) ?>
+                                                        <?= Html::a('Удалить', ['experience_del', 'id' => $exp->id], [
+                                                                    'data' => [
+                                                                        'confirm' => 'Вы действительно хотите удалить эти данные?',
+                                                                        'method' => 'post',
+                                                                    ],
+                                                        ]) ?>
+                                                    </th>
+                                                </tr>
+                                                <?php endforeach;?>
+                                            </tbody>
+                                        </table>
+                                    </div>      
+                    <?php endif; ?>
+
+    <!--_________________/Образование отображение________________________________-->
+                </div>
+
+
+                <div class="proj mt-4 mb-4">   
                             <div class="text-center">
                                 <h4>Опыт работы</h4>
                             </div>
@@ -128,101 +233,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?php endif; ?>
     <!--_________________/Опыт работы отображение________________________________-->
                         </div>
-                <div class="proj mt-4 mb-4">
-                    <div class="text-center">
-                        <h4>Образование</h4>
-                    </div>
-                                <div class="row justify-content-center">
-                                    <input type="button" class="btn btn-sm btn-rounded btngreen1 ml-1" value="Добавить образование" onclick="disp1(document.getElementById('form2'))">
-                                </div>
-                                <div id="form2" style="display: none;">
-                                    <p>Получилось</p>
-                                </div>
-    <!--_________________Образование отображение________________________________-->
-                    <?php if($model1 != null): ?> 
-
-                        <div class="table-responsive-sm table-responsive-md">
-                                        <table class="table table-bordered table-hover table-sm mt-3">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">№</th>
-                                                    <th scope="col">Количество</th>
-                                                    <th scope="col">Организация</th>
-                                                    <th scope="col">Должность</th>
-                                                    <th scope="col">Действия</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            <?php foreach($model1 as $exp): ?>
-                                                <?php  
-                                                    //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
-                                                    $speciality = Speciality::find()->where(['id'=>$exp->speciality_id])->one();
-                                                    //$speciality=$speciality->name;
-                                                ?>
-                                                <tr>
-                                                    <th scope="row"><?=$exp->id?></th>
-                                                    <td><?=$exp->years?></th>
-                                                    <td><?=$exp->nameOrganiz?></th>
-                                                    <td><?=$speciality->code?><?=$speciality->name?></th>
-                                                    <td><?= Html::a('Редактировать', ['experience_up', 'id' => $exp->id]) ?>
-                                                        <?= Html::a('Удалить', ['experience_del', 'id' => $exp->id], [
-                                                                    'data' => [
-                                                                        'confirm' => 'Вы действительно хотите удалить эти данные?',
-                                                                        'method' => 'post',
-                                                                    ],
-                                                        ]) ?>
-                                                    </th>
-                                                </tr>
-                                                <?php endforeach;?>
-                                            </tbody>
-                                        </table>
-                                    </div>      
-                    <?php endif; ?>
-
-    <!--_________________/Образование отображение________________________________-->
-                </div>
-<!--____________________________ /Опыт и образование______________________________________________________-->                                 
-                                
-                                <?= $form->field($model, 'surname')->textInput(['placeholder'=>"Ваша фамилия"]) ?>
-                                
-                                <?= $form->field($model, 'name')->textInput(['placeholder'=>"Ваше имя"]) ?>
-
-                                <?= $form->field($model, 'patronymic')->textInput(['placeholder'=>"Ваше отчество"]) ?>
-
-                                <p>Дата рождения:</p>
-                                <input type="date" class="form-control" class="mydate" name="date" placeholder="Дата">
+<!--____________________________ /Опыт и образование______________________________________________________-->   
 
 
-                        
-                                <?php
-                                    $user = Yii::$app->user->identity;
-                                    $model->user_id=$user->id;
-                                    // получаем все города из таблицы атрибутов
-                                    $city = Attributes::find()->where(['type'=>'city'])->all();
-                                    // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                                    $items = ArrayHelper::map($city,'id','name');
-                                    $params = [
-                                        'prompt' => 'Город'
-                                    ];
-                                    echo $form->field($model, 'city_id')->dropDownList($items,$params)->label('Город <strong><big><span class="vop">
-                                    ?</span></big></strong>', ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Укажите город проживания"]);
-                                ?>
-
-                                <?= $form->field($model, 'personalQualities')->textInput()->label('Персональные качества <strong><big><span class="vop">
-                                    ?</span></big></strong>', ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Перечислите ваши персональные качества"]) ?>
-                                <p class="">Примеры: самостоятельность, стрессоустойчивость, ответственность, внимательность...</p>
-
-                                <?php
-                                    // получаем все города из таблицы атрибутов
-                                    $objective = Position::find()->all();
-                                    // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                                    $items = ArrayHelper::map($objective,'id','name','code');
-                                    $params = [
-                                        'prompt' => 'Желаемая должность'
-                                    ];
-                                    echo $form->field($model, 'CareerObjective_id')->dropDownList($items,$params)->label('Желаемая должность <strong><big><span class="vop">
-                                    ?</span></big></strong>', ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Выберете желаемую должность"]);
-                                ?>
 
  <!--___________________Проекты______________________________________________________-->                       
                     <div class="proj mt-4 mb-4">

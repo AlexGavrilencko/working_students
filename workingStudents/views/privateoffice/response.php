@@ -10,8 +10,26 @@ use yii\helpers\Url;
 use app\models\Organization;
 
 $user = Yii::$app->user->identity;
+if($user->rang===10){ 
 ?>
+ 
       <div class="response text-center" style="width: 90%">   
+            <div class="table-responsive-sm table-responsive-md">
+                <table class="table table-bordered table-hover table-sm mt-3">
+                    <thead> <!--Строка с заголовками-->
+                        <tr class="">
+                            <th scope="col">№</th>
+                            <th scope="col">Резюме</th>
+                            <th scope="col">Организация</th>
+                            <th scope="col">e-mail</th>
+                            <th scope="col">Номер телефона</th>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Действие</th>
+                        </tr>
+                    </thead> <!--/Строка с заголовками-->
+                <tbody> <!--Тело таблицы-->
+<?php } else {?> 
+<div class="response text-center" style="width: 90%">   
             <div class="table-responsive-sm table-responsive-md">
                 <table class="table table-bordered table-hover table-sm mt-3">
                     <thead> <!--Строка с заголовками-->
@@ -27,28 +45,28 @@ $user = Yii::$app->user->identity;
                     </thead> <!--/Строка с заголовками-->
                 <tbody> <!--Тело таблицы-->
                     <?php
+                    };
                     foreach($response as $res):
                         if($user->rang===10){ 
                             $r=Resume::find()->where(['user_id'=>$user->id])->one();
                             $u=User::find()->where(['id'=>$res->user_id])->one();
-                            $org = Organization::find()->where(['user_id'=>$user->id])->one();
-                            //var_dump($res);?>
+                            $org = Organization::find()->where(['user_id'=>$u->id])->one();
+                            //var_dump($org);?>
                                 <tr>
                                     <th scope="row">НОМЕР</th> <!-- № -->
                                     <td><a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$res->resume_id]); ?>">Ваше резюме</a></th>
-                                    <td><a href="<?= Url::toRoute(['site/org_vacancy', 'id'=>$res->user_id]); ?>"><?=$org->name?></a></th> <!-- Вакансия -->
+                                    <td><a href="<?= Url::toRoute(['site/org_vacancy', 'id'=>$org->id]); ?>"><?=$org->name?></a></th> <!-- Вакансия -->
                                     <td><?=$u->e_mail?></th> <!-- e-mail -->
                                     <td><?=$u->phone?></th> <!-- Номер телефона -->
                                     <td><?= $res->date ?></th>
                                     <td>
-                                        <?= Html::a('Удалить', ['', 'id'=>], [
-                                            
+                                        <?= Html::a('Удалить', ['privateoffice/vacancy_del', 'id'=>$res->id], [
+                                        
                                             'data' => [
                                             'confirm' => 'Вы действительно хотите удалить данную вакансию?',
                                             'method' => 'post',
                                             ],
-                                            ]); 
-                                        ?>
+                                        ]); ?>
                                     </th>
                                 </tr>
                     <?php }
@@ -62,19 +80,18 @@ $user = Yii::$app->user->identity;
                                     <tr>
                                         <th scope="row">НОМЕР</th> <!-- № -->
                                         <td><a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vac->id]); ?>"><?=$vac->name?></a></th> <!-- Вакансия -->
-                                        <td><a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$rr->id]); ?>">ФИО СТУДЕНТА</a></th> <!-- ФИО -->
+                                        <td><a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$rr->id]); ?>"><?= $rr->surname ?> <?= $rr->name ?> <?= $rr->patronymic ?></a></th> <!-- ФИО -->
                                         <td><?=$u->e_mail?></th> <!-- e-mail -->
                                         <td><?=$u->phone?></th> <!-- Номер телефона -->
                                         <td><?= $res->date ?></th>
-                                        <td> <!--Саня, добавь ФИО студента и называние организации-->
-                                            <?= Html::a('Удалить', ['', 'id'=>], [
-                                                
+                                        <td> 
+                                            <?= Html::a('Удалить', ['privateoffice/vacancy_del', 'id'=>$vac->id], [
+                                            
                                                 'data' => [
                                                 'confirm' => 'Вы действительно хотите удалить данную вакансию?',
                                                 'method' => 'post',
                                                 ],
-                                                ]); 
-                                            ?>
+                                            ]); ?>
                                         </th>
                                     </tr>
 
