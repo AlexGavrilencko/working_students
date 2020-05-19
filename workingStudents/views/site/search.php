@@ -156,7 +156,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7">  
                     <br>     
                 <?php
-                foreach ($vacancy as $vacan):    
+                foreach ($vacancy as $vacan):
+                    if ($vacan->ShowOrHide===1){    
                 ?>                                <!-- Цикл для отображения вакансий -->
 <!-- ______________________________________Вид отображения_________________________________________________________ -->
                 <div class="border_search3"> <!-- Фон для отображения -->
@@ -276,7 +277,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                 </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->
-            <?php  endforeach; ?>  <!-- /Цикл для отображения вакансий -->
+            <?php }  endforeach; ?>  <!-- /Цикл для отображения вакансий -->
         </div>
 
         <?= $this->render('/partials/sidebar', [

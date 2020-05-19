@@ -32,8 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         $userid=$user->id;
                         $model->user_id=$userid;
                     ?>
-                    <?= $form->field($model, 'ShowOrHide')->radioList(array(0 => 'Показывать вакансию при поиске',
-                     1 => 'Скрывать вакансию при поиске',), array('labelOptions'=>array('style'=>'display:inline'),
+                    <?= $form->field($model, 'ShowOrHide')->radioList(array(1 => 'Показывать вакансию при поиске',
+                     0 => 'Скрывать вакансию при поиске',), array('labelOptions'=>array('style'=>'display:inline'),
                       'separator'=>'&nbsp;&nbsp;&nbsp;</br>',))->label('Показать или скрыть <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                       "data-placement"=>"top", "title"=>"Хотите, чтобы ваша вакансия отображалась всем пользователям?"]); ?>
                     

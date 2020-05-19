@@ -123,10 +123,11 @@ class PrivateofficeController extends Controller
             $expir=new Experience();
             if(Yii::$app->request->isPost)
             {
-                $experience->getDateAdd();
-                $experience->load(Yii::$app->request->post());
-                $experience->create();
-                $expir->resume_id=$experience->id;
+                $resume->getDateAdd();
+                $resume->load(Yii::$app->request->post());
+                //var_dump($resume->ShowOrHide);
+                $resume->create();
+                $expir->resume_id=$resume->id;
                 $expir->StudyOrWork=0;
                 $expir->load(Yii::$app->request->post());
                 $expir->create(); 
@@ -297,6 +298,7 @@ class PrivateofficeController extends Controller
     public function actionMy_select(){
         $this->layout = 'site';
         $user = Yii::$app->user->identity;
+        //var_dump($user);
         $vs=1; 
         $select= Scanned::find()->where(['user_id'=>$user->id,'ViewOrSelect'=>$vs])->all();
         $resume=Resume::find()->all();
@@ -326,6 +328,22 @@ class PrivateofficeController extends Controller
             $response= Response::find()->all();
         }
         return $this->render('response',['response'=>$response]);
+    }
+
+    public function actionRespdelete($id){
+        $this->layout = 'site';
+        $sc=Scanned::find()->where(['id'=>$id])->one();
+        $sc->delete();
+        $user = Yii::$app->user->identity;
+        if($user->rang===10){
+            $r=Resume::find()->where(['user_id'=>$user->id])->one();
+            $response= Response::find()->where(['resume_id'=>$r->id])->all();
+        }
+        if($user->rang===20){
+            $v=Vacancy::find()->where(['user_id'=>$user->id])->all();
+            $response= Response::find()->all();
+        }
+        return $this->redirect('response',['response'=>$response]);
     }
 
 

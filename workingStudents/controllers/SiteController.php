@@ -322,6 +322,7 @@ class SiteController extends Controller
         $categories = ArtCategory::getAll();
         return $this->render('complete_information_work',[
             'resum'=>$resume,
+            'id'=>$id,
             'popular'=>$popular,
             'recent'=>$recent,
             'categories'=>$categories
@@ -345,6 +346,7 @@ class SiteController extends Controller
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
         return $this->render('complete_information',[
+            'id'=>$id,
             'vac'=>$vac,
             'popular'=>$popular,
             'recent'=>$recent,

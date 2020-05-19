@@ -60,7 +60,7 @@ if($user->rang===10){
                                     <td><?=$u->phone?></th> <!-- Номер телефона -->
                                     <td><?= $res->date ?></th>
                                     <td>
-                                        <?= Html::a('Удалить', ['privateoffice/vacancy_del', 'id'=>$res->id], [
+                                        <?= Html::a('Удалить', ['privateoffice/respdelete', 'id'=>$res->id], [
                                         
                                             'data' => [
                                             'confirm' => 'Вы действительно хотите удалить данную вакансию?',
@@ -85,7 +85,7 @@ if($user->rang===10){
                                         <td><?=$u->phone?></th> <!-- Номер телефона -->
                                         <td><?= $res->date ?></th>
                                         <td> 
-                                            <?= Html::a('Удалить', ['privateoffice/vacancy_del', 'id'=>$vac->id], [
+                                            <?= Html::a('Удалить', ['privateoffice/respdelete', 'id'=>$res->id], [
                                             
                                                 'data' => [
                                                 'confirm' => 'Вы действительно хотите удалить данную вакансию?',
