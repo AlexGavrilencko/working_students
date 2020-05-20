@@ -9,10 +9,9 @@ $t=Tag::find()->where(['id'=>$id])->one();
 	<h4 class="entry-title">Статьи по тэгу: <i><?= $t->title?></i></h3>
 </div>
 <!--main content start-->
-<div class="main-content">
-<div class="container">
-<div class="row">
-<div class="col-md-8">
+<div class="container-fluid d-flex flex-row bd-highlight flex-column">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7 mt-4">
 
 
 <?php
@@ -60,7 +59,6 @@ foreach ($art as $articl)
                 'recent'=>$recent,
                 'categories'=>$categories
             ]);?>
-</div>
 </div>
 </div>
 <!-- end main content-->

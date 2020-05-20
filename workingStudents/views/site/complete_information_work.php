@@ -23,6 +23,13 @@ $this->title = 'Просмотр резюме';
     cursor: default;  /* устанавливаем курсор в виде стрелки */
     color: #999; /* цвет текста для нективной ссылки */
 }
+a{
+        color: #00a4b9dc;
+        font-size: 18px;
+    }
+    a:hover{
+        color: #003941dc;
+    }
 </style>
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
 <!-- Для отображения информации -->
@@ -31,7 +38,7 @@ $this->title = 'Просмотр резюме';
                     <br>     
               
 <!-- ______________________________________Вид отображения_________________________________________________________ -->
-                <div class="border_vacancy"> <!-- Фон для отображения -->
+                <div class="border_search3"> <!-- Фон для отображения -->
                     <div class="row mb-4"> 
 
                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение фотографии -->

@@ -3,10 +3,10 @@ use yii\helpers\Url;
 use yii\widgets\LinkPager;
 ?>
 <!--main content start-->
-<div class="main-content">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
+
+    <div class="container-fluid d-flex flex-row bd-highlight flex-column">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7 mt-4">
                 <?php foreach($articles as $article):?>
                     <article class="post">
                         <div class="post-thumb">
@@ -42,11 +42,7 @@ use yii\widgets\LinkPager;
                     </article>
                 <?php endforeach; ?>
 
-                <?php
-                    echo LinkPager::widget([
-                        'pagination' => $pagination,
-                    ]);
-                ?>
+                
             </div>
             <?= $this->render('/partials/sidebar', [
                 'popular'=>$popular,
@@ -54,7 +50,12 @@ use yii\widgets\LinkPager;
                 'categories'=>$categories
             ]);?>
         </div>
+        <?php
+                    echo LinkPager::widget([
+                        'pagination' => $pagination,
+                    ]);
+                ?>
     </div>
-</div>
+
 <!-- end main content-->
 <!--footer start-->

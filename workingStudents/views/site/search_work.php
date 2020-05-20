@@ -22,6 +22,13 @@ $this->params['breadcrumbs'][] = $this->title;
     cursor: default;  /* устанавливаем курсор в виде стрелки */
     color: #999; /* цвет текста для нективной ссылки */
 }
+a{
+        color: #00a4b9dc;
+        font-size: 18px;
+    }
+    a:hover{
+        color: #003941dc;
+    }
 </style>
 
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
@@ -57,16 +64,19 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
 
                             <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Выбор категории -->
-                            <?php
+                                    <?php
                                         $category = Attributes::find()->where(['type'=>'category'])->all();
                                     ?>
-                                    <select class="selectpicker" data-live-search="true" name="categ">
+                    
+                                
+                                    <select class="selectpicker" data-live-search="true" name="categ" style="width: 100%;">
                                         <option data-tokens="">Категория</option>  
                                         <?php                           
                                             foreach ($category as $category): ?> 
                                                 <option data-tokens="" value="<?=$category->id?>"><?=$category->name?></option>  
                                             <?php endforeach;?>    
                                     </select>
+                                   
                             </div>
 
                         <!-- <div class="col-sm-2">  Для выбора стажа 
@@ -148,18 +158,26 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div> <!-- /Отображение информации правее фотографии -->
                 </div>
 
-                        <div class="row ml-3 mt-3"> <!-- Отображение дополнительной информации для соискателя -->
-                            <p>Персональные качества:
-                                <?= $resum->personalQualities?>
-                            </p> 
-                        </div>                      <!-- /Отображение дополнительной информации для соискателя -->
-                        <div class="row ml-3 mt-3"> <!-- -->
-                            <p>Доп инфа:
+<!-- Отображение дополнительной информации для соискателя -->
+                        <div class="row ml-1 mt-3"> 
+                            <h6>Персональные качества:</h6>
+                        </div>
+                            <div class="row ml-1"> 
+                                <p>
+                                    <?= $resum->personalQualities?>
+                                </p> 
+                            </div> 
+
+                        <div class="row ml-1"> 
+                            <h6>Дополнительная информация:</h6>
+                        </div>                     
+                        <div class="row ml-1"> <!-- -->
+                            <p>
                                 <?= $resum->addinform?>
                             </p> 
                         </div>  
                     
-                    <div class="row ml-1 "> <!-- кнопок действия и даты -->
+                    <div class="row"> <!-- кнопок действия и даты -->
         
                             <div class="col-8 col-sm-8 col-md-10 col-lg-10 col-xl-10">
                                 <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>" class="links">Подробнее о резюме</a>
@@ -176,12 +194,12 @@ $this->params['breadcrumbs'][] = $this->title;
                
             
         </div>
-     
-            <?= $this->render('/partials/sidebar', [
-                    'popular'=>$popular,
-                    'recent'=>$recent,
-                    'categories'=>$categories
-                ]);?>
+                    <?= $this->render('/partials/sidebar', [
+                            'popular'=>$popular,
+                            'recent'=>$recent,
+                            'categories'=>$categories,
+                    ]);?>
+               
        
     </div>
        <?php

@@ -4,7 +4,7 @@ use yii\helpers\Url;
 <div class=" col-12 col-sm-12 col-md-10 col-lg-4 col-xl-4" data-sticky_column>
     <div class="primary-sidebar mt-4">
 
-        <aside class="widget">
+        <aside class="widget" >
             <h3 class="widget-title text-uppercase text-center" style="color: #00a4b9dc;">Популярные статьи</h3>
             <?php
 

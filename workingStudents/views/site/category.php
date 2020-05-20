@@ -10,10 +10,9 @@ $t=ArtCategory::find()->where(['id'=>$id])->one();
 </div>
 
 <!--main content start-->
-<div class="main-content">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
+<div class="container-fluid d-flex flex-row bd-highlight flex-column">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7 mt-4">
                 <?php foreach($articles as $article):?>
                     <article class="post">
                         <div class="post-thumb">
@@ -43,11 +42,7 @@ $t=ArtCategory::find()->where(['id'=>$id])->one();
                     </article>
                 <?php endforeach; ?>
 
-                <?php
-                    echo LinkPager::widget([
-                        'pagination' => $pagination,
-                    ]);
-                ?>
+               
             </div>
             <?= $this->render('/partials/sidebar', [
                 'popular'=>$popular,
@@ -55,7 +50,12 @@ $t=ArtCategory::find()->where(['id'=>$id])->one();
                 'categories'=>$categories
             ]);?>
         </div>
+        <?php
+                    echo LinkPager::widget([
+                        'pagination' => $pagination,
+                    ]);
+                ?>
     </div>
-</div>
+
 <!-- end main content-->
 <!--footer start-->

@@ -17,11 +17,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <!-- Для свсех стандартно так как в таблице user храняться общие данные -->
         <div class="row d-flex text-dark flex-row justify-content-center m-2 p-1">
             <div class=" bd-highlight col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">
-                <div class="border_search1 padding_search">
-                    <div class="text-center">
-                         <h2>Профиль</h2>
-                         <p>Регистрационные данные:</p>
+                <div class="border_search31 padding_search">
+                    <div class="text-center">   
+                        <h2>Регистрационные данные</h2>
                     </div>
+                    
                         <div class="form">
                                 <?= $form->field($model, 'login')->textInput()->label('Логин <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Изменение логина"]) ?>
 
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <?= $form->field($model, 'phone')->textInput()->label('Номер телефона <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Изменение номера телефона"]) ?>
 
                                 <div class="row justify-content-center">
-                                     <?= Html::submitButton('Сохранить', ['class' => 'btn btn-sm btn-rounded btngreen1 m-3', 'name' => 'Save submit']) ?>
+                                     <?= Html::submitButton('Сохранить', ['class' => 'btn  btn-rounded btnorange m-3', 'name' => 'Save submit']) ?>
                                 </div>
                         </div>
                 </div>

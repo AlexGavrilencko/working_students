@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <br>
     <div class="site-registration">
         <div class=" text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
-            <div class="pole border_search padding_search ">
+            <div class="pole border_search31 padding_search ">
                 <div class="form">
                     <div class="text-center">
                         <h1><?= Html::encode($this->title) ?></h1>
@@ -86,7 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ?>  
                             </p>
                             <div class="row justify-content-center"> 
-                                <a href="/privateoffice/organiz" class="btn-rounded btn-sm btngreen1 btn">Добавить данные</a>
+                                <a href="/privateoffice/organiz" class="btn-rounded btnorange btn">Добавить данные</a>
                             </div>
                     </div>
                     
@@ -168,7 +168,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ?>
                     <?= $form->field($model, 'WorkOrPractice')->radioList(array(0 => 'Предложение по работе', 1 => 'Предложение по практике',), array('labelOptions'=>array('style'=>'display:inline'), 'separator'=>'&nbsp;&nbsp;&nbsp;</br>',)); ?>
                     <div class="row justify-content-center">
-                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btn-sm btngreen', 'name' => 'Save submit']) ?>
+                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btnorange', 'name' => 'Save submit']) ?>
                     </div>
                 </div>
             </div>

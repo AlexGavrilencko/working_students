@@ -40,18 +40,27 @@ $this->params['breadcrumbs'][] = $this->title;
         }
     }
 </script>
+<style>
+    a{
+        color: #00a4b9dc;
+        font-size: 18px;
+    }
+    a:hover{
+        color: #003941dc;
+    }
+</style>
 
 <?php $form = ActiveForm::begin(); ?>
 <br>
     <div class="text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
-                <div class="pole border_search padding_search">
+                <div class="pole border_search31 padding_search">
                         <div class="text-center">
                             <h2><?= Html::encode($this->title) ?></h2>
                             <p>Вы можете составить свое резюме</p>
                         </div>
 
                         <div class="row justify-content-center">
-                            <a href="/privateoffice/set-image" class="btn btn-rounded btn-sm btngreen">Загрузите личную фотографию</a>
+                            <a href="/privateoffice/set-image" class="btn btn-rounded btnorange">Загрузите личную фотографию</a>
                         </div>
 
                         <br>
@@ -126,7 +135,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <h4>Образование</h4>
                     </div>
                                 <div class="row justify-content-center">
-                                    <input type="button" class="btn btn-sm btn-rounded btngreen1 ml-1" value="Добавить образование" onclick="disp1(document.getElementById('form2'))">
+                                    <input type="button" class="btn btn-rounded btnorange ml-1" value="Добавить образование" onclick="disp1(document.getElementById('form2'))">
                                 </div>
                                 <div id="form2" style="display: none;">
                                     <p>Получилось</p>
@@ -183,7 +192,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <h4>Опыт работы</h4>
                             </div>
                                 <div class="row justify-content-center">
-                                    <input type="button" class="btn btn-sm btn-rounded btngreen1 ml-1" value="Добавить опыт работы" onclick="disp(document.getElementById('form1'))">
+                                    <input type="button" class="btn btn-rounded btnorange ml-1" value="Добавить опыт работы" onclick="disp(document.getElementById('form1'))">
                                 </div>
 
                                 <div id="form1" style="display: none;">
@@ -247,7 +256,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
 
                         <div class="row justify-content-center"> 
-                            <?= Html::a('Добавить достижения', ['privateoffice/set-project'], ['class' => 'btn btn-sm btn-rounded btngreen1']) ?>
+                            <?= Html::a('Добавить достижения', ['privateoffice/set-project'], ['class' => 'btn btn-rounded btnorange']) ?>
                         </div>
 
                             <div class="row p-2 my-3 ">
@@ -260,8 +269,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         <img class="img-fluid img-thumbnail" style="width: 200px; object-fit: cover;  display: block;  height: 150px;" src="/uploads/<?= $pr->image?>" alt="">
                                                     </a>
                                                     <div class="row ml-1">
-                                                        <a href="<?= Url::toRoute(['privateoffice/set-project', 'id'=>$pr->id]); ?>" class='m-1 btngreen1'>Редактировать</a>
-                                                        <a href="<?= Url::toRoute(['privateoffice/project_del', 'id'=>$pr->id]); ?>" class='m-1 btngreen1'>Удалить</a>
+                                                        <a href="<?= Url::toRoute(['privateoffice/set-project', 'id'=>$pr->id]); ?>" class='m-1 links' style="font-size: 18px">Редактировать</a>
+                                                        <a href="<?= Url::toRoute(['privateoffice/project_del', 'id'=>$pr->id]); ?>" class='m-1 links' style="font-size: 18px">Удалить</a>
                                                     </div>
                                             <!--  </div>-->
                                             <?php endif; ?>
@@ -273,7 +282,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--___________________/Проекты______________________________________________________--> 
 
                     <div class="row justify-content-center">
-                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-sm btn-rounded btngreen', 'name' => 'Save submit']) ?>
+                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btnorange', 'name' => 'Save submit']) ?>
                     </div>
 
                 </div>           

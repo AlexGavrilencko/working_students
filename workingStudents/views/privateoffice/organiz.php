@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <br>
     <div class="site-registration">
         <div class="text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
-            <div class="pole border_search2 padding_search">
+            <div class="pole border_search31 padding_search">
                 <div class="form">
                     <div class="text-center">
                         <h1><?= Html::encode($this->title) ?></h1>
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                         
                             <div class="row justify-content-center">
-                                <a href="/privateoffice/set-image" class="btn btn-sm btn-rounded btngreen1">Загрузите логотип</a>
+                                <a href="/privateoffice/set-image" class="btn btn-rounded btnorange">Загрузите логотип</a>
                             </div>
                         <br>
                             <div class="row justify-content-center">
@@ -73,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'ogrn')->textInput(['placeholder'=>"Введите ОГРН вашей организации"]) ?>
 
                     <div class="row justify-content-center">
-                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-sm btn-rounded btngreen1', 'name' => 'Save submit']) ?>
+                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btnorange', 'name' => 'Save submit']) ?>
                     </div>
                 </div>
             </div>

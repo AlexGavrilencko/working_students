@@ -9,16 +9,25 @@ use app\models\Organization;
 use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
-<br>
+<style>
+    a{
+        color: #00a4b9dc;
+        font-size: 18px;
+    }
+    a:hover{
+        color: #003941dc;
+    }
+</style>
 <?php
     $this->title = 'Просмотренное';
     $user = Yii::$app->user->identity;
-    foreach ($select as $sel):
+    
 
         if($user->rang===10){ //условие для вывода просмотренного для студента ?>
             <div class="row justify-content-md-center "> 
-                <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7">  
+                <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7 mt-4">  
                     <?php
+                    foreach ($select as $sel):
                         foreach ($vac as $vacan): 
                             if($sel->vacancy_id==$vacan->id){  
                     ?>
@@ -117,16 +126,23 @@ use yii\helpers\Url;
                                         </div>
                                     </div>
                                 </div> <!-- /Фон для отображения -->
-                            <?php };  endforeach; ?>  <!-- /Цикл для отображения вакансий -->
-                </div>        
+                            <?php };  endforeach;
+                            endforeach;  ?>  <!-- /Цикл для отображения вакансий -->
+                </div>       
+                <?= $this->render('/partials/sidebar', [
+                    'popular'=>$popular,
+                    'recent'=>$recent,
+                    'categories'=>$categories
+                ]);?>  
             </div>
                 <!-- ________ОТОБРАЖЕНИЕ ИНФОРМАЦИЯ ПРОСМОТРЕННОГО ДЛЯ СТУДЕНТА (КОНЕЦ)__________-->
         <?} //условие для вывода просмотренного для студента (КОНЕЦ)
         if($user->rang==20){ //условие вывода просмотренного для работодателя ?>
             <!-- ________ОТОБРАЖЕНИЕ ИНФОРМАЦИЯ ПРОСМОТРЕННОГО ДЛЯ рАБОТОДАТЕЛЯ__________-->
             <div class="row justify-content-md-center mb-3"> <!-- Для отображения информации -->   
-                <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7">                 
+                <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7 mt-4">                 
                     <?php 
+                    foreach ($select as $sel):
                         foreach ($resume as $resum): 
                             if($sel->resume_id==$resum->id){ 
                                 if ($resum->ShowOrHide==1){
@@ -195,9 +211,15 @@ use yii\helpers\Url;
                     <!-- _______________________________________________________________________________________________ -->
                     <?php  };//$sel->resume_id==$resume->id
                     }; //$resum->ShowOrHide===1?> 
-                <?php  endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
+                <?php  endforeach; 
+                endforeach; ?> <!-- здесь заканчивается цикл для отображения -->
             </div>
+            <?= $this->render('/partials/sidebar', [
+                    'popular'=>$popular,
+                    'recent'=>$recent,
+                    'categories'=>$categories
+                ]);?> 
         </div>
     <?} //if($user->rang==20){ 
-endforeach;  //foreach ($select as $sel):?> 
+ //foreach ($select as $sel):?> 
           

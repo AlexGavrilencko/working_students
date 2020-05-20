@@ -161,11 +161,11 @@ svg text {
  .btnorange{
   color: #00a3b9;
   border-color: #00a4b9dc;
-  background: #ffffff;
+
 }
 /* стиль при наведении для кнопки оранжевого цвета */
 .btnorange:hover{
-  color: #000000;
+  color: #fff;
   border-color: #00a4b9dc;
   background: #00a4b9dc;
 }
@@ -173,6 +173,7 @@ svg text {
  .btnpurple{
   color: #313186;
   border-color: #1B1BB3;
+
 }
 /* стиль при наведении для кнопки фиолетовогоцвета */
 .btnpurple:hover{
@@ -258,11 +259,19 @@ svg text {
   }
 
   .border_search3{
-    background-color: #ffffff;
+    background-color: #f8f8f8b0;
     border: 1px solid;
-    border-color: #00a4b9dc;
+    border-color: #e5e5e5;
     padding: 3%;
   }
+
+  .border_search31{
+    background-color: #f8f8f8b0;
+    border: 1px solid;
+    border-color: #00a3b963;
+    padding: 3%;
+  }
+
   .border_search4{
     background-color: #bb9df115;
     border: 2px solid;
@@ -305,7 +314,7 @@ svg text {
 
   .border_search_resume{
     width: 90%;
-    background-color: #ffffff;
+    background-color: #ffffffb0;
     
     border: 1px solid;
     padding: 2%;
@@ -561,7 +570,7 @@ svg text {
   }
   /* стиль при наведении для ссылки входа */
   .menugreen_v:hover{
-    color: #9dbb19;
+    color: #d3d3d3dc;
   } 
   .mr_seach{
     margin-bottom: 3%;
@@ -644,7 +653,7 @@ svg text {
 /*r____________________________________________________________*/
 .response{
   margin-left: 4%;
-  background-color: #f9faf89d;
+  background-color: #f8f8f8b0;
 }
 /*/r___________________________________________________________*/
 
@@ -757,6 +766,10 @@ svg text {
 
 .links{
   color: #00a4b9dc;
+  font-size: 18px;;
+}
+.links:hover{
+  color: #003941dc;
 }
 
 

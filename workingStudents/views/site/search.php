@@ -26,6 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
     cursor: default;  /* устанавливаем курсор в виде стрелки */
     color: #999; /* цвет текста для нективной ссылки */
 }
+a{
+        color: #00a4b9dc;
+        font-size: 18px;
+    }
+    a:hover{
+        color: #003941dc;
+    }
 </style>
 
 <script>
@@ -43,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
         <div class="row justify-content-center"> <!-- Для поиска -->
-                <div class="border_search_resume" style=" border-color: #00a4b9dc;">
+                <div class="border_search_resume" style=" border-color: #e5e5e5;">
                         <form class="search_resume" method="get" action="<?= Url::toRoute(['site/searchfilt'])?>">
                             <div class="row justify-content-center">
                                 <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-6 mt-1"> <!-- Ввод должности или профессии -->
@@ -214,7 +221,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </div><!-- /Отображение названия организации -->
 
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение города -->
-                                    <p> Город:
+                                    <p>
                                         <?php
                                             $c = $vacan->city_id;
                                             $city = Attributes::find()->where(['id'=>$c])->one();
@@ -227,7 +234,22 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </p>
                                 </div><!-- Отображение города -->
                             </div>   <!-- ROW ml-1 Отображение названия организации и города --> 
-                            <div class="row ml-1">
+                            
+                            <?php   
+                            $exp=Attributes::find()->where(['id'=>$vacan->experience_id])->one();//опыт
+                            $emp=Attributes::find()->where(['id'=>$vacan->employment_id])->one();//тип з
+                        ?>
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">
+                                    <p>Опыт<?= $exp->name ?></p>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                    <p>Тип занятости <?= $emp->name ?></p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">
                                     <p>Зарплата: 
                                         <?php
                                             $salary = $vacan->salary;
@@ -237,19 +259,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                             else echo $salary;
                                         ?>
                                     </p>
+                                </div>
                             </div> 
-                            <?php   
-                            $exp=Attributes::find()->where(['id'=>$vacan->experience_id])->one();//опыт
-                            $emp=Attributes::find()->where(['id'=>$vacan->employment_id])->one();//тип з
-                        ?>
-                            <div class="row">
-                                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                    <p>Опыт<?= $exp->name ?></p>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                    <p>Тип занятости <?= $emp->name ?></p>
-                                </div>
-                            </div>
+
                         </div>  <!-- div /Отображение информации правее фотографии -->
                     </div>
                     <div class="row ml-1 mt-3"> <!-- Отображение дополнительной информации для соискателя -->

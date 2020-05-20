@@ -581,11 +581,17 @@ class SiteController extends Controller
         $org = Organization::find()->where(['id'=>$id])->one();
         $query=Vacancy::find()->where(['organization_id'=>$org->id]);
         $data = Vacancy::getSearch($query);
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
         //var_dump($vac);
         return $this->render('org_vacancy',[
             'org'=>$org,
             'pagination'=>$data['pagination'],
             'vacancy'=>$data['vacancy'],
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories,
         ]);
     }
 

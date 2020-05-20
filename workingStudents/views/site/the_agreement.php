@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
 
 
     <div class="container-fluid  d-flex flex-row bd-highlight flex-column pole"> 
-        <div class="row justify-content-md-center documentswindow text-dark padding_search pers_data_prot">
+        <div class="row justify-content-md-center border_search3 text-dark padding_search pers_data_prot">
 
         <h4 class="text-center">Соглашение об оказании услуг по содействию в трудоустройстве</h4>
 <div>

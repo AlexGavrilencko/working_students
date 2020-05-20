@@ -12,7 +12,7 @@ $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
-    <div class="pole border_contact">
+    <div class="pole border_search31">
     <h1 class="text-center">Контакт</h1>
 
     <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]) ?>
 
                     <div class="row form-group justify-content-center">
-                        <?= Html::submitButton('Отправить', ['class' => 'btn  btn-rounded btngreen1', 'name' => 'contact-button']) ?>
+                        <?= Html::submitButton('Отправить', ['class' => 'btn  btn-rounded btnorange', 'name' => 'contact-button']) ?>
                     </div>
 
                 <?php ActiveForm::end(); ?>

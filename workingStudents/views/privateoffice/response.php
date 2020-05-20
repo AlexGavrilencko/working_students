@@ -1,3 +1,12 @@
+<style>
+    a{
+        color: #00a4b9dc;
+        font-size: 18px;
+    }
+    a:hover{
+        color: #003941dc;
+    }
+</style>
 <?php
 //СТРАНИЦА Отклик
 use yii\widgets\ActiveForm;
@@ -12,6 +21,7 @@ use app\models\Organization;
 $user = Yii::$app->user->identity;
 if($user->rang===10){ 
 ?>
+
  
       <div class="response text-center" style="width: 90%">   
             <div class="table-responsive-sm table-responsive-md">

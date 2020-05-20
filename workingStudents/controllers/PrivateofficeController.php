@@ -21,7 +21,9 @@ use app\models\Experience;
 use app\models\ExperienceSearch;
 use yii\web\NotFoundHttpException;
 use yii\helpers\FileHelper;
-
+use app\models\ArtCategory;
+use app\models\Article;
+use app\models\ArticleTag;
 
 
 class PrivateofficeController extends Controller
@@ -176,11 +178,17 @@ class PrivateofficeController extends Controller
         $org = Organization::find()->where(['user_id'=>$user->id])->one();
         $vac = Vacancy::find()->where(['user_id'=>$user->id]);
         $data = Vacancy::getSearch($vac);
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
         return $this->render('my_vacancy',[
             'vac'=>$vac,
             'org'=>$org,
             'pagination'=>$data['pagination'],
             'vacancy'=>$data['vacancy'],
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories,
         ]);
     }
 
@@ -303,7 +311,18 @@ class PrivateofficeController extends Controller
         $select= Scanned::find()->where(['user_id'=>$user->id,'ViewOrSelect'=>$vs])->all();
         $resume=Resume::find()->all();
         $vac=Vacancy::find()->all();
-        return $this->render('my_select',['select'=>$select,'vs'=>$vs,'resume'=>$resume,'vac'=>$vac]);
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+        return $this->render('my_select',[
+            'select'=>$select,
+            'vs'=>$vs,
+            'resume'=>$resume,
+            'vac'=>$vac,
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories,
+            ]);
     }
 
     public function actionMy_scan(){
@@ -313,7 +332,18 @@ class PrivateofficeController extends Controller
         $select= Scanned::find()->where(['user_id'=>$user->id,'ViewOrSelect'=>$vs])->all();
         $resume=Resume::find()->all();
         $vac=Vacancy::find()->all();
-        return $this->render('my_scanned',['select'=>$select,'vs'=>$vs,'resume'=>$resume,'vac'=>$vac]);
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+        return $this->render('my_scanned',[
+            'select'=>$select,
+            'vs'=>$vs,
+            'resume'=>$resume,
+            'vac'=>$vac,
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories,
+            ]);
     }
 
     public function actionResponse(){

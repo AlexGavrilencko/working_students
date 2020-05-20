@@ -12,12 +12,19 @@ use yii\helpers\ArrayHelper;
 
 $this->title = 'Мои вакансии';
 ?>
-          
-<br>
+<style>
+    a{
+        color: #00a4b9dc;
+        font-size: 18px;
+    }
+    a:hover{
+        color: #003941dc;
+    }
+</style>
 <!-- Для отображения информации -->
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
-    <div class="row justify-content-md-center mb-4"> 
-        <div class="col-10 col-sm-10 col-md-8 col-lg-8 col-xl-8 ml-4">  
+    <div class="row justify-content-md-center mt-4"> 
+        <div class="col-10 col-sm-10 col-md-8 col-lg-8 col-xl-8 mt-4">  
                     <br>     
                 <?php
                 foreach ($vacancy as $vacan):    
@@ -132,6 +139,11 @@ $this->title = 'Мои вакансии';
                
            
         </div>
+                <?= $this->render('/partials/sidebar', [
+                    'popular'=>$popular,
+                    'recent'=>$recent,
+                    'categories'=>$categories
+                ]);?> 
     </div>
     <?php
                     echo LinkPager::widget([
