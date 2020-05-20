@@ -133,7 +133,7 @@ $this->title = 'Просмотр резюме';
                                             <thead> <!--Строка с заголовками-->
                                                 <tr>
                                                     <th scope="col">№</th>
-                                                    <th scope="col">Количество</th>
+                                                    <th scope="col">Время работы</th>
                                                     <th scope="col">Организация</th>
                                                     <th scope="col">Должность</th>
                                                 </tr>
@@ -143,7 +143,7 @@ $this->title = 'Просмотр резюме';
 
                                                 <?php  
                                                     //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
-                                                    $position = Position::find()->where(['id'=>$exp->position_id])->one();
+                                                    $position = Position::find()->where(['id'=>$exps->position_id])->one();
                                                     //$speciality=$speciality->name;
                                                 ?>
                                                 <tr>
@@ -173,7 +173,7 @@ $this->title = 'Просмотр резюме';
                     <thead> <!--Строка с заголовками-->
                         <tr>
                             <th scope="col">№</th>
-                            <th scope="col">Количество</th>
+                            <th scope="col">Время обучения</th>
                             <th scope="col">Организация</th>
                             <th scope="col">Должность</th>
                         </tr>
@@ -182,7 +182,7 @@ $this->title = 'Просмотр резюме';
                     <?php foreach($educ as $educs): ?> <!--Цыкл для отображения-->
                         <?php  
                             //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
-                            $speciality = Speciality::find()->where(['id'=>$exp->speciality_id])->one();
+                            $speciality = Speciality::find()->where(['id'=>$educs->speciality_id])->one();
                             //$speciality=$speciality->name;
                         ?>
                         <tr>

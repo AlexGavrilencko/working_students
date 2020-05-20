@@ -113,7 +113,7 @@ class PrivateofficeController extends Controller
                 $res->create();
                 $expir->resume_id=$res->id;
                 $expir->load(Yii::$app->request->post());
-                $expir->create(); 
+                
             }
             return $this->render('resume', ['model'=>$res,'expir'=>$experience,'model1'=>$model1,'project'=>$proj]);
         }
@@ -130,7 +130,7 @@ class PrivateofficeController extends Controller
                 $expir->resume_id=$resume->id;
                 $expir->StudyOrWork=0;
                 $expir->load(Yii::$app->request->post());
-                $expir->create(); 
+                
             }
             return $this->render('resume', ['model'=>$resume,'expir'=>$expir,'model1'=>$experience,'project'=>$proj]);
         }

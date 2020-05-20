@@ -146,7 +146,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <?php foreach($model1 as $exp): ?>
+                                            <?php foreach($model1 as $exp): 
+                                                if($exp->StudyOrWork==0){?>
                                                 <?php  
                                                     //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
                                                     $speciality = Speciality::find()->where(['id'=>$exp->speciality_id])->one();
@@ -166,6 +167,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         ]) ?>
                                                     </th>
                                                 </tr>
+                                                <?php } ?>
                                                 <?php endforeach;?>
                                             </tbody>
                                         </table>
@@ -192,7 +194,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <?= $form->field($expir, 'position_id')->textInput(['placeholder'=>"Должность"]) ?>
                                 </div>
     <!--_________________Опыт работы отображение________________________________-->
-                                <?php if($model1 != null): ?> 
+                                <?php if($model1 != null): 
+                                    ?> 
                                     <div class="table-responsive-sm table-responsive-md">
                                         <table class="table table-bordered table-hover table-sm mt-3">
                                             <thead>
@@ -205,8 +208,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <?php foreach($model1 as $exp): ?>
-
+                                            <?php foreach($model1 as $exp): 
+                                                if($exp->StudyOrWork==1){ ?>
                                                 <?php  
                                                     //$org = Organization::find()->where(['id'=>$exp->nameOrganiz])->one();
                                                     $position = Position::find()->where(['id'=>$exp->position_id])->one();
@@ -226,7 +229,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         ]) ?>
                                                     </th>
                                                 </tr>
-                                                <?php endforeach;?>
+                                                <?php }; endforeach;?>
                                             </tbody>
                                         </table>
                                     </div>      

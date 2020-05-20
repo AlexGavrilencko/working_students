@@ -310,10 +310,7 @@ svg text {
     border: 1px solid;
     padding: 2%;
   }
-  .vvv{
-    border-color:  #d4d4d4;
-    border: 1px solid;
-  }
+
 
   body {
     display: flex;
