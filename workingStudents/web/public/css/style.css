@@ -159,13 +159,15 @@ svg text {
 }
  /* стиль для кнопки оранжевого цвета */
  .btnorange{
-  color: #BF9630;
-  border-color: #FFB600;
+  color: #00a3b9;
+  border-color: #00a4b9dc;
+  background: #ffffff;
 }
 /* стиль при наведении для кнопки оранжевого цвета */
 .btnorange:hover{
-  color: #FFC840;
-  border-color: #FFC840;
+  color: #000000;
+  border-color: #00a4b9dc;
+  background: #00a4b9dc;
 }
  /* стиль для кнопки фиолетового цвета */
  .btnpurple{
@@ -191,8 +193,8 @@ svg text {
     border-color: #ffffff;
   }
   .btnwite:hover{
-    color: #9dbb19;
-    border-color: #9dbb19;
+    color: #00a4b9dc;
+    border-color: #00a4b9dc;
   }
  
   /* стиль при наведении для кнопки зеленого цвета */
@@ -256,9 +258,9 @@ svg text {
   }
 
   .border_search3{
-    background-color: #55b8c515;
-    border: 2px solid;
-    border-color: #34575cdc;
+    background-color: #ffffff;
+    border: 1px solid;
+    border-color: #00a4b9dc;
     padding: 3%;
   }
   .border_search4{
@@ -302,16 +304,22 @@ svg text {
   }
 
   .border_search_resume{
-    width: 100%;
-    background-color: #22beb16e;
+    width: 90%;
+    background-color: #ffffff;
+    border-color: #00a4b9dc;
+    border: 1px solid;
     padding: 2%;
+  }
+  .vvv{
+    border-color:  #d4d4d4;
+    border: 1px solid;
   }
 
   body {
     display: flex;
     flex-direction: column;
     font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */ 
-    font-family: 'Open Sans', sans-serif;
+   
   }
   .blok_information{
     margin-left: 2%;
@@ -523,7 +531,7 @@ svg text {
 /*m____________________________________________________________*/
   /*стиль для отступов элементов поиска в шапке*/
   .margin-top{
-    margin-top: 13%;
+    margin-top: 8%;
   }
   /* цвет и подчеркивание для активной ссылки */
   .menured{
@@ -738,11 +746,19 @@ svg text {
 }
 
 
+.text_name_vacancy{
+  color: #00a4b9dc;
 
+}
 
+.btn-secondary1{
+  background: #00a4b9dc; /* Синий цвет фона */ 
+  color: white;
+}
 
-
-
+.links{
+  color: #00a4b9dc;
+}
 
 
 

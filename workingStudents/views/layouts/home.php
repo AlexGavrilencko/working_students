@@ -106,7 +106,7 @@ PublicAsset::register($this);
             </nav>--> 
 
              
-                <p class="h2 text-light margin-top">Работа для каждого</p>
+                <h4 class="text-light margin-top">Работа для каждого</h4>
   
 
 	                <div class="row">
@@ -203,14 +203,14 @@ PublicAsset::register($this);
                 <div class="row justify-content-center">
                     <div class="col-12 col-sm-12 col-md-3 col-lg-4 col-xl-4">
                         <li class="nav-item dropdown" style="margin-left: 2%;">
-                            <a class="nav-link dropdown-toggle text-light h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Документация
                             </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item menugreen_v h6" href="/site/personal_data_protection">Защита персональных данных</a>
-                                    <a class="dropdown-item menugreen_v h6" href="/site/site_terms_of_use">Условие использования сайта</a>
-                                    <a class="dropdown-item menugreen_v h6" href="/site/the_agreement">Соглашение об оказании услуг</a>
-                                    <a class="dropdown-item menugreen_v h6" href="/site/rules_for_placement_of_vacancies">Правила размещения вакансий на ws.ru</a>
+                                    <a class="dropdown-item menugreen_v" href="/site/personal_data_protection">Защита персональных данных</a>
+                                    <a class="dropdown-item menugreen_v" href="/site/site_terms_of_use">Условие использования сайта</a>
+                                    <a class="dropdown-item menugreen_v" href="/site/the_agreement">Соглашение об оказании услуг</a>
+                                    <a class="dropdown-item menugreen_v" href="/site/rules_for_placement_of_vacancies">Правила размещения вакансий на ws.ru</a>
                                 </div>
                         </li>
                     </div>

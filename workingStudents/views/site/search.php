@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
-        <div class="row"> <!-- Для поиска -->
+        <div class="row justify-content-center"> <!-- Для поиска -->
                 <div class="border_search_resume">
                         <form class="search_resume" method="get" action="<?= Url::toRoute(['site/searchfilt'])?>">
                             <div class="row justify-content-center">
@@ -87,11 +87,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                 
                              
                                 <div class="col-6 col-sm-5 col-md-2 col-lg-3 col-xl-3 mt-1"> <!-- Кнопка для поиска -->
-                                    <input type="button" class="btn btn-secondary" value="Еще фильтры" onclick="disp(document.getElementById('form1'))">
+                                    <input type="button" class="btn btn-secondary1" value="Еще фильтры" onclick="disp(document.getElementById('form1'))">
                                 </div>
 
                                 <div class="col-6 col-sm-5 col-md-2 col-lg-3 col-xl-3 mt-1"> <!-- Кнопка для поиска -->
-                                    <button type="submit" class="btn btn-secondary">Найти</button>
+                                    <button type="submit" class="btn btn-secondary1">Найти</button>
                                 </div>
 
                             </div><!-- div ROW -->
@@ -178,7 +178,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="row">
 
                                 <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение названии вакансии -->
-                                    <p>Название вакансии:<?= $vacan->name ?></p>
+                                    <h6 Class="text_name_vacancy"><?= $vacan->name ?></h6>
                                 </div>                  <!-- /Отображение названии вакансии -->
 
                                  <!-- Отображение зарплаты -->
@@ -269,7 +269,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <div class="row"> <!-- кнопок действия и даты -->
                         <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
-                            <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a>
+                            <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>" class="links">Подробнее о вакансии</a>
                         </div>
                         <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                             <p>Дата<?= $vacan->dateAdd ?></p>       

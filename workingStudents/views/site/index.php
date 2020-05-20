@@ -10,7 +10,7 @@ $c = 0;
 ?>
 <div class="container">
     <div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения категорий -->
-        <p class="h4 text-center m-2">Найдите работу в вашем городе</p> <!-- Надо сделать так, чтобы город был автоматически, как на других сайтах -->
+        <h5 class=" text-center m-2">Найдите работу в вашем городе</h5> <!-- Надо сделать так, чтобы город был автоматически, как на других сайтах -->
             <div class="row">
 
                 <?php $profstand=Profstand::find()->all();?>
@@ -24,7 +24,7 @@ $c = 0;
                 <?php endforeach;?>
 
             </div>
-                <p class="h4 text-center m-2">Зарегистрированные организации</p>
+                <h5 class=" text-center m-2">Зарегистрированные организации</h5>
 
                     <div class="row p-2 my-3">
                         <?php foreach ($organizations as $organization) : 

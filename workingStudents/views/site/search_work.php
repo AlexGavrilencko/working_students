@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </style>
 
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
-            <div class="row "> <!-- Для поиска -->
+            <div class="row justify-content-center"> <!-- Для поиска -->
                 <div class="border_search_resume">
                     <form class="search_resume">
                         <div class="row justify-content-center">
@@ -80,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             
 
                             <div class="col-12 col-sm-10 col-md-4 col-lg-6 col-xl-6 mt-1"> <!-- Кнопка для поиска -->
-                                <button type="submit" class="btn btn-secondary mb-1">Найти</button>
+                                <button type="submit" class="btn btn-secondary1 mb-1">Найти</button>
                             </div>
                         </div>
                     </form>
@@ -114,9 +114,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->
                             <div class="row">
-
                                     <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение ФИО -->
-                                        <p> <?= $resum->surname ?> <?= $resum->name ?> <?= $resum->patronymic ?></p>
+                                        <h6 сlass="text_name_vacancy"> <?= $resum->surname ?> <?= $resum->name ?> <?= $resum->patronymic ?></h6>
                                     </div>                  <!-- /Отображение ФИО -->
 
                                     <?php  if (!Yii::$app->user->isGuest){ ?>
@@ -170,7 +169,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="row ml-1 "> <!-- кнопок действия и даты -->
         
                             <div class="col-8 col-sm-8 col-md-10 col-lg-10 col-xl-10">
-                                <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>">Подробнее</a>
+                                <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>" class="links">Подробнее о резюме</a>
                             </div>
                             <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
                                 <p>Дата<?= $resum->dateAdd ?></p>       

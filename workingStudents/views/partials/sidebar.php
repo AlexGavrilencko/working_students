@@ -5,7 +5,7 @@ use yii\helpers\Url;
     <div class="primary-sidebar mt-4">
 
         <aside class="widget">
-            <h3 class="widget-title text-uppercase text-center">Популярные статьи</h3>
+            <h3 class="widget-title text-uppercase text-center text_name_vacancy">Популярные статьи</h3>
             <?php
 
             foreach($popular as $article):?>
@@ -25,7 +25,7 @@ use yii\helpers\Url;
 
         </aside>
         <aside class="widget pos-padding">
-            <h3 class="widget-title text-uppercase text-center">Новые статьи</h3>
+            <h3 class="widget-title text-uppercase text-center text_name_vacancy">Новые статьи</h3>
             <?php foreach($recent as $article):?>
                 <div class="thumb-latest-posts">
                     
@@ -43,7 +43,7 @@ use yii\helpers\Url;
             <?php endforeach;?>
         </aside>
         <aside class="widget border pos-padding">
-            <h3 class="widget-title text-uppercase text-center">Категории</h3>
+            <h3 class="widget-title text-uppercase text-center text_name_vacancy">Категории</h3>
             <ul>
                 <?php foreach($categories as $category):?>
                     <li>
