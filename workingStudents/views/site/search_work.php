@@ -26,8 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
             <div class="row justify-content-center"> <!-- Для поиска -->
-                <div class="border_search_resume">
-                    <form class="search_resume">
+                <div class="border_search_resume" style=" border-color: #00a4b9dc;">
+                    <form class="search_resume" >
                         <div class="row justify-content-center">
 
                                 <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-6 mt-1"> <!-- Ввод должности или профессии -->
@@ -72,13 +72,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         <!-- <div class="col-sm-2">  Для выбора стажа 
 
                             </div>-->
-                           
-                            
-
-                            
-
-                            
-
                             <div class="col-12 col-sm-10 col-md-4 col-lg-6 col-xl-6 mt-1"> <!-- Кнопка для поиска -->
                                 <button type="submit" class="btn btn-secondary1 mb-1">Найти</button>
                             </div>
@@ -115,7 +108,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->
                             <div class="row">
                                     <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение ФИО -->
-                                        <h6 сlass="text_name_vacancy"> <?= $resum->surname ?> <?= $resum->name ?> <?= $resum->patronymic ?></h6>
+                                        <h6 style="color: #00a4b9dc;"> <?= $resum->surname ?> <?= $resum->name ?> <?= $resum->patronymic ?></h6>
                                     </div>                  <!-- /Отображение ФИО -->
 
                                     <?php  if (!Yii::$app->user->isGuest){ ?>

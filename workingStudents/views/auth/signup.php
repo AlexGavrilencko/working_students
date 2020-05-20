@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <br>
 <div class="site-registration">
-    <div class="text-light d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
+    <div class="text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
         <div class="pole darkwindow">
 
                 <?php $form = ActiveForm::begin(); ?>
@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     
                 ?>          
                     <div class="row justify-content-center">
-                        <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-rounded btngreen', 'name' => 'login-button']) ?>
+                        <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-rounded btnorange', 'name' => 'login-button']) ?>
                     </div>
               
                     

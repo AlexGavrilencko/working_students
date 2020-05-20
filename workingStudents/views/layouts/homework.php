@@ -29,7 +29,7 @@ PublicAsset::register($this);
     <?php $this->beginBody() ?>
 
 
-    <header>
+<div class="header">
     <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->   
             <a href="/site/index" class="navbar-brad ml-2"><img src="/public/img/logo1.png" alt="Logo"></a>  <!-- логотип в меню сайта --> 
 
@@ -64,16 +64,52 @@ PublicAsset::register($this);
                             </li>
                             
                             <li class="nav-item">
-                                <a href="/auth/login" class="btn btn-secondary">Разместить резюме</a>
+                                <a href="/auth/login" class="btn btn-secondary">Разместить вакансию</a>
                             </li>
                         
                         </ul>
                 </div>
         </nav>
-    </header>
+        <div class="container-fluid d-flex hh-100 flex-row  flex-column">        
+
+          <!--  <nav class="navbar navbar-expand-lg">  стиль для меню сайта  
+
+                <div class="collapse navbar-collapse " id="collapsibleNavbar">
+                        <ul class="navbar-nav ml-auto"> 
+                            <li class="nav-item">
+                            <a href="/auth/login" class="btn-rounded btnwite btn btn-lg">Разместить резюме</a>
+                             </li>
+                        </ul>
+                </div>
+            </nav>--> 
+
+             
+                <h4 class="text-light margin-top">Найдите молодого специалиста в компанию прямо сейчас</h4>
+  
+
+	                <div class="row">
+                        <div class="col-12 col-md-10 col-lg-8">
+                            <form class="search" method="get" action="<?= Url::toRoute(['site/searchws']) ?>">
+                                <div class="row no-gutters align-items-center">
+
+                                    <div class="col-8">
+                                        <input class="form-control btn-none form-control-lg" type="name" name="search" placeholder="Профессия или должность">
+                                    </div>
+
+                                    <div class="col-auto">
+                                        <button type="submit" class="btn-none btn-lg btn btnwite" >Найти</button>
+                                    </div>
+                                </div>    
+                            </form>
+                        </div>
+                    </div>
+
+                    
+    
+</div>
 
   
-        <main class="content1"><?= $content ?></main>
+        <main class="content"><?= $content ?></main>
   
 
         <footer class="dark">
