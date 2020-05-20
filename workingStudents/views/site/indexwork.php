@@ -10,48 +10,37 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 
-$this->title = 'Главная';
+$this->title = 'Работодателю';
 
 ?>
 
         <div class="row">
-            <h1 class="text_indexwork"><strong>Разместить</strong></h1>
+            <h1 class="text_indexwork"><strong>Почему следует разместить свои предложения по работе или практике именно на нашем сайте?</strong></h1>
         </div>
-        <div class="row">
-            <h1 class="btn_iw" style="font-size: 7vw;"><strong>первую вакансию</strong></h1>
-        </div>
-            <div class="row">
+
+            <div class="row mr-5">
                 <a href="/auth/login" class="btn btn-secondary btn-lg btn_iw">Разместить вакансию</a>
             </div>
             
-                <div class="row" style="margin-left: 13%; margin-top: 15%; margin-right: 3%">
+                <div class="row justify-content-center" style="margin-left: 14%; margin-top: 7%; margin-right: 3%">
                     <div class="col-sm">
-                        <img class="img_iw img-fluid img-thumbnail" src="/public/img/Work_1.jpg" alt="">
-                    </div>
-                    <div class="col-sm">
-                        <p style="font-size: 2.5vw; margin-top: 15%;"><strong>Вам будут доступны<br> резюме</strong></p>
-                    </div>
-                </div>
+                        <div class="row">
+                            <img class="img_iw img-fluid " src="/public/img/Work_2.jpg" alt="" style="width: 300px; object-fit: cover;  display: block;  height: 250px;">
+                        </div>
 
+                        <div class="row">
+                            <img class="img_iw img-fluid " src="/public/img/Work_1.jpg" alt="" style="width: 300px; object-fit: cover;  display: block;  height: 250px;">
+                        </div>
 
-                <div class="row" style="margin-left: 13%; margin-right: 3%">
-                    <div class="col-sm">
-                        <p style="font-size: 2.5vw; margin-top: 15%;"><strong>Ваша вакансия будет<br> видна всем 
-                        пользователям</strong></p>
+                        <div class="row">
+                            <img class="img_iw img-fluid " src="/public/img/Work_3_1.jpg" alt="" style="width: 300px; object-fit: cover;  display: block;  height: 250px;">
+                        </div>
                     </div>
-                    <div class="col-sm">
-                        <img class="img_iw img-fluid img-thumbnail" src="/public/img/Work_2.jpg" alt="">
-                    </div>
-                </div>
 
-
-                <div class="row" style="margin-left: 13%; margin-bottom: 5%; margin-right: 3%">
                     <div class="col-sm">
-                        <img class="img_iw img-fluid img-thumbnail" src="/public/img/Work_3_1.jpg" alt="">
-                    </div>
-                    <div class="col-sm">
-                        <p style="font-size: 2.5vw; margin-top: 15%;"><strong>На Workind Students<br> могут 
-                        зарегистрироваться <br>как крупные, так и<br> маленькие компании</strong></p>
+                        <p style="font-size: 2.5vw; margin-top: 15%;"><strong>1. Мы первый сайт, который нацелен на трудоустройство молодых специалистов.</strong></p>
+                        <p style="font-size: 2.5vw; margin-top: 15%;"><strong>2. Размещенеие вакансий и предложений по практике абсолютно бесплатно.</strong></p>
+                        <p style="font-size: 2.5vw; margin-top: 15%;"><strong>3. На нашем сайте вы никогда не увидете рекламу, которая мешают просмотр страниц.</strong></p>
                     </div>
                 </div>
 

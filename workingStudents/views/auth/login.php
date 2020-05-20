@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ]); ?>
 <br>
 <div class="site-registration">
-    <div class="text-light d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
+    <div class="text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
         <div class="pole darkwindow">
 
            
@@ -35,11 +35,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'password')->passwordInput(['placeholder'=>"Пароль"]) ?>
 
                     <?= $form->field($model, 'rememberMe')->checkbox([
-                        'template' => "<div class=\"col-lg-offset-1 col-lg-3 btn-rounded btngreen\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
+                        'template' => "<div class=\"col-lg-offset-1 col-lg-3 btn-rounded btnorange\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
                     ]) ?>
 
                    <div class=" row justify-content-center ">   
-                        <?= Html::submitButton('Вход', ['class' => ' btn-rounded btngreen btn btn-lg mt-2', 'name' => 'login-button']) ?>
+                        <?= Html::submitButton('Вход', ['class' => ' btn-rounded btnorange btn btn-lg mt-2', 'name' => 'login-button']) ?>
                     </div>
                     
                 <?php ActiveForm::end(); ?>
@@ -52,12 +52,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="container">
                          <div class="row justify-content-md-center">
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                 <a href="<?= Url::toRoute(['/auth/signup', 'rang'=>'10']); ?>" class="btn-rounded btngreen btn btn-block m-1">Соискателя</a>
+                                 <a href="<?= Url::toRoute(['/auth/signup', 'rang'=>'10']); ?>" class="btn-rounded btnorange btn btn-block m-1">Соискателя</a>
                             </div>
 
 
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                <a href="<?= Url::toRoute(['/auth/signupwork', 'rang'=>'20']); ?>" class="btn-rounded btngreen btn btn-block m-1">Работодателя</a>
+                                <a href="<?= Url::toRoute(['/auth/signupwork', 'rang'=>'20']); ?>" class="btn-rounded btnorange btn btn-block m-1">Работодателя</a>
 
 
                             

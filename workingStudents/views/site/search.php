@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
         <div class="row justify-content-center"> <!-- Для поиска -->
-                <div class="border_search_resume">
+                <div class="border_search_resume" style=" border-color: #00a4b9dc;">
                         <form class="search_resume" method="get" action="<?= Url::toRoute(['site/searchfilt'])?>">
                             <div class="row justify-content-center">
                                 <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-6 mt-1"> <!-- Ввод должности или профессии -->

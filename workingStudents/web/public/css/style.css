@@ -306,7 +306,7 @@ svg text {
   .border_search_resume{
     width: 90%;
     background-color: #ffffff;
-    border-color: #00a4b9dc;
+    
     border: 1px solid;
     padding: 2%;
   }
@@ -370,7 +370,10 @@ svg text {
 /*d____________________________________________________________*/
   /* стиль для темного фона на стр регистрации и авторизации*/
   .darkwindow{ 
-    background-color: #0b0a0b;
+    background-color: #ffffff;
+    border: 1px solid;
+    border-color: #00a4b9dc;
+    padding: 3%;
   }
 
   .documentswindow{
@@ -551,9 +554,9 @@ svg text {
   }
   /* цвет и подчеркивание при наведении для неактивной ссылки */
   .menugreen:hover{
-    color: #9dbb19;
+    color: #00a4b9dc;
     border-bottom: 2px solid;
-    border-bottom-color: #9dbb19;
+    border-bottom-color: #00a4b9dc;
   }
   /* стиль для ссылки входа */
   .menugreen_v{
@@ -688,9 +691,9 @@ svg text {
 }
 
 .text_indexwork{
-  margin-left: 15%;
-  margin-top: 12%;
-  font-size: 7vw;
+  margin-left: 14%;
+  margin-top: 6%;
+
 }
 /*/t___________________________________________________________*/
 
@@ -748,7 +751,6 @@ svg text {
 
 .text_name_vacancy{
   color: #00a4b9dc;
-
 }
 
 .btn-secondary1{
