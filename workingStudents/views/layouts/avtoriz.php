@@ -60,10 +60,10 @@ PublicAsset::register($this);
 
                             <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
                                 <li class="nav-item">
-                                    <a class=" nav-link menugreen_v h6" href="/auth/login" id="vxod">Вход</a>
+                                    <a class=" nav-link menugreen h6" href="/auth/login" id="vxod">Вход</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/auth/login" class="btn btn-secondary">Разместить резюме</a>
+                                    <a href="/auth/login" class="btn btnorange ml-2">Разместить резюме</a>
                                 </li>
                             </ul>  
                       </div>

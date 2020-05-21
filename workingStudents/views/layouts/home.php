@@ -58,11 +58,11 @@ PublicAsset::register($this);
 
                         <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
                             <li class="nav-item mr-2">
-                                <a class=" nav-link menugreen_v h6" href="/auth/login" id="vxod">Вход</a>
+                                <a class=" nav-link menugreen h6" href="/auth/login" id="vxod">Вход</a>
                             </li>
                             
                             <li class="nav-item">
-                                <a href="/auth/login" class="btn btn-secondary">Разместить резюме</a>
+                                <a href="/auth/login" class="btn btnorange ml-2">Разместить резюме</a>
                             </li>
                         
                         </ul>
@@ -74,17 +74,17 @@ PublicAsset::register($this);
                             <?php $user = Yii::$app->user->identity;
                             if($user->rang===10){ ?>
                                     <li class="nav-item">
-                                        <a class="nav-link menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
+                                        <a class="nav-link menugreen h6" href="/privateoffice/personal_account">Профиль</a>
                                     </li>
                             <?php }
                             if($user->rang===20){ ?>            
                                     <li class="nav-item">
-                                        <a class="nav-link menugreen_v h6" href="/privateoffice/personal_account">Профиль</a>
+                                        <a class="nav-link menugreen h6" href="/privateoffice/personal_account">Профиль</a>
                                     </li> 
                             <?php }
                             ?>
                                 <li class="nav-item">
-                                    <a class=" nav-link menugreen_v h6" href="/auth/logout" id="vixod">Выход</a>
+                                    <a class=" nav-link menugreen h6" href="/auth/logout" id="vixod">Выход</a>
                                 </li>
                             </ul>
                         <?php }?>   

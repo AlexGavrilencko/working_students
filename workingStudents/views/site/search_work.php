@@ -33,7 +33,7 @@ a{
 
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
             <div class="row justify-content-center"> <!-- Для поиска -->
-                <div class="border_search_resume" style=" border-color: #00a4b9dc;">
+                <div class="border_search_resume" style=" border-color: #e5e5e5;">
                     <form class="search_resume" >
                         <div class="row justify-content-center">
 

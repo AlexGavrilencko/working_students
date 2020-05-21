@@ -23,8 +23,8 @@ $this->title = 'Мои вакансии';
 </style>
 <!-- Для отображения информации -->
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
-    <div class="row justify-content-md-center mt-4"> 
-        <div class="col-10 col-sm-10 col-md-8 col-lg-8 col-xl-8 mt-4">  
+    <div class="row justify-content-md-center"> 
+        <div class="col-10 col-sm-10 col-md-8 col-lg-8 col-xl-8 ">  
                     <br>     
                 <?php
                 foreach ($vacancy as $vacan):    

@@ -161,10 +161,20 @@ svg text {
  .btnorange{
   color: #00a3b9;
   border-color: #00a4b9dc;
-
 }
 /* стиль при наведении для кнопки оранжевого цвета */
 .btnorange:hover{
+  color: #fff;
+  border-color: #00a4b9dc;
+  background: #00a4b9dc;
+}
+.btnorange1{
+  color: #00a3b9;
+  border-color: #00a4b9dc;
+  background: #fff;
+}
+/* стиль при наведении для кнопки оранжевого цвета */
+.btnorange1:hover{
   color: #fff;
   border-color: #00a4b9dc;
   background: #00a4b9dc;
@@ -359,7 +369,7 @@ svg text {
 
   .content2 {
     flex: 1 0 auto;
-    background: url(/public/img/fon_stat_7_1.png);
+    background: url(/public/img/fon.png);
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -376,7 +386,7 @@ svg text {
 /*d____________________________________________________________*/
   /* стиль для темного фона на стр регистрации и авторизации*/
   .darkwindow{ 
-    background-color: #ffffff;
+    background-color: #f8f8f8f1;
     border: 1px solid;
     border-color: #00a4b9dc;
     padding: 3%;
@@ -540,7 +550,7 @@ svg text {
 /*m____________________________________________________________*/
   /*стиль для отступов элементов поиска в шапке*/
   .margin-top{
-    margin-top: 8%;
+    margin-top: 11%;
   }
   /* цвет и подчеркивание для активной ссылки */
   .menured{
@@ -637,7 +647,7 @@ svg text {
 
   .proj{
     background-color: #ffffff6e;
-    border: 1px solid #024423bd;
+    border: 1px solid #e5e5e5;
     border-radius: 5px;
     padding: 2%;
   }
@@ -691,9 +701,6 @@ svg text {
 /*отступ для текста в подвале*/
 .text_foot{
   margin-top: 5px;
-}
-.trashcan{
-  width: 30%;
 }
 
 .text_indexwork{
