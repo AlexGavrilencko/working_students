@@ -11,7 +11,7 @@ use yii\helpers\Url;
 $this->title = 'Авторизация';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
+<link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,400&display=swap" rel="stylesheet">
 <?php $form = ActiveForm::begin([
     'id' => 'login-form',
     'layout' => 'horizontal',
@@ -28,11 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
            
 
                 <?php $form = ActiveForm::begin(); ?>
-                    <h3 class="text-center">Авторизация</h3>
+                    <h3 class="text-center" style="font-family: 'Montserrat', sans-serif;">Авторизация</h3>
 
-                    <?= $form->field($model, 'login')->textInput(['autofocus' => true, 'placeholder'=>"Логин"]) ?> 
+                    <?= $form->field($model, 'login')->textInput(['autofocus' => true, 'placeholder'=>"Логин", "style"=>"font-family: 'Montserrat', sans-serif;"]) ?> 
 
-                    <?= $form->field($model, 'password')->passwordInput(['placeholder'=>"Пароль"]) ?>
+                    <?= $form->field($model, 'password')->passwordInput(['placeholder'=>"Пароль", "style"=>"font-family: 'Montserrat', sans-serif;"]) ?>
 
                     <?= $form->field($model, 'rememberMe')->checkbox([
                         'template' => "<div class=\"col-lg-offset-1 col-lg-3 btn-rounded btnorange\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
        
 
                      <br>
-                <h3 class="text-center">Регистрация</h3>
+                <h3 class="text-center" style="font-family: 'Montserrat', sans-serif;">Регистрация</h3>
                 
                     <div class="container">
                          <div class="row justify-content-md-center">

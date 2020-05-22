@@ -14,22 +14,22 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="pole darkwindow">
 
                 <?php $form = ActiveForm::begin(); ?>
-            <h3 class="text-center">Регистрация</h3>
+            <h3 class="text-center" style="font-family: 'Montserrat', sans-serif;">Регистрация</h3>
                 <?php
                // $form->field($model, 'rang')->$rang;
                 ?>
 
-<?= $form->field($model, 'login')->textInput(['class'=>'form-control','placeholder'=>"Введите логин"])->label('Логин <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+<?= $form->field($model, 'login')->textInput(['class'=>'form-control','placeholder'=>"Введите логин", "style"=>"font-family: 'Montserrat', sans-serif;"])->label('Логин <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                         "data-placement"=>"top", "title"=>"Логин должен содержать минимум 8 символов, букв или цифр: gft564*dfhy"]); ?>
                 
 
-                <?= $form->field($model, 'e_mail')->textInput(['class'=>'form-control', 'placeholder'=>"Введите email"])->label('e_mail <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                <?= $form->field($model, 'e_mail')->textInput(['class'=>'form-control', 'placeholder'=>"Введите email", "style"=>"font-family: 'Montserrat', sans-serif;"])->label('e_mail <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                         "data-placement"=>"top", "title"=>"Электронная почта: primer@gmail.com"]); ?>
 
-                <?= $form->field($model, 'password')->passwordInput(['placeholder'=>"Введите пароль"])->label('Пароль <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                <?= $form->field($model, 'password')->passwordInput(['placeholder'=>"Введите пароль", "style"=>"font-family: 'Montserrat', sans-serif;"])->label('Пароль <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                         "data-placement"=>"top", "title"=>"Пароль должен содержать минимум 8 символов, букв или цифр"]); ?>
 
-                <?= $form->field($model, 'password_repeat')->passwordInput(['placeholder'=>"Повторите пароль"]) ?>
+                <?= $form->field($model, 'password_repeat')->passwordInput(['placeholder'=>"Повторите пароль", "style"=>"font-family: 'Montserrat', sans-serif;"]) ?>
 
                 <?php echo $form->field($model, 'personaldate')->checkbox(['class'=>'show-password']);
                   //  echo '<a href="/site/personal_data_protection">Согласие на обработку персональных данных</a>';

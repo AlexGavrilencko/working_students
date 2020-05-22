@@ -21,6 +21,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        "https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,400&display=swap",
         
     ];
     public $js = [

@@ -24,6 +24,7 @@ class PublicAsset extends AssetBundle
         "https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css",
         "public/css/style.css",
         "https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css",
+        "https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,400&display=swap",
     ];
     public $js = [
         "https://code.jquery.com/jquery-3.3.1.slim.min.js",

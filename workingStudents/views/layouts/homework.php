@@ -27,7 +27,32 @@ PublicAsset::register($this);
     </head>
     <body>
     <?php $this->beginBody() ?>
-
+    <style>
+     p {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h2 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h3 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h4 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h5 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  input{
+  font-family: 'Montserrat', sans-serif;
+}
+</style>
 
 <div class="header">
     <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->   
@@ -93,11 +118,11 @@ PublicAsset::register($this);
                                 <div class="row no-gutters align-items-center">
 
                                     <div class="col-8">
-                                        <input class="form-control btn-none form-control-lg" type="name" name="search" placeholder="Профессия или должность">
+                                        <input class="form-control btn-none " type="name" name="search" placeholder="Профессия или должность">
                                     </div>
 
                                     <div class="col-auto">
-                                        <button type="submit" class="btn-none btn-lg btn btnwite" >Найти</button>
+                                        <button type="submit" class="btn-none btn btnwite" >Найти</button>
                                     </div>
                                 </div>    
                             </form>

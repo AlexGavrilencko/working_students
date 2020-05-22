@@ -1,6 +1,32 @@
 <?php
 use yii\helpers\Url;
 ?>
+<style>
+     p {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h2 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h3 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h4 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h5 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  input{
+  font-family: 'Montserrat', sans-serif;
+}
+</style>
 <div class=" col-12 col-sm-12 col-md-10 col-lg-4 col-xl-4" data-sticky_column>
     <div class="primary-sidebar mt-4">
 

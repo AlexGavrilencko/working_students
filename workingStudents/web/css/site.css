@@ -1,7 +1,9 @@
 html,
 body {
     height: 100%;
+    font-family: 'Montserrat', sans-serif;
 }
+
 
 .wrap {
     min-height: 100%;

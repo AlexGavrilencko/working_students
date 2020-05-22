@@ -27,6 +27,32 @@ PublicAsset::register($this);
 
        
     </head>
+    <style>
+     p {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h2 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h3 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h4 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h5 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  input{
+  font-family: 'Montserrat', sans-serif;
+}
+</style>
     <body class="fonbody">
     <?php $this->beginBody() ?>
 

@@ -137,26 +137,7 @@ svg text {
 
 /*b___________________________________________________________*/
   /* Главная страница */
-/* стиль при наведении для кнопки категории зеленого цвета */
-.btngreen_k:hover{
-  color: #5FEB3B;
-  border-color: #5FEB3B;
-}
-/* стиль для кнопки категории зеленого цвета */
-.btngreen_k{
-  color: #41A128;
-  border-color: #2DD700;
-}
-/* стиль для кнопки голубого цвета */
-.btnblue{
-  color: #1D7074;
-  border-color: #01939A;
-}
-/* стиль при наведении для кнопки голубого цвета */
-.btnblue:hover{
-  color: #34C6CD;
-  border-color: #34C6CD;
-}
+
  /* стиль для кнопки оранжевого цвета */
  .btnorange{
   color: #00a3b9;
@@ -179,45 +160,8 @@ svg text {
   border-color: #00a4b9dc;
   background: #00a4b9dc;
 }
- /* стиль для кнопки фиолетового цвета */
- .btnpurple{
-  color: #313186;
-  border-color: #1B1BB3;
-
-}
-/* стиль при наведении для кнопки фиолетовогоцвета */
-.btnpurple:hover{
-  color: #4F4FD9;
-  border-color: #4F4FD9;
-}
 
 
-/* /Главная страница */
-
-/* стиль для кнопки зеленого цвета */
-  .btngreen{ 
-    color: #9dbb19;
-    border-color: #9dbb19;
-  }
-  .btnwite{
-    color: #ffffff;
-    border-color: #ffffff;
-  }
-  .btnwite:hover{
-    color: #00a4b9dc;
-    border-color: #00a4b9dc;
-  }
- 
-  /* стиль при наведении для кнопки зеленого цвета */
-  .btngreen:hover{ 
-    color: #a3071e;
-    border-color: #a3071e;
-  }
-  .btngreen1:hover{ 
-    color: #a3071e;
-    border-color: #a3071e;
-  }
-  
   /* стиль для скругления элементов */
   .btn-rounded{
     border-radius: 10px;
@@ -230,23 +174,6 @@ svg text {
     margin-top: 3%;
   }
   /* стиль для фона вакансий и резюме в маленьком окне*/
-  .border_search{
-    background-color: #525f0e13;
-    border: 2px solid;
-    border-color: #9dbb19;
-    border-radius: 10px;
-    padding-top: 2%;
-    margin-bottom: 2%;
-  }
-  .border_contact{
-    background-color: #aa770a0e;
-    border: 2px solid;
-    border-color: #aa770a;
-    border-radius: 10px;
-    padding-top: 2%;
-    margin-bottom: 2%;
-  }
-  /* стиль для фона вакансий и резюме в маленьком окне*/
   .border_search1{
     background-color: #20b8970a;
     border: 2px solid;
@@ -254,27 +181,12 @@ svg text {
     border-radius: 10px;
     padding-top: 2%;
   }
-
-  .btngreen1{ 
-    color: #184b40;
-    border-color: #184b40;
-  }
-
-  .border_search2{
-    background-color: #1c6a8a05;
-    border: 2px solid;
-    border-color: #47def8cc;
-    border-radius: 10px;
-    padding-top: 2%;
-  }
-
   .border_search3{
     background-color: #f8f8f8b0;
     border: 1px solid;
     border-color: #e5e5e5;
     padding: 3%;
   }
-
   .border_search31{
     background-color: #f8f8f8b0;
     border: 1px solid;
@@ -282,45 +194,7 @@ svg text {
     padding: 3%;
   }
 
-  .border_search4{
-    background-color: #bb9df115;
-    border: 2px solid;
-    border-color: #231e25dc;
-    padding: 3%;
-  }
-
-  .border_vacancy{
-    background-color: #1ee48115;
-    border: 2px solid;
-    border-color: #0a5e34;
-    padding: 3%;
-  }
-
-  .border_vacancy1{
-    background-color: #94e2170c;
-    border: 2px solid;
-    border-color: #183801;
-    padding: 3%;
-  }
-
-  .border_project{
-    background-color: #aed1ec36;
-    border: 2px solid;
-    border-color: #173955;
-    border-radius: 10px;
-    padding-top: 2%;
-    padding: 1% 1% 1% 1%;
-    margin-bottom: 2%;
-  }
-
-  /* стиль для фона расширенного поиска*/
-  .border_advanced_search{
-    width: 100%;
-    background-color: #eff3db;
-    border: 2px solid;
-    border-color: #9dbb19;
-    border-radius: 10px;
-  }
+  
 
   .border_search_resume{
     width: 90%;
@@ -334,9 +208,33 @@ svg text {
   body {
     display: flex;
     flex-direction: column;
-    font-family: 'Times New Roman', Times, serif; /* Гарнитура текста */ 
-   
+    font-family: 'Montserrat', sans-serif;
   }
+  p {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h2 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h3 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h4 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h5 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+input{
+  font-family: 'Montserrat', sans-serif;
+}
+
   .blok_information{
     margin-left: 2%;
   }
@@ -346,7 +244,14 @@ svg text {
   .btn_iw{
     margin-left: 15%;
   }
-
+  .btnwite{
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+  .btnwite:hover{
+    color: #00a4b9dc;
+    border-color: #00a4b9dc;
+  }
 
 /*/b___________________________________________________________*/
 
