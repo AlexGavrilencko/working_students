@@ -26,7 +26,7 @@ use app\models\Position;
 
         if($user->rang===10){ //условие для вывода просмотренного для студента ?>
             <div class="row justify-content-md-center "> 
-                <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7 mt-4">  
+                <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-7 mt-4">  
                     <?php
                     foreach ($select as $sel):
                         foreach ($vac as $vacan): 
@@ -74,14 +74,11 @@ use app\models\Position;
                             <div class="row"> <!-- Отображение названия организации и города -->
 
                                 <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8"><!-- Отображение названия организации -->
-                                    <p> Название организации:
+                                    <p> 
                                         <?php
                                             $o = $vacan->organization_id;
                                             $organization = Organization::find()->where(['id'=>$o])->one();
-                                            if ($organization == NULL){
-                                                echo 'Не указано';
-                                            }
-                                            else echo $organization->name;
+                                            echo $organization->name;
                                         ?>
                                     </p>
                                 </div><!-- /Отображение названия организации -->

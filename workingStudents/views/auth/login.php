@@ -11,7 +11,7 @@ use yii\helpers\Url;
 $this->title = 'Авторизация';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,400&display=swap" rel="stylesheet">
+
 <?php $form = ActiveForm::begin([
     'id' => 'login-form',
     'layout' => 'horizontal',
@@ -58,16 +58,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                 <a href="<?= Url::toRoute(['/auth/signupwork', 'rang'=>'20']); ?>" class="btn-rounded btnorange btn btn-block m-1">Работодателя</a>
-
-
-                            
-
+                            </div>
                         </div>
                     </div>
-       
-
         </div>
     </div>
 </div>
-
 <br>

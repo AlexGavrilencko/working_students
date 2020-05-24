@@ -207,14 +207,11 @@ a{
                             <div class="row"> <!-- Отображение названия организации и города -->
 
                                 <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8"><!-- Отображение названия организации -->
-                                    <p> Название организации:
+                                    <p>
                                         <?php
                                             $o = $vacan->organization_id;
                                             $organization = Organization::find()->where(['id'=>$o])->one();
-                                            if ($organization == NULL){
-                                                echo 'Не указано';
-                                            }
-                                            else echo $organization->name;
+                                            echo $organization->name;
                                         ?>
                                     </p>
                                 </div><!-- /Отображение названия организации -->

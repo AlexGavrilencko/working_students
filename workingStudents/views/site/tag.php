@@ -6,7 +6,7 @@ $t=Tag::find()->where(['id'=>$id])->one();
 ?>
 
 <div class=" text-center text-uppercase mt-2">
-	<h4 class="entry-title">Статьи по тэгу: <i><?= $t->title?></i></h3>
+	<h4 class="entry-title">Статьи по тэгу: <i Class="text_name_vacancy"><?= $t->title?></i></h3>
 </div>
 <!--main content start-->
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">

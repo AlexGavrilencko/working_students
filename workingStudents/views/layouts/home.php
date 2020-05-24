@@ -58,7 +58,7 @@ PublicAsset::register($this);
 </style>
 <div class="header">
         <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->   
-            <a href="/site/index" class="navbar-brad ml-2"><img src="/public/img/logo1.png" alt="Logo"></a>  <!-- логотип в меню сайта --> 
+            <a href="/site/index" class="navbar-brad"><img src="/public/img/logo1.png" alt="Logo"></a>  <!-- логотип в меню сайта --> 
 
                 <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
                     <span class="navbar-toggler-icon"></span>
@@ -70,7 +70,7 @@ PublicAsset::register($this);
                             <li class="nav-item">
                                 <a class="nav-link  h6 menugreen" href="<?= Url::toRoute(['site/search','id'=>'0']) ?>">Вакансии</a>  <!-- menured text-decoration-->
                             </li>
-                            <li class="nav-item ml-2">
+                            <li class="nav-item">
                                 <a class="nav-link h6 menugreen" href="<?= Url::toRoute(['site/search_work','id'=>'0']) ?>">Резюме</a>
                             </li> 
                             <li class="nav-item">
@@ -82,7 +82,7 @@ PublicAsset::register($this);
                         </ul>
 
                         <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
-                            <li class="nav-item mr-2">
+                            <li class="nav-item">
                                 <a class=" nav-link menugreen h6" href="/auth/login" id="vxod">Вход</a>
                             </li>
                             

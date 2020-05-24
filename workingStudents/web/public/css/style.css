@@ -60,7 +60,7 @@ td.big {
 
 
 td.codeLine {
- font-family: monospace;
+ font-family: 'Montserrat', sans-serif;
  white-space: pre;
 }
 
@@ -105,7 +105,7 @@ span.success, span.warning, span.danger {
 }
 
 svg text {
- font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+ font-family: 'Montserrat', sans-serif;
  font-size: 11px;
  color: #666;
  fill: #666;
@@ -691,7 +691,7 @@ input{
 @import url(https://fonts.googleapis.com/css?family=Merriweather:400,700,400italic);
 
 span, p, input {
-  font-family: 'Merriweather', serif;
+  font-family: 'Montserrat', sans-serif;
   line-height: 26px;
 }
 
@@ -701,7 +701,7 @@ img {
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 a {
@@ -1211,7 +1211,7 @@ subscribe newsletter
   letter-spacing: 1px;
   font-size: 12px;
   padding: 9px 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .btn-subscribe:hover {
@@ -1430,7 +1430,7 @@ Categories
   color: #323232;
   text-decoration: none;
   text-transform: uppercase;
-  font-family: 'Merriweather', serif;
+  font-family: 'Montserrat', sans-serif;
   transition: all 0.33s;
 }
 
@@ -1499,7 +1499,7 @@ footer instragram
 .about-content {
   padding-top: 35px;
   line-height: 24px;
-  font-family: 'Merriweather', serif
+  font-family: 'Montserrat', sans-serif;
 }
 
 .address {
@@ -1621,7 +1621,7 @@ athuor
 
 .author-id .author-text h4:last-child {
   font-size: 11px;
-  font-family: 'Merriweather', serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .author-id .author-text {
@@ -1661,7 +1661,7 @@ athuor
   padding: 15px 0;
   color: #e2e2e2;
   line-height: 30px;
-  font-family: 'Merriweather', serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 13px;
 }
 

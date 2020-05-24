@@ -24,7 +24,7 @@ $this->title = 'Мои вакансии';
 <!-- Для отображения информации -->
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
     <div class="row justify-content-md-center"> 
-        <div class="col-10 col-sm-10 col-md-8 col-lg-8 col-xl-8 ">  
+        <div class="col-10 col-sm-10 col-md-7 col-lg-7 col-xl-7 ">  
                     <br>     
                 <?php
                 foreach ($vacancy as $vacan):    
@@ -48,7 +48,7 @@ $this->title = 'Мои вакансии';
                             <div class="row">
 
                                 <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение названии вакансии -->
-                                    <p><?= $vacan->name ?></p>
+                                    <h6 Class="text_name_vacancy"><?= $vacan->name ?></h6>
                                 </div>                  <!-- /Отображение названии вакансии -->
 
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение зарплаты -->
@@ -89,7 +89,34 @@ $this->title = 'Мои вакансии';
                                         ?>
                                     </p>
                                 </div><!-- Отображение города -->
-                            </div>   <!-- ROW ml-1 Отображение названия организации и города -->  
+                            </div>   <!-- ROW ml-1 Отображение названия организации и города --> 
+                            <?php   
+                                $exp=Attributes::find()->where(['id'=>$vacan->experience_id])->one();//опыт
+                                $emp=Attributes::find()->where(['id'=>$vacan->employment_id])->one();//тип з
+                            ?>
+
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">
+                                    <p>Опыт<?= $exp->name ?></p>
+                                </div>
+                                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                                    <p>Тип занятости <?= $emp->name ?></p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">
+                                    <p>Зарплата: 
+                                        <?php
+                                            $salary = $vacan->salary;
+                                            if ($salary == NULL){
+                                                echo 'не указано';
+                                            }
+                                            else echo $salary;
+                                        ?>
+                                    </p>
+                                </div>
+                            </div>  
                         </div>  <!-- div /Отображение информации правее фотографии -->
                     </div>
                     <div class="row ml-1 mt-3"> <!-- Отображение дополнительной информации для соискателя -->
