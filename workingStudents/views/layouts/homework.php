@@ -109,7 +109,7 @@ PublicAsset::register($this);
             </nav>--> 
 
              
-                <h4 class="text-light margin-top">Найдите молодого специалиста в компанию прямо сейчас</h4>
+                <h4 class="text-light margin-top">Найдите молодого специалиста<br> в компанию прямо сейчас</h4>
   
 
 	                <div class="row">

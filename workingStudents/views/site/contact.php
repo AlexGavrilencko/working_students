@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
     <div class="pole border_search31">
-    <h1 class="text-center">Контакт</h1>
+    <h3 class="text-center text_name_vacancy">Свзяаться с нами</h3>
 
     <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
 
@@ -34,10 +34,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php else: ?>
 
-        <h6 class="text-center">
-            Если у вас есть деловые вопросы или другие вопросы, пожалуйста, заполните следующую форму, чтобы связаться с нами.
+        <p class="text-center">
+            Если у вас есть вопросы, пожалуйста, заполните следующую форму, чтобы связаться с нами.<br>
             Спасибо.
-        </h6>
+        </p>
 
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mt-1">

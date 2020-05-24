@@ -52,7 +52,7 @@ a{
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->
                                 <div class="row">
                                     <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7">
-                                        <p><?=$resum->surname?> <?=$resum->name?> <?=$resum->patronymic?></p>
+                                        <h5 Class="text_name_vacancy"><?=$resum->surname?> <?=$resum->name?> <?=$resum->patronymic?></h5>
                                     </div>
                                    
                                     <?php if(Yii::$app->user->identity){ ?>
@@ -90,14 +90,22 @@ a{
                                                 else echo $city->name;
                                         ?>
                                     </div> 
-                                    
                                 </div>
-                                    <div class="row ml-1">
-                                            <p>Желаемая должность: 
+                                    <div class="row">
+                                        <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7">
+                                        <p>Желаемая должность: 
                                             <?= $pos->name ?>
                                            </p>
+                                        </div>
                                     </div>
-
+                                    <div class="row">
+                                        <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7">
+                                            <p>e-mail: 
+                                            
+                                           </p>
+                                        </div>
+                                    </div>
+                                  
                          
                         </div> <!-- div /Отображение информации правее фотографии -->
                     </div>
@@ -133,7 +141,7 @@ a{
                             <?php if($exp != null): ?> 
                                 <div class="proj mt-4 mb-4">
                                     <div class="text-center">
-                                        <h4>Опыт работы</h4>
+                                        <h4 Class="text_name_vacancy">Опыт работы</h4>
                                     </div>
                                     <div class="table-responsive-sm table-responsive-md">
                                         <table class="table table-bordered table-hover table-sm mt-3">
@@ -173,7 +181,7 @@ a{
          <?php if($educ != null): ?> 
             <div class="proj  mt-4 mb-4">
                     <div class="text-center">
-                        <h4>Образование</h4>
+                        <h4 Class="text_name_vacancy">Образование</h4>
                     </div>
             <div class="table-responsive-sm table-responsive-md">
                 <table class="table table-bordered table-hover table-sm mt-3">
@@ -211,7 +219,7 @@ a{
                 <?php if($project!= null): ?> 
                     <div class="proj mt-4 mb-4">
                         <div class="text-center">
-                            <h4>Проекты</h4>
+                            <h4 Class="text_name_vacancy">Проекты</h4>
                         </div>
 
                         <div class="row p-2 my-3 ">
@@ -223,11 +231,7 @@ a{
                                                     <a href="/uploads/<?= $pr->image?>" target="_blank">
                                                         <img class="img-fluid img-thumbnail" style="width: 200px; object-fit: cover;  display: block;  height: 150px;" src="/uploads/<?= $pr->image?>" alt="">
                                                     </a>
-                                                    <div class="row ml-1">
-                                                        <a href="<?= Url::toRoute(['privateoffice/set-project', 'id'=>$pr->id]); ?>" class='m-1 btngreen1'>Редактировать</a>
-                                                        <a href="<?= Url::toRoute(['privateoffice/project_del', 'id'=>$pr->id]); ?>" class='m-1 btngreen1'>Удалить</a>
-                                                    </div>
-                                            <!--  </div>-->
+                                        <!--  </div>-->
                                             <?php endif; ?>
 
                                         </div>

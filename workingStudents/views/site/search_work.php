@@ -118,7 +118,7 @@ a{
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->
                             <div class="row">
                                     <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение ФИО -->
-                                        <h6 style="color: #00a4b9dc;"> <?= $resum->surname ?> <?= $resum->name ?> <?= $resum->patronymic ?></h6>
+                                        <h5 style="color: #00a4b9dc;"> <?= $resum->surname ?> <?= $resum->name ?> <?= $resum->patronymic ?></h5>
                                     </div>                  <!-- /Отображение ФИО -->
 
                                     <?php  if (!Yii::$app->user->isGuest){ ?>

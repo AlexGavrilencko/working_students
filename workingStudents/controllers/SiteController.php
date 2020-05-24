@@ -140,8 +140,10 @@ class SiteController extends Controller
     {
         $this->layout = 'homework';
         $resume=Resume::find()->all();
+        $organizations = Organization::find()->orderBy('RAND()')->limit(8)->all();
         return $this->render('indexwork',[
             'resume'=>$resume,
+            'organizations' => $organizations
             ]);
     }
 

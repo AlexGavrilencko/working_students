@@ -65,7 +65,7 @@ $this->title = 'Просмотр вакансии';
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->
                                 <div class="row">
                                     <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                        <p><?= $vacan->name ?></p>
+                                        <h5 Class="text_name_vacancy"><?= $vacan->name ?></h5>
                                     </div>
                                     <?php if(Yii::$app->user->identity){ ?>
                                         <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6"> 
@@ -108,7 +108,7 @@ $this->title = 'Просмотр вакансии';
                     </div>
 
                         <div class="date_org">
-                            <h4 class="text-center">Данные об организации</h4>                       
+                            <h4 class="text-center text_name_vacancy" >Данные об организации</h4>                       
                                 <p><strong>Название организации:</strong>
                                     <?  if ($organization->name == NULL){
                                             echo 'Не указано';

@@ -184,7 +184,7 @@ a{
                             <div class="row">
 
                                 <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение названии вакансии -->
-                                    <h6 Class="text_name_vacancy"><?= $vacan->name ?></h6>
+                                    <h5 Class="text_name_vacancy"><?= $vacan->name ?></h5>
                                 </div>                  <!-- /Отображение названии вакансии -->
 
                                  <!-- Отображение зарплаты -->
