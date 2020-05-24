@@ -142,13 +142,13 @@ a{
                                 </div>    
                                 
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-                                    <p> Город
+                                    <p>
                                         <?php
                                             $c = $resum->city_id;
                                             $city = Attributes::find()->where(['id'=>$c])->one();
                                             if ($city == NULL) 
                                             { 
-                                                echo 'не указан'; 
+                                                echo 'Город не указан'; 
                                             }
                                             else echo $city->name;
                                             ?>

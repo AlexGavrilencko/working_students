@@ -48,15 +48,15 @@ $this->title = 'Мои вакансии';
                             <div class="row">
 
                                 <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение названии вакансии -->
-                                    <p>Название вакансии:<?= $vacan->name ?></p>
+                                    <p><?= $vacan->name ?></p>
                                 </div>                  <!-- /Отображение названии вакансии -->
 
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение зарплаты -->
-                                    <p>Зарплата: 
+                                    <p>
                                         <?php
                                             $salary = $vacan->salary;
                                             if ($salary == NULL){
-                                                echo 'не указано';
+                                                echo 'Зарплата не указано';
                                             }
                                             else echo $salary;
                                         ?>
@@ -67,26 +67,23 @@ $this->title = 'Мои вакансии';
                             <div class="row"> <!-- Отображение названия организации и города -->
 
                                 <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8"><!-- Отображение названия организации -->
-                                    <p> Название организации:
+                                    <p>
                                         <?php
                                             $o = $vacan->organization_id;
                                             $organization = Organization::find()->where(['id'=>$o])->one();
-                                            if ($organization == NULL){
-                                                echo 'не указано';
-                                            }
-                                            else echo $organization->name;
+                                            echo $organization->name;
                                         ?>
                                     </p>
                                 </div><!-- /Отображение названия организации -->
 
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение города -->
-                                    <p> Город:
+                                    <p>
                                         <?php
                                             $c = $vacan->city_id;
                                             $city = Attributes::find()->where(['id'=>$c])->one();
                                             if ($city == NULL) 
                                             { 
-                                                echo 'не указан'; 
+                                                echo 'Город не указан'; 
                                             }
                                             else echo $city->name;
                                         ?>
@@ -95,10 +92,10 @@ $this->title = 'Мои вакансии';
                             </div>   <!-- ROW ml-1 Отображение названия организации и города -->  
                         </div>  <!-- div /Отображение информации правее фотографии -->
                     </div>
-                    <div class="row ml-3 mt-3"> <!-- Отображение дополнительной информации для соискателя -->
+                    <div class="row ml-1 mt-3"> <!-- Отображение дополнительной информации для соискателя -->
                         <h6>Описание:</h6>
                     </div>
-                    <div class="row ml-3">
+                    <div class="row ml-1">
                         <p>
                             <?php
                                 $duties = $vacan->description;
