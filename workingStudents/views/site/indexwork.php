@@ -16,21 +16,15 @@ $this->title = 'Работодателю';
 ?>
     <div class="container">
                         <div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения категорий -->
-        <div class="row">
-            <h1 class="text_indexwork"><strong>Почему следует разместить<br> свои предложения по работе<br> или практике именно на нашем сайте?</strong></h1>
-        </div>
+                            <div class="row">
+                                <h1 class="text_indexwork"><strong>Почему следует разместить<br> свои предложения по работе<br> или практике именно на нашем сайте?</strong></h1>
+                            </div>
 
-            <div class="row">
-                <a href="/auth/login" class="btn btn-secondary btn-lg btn_iw">Разместить вакансию</a>
-            </div>
+                                <div class="row">
+                                    <a href="/auth/login" class="btn btn-secondary btn-lg ">Разместить вакансию</a>
+                                </div>
             
-                <div class="row" style="  margin-top: 1%; margin-right: 11%">
-                    <div class="col-sm-10">
-                        <p style="font-size: 2.5vw; margin-top: 5%;"><strong>1. Мы первый сайт, который нацелен на трудоустройство молодых специалистов.</strong></p>
-                        <p style="font-size: 2.5vw; margin-top: 5%;"><strong>2. Размещенеие вакансий и предложений по практике абсолютно бесплатно.</strong></p>
-                        <p style="font-size: 2.5vw; margin-top: 5%;"><strong>3. На нашем сайте вы никогда не увидете рекламу, которая мешают просмотр страниц.</strong></p>
-                    </div>
-                </div>
+                
 
                             <div class="row justify-content-center" style=" margin-top: 7%; margin-right: 3%">
                                 <div class="col-sm">
@@ -62,20 +56,5 @@ $this->title = 'Работодателю';
                                 <div class="row justify-content-center" style=" margin-bottom: 5%;">
                                     <a href="/auth/login" class="btn btn-secondary btn-lg">Разместить вакансию</a>
                                 </div>
-                
-                            <h5 class=" text-center mt-2" style="font-size: 2.5vw; margin-top: 15%;"><strong>Зарегистрированные организации</strong></h5>
-
-                                <div class="row p-2 my-3">
-                                    <?php foreach ($organizations as $organization) : 
-                                        if ($organization->image!=NULL){?>
-
-                                            <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3 p-1">
-                                                <a href="<?= Url::toRoute(['site/org_vacancy','id'=>$organization->id]) ?>"><img src="/uploads/<?php echo $organization->image; ?>" alt="<?php echo $organization->name; ?>" class="img-fluid img-thumbnail" style="width: 300px; object-fit: cover;  display: block;  height: 200px;"></a>
-                                            </div>
-
-                                    <?php }; endforeach ?>
-                                </div>
-
-                               
                         </div>
                     </div>
