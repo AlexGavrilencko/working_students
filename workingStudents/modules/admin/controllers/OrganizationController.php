@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class OrganizationController extends Controller
 {
+   
     /**
      * {@inheritdoc}
      */
@@ -107,6 +108,32 @@ class OrganizationController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionCorrect()
+    {
+        //$this->findModel($id)->delete();
+        $org=organization::find()->where(['correctOrg'=>null])->all();
+        //var_dump($org);
+        
+        return $this->render('indexcorr', [
+            'org' => $org,
+        ]);
+    }
+
+    public function actionCorrorg($id)
+    {
+        
+        $this->findModel($id);
+        //$this->findModel($id);
+        $o=organization::findOne($id);
+        //var_dump($o->correctOrg);
+        $o->correctOrg=1;
+        $o->create();
+        $org=organization::find()->where(['correctOrg'=>null])->all();
+        return $this->render('indexcorr', [
+            'org' => $org,
+        ]);
     }
 
     /**

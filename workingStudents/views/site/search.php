@@ -93,7 +93,7 @@ a{
                                 
                              
                                 <div class="col-6 col-sm-5 col-md-2 col-lg-3 col-xl-3 mt-1"> <!-- Кнопка для поиска -->
-                                    <input type="submit" class="btn btn-secondary1" value="Еще фильтры" onclick="disp(document.getElementById('form1'))">
+                                    <input type="button" class="btn btn-secondary1" value="Еще фильтры" onclick="disp(document.getElementById('form1'))">
                                 </div>
 
                                 <div class="col-6 col-sm-5 col-md-2 col-lg-3 col-xl-3 mt-1"> <!-- Кнопка для поиска -->

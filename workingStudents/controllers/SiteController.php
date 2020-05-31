@@ -63,6 +63,50 @@ class SiteController extends Controller
         ];
     }
 
+    public function actionContact()
+    {
+        $model = new ContactForm();
+        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
+            Yii::$app->session->setFlash('contactFormSubmitted');
+            return $this->refresh();
+        }
+        return $this->render('contact', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionAbout()     /* Это нужно удалить? */
+    {
+        return $this->render('about');
+    }
+
+    public function actionPersonal_data_protection()    /* Это для документа защиты персональных даннх */
+    {
+        return $this->render('personal_data_protection');
+    }
+
+    public function actionSite_terms_of_use()    /*  */
+    {
+        return $this->render('site_terms_of_use');
+    }
+    
+    public function actionThe_agreement()    /*  */
+    {
+        return $this->render('the_agreement');
+    }
+    
+    public function actionRules_for_placement_of_vacancies()    /*  */
+    {
+        return $this->render('rules_for_placement_of_vacancies');
+    }
+
+
+
+
+
+
+
+
 
     public function actionIndex()   /* Это для главной страницы студента */
     {
@@ -75,7 +119,28 @@ class SiteController extends Controller
 		]);
     }
 
-    public function actionComplete_information($id)   /* Это для просмотра отдельной страницы */
+    public function actionIndexwork()    /* Это для главной страницы работодателя */
+    {
+        $this->layout = 'homework';
+        $resume=Resume::find()->all();
+        $organizations = Organization::find()->orderBy('RAND()')->limit(8)->all();
+        return $this->render('indexwork',[
+            'resume'=>$resume,
+            'organizations' => $organizations
+            ]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+    public function actionComplete_information($id)   /* Это для просмотра отдельной страницы вакансии*/
     {
         $user=Yii::$app->user->identity;
         $user_id=$user->id;
@@ -102,7 +167,7 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionComplete_information_work($id)   /* Это для просмотра отдельной страницы */
+    public function actionComplete_information_work($id)   /* Это для просмотра отдельной страницы резюме*/
     {
         $user=Yii::$app->user->identity;
         $user_id=$user->id;
@@ -136,41 +201,41 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionIndexwork()    /* Это для главной страницы работодателя */
+    public function actionComplete_information_practic($id)   /* Это для просмотра отдельной страницы  практики*/
     {
-        $this->layout = 'homework';
-        $resume=Resume::find()->all();
-        $organizations = Organization::find()->orderBy('RAND()')->limit(8)->all();
-        return $this->render('indexwork',[
-            'resume'=>$resume,
-            'organizations' => $organizations
-            ]);
+        $user=Yii::$app->user->identity;
+        $user_id=$user->id;
+        $vac=Vacancy::find()->where(['id'=>$id])->one();
+        $vac->viewedCounter();
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+        return $this->render('complete_information_practic',[
+            'vacan'=>$vac,
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories
+        ]);
     }
 
-    public function actionPersonal_data_protection()    /* Это для документа защиты персональных даннх */
-    {
-        return $this->render('personal_data_protection');
-    }
+    
 
-    public function actionSite_terms_of_use()    /* Это для документа защиты персональных даннх */
-    {
-        return $this->render('site_terms_of_use');
-    }
+
+
+
+
+
+
+
+
+
     
-    public function actionThe_agreement()    /* Это для документа защиты персональных даннх */
-    {
-        return $this->render('the_agreement');
-    }
-    
-    public function actionRules_for_placement_of_vacancies()    /* Это для документа защиты персональных даннх */
-    {
-        return $this->render('rules_for_placement_of_vacancies');
-    }
 
     public function actionSearch($id)      /* Страница поиска для студента */
     {
-        $this->layout = 'site';
-        $data = Vacancy::getAll(5);     
+        $this->layout = 'site'; 
+        $query =Vacancy::find()->where(['WorkOrPractice' => 0]);
+        $data = Vacancy::getSearch($query);   
         $atr=Attributes::find()->all();
         $org=Organization::find()->all();
         $vac=Vacancy::find()->all();
@@ -191,11 +256,11 @@ class SiteController extends Controller
             ]);
     }
 
-    public function actionSearchcat($id)      /* Страница поиска для студента */
+    public function actionSearchcat($id)      /* Страница поиска для студента по категориям с главной*/
     {
         $this->layout = 'site';
         if($id!=null){
-            $query =Vacancy::find()->where(['category_id'=>$id]);
+            $query =Vacancy::find()->where(['category_id'=>$id,'WorkOrPractice' => 0]);
             $data = Vacancy::getSearch($query);
         }
         $atr=Attributes::find()->all();
@@ -220,6 +285,205 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionSearchws(){  /* Страница поиска для студента по слову с главной*/
+        $this->layout = 'site';
+        $search = Yii::$app->request->get('search');
+        // Обрезаем пробелы
+        $search1 = str_replace(' ', '', $search);
+        // Поисковый запрос с поиском и обрезанием пробелов
+        $query = Vacancy::find()->filterWhere(['like','name', $search1])->andWhere(['WorkOrPractice' => 0]);
+        $data = Vacancy::getSearch($query);
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+        return $this->render('search',[
+            'vacancy'=>$query,
+            'vall'=>$vall,
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories,
+            'pagination'=>$data['pagination'],
+            'vacancy'=>$data['vacancy'],
+        ]);
+    }
+
+    public function actionSearchfilt(){ /* Страница поиска для студента по фильтрам*/
+        $this->layout = 'site';
+        // Разбераем запрос
+        $city = Yii::$app->request->get('city');
+        $categ = Yii::$app->request->get('categ');
+        $positt = Yii::$app->request->get('posit');
+        $salaro = Yii::$app->request->get('salaro');
+        $salard = Yii::$app->request->get('salard');
+        $schelude = Yii::$app->request->get('schelude');
+        $exper = Yii::$app->request->get('exper');
+        $posit = str_replace(' ', '', $positt);
+        if($salaro===""){
+            $salaro=0;
+        }
+        if($salard===""){
+            $salard=2147483648;
+        }
+        if($city==="Город"){
+            $city=null;
+        }
+        if($categ==="Категория"){
+            $categ=null;
+        }
+        
+        if($city!=null){
+            if($categ!=null){
+                if($posit!=null){
+                    if(($salaro!=null)||($salard!=null)){
+                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])-andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
+                        $data = Vacancy::getSearch($query);
+                    }
+                    else{
+                        $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
+                        $data = Vacancy::getSearch($query);
+                    }
+                }
+                else{
+                    if(($salaro!=null)||($salard!=null)){
+                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0]);
+                        $data = Vacancy::getSearch($query);
+                    }
+                    else{
+                        $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0]);
+                        $data = Vacancy::getSearch($query);
+                    }
+                }
+            }
+            else{
+                if($posit!=null){
+                    if(($salaro!=null)||($salard!=null)){
+                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
+                        $data = Vacancy::getSearch($query);
+                    }
+                    else{
+                        $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
+                        $data = Vacancy::getSearch($query);
+                    }
+                }
+                else{
+                    if(($salaro!=null)||($salard!=null)){
+                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0]);
+                        $data = Vacancy::getSearch($query);
+                    }
+                    else{
+                        $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0]);
+                        $data = Vacancy::getSearch($query);
+                        //var_dump($query);
+                    }
+                }
+            }
+        }
+        else{
+            if($categ!=null){
+                if($posit!=null){
+                    if(($salaro!=null)||($salard!=null)){
+                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
+                        $data = Vacancy::getSearch($query);
+                    }
+                    else{
+                        $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
+                        $data = Vacancy::getSearch($query);
+                    }
+                }
+                else{
+                    if(($salaro!=null)||($salard!=null)){
+                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0]);
+                        $data = Vacancy::getSearch($query);
+                    }
+                    else{
+                        $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0]);
+                        $data = Vacancy::getSearch($query);
+                    }
+                }
+            }
+            else{
+                if($posit!=null){
+                    if(($salaro!=null)||($salard!=null)){
+                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andFilterWhere(['like','name', $posit])->andWhere(['WorkOrPractice' => 0]);
+                        $data = Vacancy::getSearch($query);
+                    }
+                    else{
+                        $query=Vacancy::find()->filterWhere(['like','name', $posit])->andWhere(['WorkOrPractice' => 0]);
+                        $data = Vacancy::getSearch($query);
+                    }
+                }
+                else{
+                    if(($salaro!=null)||($salard!=null)){
+                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0]);
+                        $data = Vacancy::getSearch($query);
+                    }
+                    else{
+                        $query=Vacancy::find()->where(['WorkOrPractice' => 0]);
+                        $data = Vacancy::getSearch($query);
+                    }
+                }
+            }
+        }
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+        return $this->render('search',[
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories,
+            'pagination'=>$data['pagination'],
+            'vacancy'=>$data['vacancy'],
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function actionSearch_practic()      /* Страница поиска для практики */
+    {
+        $this->layout = 'site';
+        $query =Vacancy::find()->where(['WorkOrPractice' => 1]);
+        $data = Vacancy::getSearch($query);     
+        $atr=Attributes::find()->all();
+        $org=Organization::find()->all();
+        $vac=Vacancy::find()->all();
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+            return $this->render('search_practic',[
+            'catvac'=>$catvac,
+            'cat'=>$cat,
+            'vac'=>$vac,
+            'org'=>$org,
+            'idc'=>$idc,
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories,
+            'pagination'=>$data['pagination'],
+            'vacancy'=>$data['vacancy'],
+            ]);
+    }
+
+
+
+
+
+
+
+
+
+
+
     public function actionSearch_work()      /* Страница поиска для компании */
     {
         $this->layout = 'site';
@@ -238,22 +502,16 @@ class SiteController extends Controller
        ]);
     }
 
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
+    
 
-    public function actionAbout()     /* Это нужно удалить? */
-    {
-        return $this->render('about');
-    }
+
+
+
+
+
+
+
+
 
     public function actionSelected($id){  /* Добавление в избранное у студента */
          $user=Yii::$app->user->identity;
@@ -267,7 +525,6 @@ class SiteController extends Controller
                 $scanned->ViewOrSelect=1;
                 $scanned->create();
             }
-           
         };
         $vac=Vacancy::find()->where(['id' => $id])->one();
         $popular = Article::getPopular();
@@ -281,7 +538,7 @@ class SiteController extends Controller
         ]); 
     }
 
-     public function actionSelected_r($id){
+    public function actionSelected_r($id){ /* Добавление в избранное у работодателя */
         $user=Yii::$app->user->identity;
         $user_id=$user->id;
         if($user->id!=null){
@@ -306,7 +563,14 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionResponse($id){
+
+
+
+
+
+
+
+    public function actionResponse($id){ /* Отклик компании */
         $user=Yii::$app->user->identity;
         $user_id=$user->id;
         if($user_id!=null){
@@ -330,8 +594,7 @@ class SiteController extends Controller
             'categories'=>$categories
         ]);
     }
-
-    public function actionResponsest($id){
+    public function actionResponsest($id){  /* Отклик студента */
         $user=Yii::$app->user->identity;
         $user_id=$user->id;
         if($user_id!=null){
@@ -356,157 +619,14 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionSearchws(){
-        $this->layout = 'site';
-        $search = Yii::$app->request->get('search');
-        // Обрезаем пробелы
-        $search1 = str_replace(' ', '', $search);
-        // Поисковый запрос с поиском и обрезанием пробелов
-        $query = Vacancy::find()->filterWhere(['like','name', $search1]);
-        $data = Vacancy::getSearch($query);
-        $popular = Article::getPopular();
-        $recent = Article::getRecent();
-        $categories = ArtCategory::getAll();
-        return $this->render('search',[
-            'vacancy'=>$query,
-            'vall'=>$vall,
-            'popular'=>$popular,
-            'recent'=>$recent,
-            'categories'=>$categories,
-            'pagination'=>$data['pagination'],
-            'vacancy'=>$data['vacancy'],
-        ]);
+    
 
-       
-    }
+    
 
-    public function actionSearchfilt(){
-        $this->layout = 'site';
-        // Разбераем запрос
-        $city = Yii::$app->request->get('city');
-        $categ = Yii::$app->request->get('categ');
-        $positt = Yii::$app->request->get('posit');
-        $salaro = Yii::$app->request->get('salaro');
-        $salard = Yii::$app->request->get('salard');
-        $schelude = Yii::$app->request->get('schelude');
-        $exper = Yii::$app->request->get('exper');
-        $posit = str_replace(' ', '', $positt);
-        if($salaro===""){
-            $salaro=0;
-        }
-        if($salard===""){
-            $salard=2147483648;
-        }
-        if($city==="Город"){
-            $city=null;
-        }
-        if($categ==="Категория"){
-            $categ=null;
-        }
-        if($city!=null){
-            if($categ!=null){
-                if($posit!=null){
-                    if(($salaro!=null)||($salard!=null)){
-                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])-andWhere(['city_id' => $city,'category_id' => $categ])->andFilterWhere(['like','name', $posit]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                    else{
-                        $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ])->andFilterWhere(['like','name', $posit]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                }
-                else{
-                    if(($salaro!=null)||($salard!=null)){
-                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                    else{
-                        $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                }
-            }
-            else{
-                if($posit!=null){
-                    if(($salaro!=null)||($salard!=null)){
-                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city])->andFilterWhere(['like','name', $posit]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                    else{
-                        $query=Vacancy::find()->where(['city_id' => $city])->andFilterWhere(['like','name', $posit]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                }
-                else{
-                    if(($salaro!=null)||($salard!=null)){
-                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                    else{
-                        $query=Vacancy::find()->where(['city_id' => $city]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                }
-            }
-        }
-        else{
-            if($categ!=null){
-                if($posit!=null){
-                    if(($salaro!=null)||($salard!=null)){
-                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ])->andFilterWhere(['like','name', $posit]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                    else{
-                        $query=Vacancy::find()->where(['category_id' => $categ])->andFilterWhere(['like','name', $posit]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                }
-                else{
-                    if(($salaro!=null)||($salard!=null)){
-                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                    else{
-                        $query=Vacancy::find()->where(['category_id' => $categ]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                }
-            }
-            else{
-                if($posit!=null){
-                    if(($salaro!=null)||($salard!=null)){
-                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andFilterWhere(['like','name', $posit]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                    else{
-                        $query=Vacancy::find()->andFilterWhere(['like','name', $posit]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                }
-                else{
-                    if(($salaro!=null)||($salard!=null)){
-                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                    else{
-                        $data = Vacancy::getAll(5);
-                    }
-                }
-            }
-        }
-        $popular = Article::getPopular();
-        $recent = Article::getRecent();
-        $categories = ArtCategory::getAll();
-        return $this->render('search',[
-            'popular'=>$popular,
-            'recent'=>$recent,
-            'categories'=>$categories,
-            'pagination'=>$data['pagination'],
-            'vacancy'=>$data['vacancy'],
-        ]);
-    }
 
-    public function actionIndexartic()
+
+
+    public function actionIndexartic() /* Весь функционал статей */
     {
         $this->layout = 'article';
         $data = Article::getAll(5);
@@ -522,7 +642,6 @@ class SiteController extends Controller
             
         ]);
     }
-    
     public function actionView($id)
     {
         $this->layout = 'article';
@@ -539,7 +658,6 @@ class SiteController extends Controller
             
         ]);
     }
-
     public function actionTagview($id)
 	{
         $this->layout = 'article';
@@ -558,7 +676,6 @@ class SiteController extends Controller
         'id'=>$id
 		]);
 	}
-    
     public function actionCategory($id)
     {
         $this->layout = 'article';
@@ -576,12 +693,19 @@ class SiteController extends Controller
         ]);
     }
 
+
+
+
+
+
+
+
     //отображение всех вакансий одной компании(пользователя)
     public function actionOrg_vacancy($id){
         $this->layout = 'site';
         $user = Yii::$app->user->identity; 
         $org = Organization::find()->where(['id'=>$id])->one();
-        $query=Vacancy::find()->where(['organization_id'=>$org->id]);
+        $query=Vacancy::find()->where(['organization_id'=>$org->id,'WorkOrPractice' => 0]);
         $data = Vacancy::getSearch($query);
         $popular = Article::getPopular();
         $recent = Article::getRecent();

@@ -18,6 +18,9 @@ use yii\helpers\Url;
         color: #003941dc;
     }
 </style>
+<div class=" text-center text-uppercase mt-2">
+	<h4 class="entry-title">Избранное</h3>
+</div>
 <?php
 $this->title = 'Избранное';
 $user = Yii::$app->user->identity;

@@ -10,7 +10,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 
-$this->title = 'Опубликованные вакансии';
+$this->title = 'Опубликованные предложения по практике';
 ?>
 <style>
     a{
@@ -51,17 +51,7 @@ $this->title = 'Опубликованные вакансии';
                                     <h6 Class="text_name_vacancy"><?= $vacan->name ?></h6>
                                 </div>                  <!-- /Отображение названии вакансии -->
 
-                                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение зарплаты -->
-                                    <p>
-                                        <?php
-                                            $salary = $vacan->salary;
-                                            if ($salary == NULL){
-                                                echo 'Зарплата не указано';
-                                            }
-                                            else echo $salary;
-                                        ?>
-                                    </p>
-                                </div>                  <!-- /Отображение зарплаты -->
+                                              <!-- /Отображение зарплаты -->
                             </div>
 
                             <div class="row"> <!-- Отображение названия организации и города -->
@@ -90,33 +80,8 @@ $this->title = 'Опубликованные вакансии';
                                     </p>
                                 </div><!-- Отображение города -->
                             </div>   <!-- ROW ml-1 Отображение названия организации и города --> 
-                            <?php   
-                                $exp=Attributes::find()->where(['id'=>$vacan->experience_id])->one();//опыт
-                                $emp=Attributes::find()->where(['id'=>$vacan->employment_id])->one();//тип з
-                            ?>
+                            
 
-                            <div class="row">
-                                <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">
-                                    <p>Опыт<?= $exp->name ?></p>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-                                    <p>Тип занятости <?= $emp->name ?></p>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">
-                                    <p>Зарплата: 
-                                        <?php
-                                            $salary = $vacan->salary;
-                                            if ($salary == NULL){
-                                                echo 'не указано';
-                                            }
-                                            else echo $salary;
-                                        ?>
-                                    </p>
-                                </div>
-                            </div>  
                         </div>  <!-- div /Отображение информации правее фотографии -->
                     </div>
                     <div class="row ml-1 mt-3"> <!-- Отображение дополнительной информации для соискателя -->
@@ -135,15 +100,15 @@ $this->title = 'Опубликованные вакансии';
                     </div>                      <!-- /Отображение дополнительной информации для соискателя -->
                     <div class="row justify-content-md-center"> <!-- кнопок действия и даты -->
                             <div class="col-5 col-sm-5 col-md-3 col-lg-3 col-xl-3 ">
-                                <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">Подробнее</a>
+                                <a href="<?= Url::toRoute(['site/complete_information_practic', 'id'=>$vacan->id]); ?>">Подробнее</a>
                             </div>
 
                             <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-                                <a href="<?= Url::toRoute(['privateoffice/vacancy_up', 'id'=>$vacan->id]); ?>">Редактировать</a>
+                                <a href="<?= Url::toRoute(['privateoffice/practic_up', 'id'=>$vacan->id]); ?>">Редактировать</a>
                             </div>
 
                             <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
-                                <?= Html::a('Удалить', ['privateoffice/vacancy_del', 'id'=>$vacan->id], [
+                                <?= Html::a('Удалить', ['privateoffice/practic_del', 'id'=>$vacan->id], [
                                     
                                     'data' => [
                                     'confirm' => 'Вы действительно хотите удалить данную вакансию?',

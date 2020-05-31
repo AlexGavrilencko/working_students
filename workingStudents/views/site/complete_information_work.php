@@ -76,6 +76,7 @@ a{
                                     </div>
                                     <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                                         <?php
+                                            $u=User::find()->where(['id'=>$resum->user_id])->one();
                                             $pos=Position::find()->where(['id'=>$resum->CareerObjective_id])->one();
                                             $c = $resum->city_id;
                                             $city = Attributes::find()->where(['id'=>$c])->one();
@@ -258,6 +259,7 @@ a{
                                     <img src="/public/img/eye.png" alt="eye" style="width: 32px;"><?= $resum->viewed ?>       
                                 </div>
                         </div> <!-- /Просмотры и дата -->
+                        <p>Дата<?= $u->e_mail ?></p>  
                 </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->
          

@@ -44,6 +44,13 @@ class PrivateofficeController extends Controller
         return $this->render('personal_account', ['model'=>$user]);
     }
 
+
+
+
+
+
+
+
     public function findModel($id)
     {
         $user = Yii::$app->user->identity;
@@ -62,6 +69,16 @@ class PrivateofficeController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
+
+
+
+
+
+
+
+
 
 
     /* Загрузка фотографий длч резюме и логотип организаций */
@@ -98,6 +115,12 @@ class PrivateofficeController extends Controller
         }
         return $this->render('img', ['model'=>$model]);
     }
+
+
+
+
+
+
 
 
     public function actionResume(){
@@ -138,97 +161,12 @@ class PrivateofficeController extends Controller
         }
         return $this->render('resume', ['model'=>$resume,'expir'=>$expir,'model1'=>$experience,'project'=>$proj]);
     }
-
-    //создание вакансии
-    public function actionVacancy(){
-        $this->layout = 'site';
-        $vac=new Vacancy();
-        $user = Yii::$app->user->identity; 
-        $vac->user_id = $user->id;
-        $vac->ShowOrHide=0;
-        $org = Organization::find()->where(['user_id'=>$user->id])->one();
-        $vac->organization_id = $org->id;
-        if(Yii::$app->request->isPost)
-        {
-            $vac->load(Yii::$app->request->post());
-            $vac->create();
-            return $this->redirect(['privateoffice/my_vacancy']);
-        }
-        return $this->render('vacancy', ['model'=>$vac]);
-    }
-
-    //функция для просмотра, редактирования данных об организации
-    public function actionOrganiz(){
-        $this->layout = 'site';
-        $org=new Organization();
-        $user = Yii::$app->user->identity;
-        $org = Organization::find()->where(['user_id'=>$user->id])->one();
-        if(Yii::$app->request->isPost)
-        {
-            $org->load(Yii::$app->request->post());
-            $org->create(); 
-        }
-        return $this->render('organiz', ['model'=>$org]);
-    }
-
-    //отображение всех вакансий одной компании(пользователя)
-    public function actionMy_vacancy(){
-        $this->layout = 'site';
-        $user = Yii::$app->user->identity; 
-        $org = Organization::find()->where(['user_id'=>$user->id])->one();
-        $vac = Vacancy::find()->where(['user_id'=>$user->id]);
-        $data = Vacancy::getSearch($vac);
-        $popular = Article::getPopular();
-        $recent = Article::getRecent();
-        $categories = ArtCategory::getAll();
-        return $this->render('my_vacancy',[
-            'vac'=>$vac,
-            'org'=>$org,
-            'pagination'=>$data['pagination'],
-            'vacancy'=>$data['vacancy'],
-            'popular'=>$popular,
-            'recent'=>$recent,
-            'categories'=>$categories,
-        ]);
-    }
-
-    //функция обновления вакансии
-    public function actionVacancy_up($id){
-        $this->layout = 'site';
-        $user = Yii::$app->user->identity; 
-        $vac = Vacancy::findOne(['id'=>$id]);
-        if(Yii::$app->request->isPost)
-        {
-            $vac->load(Yii::$app->request->post());
-            $vac->create();
-            return $this->redirect(['privateoffice/my_vacancy']);
-        }
-        return $this->render('vacancy', ['model'=>$vac]);
-    }
-
-    //функция удаления вакансии
-    public function actionVacancy_del($id)
-    {
-        $this->findModelVac($id)->delete();
-        return $this->redirect(['privateoffice/my_vacancy']);
-    }
-
     //функция удаления опыта
     public function actionExperience_del($id)
     {
         $this->findModelExp($id)->delete();
         return $this->redirect(['privateoffice/resume']);
     }
-
-    //поиск модели вакансии
-    protected function findModelVac($id)
-    {
-        if (($model = Vacancy::findOne($id)) !== null) {
-            return $model;
-        }
-        throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
     //поиск модели таблицы опыт
     protected function findModelExp($id)
     {
@@ -293,8 +231,6 @@ class PrivateofficeController extends Controller
             }
         return $this->render('img', ['model'=>$model]);
     }
-
-    
     //функция удаления достижений
     public function actionProject_del($id)
     { 
@@ -303,6 +239,177 @@ class PrivateofficeController extends Controller
         return $this->redirect(['privateoffice/resume']);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //создание вакансии
+    public function actionPractic(){
+        $this->layout = 'site';
+        $vac=new Vacancy();
+        $user = Yii::$app->user->identity; 
+        $vac->user_id = $user->id;
+        $vac->ShowOrHide=0;
+        $org = Organization::find()->where(['user_id'=>$user->id])->one();
+        $vac->organization_id = $org->id;
+        if(Yii::$app->request->isPost)
+        {
+            $vac->load(Yii::$app->request->post());
+            $vac->WorkOrPractice=1;
+            $vac->create();
+            return $this->redirect(['privateoffice/my_practic']);
+        }
+        return $this->render('practic', ['model'=>$vac]);
+    }
+
+    //функция для просмотра, редактирования данных об организации
+    public function actionOrganiz(){
+        $this->layout = 'site';
+        $org=new Organization();
+        $user = Yii::$app->user->identity;
+        $org = Organization::find()->where(['user_id'=>$user->id])->one();
+        if(Yii::$app->request->isPost)
+        {
+            $org->load(Yii::$app->request->post());
+            $org->create(); 
+        }
+        return $this->render('organiz', ['model'=>$org]);
+    }
+
+    //создание практики
+    public function actionVacancy(){
+        $this->layout = 'site';
+        $vac=new Vacancy();
+        $user = Yii::$app->user->identity; 
+        $vac->user_id = $user->id;
+        $vac->ShowOrHide=0;
+        $org = Organization::find()->where(['user_id'=>$user->id])->one();
+        $vac->organization_id = $org->id;
+        if(Yii::$app->request->isPost)
+        {
+            $vac->load(Yii::$app->request->post());
+            $vac->WorkOrPractice=0;
+            $vac->create();
+            return $this->redirect(['privateoffice/my_vacancy']);
+        }
+        return $this->render('vacancy', ['model'=>$vac]);
+    }
+
+    //отображение всех вакансий одной компании(пользователя)
+    public function actionMy_vacancy(){
+        $this->layout = 'site';
+        $user = Yii::$app->user->identity; 
+        $org = Organization::find()->where(['user_id'=>$user->id])->one();
+        $vac = Vacancy::find()->where(['user_id'=>$user->id,'WorkOrPractice'=>0]);
+        $data = Vacancy::getSearch($vac);
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+        return $this->render('my_vacancy',[
+            'vac'=>$vac,
+            'org'=>$org,
+            'pagination'=>$data['pagination'],
+            'vacancy'=>$data['vacancy'],
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories,
+        ]);
+    }
+
+    //отображение всех вакансий одной компании(пользователя)
+    public function actionMy_practic(){
+        $this->layout = 'site';
+        $user = Yii::$app->user->identity; 
+        $org = Organization::find()->where(['user_id'=>$user->id])->one();
+        $vac = Vacancy::find()->where(['user_id'=>$user->id,'WorkOrPractice'=>1]);
+        $data = Vacancy::getSearch($vac);
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+        return $this->render('my_practic',[
+            'vac'=>$vac,
+            'org'=>$org,
+            'pagination'=>$data['pagination'],
+            'vacancy'=>$data['vacancy'],
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories,
+        ]);
+    }
+    //функция обновления вакансии
+    public function actionVacancy_up($id){
+        $this->layout = 'site';
+        $user = Yii::$app->user->identity; 
+        $vac = Vacancy::findOne(['id'=>$id]);
+        if(Yii::$app->request->isPost)
+        {
+            $vac->load(Yii::$app->request->post());
+            $vac->create();
+            return $this->redirect(['privateoffice/my_vacancy']);
+        }
+        return $this->render('vacancy', ['model'=>$vac]);
+    }
+    //функция обновления вакансии
+    public function actionPractic_up($id){
+        $this->layout = 'site';
+        $user = Yii::$app->user->identity; 
+        $vac = Vacancy::findOne(['id'=>$id]);
+        if(Yii::$app->request->isPost)
+        {
+            $vac->load(Yii::$app->request->post());
+            $vac->create();
+            return $this->redirect(['privateoffice/my_practic']);
+        }
+        return $this->render('practic', ['model'=>$vac]);
+    }
+    //функция удаления вакансии
+    public function actionVacancy_del($id)
+    {
+        $this->findModelVac($id)->delete();
+        return $this->redirect(['privateoffice/my_vacancy']);
+    }
+    //функция удаления вакансии
+    public function actionPractic_del($id)
+    {
+        $this->findModelVac($id)->delete();
+        return $this->redirect(['privateoffice/my_practic']);
+    }
+    //поиск модели вакансии
+    protected function findModelVac($id)
+    {
+        if (($model = Vacancy::findOne($id)) !== null) {
+            return $model;
+        }
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //общие функции
     public function actionMy_select(){
         $this->layout = 'site';
         $user = Yii::$app->user->identity;

@@ -21,7 +21,9 @@ use app\models\Organization;
 $user = Yii::$app->user->identity;
 if($user->rang===10){ 
 ?>
-
+<div class=" text-center text-uppercase mt-2">
+	<h4 class="entry-title">Уведомления</h3>
+</div>
  
       <div class="response text-center" style="width: 90%">   
             <div class="table-responsive-sm table-responsive-md">

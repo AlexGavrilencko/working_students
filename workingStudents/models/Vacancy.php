@@ -5,6 +5,9 @@ namespace app\models;
 use Yii;
 use yii\data\Pagination;
 use yii\helpers\ArrayHelper;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "vacancy".
@@ -50,7 +53,10 @@ class Vacancy extends \yii\db\ActiveRecord
     {
         return 'vacancy';
     }
-
+    
+     
+    
+    
     /**
      * {@inheritdoc}
      */
@@ -104,9 +110,24 @@ class Vacancy extends \yii\db\ActiveRecord
         ];
     }
 
+    public function behaviors(){
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['dateAdd', 'dateChanges'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['dateChanges'],
+                ],
+                // если вместо метки времени UNIX используется datetime:
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
+    
+
     public function getDate()
     {
-        return Yii::$app->formatter->asDate($this->dateAdd);
+        return Yii::$app->formatter->asDate($this->date);
 	}
 
     public function create()
@@ -140,14 +161,14 @@ class Vacancy extends \yii\db\ActiveRecord
         //var_dump($query);
 		$pageSize = 5;
         $count = $query->count();
-        //var_dump($query->count());
+        
 
 		$pagination = new Pagination(['totalCount' => $count, 'pageSize'=>$pageSize]);
 
 		$vacancy = $query->offset($pagination->offset)
 		->limit($pagination->limit)
 		->all();
-
+        //var_dump($vacancy);
 		$data['vacancy'] = $vacancy;
 		$data['pagination'] = $pagination;
 

@@ -3,6 +3,9 @@
 namespace app\models;
 use yii\data\Pagination;
 use yii\helpers\ArrayHelper;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 use Yii;
 
@@ -86,6 +89,20 @@ class Resume extends \yii\db\ActiveRecord
             'response' => 'Отклик',
             'addinform' => 'Дополнительная информация',
             'viewed' => 'Просмотры',
+        ];
+    }
+
+    public function behaviors(){
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['dateAdd', 'dateChanges'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['dateChanges'],
+                ],
+                // если вместо метки времени UNIX используется datetime:
+                'value' => new Expression('NOW()'),
+            ],
         ];
     }
     
