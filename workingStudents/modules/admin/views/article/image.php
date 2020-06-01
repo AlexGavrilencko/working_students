@@ -8,16 +8,25 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="article-form">
+<br>
 
-	<?php $form = ActiveForm::begin(); ?>
+<div class="site-registration text-center">
+         <div class="text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
+            <div class="border_search31">
+                <h1>Загрузка картинки</h1>
+                <p>Пожалуйста, выберите изображение и сохраните его!</p>
+                    <div class="article-form">
 
-	<?= $form->field($model, 'image')->fileInput(['maxlength' => true]) ?>
+					<?php $form = ActiveForm::begin(); ?>
 
-	<div class="form-group">
-		<?= Html::submitButton('Submit', ['class' => 'btn btn-secondary']) ?>
-	</div>
+<?= $form->field($model, 'image')->fileInput(['maxlength' => true]) ?>
 
-	<?php ActiveForm::end(); ?>
-
+<div class="form-group">
+	<?= Html::submitButton('Сохранить', ['class' => 'btn btn-secondary']) ?>
 </div>
+
+<?php ActiveForm::end(); ?>
+                    </div>
+            </div>
+        </div>
+    </div>

@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-secondary']) ?>
-        <?= Html::a('Set Image', ['set-image', 'id' => $model->id], ['class' => 'btn btn-secondary']) ?>
-        <?= Html::a('Set Category', ['set-category', 'id' => $model->id], ['class' => 'btn btn-secondary']) ?>
-		<?= Html::a('Set Tags', ['set-tags', 'id' => $model->id], ['class' => 'btn btn-secondary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-secondary']) ?>
+        <?= Html::a('Установить фотографию', ['set-image', 'id' => $model->id], ['class' => 'btn btn-secondary']) ?>
+        <?= Html::a('Установить категорию', ['set-category', 'id' => $model->id], ['class' => 'btn btn-secondary']) ?>
+		<?= Html::a('Установить теги', ['set-tags', 'id' => $model->id], ['class' => 'btn btn-secondary']) ?>
+        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',

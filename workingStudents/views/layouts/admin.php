@@ -67,24 +67,24 @@ PublicAsset::register($this);
                  <div class="collapse navbar-collapse " id="collapsibleNavbar">
 
                                 <li class="nav-item dropdown ml-auto">
-                                     <a class="nav-link  text-light dropdown-toggle h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                     <a class="nav-link  text-light dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                          Кабинет администратора
                                      </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item  h6" href="/admin/default/index">Home</a>
-                                            <a class="dropdown-item  h6" href="/admin/user/index">Пользователи</a>
-                                            <a class="dropdown-item  h6" href="/admin/organization/index">Организации</a>
-                                            <a class="dropdown-item  h6" href="/admin/article/index">Статьи</a>
-                                            <a class="dropdown-item  h6" href="/admin/tag/index">Тэги</a>
-                                            <a class="dropdown-item  h6" href="/admin/art_category/index">Категории статей</a>
+                                            <a class="dropdown-item  " href="/admin/default/index">Главная</a>
+                                            <a class="dropdown-item  " href="/admin/user/index">Пользователи</a>
+                                            <a class="dropdown-item  " href="/admin/organization/index">Организации</a>
+                                            <a class="dropdown-item  " href="/admin/article/index">Статьи</a>
+                                            <a class="dropdown-item  " href="/admin/tag/index">Тэги</a>
+                                            <a class="dropdown-item  " href="/admin/art_category/index">Категории статей</a>
 
-                                            <a class="dropdown-item  h6" href="/admin/attributes/index">Атрибуты</a>
-                                            <a class="dropdown-item  h6" href="/admin/big_speciality/index">Специальность по ОКСО</a>
-                                            <a class="dropdown-item  h6" href="/admin/speciality/index">Специальность</a>
-                                            <a class="dropdown-item  h6" href="/admin/profstand/index">Профстандарт</a>
-                                            <a class="dropdown-item  h6" href="/admin/category_profstand/index">Категории профстандартов</a>
-                                            <a class="dropdown-item  h6" href="/admin/position/index">Должность</a>
-                                            <a class="dropdown-item  h6" href="/admin/special_profstand/index">Соединение специальностей и профстандарта</a>
+                                            <a class="dropdown-item  " href="/admin/attributes/index">Атрибуты</a>
+                                            <a class="dropdown-item  " href="/admin/big_speciality/index">Специальность по ОКСО</a>
+                                            <a class="dropdown-item  " href="/admin/speciality/index">Специальность</a>
+                                            <a class="dropdown-item  " href="/admin/profstand/index">Профстандарт</a>
+                                            <a class="dropdown-item  " href="/admin/category_profstand/index">Категории профстандартов</a>
+                                            <a class="dropdown-item " href="/admin/position/index">Должность</a>
+                                            <a class="dropdown-item  " href="/admin/special_profstand/index">Соединение специальностей и профстандарта</a>
  
                                         </div>
                                 </li>

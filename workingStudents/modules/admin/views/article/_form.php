@@ -18,10 +18,10 @@ use yii\widgets\ActiveForm;
 
 <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
-<?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
+
 
 <div class="form-group">
-    <?= Html::submitButton('Save', ['class' => 'btn btn-secondary']) ?>
+    <?= Html::submitButton('Сохранить', ['class' => 'btn btn-secondary']) ?>
 </div>
 
 <?php ActiveForm::end(); ?>
