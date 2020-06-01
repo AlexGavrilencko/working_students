@@ -1,4 +1,4 @@
-<div class="admin-default-index">
+<div class="admin-default-index" style="margin-top: 7%;">
         <div class="row">
             <div class="col-sm">
                 <h3>Статьи</h3>
