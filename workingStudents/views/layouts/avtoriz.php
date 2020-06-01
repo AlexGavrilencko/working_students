@@ -73,6 +73,9 @@ PublicAsset::register($this);
                               <li class="nav-item">
                                   <a class="nav-link menugreen h6" href="/site/search_work">Резюме</a>
                               </li> 
+                              <li class="nav-item">
+                                <a class="nav-link h6 menugreen" href="<?= Url::toRoute(['site/search_practic','id'=>'0']) ?>">Практика</a>
+                                </li> 
 
                               <li class="nav-item">
                                 <a class="nav-link h6 menugreen" href="/site/indexwork">Работодателю</a>

@@ -102,7 +102,7 @@ a{
                                     <div class="row">
                                         <div class="col-12 col-sm-7 col-md-7 col-lg-7 col-xl-7">
                                             <p>e-mail: 
-                                            
+                                                <?= $u->e_mail ?>
                                            </p>
                                         </div>
                                     </div>
@@ -259,7 +259,6 @@ a{
                                     <img src="/public/img/eye.png" alt="eye" style="width: 32px;"><?= $resum->viewed ?>       
                                 </div>
                         </div> <!-- /Просмотры и дата -->
-                        <p>Дата<?= $u->e_mail ?></p>  
                 </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->
          

@@ -80,6 +80,9 @@ PublicAsset::register($this);
                                 <li class="nav-item">
                                     <a class="nav-link h6 menugreen" href="<?= Url::toRoute(['site/search_work','id'=>'0']) ?>">Резюме</a>
                                 </li> 
+                                <li class="nav-item">
+                                    <a class="nav-link h6 menugreen" href="<?= Url::toRoute(['site/search_practic','id'=>'0']) ?>">Практика</a>
+                                </li> 
 
                                 <li class="nav-item">
                                     <a class="nav-link h6 menugreen" href="/site/indexwork">Работодателю</a>
@@ -104,7 +107,7 @@ PublicAsset::register($this);
                             <?php $user = Yii::$app->user->identity;
                             if($user->rang===10){ ?> <!-- Для студента -->
 
-                                <li class="nav-item dropdown ml-auto">
+                                <li class="nav-item dropdown ml-auto dropleft">
                                      <a class="nav-link menugreen dropdown-toggle h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                          Личный кабинет
                                      </a>
@@ -122,16 +125,16 @@ PublicAsset::register($this);
                             <?php }
                             if($user->rang===20){ ?> <!-- Для работодателя -->
 
-                                <li class="nav-item dropdown ml-auto">
+                                <li class="nav-item dropdown dropleft ml-auto">
                                      <a class="nav-link menugreen dropdown-toggle h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                          Личный кабинет
                                      </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item menugreen h6" href="/privateoffice/personal_account">Профиль</a>
                                             <a class="dropdown-item menugreen h6" href="/privateoffice/vacancy">Составить вакансию</a>
-                                            <a class="dropdown-item menugreen h6" href="/privateoffice/practic">Составить предложение по практике</a>
+                                            <a class="dropdown-item menugreen h6" href="/privateoffice/practic">Составить практику</a>
                                             <a class="dropdown-item menugreen h6" href="/privateoffice/my_vacancy">Опубликованные вакансии</a>
-                                            <a class="dropdown-item menugreen h6" href="/privateoffice/my_practic">Опубликованные предложения по практике</a>
+                                            <a class="dropdown-item menugreen h6" href="/privateoffice/my_practic">Опубликованная практика</a>
                                             <a class="dropdown-item menugreen h6" href="/privateoffice/organiz">Данные об организации</a>
                                             <a class="dropdown-item menugreen h6" href="/site/search_work">Поиск резюме</a>
                                             <a class="dropdown-item menugreen h6" href="<?= Url::toRoute(['privateoffice/my_select']) ?>">Избранное</a>
@@ -150,6 +153,7 @@ PublicAsset::register($this);
             </nav>
     </header>
 
+        
 
 
     <main class="content"><?= $content ?></main>

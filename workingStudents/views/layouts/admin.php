@@ -66,7 +66,7 @@ PublicAsset::register($this);
 
                  <div class="collapse navbar-collapse " id="collapsibleNavbar">
 
-                                <li class="nav-item dropdown ml-auto">
+                                <li class="nav-item dropdown dropleft ml-auto">
                                      <a class="nav-link  text-light dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                          Кабинет администратора
                                      </a>
