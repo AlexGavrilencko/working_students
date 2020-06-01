@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                       'separator'=>'&nbsp;&nbsp;&nbsp;</br>',))->label('Показать или скрыть <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                       "data-placement"=>"top", "title"=>"Хотите, чтобы ваша вакансия отображалась всем пользователям?"]); ?>
                     
-                    <?= $form->field($model, 'name')->textInput(['placeholder'=>"Введите название вакансии"])->label('Название вакансии <strong><big><span class="vop">?</span></big></strong>', 
+                    <?= $form->field($model, 'name')->textInput(['required', 'placeholder'=>"Введите название вакансии"])->label('Название вакансии <strong><big><span class="vop">?</span></big></strong>', 
                     ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Название вакансии/должности, которую вы хотите предложить пользователю"]); ?>
                     <?php 
                         $org = Organization::find()->where(['user_id'=>$user->id])->one();

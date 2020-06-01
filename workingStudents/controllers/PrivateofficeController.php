@@ -131,40 +131,67 @@ class PrivateofficeController extends Controller
             $res=new Resume();
             $res->user_id=$user->id;
             $proj= Project::find()->where(['user_id'=>$user->id])->all();
-            $expir=new Experience();
-            if(Yii::$app->request->isPost)
-            {
-                $res->load(Yii::$app->request->post());
-                $res->create();
-                $expir->resume_id=$res->id;
-                $expir->load(Yii::$app->request->post());
-                
+            $exp1=new Experience();$exp3=new Experience();
+            $exp2=new Experience();$exp4=new Experience();
+            if ($res->load(Yii::$app->request->post()) && $res->create()) { //
+                $exp1->StudyOrWork=0;$exp3->StudyOrWork=1;
+                $exp1->resume_id=$res->id;$exp3->resume_id=$res->id;
+                if(($exp1->nameOrganiz!=null) || ($exp1->years!=null) || ($exp1->speciality_id!=null)){
+                    if ($exp1->load(Yii::$app->request->post()) && $exp1->create()) {
+                        $exp2->resume_id=$res->id;$exp2->StudyOrWork=0;
+                        if ($exp2->load(Yii::$app->request->post())) {
+                            $exp2->create();
+                        }
+                    }
+                }
+                if ($exp3->load(Yii::$app->request->post()) && $exp3->create()) {
+                    $exp4->resume_id=$res->id;$exp4->StudyOrWork=1;
+                    if ($exp4->load(Yii::$app->request->post())) {
+                        $exp4->create();
+                    }
+                }
+                return $this->render('resume', ['model'=>$res,'exp1'=>$exp1,'exp2'=>$exp2,'exp3'=>$exp3,'exp4'=>$exp4,'project'=>$proj]);
             }
-            return $this->render('resume', ['model'=>$res,'expir'=>$experience,'model1'=>$model1,'project'=>$proj]);
+            
+            
         }
         else{
             $experience = Experience::find()->where(['resume_id'=>$resume->id])->all();
             $proj= Project::find()->where(['user_id'=>$user->id])->all();
-            $expir=new Experience();
-            if(Yii::$app->request->isPost)
-            {
-                $resume->getDateAdd();
-                $resume->load(Yii::$app->request->post());
-                //var_dump($resume->ShowOrHide);
-                $resume->create();
-                $expir->resume_id=$resume->id;
-                $expir->StudyOrWork=0;
-                $expir->load(Yii::$app->request->post());
-                
+            $exp1=new Experience();$exp3=new Experience();
+            $exp2=new Experience();$exp4=new Experience();
+            if ($resume->load(Yii::$app->request->post()) && $resume->create()) { //
+                //var_dump($resume);
+                $exp1->resume_id=$resume->id;$exp3->resume_id=$resume->id;
+                $exp1->StudyOrWork=0;$exp3->StudyOrWork=1;
+                if(($exp1->nameOrganiz!=null) || ($exp1->years!=null) || ($exp1->speciality_id!=null)){
+                    if ($exp1->load(Yii::$app->request->post()) && $exp1->create()) {
+                        $exp2->resume_id=$res->id;$exp2->StudyOrWork=0;
+                        if ($exp2->load(Yii::$app->request->post())) {
+                            $exp2->create();
+                        }
+                    }
+                }
+                if(($exp1->nameOrganiz!=null) || ($exp1->years!=null) || ($exp1->position_id!=null)){
+                    if ($exp3->load(Yii::$app->request->post())) {
+                        $exp3->create();
+                        $exp4->resume_id=$resume->id;$exp4->StudyOrWork=1;
+                        if ($exp4->load(Yii::$app->request->post())) {
+                            $exp4->create();
+                        }
+                    }
+                }
+                $experience = Experience::find()->where(['resume_id'=>$resume->id])->all();
             }
-            return $this->render('resume', ['model'=>$resume,'expir'=>$expir,'model1'=>$experience,'project'=>$proj]);
+            return $this->render('resume', ['model'=>$resume,'model1'=>$experience,'exp1'=>$exp1,'exp2'=>$exp2,'exp3'=>$exp3,'exp4'=>$exp4,'project'=>$proj]); 
         }
-        return $this->render('resume', ['model'=>$resume,'expir'=>$expir,'model1'=>$experience,'project'=>$proj]);
+        return $this->render('resume', ['model'=>$resume,'model1'=>$experience,'exp1'=>$exp1,'exp2'=>$exp2,'exp3'=>$exp3,'exp4'=>$exp4,'project'=>$proj]);
     }
     //функция удаления опыта
-    public function actionExperience_del($id)
+    public function actionExp1($id)
     {
-        $this->findModelExp($id)->delete();
+        $user = Yii::$app->user->identity;
+        
         return $this->redirect(['privateoffice/resume']);
     }
     //поиск модели таблицы опыт

@@ -87,8 +87,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 <?= $form->field($model, 'patronymic')->textInput(['placeholder'=>"Ваше отчество"]) ?>
 
+                                
                                 <p>Дата рождения:</p>
-                                <input type="date" class="form-control" class="mydate" name="date" placeholder="Дата">
+                                <input type="date" class="form-control" class="mydate" name="dateBirth" placeholder="Дата" >
 
 
                         
@@ -135,10 +136,27 @@ $this->params['breadcrumbs'][] = $this->title;
                         <h4>Образование</h4>
                     </div>
                                 <div class="row justify-content-center">
-                                    <input type="button" class="btn btn-rounded btnorange ml-1" value="Добавить образование" onclick="disp1(document.getElementById('form2'))">
+                                    <input type="button" class="btn btn-rounded btnorange ml-1" value="Добавить образование" onclick="disp1(document.getElementById('form1'))">
+                                </div>
+                                
+                                <div id="form1" style="display: none;">
+                                        <?= $form->field($exp1, 'years')->textInput(['placeholder'=>"Количество лет"]) ?>
+                                        
+                                        <?= $form->field($exp1, 'nameOrganiz')->textInput(['placeholder'=>"Название организации"]) ?>
+
+                                        <?= $form->field($exp1, 'speciality_id')->textInput(['placeholder'=>"Должность"]) ?>
+
+                                        <div class="row justify-content-center">
+                                            <input type="button" class="btn btn-rounded btnorange ml-1" value="Добавить образование" onclick="disp1(document.getElementById('form2'))">
+                                        </div>
                                 </div>
                                 <div id="form2" style="display: none;">
-                                    <p>Получилось</p>
+                                        <?= $form->field($exp2, 'years')->textInput(['placeholder'=>"Количество лет"]) ?>
+                                        
+                                        <?= $form->field($exp2, 'nameOrganiz')->textInput(['placeholder'=>"Название организации"]) ?>
+
+                                        <?= $form->field($exp2, 'speciality_id')->textInput(['placeholder'=>"Должность"]) ?>
+
                                 </div>
     <!--_________________Образование отображение________________________________-->
                     <?php if($model1 != null): ?> 
@@ -192,15 +210,27 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <h4>Опыт работы</h4>
                             </div>
                                 <div class="row justify-content-center">
-                                    <input type="button" class="btn btn-rounded btnorange ml-1" value="Добавить опыт работы" onclick="disp(document.getElementById('form1'))">
+                                    <input type="button" class="btn btn-rounded btnorange ml-1" value="Добавить опыт работы" onclick="disp(document.getElementById('form3'))">
                                 </div>
 
-                                <div id="form1" style="display: none;">
-                                        <?= $form->field($expir, 'years')->textInput(['placeholder'=>"Количество лет"]) ?>
+                                <div id="form3" style="display: none;">
+                                        <?= $form->field($exp3, 'years')->textInput(['placeholder'=>"Количество лет"]) ?>
                                         
-                                        <?= $form->field($expir, 'nameOrganiz')->textInput(['placeholder'=>"Название организации"]) ?>
+                                        <?= $form->field($exp3, 'nameOrganiz')->textInput(['placeholder'=>"Название организации"]) ?>
 
-                                        <?= $form->field($expir, 'position_id')->textInput(['placeholder'=>"Должность"]) ?>
+                                        <?= $form->field($exp3, 'position_id')->textInput(['placeholder'=>"Должность"]) ?>
+
+                                        <div class="row justify-content-center">
+                                            <input type="button" class="btn btn-rounded btnorange ml-1" value="Добавить опыт работы" onclick="disp(document.getElementById('form4'))">
+                                        </div>
+                                </div>
+                                <div id="form4" style="display: none;">
+                                        <?= $form->field($exp4, 'years')->textInput(['placeholder'=>"Количество лет"]) ?>
+                                        
+                                        <?= $form->field($exp4, 'nameOrganiz')->textInput(['placeholder'=>"Название организации"]) ?>
+
+                                        <?= $form->field($exp4, 'position_id')->textInput(['placeholder'=>"Должность"]) ?>
+
                                 </div>
     <!--_________________Опыт работы отображение________________________________-->
                                 <?php if($model1 != null): 

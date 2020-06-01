@@ -22,10 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php
                // $form->field($model, 'rang')->$rang;
                 ?>
-                <?= $form->field($model1, 'login')->textInput(['class'=>'form-control','placeholder'=>"Введите логин", "style"=>"font-family: 'Montserrat', sans-serif;"])->label('Логин <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                <?= $form->field($model1, 'login', ['enableAjaxValidation' => true])->textInput(['class'=>'form-control','placeholder'=>"Введите логин", "style"=>"font-family: 'Montserrat', sans-serif;"])->label('Логин <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                         "data-placement"=>"top", "title"=>"Логин должен содержать минимум 8 символов, букв или цифр: gft564*dfhy"]); ?>
 
-                <?= $form->field($model1, 'e_mail')->textInput(['class'=>'form-control', 'placeholder'=>"Введите email", "style"=>"font-family: 'Montserrat', sans-serif;"])->label('e_mail <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                <?= $form->field($model1, 'e_mail', ['enableAjaxValidation' => true])->textInput(['class'=>'form-control', 'placeholder'=>"Введите email", "style"=>"font-family: 'Montserrat', sans-serif;"])->label('e_mail <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                         "data-placement"=>"top", "title"=>"Электронная почта: primer@gmail.com"]); ?>
 
                 <?= $form->field($model1, 'password')->passwordInput(['placeholder'=>"Введите пароль", "style"=>"font-family: 'Montserrat', sans-serif;"])->label('Пароль <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                       
                 ?>
 
-                <?= $form->field($model2, 'name')->textInput(['class'=>'form-control','placeholder'=>"Наименование организации", "style"=>"font-family: 'Montserrat', sans-serif;"]) ?>
+                <?= $form->field($model2, 'name', ['enableAjaxValidation' => true])->textInput(['class'=>'form-control','placeholder'=>"Наименование организации", "style"=>"font-family: 'Montserrat', sans-serif;"]) ?>
                 <?php
                 // получаем все города из таблицы атрибутов
                 $city = Attributes::find()->where(['type'=>'city'])->all();

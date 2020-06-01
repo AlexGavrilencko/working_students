@@ -25,6 +25,7 @@ class SignupForm extends Model
             ['e_mail', 'email'], //емэил это емэил
             ['password', 'compare'], //два пароля совпадают
             [['personaldate'],'in','range'=>[1]],
+            [['login'],'match','pattern' => '/^([a-zA-Z0-9])/i', 'message' => 'Только латиница, цифры. Минимальная длина логина 8 символов' ],
         ];
     }
     

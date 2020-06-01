@@ -13,17 +13,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
         <div class="pole darkwindow">
 
-                <?php $form = ActiveForm::begin(); ?>
+                <?php $form = ActiveForm::begin([
+                    'id' => 'signup-form',
+                ]); ?>
             <h3 class="text-center" style="font-family: 'Montserrat', sans-serif;">Регистрация</h3>
                 <?php
                // $form->field($model, 'rang')->$rang;
                 ?>
 
-<?= $form->field($model, 'login')->textInput(['class'=>'form-control','placeholder'=>"Введите логин", "style"=>"font-family: 'Montserrat', sans-serif;"])->label('Логин <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+<?= $form->field($model, 'login', ['enableAjaxValidation' => true])->textInput(['class'=>'form-control','placeholder'=>"Введите логин", "style"=>"font-family: 'Montserrat', sans-serif;"])->label('Логин <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                         "data-placement"=>"top", "title"=>"Логин должен содержать минимум 8 символов, букв или цифр: gft564*dfhy"]); ?>
                 
 
-                <?= $form->field($model, 'e_mail')->textInput(['class'=>'form-control', 'placeholder'=>"Введите email", "style"=>"font-family: 'Montserrat', sans-serif;"])->label('e_mail <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                <?= $form->field($model, 'e_mail', ['enableAjaxValidation' => true])->textInput(['class'=>'form-control', 'placeholder'=>"Введите email", "style"=>"font-family: 'Montserrat', sans-serif;"])->label('e_mail <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                         "data-placement"=>"top", "title"=>"Электронная почта: primer@gmail.com"]); ?>
 
                 <?= $form->field($model, 'password')->passwordInput(['placeholder'=>"Введите пароль", "style"=>"font-family: 'Montserrat', sans-serif;"])->label('Пароль <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 

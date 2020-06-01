@@ -80,6 +80,19 @@ a{
                                             <?php endforeach;?>    
                                     </select>
                                 </div>
+
+                                <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Выбор категории -->
+                                    <?php
+                                        $org = Organization::find()->where(['correctOrg'=>1])->all();
+                                    ?>
+                                    <select class="selectpicker" data-live-search="true" name="categ">
+                                        <option data-tokens="">Организация</option>  
+                                        <?php                           
+                                            foreach ($org as $org): ?> 
+                                                <option data-tokens="" value="<?=$org->id?>"><?=$org->name?></option>  
+                                            <?php endforeach;?>    
+                                    </select>
+                                </div>
                                 
 
                                 <div class="col-6 col-sm-5 col-md-2 col-lg-3 col-xl-3 mt-1"> <!-- Кнопка для поиска -->

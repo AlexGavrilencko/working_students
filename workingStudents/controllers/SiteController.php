@@ -316,6 +316,8 @@ class SiteController extends Controller
         $salaro = Yii::$app->request->get('salaro');
         $salard = Yii::$app->request->get('salard');
         $schelude = Yii::$app->request->get('schelude');
+        $color = $_GET['schelude'];
+        //var_dump($color);
         $exper = Yii::$app->request->get('exper');
         $posit = str_replace(' ', '', $positt);
         if($salaro===""){
@@ -705,7 +707,7 @@ class SiteController extends Controller
         $this->layout = 'site';
         $user = Yii::$app->user->identity; 
         $org = Organization::find()->where(['id'=>$id])->one();
-        $query=Vacancy::find()->where(['organization_id'=>$org->id,'WorkOrPractice' => 0]);
+        $query=Vacancy::find()->where(['organization_id'=>$org->id]);
         $data = Vacancy::getSearch($query);
         $popular = Article::getPopular();
         $recent = Article::getRecent();

@@ -37,10 +37,13 @@ class Organization extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name', 'adres', 'inn', 'ogrn','city_id','user_id'], 'required'],
             [['user_id', 'city_id', 'correctOrg'], 'integer'],
             [['name', 'adres', 'inn', 'ogrn', 'image'], 'string', 'max' => 255],
             [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['city_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['inn'],'string', 'min' => 12, 'max' => 12],
+            [['ogrn'],'string', 'min' => 15, 'max' => 15],
         ];
     }
 

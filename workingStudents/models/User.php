@@ -41,10 +41,13 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+            [['login', 'e_mail', 'username', 'password','password_repeat'], 'required'],
             [['ActInactUser', 'rang'], 'integer'],
             [['date'], 'date', 'format'=>'php:Y-m-d'],
             [['date'], 'default', 'value' => date('Y-m-d')],
             [['login', 'password', 'e_mail', 'phone', 'auth_key'], 'string', 'max' => 255],
+            [['login'],'match','pattern' => '/^([a-zA-Z0-9])/i', 'message' => 'Только латиница, цифры. Минимальная длина логина 8 символов' ],
+            ['e_mail', 'email'],
         ];
     }
 

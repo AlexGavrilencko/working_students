@@ -63,13 +63,13 @@ class Vacancy extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name','duties', 'requirement', 'conditions', 'description','user_id', 'organization_id', 'city_id', 'experience_id', 'employment_id', 'schedule_id', 'salary', 'position_id', 'category_id', 'WorkOrPractice', 'ShowOrHide'], 'required'],
             [['user_id', 'organization_id', 'city_id', 'experience_id', 'employment_id', 'schedule_id', 'salary', 'position_id', 'category_id', 'WorkOrPractice', 'ShowOrHide', 'viewed'], 'integer'],
-            [['duties', 'requirement', 'conditions', 'description'], 'string'],
+            [['name','duties', 'requirement', 'conditions', 'description'], 'string'],
             [['dateAdd'], 'date', 'format'=>'php:Y-m-d'],
             [['dateAdd'], 'default', 'value' => date('Y-m-d')],
             [['dateChanges'], 'date', 'format'=>'php:Y-m-d'],
             [['dateChanges'], 'default', 'value' => date('Y-m-d')],
-            [['name'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profstand::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['city_id' => 'id']],
             [['employment_id'], 'exist', 'skipOnError' => true, 'targetClass' => Attributes::className(), 'targetAttribute' => ['employment_id' => 'id']],

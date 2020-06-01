@@ -113,7 +113,7 @@ a{
                                                     $schelude = Attributes::find()->where(['type'=>'schelude'])->all();  // получаем все города из таблицы атрибутов 
                                                 ?>
                                                 <?php   foreach ($schelude as $sch): ?> 
-                                                    <input type="checkbox" name="schelude" value="<?$sch->id?>"><?=$sch->name?><Br>
+                                                    <input type="checkbox" name="schelude[]" id="schelude" value="<?=$sch->name?>"><?=$sch->name?><Br>
                                                     
                                                 <?php endforeach;?>
                                             </div><!-- div COL -->

@@ -43,6 +43,10 @@ class AuthController extends Controller
         $this->layout = 'avtoriz';
         $model = new SignupForm();
         $model->rang=$rang;
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
         if(Yii::$app->request->isPost)
         {
             $model->load(Yii::$app->request->post());
@@ -86,6 +90,7 @@ class AuthController extends Controller
         $model1= new SignupForm();
         $model2 = new Organization();
         $model1->rang=$rang;
+        
         if(Yii::$app->request->isPost)
         {
             $model1->load(Yii::$app->request->post());

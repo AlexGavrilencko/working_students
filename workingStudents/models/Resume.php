@@ -52,6 +52,7 @@ class Resume extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name', 'surname', 'patronymic', 'CareerObjective_id','city_id','user_id','ShowOrHide','skills', 'addinform','personalQualities'], 'required'],
             [['user_id', 'city_id', 'CareerObjective_id', 'ShowOrHide','viewed'], 'integer'],
             [['dateBirth'], 'safe'],
             [['dateAdd'], 'date', 'format'=>'php:Y-m-d'],

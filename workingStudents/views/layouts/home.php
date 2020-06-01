@@ -175,7 +175,7 @@ PublicAsset::register($this);
                             <div class="row">
                                     <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
                                         <h3 class="text-light size_txt">
-                                            <?php $model = Vacancy::find()->count();
+                                            <?php $model = Vacancy::find()->where(['WorkOrPractice'=>1])->count();
                                                 if ($model == NULL)
                                                 {
                                                     echo '0';
@@ -208,6 +208,18 @@ PublicAsset::register($this);
                                             }
 
                                             else echo $model;
+                                            ?>
+                                        </h3>
+                                    </div>
+                                    <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                                        <h3 class="text-light size_txt">
+                                            <?php $model = Vacancy::find()->where(['WorkOrPractice'=>0])->count();
+                                                if ($model == NULL)
+                                                {
+                                                    echo '0';
+                                                }
+
+                                                else echo $model;
                                             ?>
                                         </h3>
                                     </div>
