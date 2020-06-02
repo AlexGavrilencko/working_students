@@ -56,16 +56,17 @@ PublicAsset::register($this);
 
             <a href="/site/index" class="navbar-brad"><img src="/public/img/logo.jpg" alt="Logo"></a>  <!-- логотип в меню сайта -->
 
-                <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                 <div class="collapse navbar-collapse " id="collapsibleNavbar">
+               
 
                      
 
 
                         <?php  if (Yii::$app->user->isGuest){ ?>
+                            <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+
+                 <div class="collapse navbar-collapse " id="collapsibleNavbar">
                             <ul class="navbar-nav">  <!-- переходы в меню для гостя-->
 
                                 <li class="nav-item">
@@ -98,6 +99,7 @@ PublicAsset::register($this);
                             </li>
 
                         </ul>
+                        </div>
                         <?php } else {?>
                             <?php $user = Yii::$app->user->identity;
                             if($user->rang===10){ ?> <!-- Для студента -->
@@ -129,8 +131,8 @@ PublicAsset::register($this);
                                         <a class="dropdown-item menugreen h6" href="/privateoffice/personal_account">Профиль</a>
                                             <a class="dropdown-item menugreen h6" href="/privateoffice/vacancy">Составить вакансию</a>
                                             <a class="dropdown-item menugreen h6" href="/privateoffice/practic">Составить практику</a>
-                                            <a class="dropdown-item menugreen h6" href="/privateoffice/my_vacancy">Опубликованные вакансии</a>
-                                            <a class="dropdown-item menugreen h6" href="/privateoffice/my_practic">Опубликованная практика</a>
+                                            <a class="dropdown-item menugreen h6" href="/privateoffice/my_vacancy">Вакансии</a>
+                                            <a class="dropdown-item menugreen h6" href="/privateoffice/my_practic">Практика</a>
                                             <a class="dropdown-item menugreen h6" href="/privateoffice/organiz">Данные об организации</a>
                                             <a class="dropdown-item menugreen h6" href="/site/search_work">Поиск резюме</a>
                                             <a class="dropdown-item menugreen h6" href="<?= Url::toRoute(['privateoffice/my_select']) ?>">Избранное</a>
@@ -144,8 +146,8 @@ PublicAsset::register($this);
                             ?>
                         <?php }?>
 
-                    </ul>
-                </div>
+                    
+                
             </nav>
     </header>
 
