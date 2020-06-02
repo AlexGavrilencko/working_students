@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 }
 a{
         color: #00a4b9dc;
-        font-size: 18px;
+        font-size: 15px;
     }
     a:hover{
         color: #003941dc;
@@ -138,7 +138,7 @@ a{
 
                             <div class="row"> <!-- Отображение желаемой доолжности и города -->
                                 <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">
-                                    <p>Желаемая должность: <?= $pos->name ?></p>
+                                    <p> <?= $pos->name ?></p>
                                 </div>    
                                 
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
@@ -146,12 +146,8 @@ a{
                                         <?php
                                             $c = $resum->city_id;
                                             $city = Attributes::find()->where(['id'=>$c])->one();
-                                            if ($city == NULL) 
-                                            { 
-                                                echo 'Город не указан'; 
-                                            }
-                                            else echo $city->name;
-                                            ?>
+                                            echo $city->name;
+                                        ?>
                                     </p>
                                 </div>  
                             </div> <!-- /Отображение даты рождения и города-->      
@@ -183,7 +179,7 @@ a{
                                 <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>" class="links">Подробнее о резюме</a>
                             </div>
                             <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                                <p>Дата<?= $resum->dateAdd ?></p>       
+                                <span class="p-date" style="color: #000;"><?= $resum->dateAdd?></span>       
                             </div>
                     </div>
             </div> <!-- /Фон для отображения -->

@@ -145,8 +145,8 @@ $this->title = 'Просмотр вакансии';
                                         else echo $organization->ogrn;
                                     ?>  
                                 </p>
-                                <p><strong>e-mail:<?= $u->e_mail ?></strong>
-                                    
+                                <p><strong>e-mail:</strong>
+                                <?= $u->e_mail ?>
                                 </p>
                         </div>
 
@@ -252,7 +252,7 @@ $this->title = 'Просмотр вакансии';
                             <?php }?>
 
                                 <div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-2">
-                                    <p>Дата<?= $vacan->dateAdd ?></p>       
+                                    <span class="p-date" style="color: #000;"><?= $vacan->dateAdd?></span>       
                                 </div>
                                 <div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-2">
                                     <img src="/public/img/eye.png" alt="eye" style="width: 32px;"><?= $vacan->viewed ?>        

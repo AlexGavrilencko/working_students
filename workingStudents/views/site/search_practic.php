@@ -27,12 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
     color: #999; /* цвет текста для нективной ссылки */
 }
 a{
-        color: #00a4b9dc;
-        font-size: 18px;
-    }
-    a:hover{
-        color: #003941dc;
-    }
+    color: #00a4b9dc;
+    font-size: 15px;
+}
+a:hover{
+    color: #003941dc;
+}
 </style>
 <script>
     function disp(div) {
@@ -187,11 +187,11 @@ a{
                     </div>                          <!-- /Отображение дополнительной информации для соискателя -->          
 
                     <div class="row"> <!-- кнопок действия и даты -->
-                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                        <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                             <a href="<?= Url::toRoute(['site/complete_information_practic', 'id'=>$vacan->id]); ?>" class="links">Подробнее о вакансии</a>
                         </div>
-                        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                            <p>Дата<?= $vacan->dateAdd ?></p>       
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"> 
+                            <span class="p-date" style="color: #000;"><?= $vacan->dateAdd?></span>    
                         </div>
                     </div>
                 </div> <!-- /Фон для отображения -->

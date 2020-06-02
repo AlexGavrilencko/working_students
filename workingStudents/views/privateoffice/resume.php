@@ -123,7 +123,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     ?</span></big></strong>', ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Выберете желаемую должность"]);
                                 ?>
 
-                                    <?= $form->field($model, 'skills')->textInput()->label('Навыки <strong><big><span class="vop">
+                                    <?= $form->field($model, 'skills')->textarea()->label('Навыки <strong><big><span class="vop">
                                     ?</span></big></strong>', ["data-toggle"=>"tooltip", "data-placement"=>"top", "title"=>"Перечислите ваши навыки"]) ?>
                                     
                                     <?= $form->field($model, 'addinform')->textarea()->label('Дополнительная информация <strong><big><span class="vop">

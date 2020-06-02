@@ -252,7 +252,7 @@ a{
                                     </div>
                             <?php }?>
                             <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                                <p>Дата<?= $vacan->dateAdd ?></p>       
+                                <span class="p-date" style="color: #000;"><?= $resum->dateAdd?></span>      
                             </div>
 
                                 <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">

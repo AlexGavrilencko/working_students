@@ -15,7 +15,7 @@ $this->title = 'Опубликованные вакансии';
 <style>
     a{
         color: #00a4b9dc;
-        font-size: 18px;
+        font-size: 15px;
     }
     a:hover{
         color: #003941dc;
@@ -66,7 +66,7 @@ $this->title = 'Опубликованные вакансии';
 
                             <div class="row"> <!-- Отображение названия организации и города -->
 
-                                <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8"><!-- Отображение названия организации -->
+                                <div class="col-12 col-sm-6 col-md-7 col-lg-8 col-xl-8"><!-- Отображение названия организации -->
                                     <p>
                                         <?php
                                             $o = $vacan->organization_id;
@@ -76,7 +76,7 @@ $this->title = 'Опубликованные вакансии';
                                     </p>
                                 </div><!-- /Отображение названия организации -->
 
-                                <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение города -->
+                                <div class="col-12 col-sm-6 col-md-5 col-lg-4 col-xl-4"> <!-- Отображение города -->
                                     <p>
                                         <?php
                                             $c = $vacan->city_id;
@@ -97,10 +97,10 @@ $this->title = 'Опубликованные вакансии';
 
                             <div class="row">
                                 <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">
-                                    <p>Опыт<?= $exp->name ?></p>
+                                    <p><?= $exp->name ?></p>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-                                    <p>Тип занятости <?= $emp->name ?></p>
+                                    <p><?= $emp->name ?></p>
                                 </div>
                             </div>
 
@@ -142,7 +142,7 @@ $this->title = 'Опубликованные вакансии';
                                 <a href="<?= Url::toRoute(['privateoffice/vacancy_up', 'id'=>$vacan->id]); ?>">Редактировать</a>
                             </div>
 
-                            <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                            <div class="col-6 col-sm-6 col-md-2 col-lg-3 col-xl-3">
                                 <?= Html::a('Удалить', ['privateoffice/vacancy_del', 'id'=>$vacan->id], [
                                     
                                     'data' => [
@@ -152,8 +152,8 @@ $this->title = 'Опубликованные вакансии';
                                 ]); ?>
                             </div>
 
-                            <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl-3">
-                                <p>Дата<?= $vacan->dateAdd ?></p>       
+                            <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-3">
+                                <span class="p-date" style="color: #000;"><?= $vacan->dateAdd?></span>           
                             </div>
                     </div>
                 </div> <!-- /Фон для отображения -->

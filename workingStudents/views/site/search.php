@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 }
 a{
         color: #00a4b9dc;
-        font-size: 18px;
+        font-size: 15px;
     }
     a:hover{
         color: #003941dc;
@@ -92,11 +92,11 @@ a{
                                 </div>
                                 
                              
-                                <div class="col-6 col-sm-5 col-md-2 col-lg-3 col-xl-3 mt-1"> <!-- Кнопка для поиска -->
-                                    <input type="button" class="btn btn-secondary1" value="Еще фильтры" onclick="disp(document.getElementById('form1'))">
+                                <div class="col-6 col-sm-5 col-md-2 col-lg-2 col-xl-3 mt-1"> <!-- Кнопка для поиска -->
+                                    <input type="button" class="btn btn-secondary1" value="Фильтры" onclick="disp(document.getElementById('form1'))">
                                 </div>
 
-                                <div class="col-6 col-sm-5 col-md-2 col-lg-3 col-xl-3 mt-1"> <!-- Кнопка для поиска -->
+                                <div class="col-6 col-sm-5 col-md-2 col-lg-2 col-xl-3 mt-1"> <!-- Кнопка для поиска -->
                                     <button type="submit" class="btn btn-secondary1">Найти</button>
                                 </div>
 
@@ -221,11 +221,7 @@ a{
                                         <?php
                                             $c = $vacan->city_id;
                                             $city = Attributes::find()->where(['id'=>$c])->one();
-                                            if ($city == NULL) 
-                                            { 
-                                                echo 'Город не указан'; 
-                                            }
-                                            else echo $city->name;
+                                            echo $city->name;
                                         ?>
                                     </p>
                                 </div><!-- Отображение города -->
@@ -237,10 +233,10 @@ a{
                         ?>
                             <div class="row">
                                 <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">
-                                    <p>Опыт<?= $exp->name ?></p>
+                                    <p><?= $exp->name ?></p>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-                                    <p>Тип занятости <?= $emp->name ?></p>
+                                    <p><?= $emp->name ?></p>
                                 </div>
                             </div>
 
@@ -276,11 +272,11 @@ a{
                     </div>                          <!-- /Отображение дополнительной информации для соискателя -->          
 
                     <div class="row"> <!-- кнопок действия и даты -->
-                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                        <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                             <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>" class="links">Подробнее о вакансии</a>
                         </div>
-                        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                            <p>Дата<?= $vacan->dateAdd ?></p>       
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <span class="p-date" style="color: #000;"><?= $vacan->dateAdd?></span>       
                         </div>
                     </div>
                 </div> <!-- /Фон для отображения -->

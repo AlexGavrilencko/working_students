@@ -120,8 +120,8 @@ $this->title = 'Просмотр вакансии';
                                         else echo $organization->ogrn;
                                     ?>  
                                 </p>
-                                <p><strong>e-mail:<?= $u->e_mail ?></strong>
-                                    
+                                <p><strong>e-mail:</strong>
+                                <?= $u->e_mail ?>
                                 </p>
                         </div>
 
@@ -179,14 +179,20 @@ $this->title = 'Просмотр вакансии';
                     
  <!-- /Отображение дополнительной информации для соискателя -->
                         <div class="row"> <!-- Просмотры и дата -->
-                            
+                               
+                                   
+                                        <div class=" col-md-8 col-lg-8 col-xl-8"> 
+                                           
+                                        </div>
+                                    <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl-2">
+                                        <span class="p-date" style="color: #000;"><?= $vacan->dateAdd?></span>       
+                                    </div>
 
-                                <div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-2">
-                                    <p>Дата<?= $vacan->dateAdd ?></p>       
-                                </div>
-                                <div class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-2">
-                                    <img src="/public/img/eye.png" alt="eye" style="width: 32px;"><?= $vacan->viewed ?>        
-                                </div>
+                                        <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl-2">
+                                        <img src="/public/img/eye.png" alt="eye" style="width: 32px;"><?= $vacan->viewed ?>       
+                                        </div>
+                               
+
                         </div> <!-- /Просмотры и дата -->
                 </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->

@@ -15,7 +15,7 @@ $this->title = 'Опубликованные предложения по пра�
 <style>
     a{
         color: #00a4b9dc;
-        font-size: 18px;
+        font-size: 15px;
     }
     a:hover{
         color: #003941dc;
@@ -47,7 +47,7 @@ $this->title = 'Опубликованные предложения по пра�
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->
                             <div class="row">
 
-                                <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение названии вакансии -->
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">  <!-- Отображение названии вакансии -->
                                     <h6 Class="text_name_vacancy"><?= $vacan->name ?></h6>
                                 </div>                  <!-- /Отображение названии вакансии -->
 
@@ -107,7 +107,7 @@ $this->title = 'Опубликованные предложения по пра�
                                 <a href="<?= Url::toRoute(['privateoffice/practic_up', 'id'=>$vacan->id]); ?>">Редактировать</a>
                             </div>
 
-                            <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+                            <div class="col-6 col-sm-6 col-md-2 col-lg-3 col-xl-3">
                                 <?= Html::a('Удалить', ['privateoffice/practic_del', 'id'=>$vacan->id], [
                                     
                                     'data' => [
@@ -117,8 +117,8 @@ $this->title = 'Опубликованные предложения по пра�
                                 ]); ?>
                             </div>
 
-                            <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl-3">
-                                <p>Дата<?= $vacan->dateAdd ?></p>       
+                            <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-3">
+                                <span class="p-date" style="color: #000;"><?= $vacan->dateAdd?></span>          
                             </div>
                     </div>
                 </div> <!-- /Фон для отображения -->

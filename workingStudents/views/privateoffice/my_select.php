@@ -12,13 +12,13 @@ use yii\helpers\Url;
 <style>
     a{
         color: #00a4b9dc;
-        font-size: 18px;
+        font-size: 15px;
     }
     a:hover{
         color: #003941dc;
     }
 </style>
-<div class=" text-center text-uppercase mt-2">
+ <div class=" text-center text-uppercase mt-2">
 	<h4 class="entry-title">Избранное</h3>
 </div>
 <?php
@@ -108,10 +108,10 @@ $user = Yii::$app->user->identity;
                         ?>
                             <div class="row">
                                 <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">
-                                    <p>Опыт<?= $exp->name ?></p>
+                                    <p><?= $exp->name ?></p>
                                 </div>
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-                                    <p>Тип занятости <?= $emp->name ?></p>
+                                    <p><?= $emp->name ?></p>
                                 </div>
                             </div>
 
@@ -147,11 +147,11 @@ $user = Yii::$app->user->identity;
                     </div>                          <!-- /Отображение дополнительной информации для соискателя -->          
 
                     <div class="row"> <!-- кнопок действия и даты -->
-                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                        <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                             <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>" class="links">Подробнее о вакансии</a>
                         </div>
-                        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                            <p>Дата<?= $vacan->dateAdd ?></p>       
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <span class="p-date" style="color: #000;"><?= $vacan->dateAdd?></span>       
                         </div>
                     </div>
                 </div> <!-- /Фон для отображения -->
@@ -180,8 +180,10 @@ $user = Yii::$app->user->identity;
                             <!-- _______________________________________________________________________________________________ -->
                                 <div class="border_search4 "> <!-- Фон для отображения -->
                                     <div class="row"> 
+                                    
                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение фотографии -->
-                                            <?php if($resum->image): ?>
+                                            <?php $pos=Position::find()->where(['id'=>$resum->CareerObjective_id])->one();
+                                                if($resum->image): ?>
                                                 <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $resum->image?>" alt="">
                                             <?php endif; ?>
                                         </div>                 <!-- /Отображение фотографии -->
@@ -206,7 +208,7 @@ $user = Yii::$app->user->identity;
                                             </div> <!-- row где ФИО и в избранное -->
                                             <div class="row"> <!-- Отображение желаемой доолжности и города -->
                                                 <div class="col-6 col-sm-6 col-md-8 col-lg-8 col-xl-8">
-                                                    <p>Желаемая вакансия:</p>
+                                                    <p><?= $pos->name ?></p>
                                                 </div>    
                                                 <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                                                     <p> Город
@@ -229,11 +231,11 @@ $user = Yii::$app->user->identity;
                                         </p>
                                     </div>                      <!-- /Отображение дополнительной информации для соискателя -->
                                     <div class="row ml-1 "> <!-- кнопок действия и даты -->
-                                        <div class="col-8 col-sm-8 col-md-10 col-lg-10 col-xl-10">
-                                            <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>">Подробнее</a>
+                                        <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                                            <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>" class="links">Подробнее о резюме</a>
                                         </div>
                                         <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                                            <p>Дата<?= $resum->dateAdd ?></p>       
+                                            <span class="p-date" style="color: #000;"><?= $resum->dateAdd?></span>        
                                         </div>
                                     </div>
                                 </div> <!-- /Фон для отображения -->

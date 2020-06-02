@@ -85,6 +85,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                     else echo $org->ogrn;
                                 ?>  
                             </p>
+                            <p>e-mail:
+                                <?  if ($org->ogrn == NULL){
+                                        echo 'Не указано';
+                                    }
+                                    else echo $user->e_mail;
+                                ?>  
+                            </p>
                             <div class="row justify-content-center"> 
                                 <a href="/privateoffice/organiz" class="btn-rounded btnorange btn">Добавить данные</a>
                             </div>
@@ -149,11 +156,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             echo $form->field($model, 'position_id')->dropDownList($items,$params)->label('Должность <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                             "data-placement"=>"top", "title"=>"Должность"]);
                         ?>
-                    <?= $form->field($model, 'duties')->textInput(['placeholder'=>"Введите обязанности"])->label('Обязанности <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                    <?= $form->field($model, 'duties')->textarea(['placeholder'=>"Введите обязанности"])->label('Обязанности <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                             "data-placement"=>"top", "title"=>"Обязанности"]) ?>
-                    <?= $form->field($model, 'requirement')->textInput(['placeholder'=>"Введите требования"])->label('Требования <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                    <?= $form->field($model, 'requirement')->textarea(['placeholder'=>"Введите требования"])->label('Требования <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                             "data-placement"=>"top", "title"=>"Требования "]) ?>
-                    <?= $form->field($model, 'conditions')->textInput(['placeholder'=>"Введите условия"])->label('Условия <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
+                    <?= $form->field($model, 'conditions')->textarea(['placeholder'=>"Введите условия"])->label('Условия <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                             "data-placement"=>"top", "title"=>"Условия"]) ?>
                     <?php
                             // получаем все города из таблицы атрибутов
@@ -166,9 +173,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             echo $form->field($model, 'category_id')->dropDownList($items,$params)->label('Профобласть <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                             "data-placement"=>"top", "title"=>"Профобласть к которой отностится вакансия"]);
                         ?>
-                        Почта для отправки резюме:<?= $user->e_mail ?> 
+                        
                     <?php $model->WorkOrPractice=0 ?>
-                        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btnorange', 'name' => 'Save submit']) ?>
+                        <div class="row justify-content-center"> 
+                            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-rounded btnorange', 'name' => 'Save submit']) ?>
+                        </div>
                     </div>
                 </div>
             </div>

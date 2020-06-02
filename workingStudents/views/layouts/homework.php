@@ -11,6 +11,10 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\assets\PublicAsset;
 use yii\helpers\Url;
+use app\models\Organization;
+use app\models\Resume;
+use app\models\Vacancy;
+use app\models\Position;
 
 PublicAsset::register($this);
 ?>
@@ -52,6 +56,7 @@ PublicAsset::register($this);
   input{
   font-family: 'Montserrat', sans-serif;
 }
+
 </style>
 
 <div class="header">
@@ -100,40 +105,124 @@ PublicAsset::register($this);
         </nav>
         <div class="container-fluid d-flex hh-100 flex-row  flex-column">        
 
-          <!--  <nav class="navbar navbar-expand-lg">  стиль для меню сайта  
+<!--  <nav class="navbar navbar-expand-lg">  стиль для меню сайта  
 
-                <div class="collapse navbar-collapse " id="collapsibleNavbar">
-                        <ul class="navbar-nav ml-auto"> 
-                            <li class="nav-item">
-                            <a href="/auth/login" class="btn-rounded btnwite btn btn-lg">Разместить резюме</a>
-                             </li>
-                        </ul>
-                </div>
-            </nav>--> 
+      <div class="collapse navbar-collapse " id="collapsibleNavbar">
+              <ul class="navbar-nav ml-auto"> 
+                  <li class="nav-item">
+                  <a href="/auth/login" class="btn-rounded btnwite btn btn-lg">Разместить резюме</a>
+                   </li>
+              </ul>
+      </div>
+  </nav>--> 
 
-             
-                <h4 class="text-light margin-top">Найдите молодого специалиста<br> в компанию прямо сейчас</h4>
-  
+   
+      <h4 class="text-light margin-top">Найдите молодого специалиста<br>в компанию прямо сейчас</h4>
 
-	                <div class="row">
-                        <div class="col-12 col-md-10 col-lg-8">
-                            <form class="search" method="get" action="<?= Url::toRoute(['site/searchws']) ?>">
-                                <div class="row no-gutters align-items-center">
 
-                                    <div class="col-8">
-                                        <input class="form-control btn-none " type="name" name="search" placeholder="Профессия или должность">
-                                    </div>
+          <div class="row">
+              <div class="col-12 col-md-10 col-lg-8">
+                  <form class="search" method="get" action="<?= Url::toRoute(['site/searchws']) ?>">
+                      <div class="row no-gutters align-items-center">
+                                    <?php
+                                         $objective = Position::find()->all();
+                                    ?>
+                          <div class="col-4">
+                           <select class="selectpicker" data-live-search="true" name="categ">
+                                        <option data-tokens="">Желаемая должность соискателей</option>  
+                                        <?php                           
+                                            foreach ($objective as $objective): ?> 
+                                                <option data-tokens="" value="<?=$objective->id?>"><?=$objective->name?></option>  
+                                            <?php endforeach;?>    
+                                    </select>
+                          </div>
 
-                                    <div class="col-auto">
-                                        <button type="submit" class="btn-none btn btnwite" >Найти</button>
-                                    </div>
-                                </div>    
-                            </form>
-                        </div>
-                    </div>
+                          <div class="col-auto">
+                              <button type="submit" class="btn-none btn btnwite" >Найти</button>
+                          </div>
+                      </div>    
+                  </form>
+              </div>
+          </div>
 
-                    
+          <h4 class="text-light mt-5">Сейчас на сайте "Working Students"</h4>
+      <div class="margin_statistic justify-content-center">
     
+          <div class="row ">
+                  <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12">
+                      <div class="row">
+                          <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                              <h4 class="text-light size_txt">Практика</h4>
+                          </div>
+                          <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                              <h4 class="text-light size_txt">Вакансий</h4>
+                          </div>
+                          <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                              <h4 class="text-light size_txt">Резюме</h4>
+                          </div>
+                          <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                              <h4 class="text-light size_txt">Организаций</h4>
+                          </div>
+                      </div>
+                  </div>
+          
+
+          
+                  <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12">
+                      <div class="row">
+                          <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                              <h4 class="text-light size_txt">
+                                  <?php $model = Vacancy::find()->where(['WorkOrPractice'=>1])->count();
+                                      if ($model == NULL)
+                                      {
+                                          echo '0';
+                                      }
+
+                                      else echo $model;
+                                  ?>
+                              </h4>
+                          </div>
+                          <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                              <h4 class="text-light size_txt">
+                                  <?php $model = Vacancy::find()->where(['WorkOrPractice'=>0])->count();
+                                      if ($model == NULL)
+                                      {
+                                          echo '0';
+                                      }
+
+                                      else echo $model;
+                                  ?>
+                              </h4>
+                          </div>
+                          <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                              <h4 class="text-light size_txt">
+                              <?php $model = Resume::find()->count();
+                                  if ($model == NULL)
+                                  {
+                                      echo '0';
+                                  }
+
+                                  else echo $model;
+                                  ?>
+                              </h4>
+                          </div>
+
+                          <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                              <h4 class="text-light size_txt">
+                                  <?php $model = Organization::find()->count();
+                                  if ($model == NULL)
+                                  {
+                                      echo '0';
+                                  }
+
+                                  else echo $model;
+                                  ?>
+                              </h4>
+                          </div>     
+                      </div>
+                  </div>
+          </div>
+      </div>
 </div>
 
   

@@ -158,26 +158,29 @@ PublicAsset::register($this);
                 <div class="margin_statistic justify-content-center">
               
                     <div class="row ">
-                        <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12">
+                            <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12">
                                 <div class="row">
                                     <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
-                                        <h3 class="text-light size_txt">Вакансий</h3>
+                                        <h4 class="text-light size_txt">Практика</h4>
                                     </div>
                                     <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
-                                        <h3 class="text-light size_txt">Резюме</h3>
+                                        <h4 class="text-light size_txt">Вакансий</h4>
                                     </div>
                                     <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
-                                        <h3 class="text-light size_txt">Организаций</h3>
+                                        <h4 class="text-light size_txt">Резюме</h4>
+                                    </div>
+                                    <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                                        <h4 class="text-light size_txt">Организаций</h4>
                                     </div>
                                 </div>
-                        </div>
+                            </div>
                     
 
                     
-                        <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12">
-                            <div class="row">
+                            <div class="col-6 col-sm-6 col-md-12 col-lg-12 col-xl-12">
+                                <div class="row">
                                     <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
-                                        <h3 class="text-light size_txt">
+                                        <h4 class="text-light size_txt">
                                             <?php $model = Vacancy::find()->where(['WorkOrPractice'=>1])->count();
                                                 if ($model == NULL)
                                                 {
@@ -186,36 +189,10 @@ PublicAsset::register($this);
 
                                                 else echo $model;
                                             ?>
-                                        </h3>
-                                    </div>
-
-                                    <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
-                                        <h3 class="text-light size_txt">
-                                        <?php $model = Resume::find()->count();
-                                            if ($model == NULL)
-                                            {
-                                                echo '0';
-                                            }
-
-                                            else echo $model;
-                                            ?>
-                                        </h3>
-                                    </div>
-
-                                    <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
-                                        <h3 class="text-light size_txt">
-                                            <?php $model = Organization::find()->count();
-                                            if ($model == NULL)
-                                            {
-                                                echo '0';
-                                            }
-
-                                            else echo $model;
-                                            ?>
-                                        </h3>
+                                        </h4>
                                     </div>
                                     <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
-                                        <h3 class="text-light size_txt">
+                                        <h4 class="text-light size_txt">
                                             <?php $model = Vacancy::find()->where(['WorkOrPractice'=>0])->count();
                                                 if ($model == NULL)
                                                 {
@@ -224,10 +201,35 @@ PublicAsset::register($this);
 
                                                 else echo $model;
                                             ?>
-                                        </h3>
+                                        </h4>
                                     </div>
+                                    <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                                        <h4 class="text-light size_txt">
+                                        <?php $model = Resume::find()->count();
+                                            if ($model == NULL)
+                                            {
+                                                echo '0';
+                                            }
+
+                                            else echo $model;
+                                            ?>
+                                        </h4>
+                                    </div>
+
+                                    <div class="col-8 col-sm-8 col-md-2 col-lg-2 col-xl-2">
+                                        <h4 class="text-light size_txt">
+                                            <?php $model = Organization::find()->count();
+                                            if ($model == NULL)
+                                            {
+                                                echo '0';
+                                            }
+
+                                            else echo $model;
+                                            ?>
+                                        </h4>
+                                    </div>     
+                                </div>
                             </div>
-                        </div>
                     </div>
                 </div>
 
