@@ -25,7 +25,7 @@ $this->title = 'Просмотр вакансии';
 
     a{
         color: #00a4b9dc;
-        font-size: 18px;
+        font-size: 15px;
     }
     a:hover{
         color: #003941dc;
@@ -53,9 +53,11 @@ $this->title = 'Просмотр вакансии';
                                 $category = Profstand::find()->where(['id'=>$vacan->category_id])->all();//категория
                                 
                                 if ($organization->image!=null){?>
+                            
                                     <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $organization->image?>" alt="">
+                             
                                 <?php } else {?> 
-                                    <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/nofoto.png" alt="">
+                                        <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/nofoto.png" alt="">
                                 <?php }  ?>
                         </div>                 <!-- /Отображение фотографии -->
 
@@ -86,11 +88,13 @@ $this->title = 'Просмотр вакансии';
                         <div class="date_org">
                             <h4 class="text-center text_name_vacancy" >Данные об организации</h4>                       
                                 <p><strong>Название организации:</strong>
-                                    <?  if ($organization->name == NULL){
-                                            echo 'Не указано';
-                                        }
-                                        else echo $organization->name;
-                                    ?>  
+                                     <a href="<?= Url::toRoute(['site/org_vacancy','id'=>$organization->id]) ?>" style=" color: #000;"> 
+                                        <?php
+                                            $o = $vacan->organization_id;
+                                            $organization = Organization::find()->where(['id'=>$o])->one();
+                                            echo $organization->name;
+                                        ?>
+                                    </a>
                                 </p>
                                 <p><strong>Город:</strong>
                                     <?  if ($cityo == NULL){

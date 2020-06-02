@@ -125,9 +125,13 @@ a:hover{
                                 $o = $vacan->organization_id;
                                 $organization = Organization::find()->where(['id'=>$o])->one();
                                 if ($organization->image!=null){?>
-                                    <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $organization->image?>" alt="">
+                                    <a href="<?= Url::toRoute(['site/complete_information_practic', 'id'=>$vacan->id]); ?>">
+                                        <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $organization->image?>" alt="">
+                                    </a> 
                                 <?php } else {?> 
-                                    <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/nofoto.png" alt="">
+                                    <a href="<?= Url::toRoute(['site/complete_information_practic', 'id'=>$vacan->id]); ?>">
+                                        <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/nofoto.png" alt="">
+                                    </a> 
                                 <?php }  ?>
                         </div>                 <!-- /Отображение фотографии -->
 
@@ -135,7 +139,9 @@ a:hover{
                             <div class="row">
 
                                 <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение названии вакансии -->
-                                    <h5 Class="text_name_vacancy"><?= $vacan->name ?></h5>
+                                    
+                                        <h5 Class="text_name_vacancy"><?= $vacan->name ?></h5>
+                                   
                                 </div>                  <!-- /Отображение названии вакансии -->
 
                             </div>
@@ -143,13 +149,13 @@ a:hover{
                             <div class="row"> <!-- Отображение названия организации и города -->
 
                                 <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8"><!-- Отображение названия организации -->
-                                    <p>
+                                    <a href="<?= Url::toRoute(['site/org_vacancy','id'=>$organization->id]) ?>" style=" color: #000;"> 
                                         <?php
                                             $o = $vacan->organization_id;
                                             $organization = Organization::find()->where(['id'=>$o])->one();
                                             echo $organization->name;
                                         ?>
-                                    </p>
+                                    </a>
                                 </div><!-- /Отображение названия организации -->
 
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение города -->
@@ -188,7 +194,7 @@ a:hover{
 
                     <div class="row"> <!-- кнопок действия и даты -->
                         <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
-                            <a href="<?= Url::toRoute(['site/complete_information_practic', 'id'=>$vacan->id]); ?>" class="links">Подробнее о вакансии</a>
+                            <a href="<?= Url::toRoute(['site/complete_information_practic', 'id'=>$vacan->id]); ?>" class="links">Подробнее о практике</a>
                         </div>
                         <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"> 
                             <span class="p-date" style="color: #000;"><?= $vacan->dateAdd?></span>    
