@@ -6,6 +6,7 @@ use yii\widgets\LinkPager;
 use app\models\User;
 use app\models\Vacancy;
 use app\models\Organization;
+use app\models\Position;
 use yii\helpers\Html;
 use yii\helpers\Url;
 ?>

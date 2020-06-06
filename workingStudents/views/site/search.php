@@ -156,8 +156,8 @@ a{
         </div><!-- ROW для поиска -->
   
         
-
-<!-- Для отображения информации -->
+        
+<!-- Для отображения информации --><h5 Class="text_name_vacancy">Найдено <?= $count ?> вакансий</h5>
     <div class="row justify-content-md-center mb-3"> 
         <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7">  
                     <br>     

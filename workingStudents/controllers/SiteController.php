@@ -236,6 +236,7 @@ class SiteController extends Controller
         $this->layout = 'site'; 
         $query =Vacancy::find()->where(['WorkOrPractice' => 0]);
         $data = Vacancy::getSearch($query);   
+        $count=$query->count();
         $atr=Attributes::find()->all();
         $org=Organization::find()->all();
         $vac=Vacancy::find()->all();
@@ -253,6 +254,7 @@ class SiteController extends Controller
             'categories'=>$categories,
             'pagination'=>$data['pagination'],
             'vacancy'=>$data['vacancy'],
+            'count'=>$count,
             ]);
     }
 
@@ -262,6 +264,7 @@ class SiteController extends Controller
         if($id!=null){
             $query =Vacancy::find()->where(['category_id'=>$id,'WorkOrPractice' => 0]);
             $data = Vacancy::getSearch($query);
+            $count=$query->count();
         }
         $atr=Attributes::find()->all();
         $org=Organization::find()->all();
@@ -281,6 +284,7 @@ class SiteController extends Controller
             'categories'=>$categories,
             'pagination'=>$data['pagination'],
             'vacancy'=>$data['vacancy'],
+            'count'=>$count,
             
         ]);
     }
@@ -293,6 +297,7 @@ class SiteController extends Controller
         // Поисковый запрос с поиском и обрезанием пробелов
         $query = Vacancy::find()->filterWhere(['like','name', $search1])->andWhere(['WorkOrPractice' => 0]);
         $data = Vacancy::getSearch($query);
+        $count=$query->count();
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
@@ -304,6 +309,7 @@ class SiteController extends Controller
             'categories'=>$categories,
             'pagination'=>$data['pagination'],
             'vacancy'=>$data['vacancy'],
+            'count'=>$count,
         ]);
     }
 
@@ -337,22 +343,26 @@ class SiteController extends Controller
             if($categ!=null){
                 if($posit!=null){
                     if(($salaro!=null)||($salard!=null)){
-                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])-andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
+                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
                         $data = Vacancy::getSearch($query);
+                        $count=$query->count();
                     }
                     else{
                         $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
                         $data = Vacancy::getSearch($query);
+                        $count=$query->count();
                     }
                 }
                 else{
                     if(($salaro!=null)||($salard!=null)){
                         $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0]);
                         $data = Vacancy::getSearch($query);
+                        $count=$query->count();
                     }
                     else{
                         $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0]);
                         $data = Vacancy::getSearch($query);
+                        $count=$query->count();
                     }
                 }
             }
@@ -361,21 +371,25 @@ class SiteController extends Controller
                     if(($salaro!=null)||($salard!=null)){
                         $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
                         $data = Vacancy::getSearch($query);
+                        $count=$query->count();
                     }
                     else{
                         $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
                         $data = Vacancy::getSearch($query);
+                        $count=$query->count();
                     }
                 }
                 else{
                     if(($salaro!=null)||($salard!=null)){
                         $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0]);
                         $data = Vacancy::getSearch($query);
+                        $count=$query->count();
                     }
                     else{
                         $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0]);
                         $data = Vacancy::getSearch($query);
                         //var_dump($query);
+                        $count=$query->count();
                     }
                 }
             }
@@ -386,20 +400,24 @@ class SiteController extends Controller
                     if(($salaro!=null)||($salard!=null)){
                         $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
                         $data = Vacancy::getSearch($query);
+                        $count=$query->count();
                     }
                     else{
                         $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
                         $data = Vacancy::getSearch($query);
+                        $count=$query->count();
                     }
                 }
                 else{
                     if(($salaro!=null)||($salard!=null)){
                         $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0]);
                         $data = Vacancy::getSearch($query);
+                        $count=$query->count();
                     }
                     else{
                         $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0]);
                         $data = Vacancy::getSearch($query);
+                        $count=$query->count();
                     }
                 }
             }
@@ -408,20 +426,24 @@ class SiteController extends Controller
                     if(($salaro!=null)||($salard!=null)){
                         $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andFilterWhere(['like','name', $posit])->andWhere(['WorkOrPractice' => 0]);
                         $data = Vacancy::getSearch($query);
+                        $count=$query->count();
                     }
                     else{
                         $query=Vacancy::find()->filterWhere(['like','name', $posit])->andWhere(['WorkOrPractice' => 0]);
                         $data = Vacancy::getSearch($query);
+                        $count=$query->count();
                     }
                 }
                 else{
                     if(($salaro!=null)||($salard!=null)){
                         $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0]);
                         $data = Vacancy::getSearch($query);
+                        $count=$query->count();
                     }
                     else{
                         $query=Vacancy::find()->where(['WorkOrPractice' => 0]);
                         $data = Vacancy::getSearch($query);
+                        $count=$query->count();
                     }
                 }
             }
@@ -435,6 +457,7 @@ class SiteController extends Controller
             'categories'=>$categories,
             'pagination'=>$data['pagination'],
             'vacancy'=>$data['vacancy'],
+            'count'=>$count,
         ]);
     }
 
