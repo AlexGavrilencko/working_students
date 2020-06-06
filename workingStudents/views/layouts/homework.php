@@ -56,7 +56,9 @@ PublicAsset::register($this);
   input{
   font-family: 'Montserrat', sans-serif;
 }
-
+.bootstrap-select>.dropdown-toggle {
+    width: 258% !important;
+}
 </style>
 
 <div class="header">
@@ -127,14 +129,16 @@ PublicAsset::register($this);
                                     <?php
                                          $objective = Position::find()->all();
                                     ?>
-                          <div class="col-4">
-                           <select class="selectpicker" data-live-search="true" name="categ">
+                          <div class="col-8">
+                               
+                                    <select class="selectpicker" data-live-search="true" name="categ">
                                         <option data-tokens="">Желаемая должность соискателей</option>  
                                         <?php                           
                                             foreach ($objective as $objective): ?> 
                                                 <option data-tokens="" value="<?=$objective->id?>"><?=$objective->name?></option>  
                                             <?php endforeach;?>    
                                     </select>
+                              
                           </div>
 
                           <div class="col-auto">

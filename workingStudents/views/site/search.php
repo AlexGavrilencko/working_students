@@ -174,9 +174,13 @@ a{
                                 $o = $vacan->organization_id;
                                 $organization = Organization::find()->where(['id'=>$o])->one();
                                 if ($organization->image!=null){?>
-                                    <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $organization->image?>" alt="">
-                                <?php } else {?> 
-                                    <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/nofoto.png" alt="">
+                                     <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>">
+                                        <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/<?= $organization->image?>" alt="">
+                                    </a>
+                                <?php } else {?>
+                                    <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>"> 
+                                        <img class="img-fluid img-thumbnail" style="width: 250px; object-fit: cover;  display: block;  height: 180px;" src="/uploads/nofoto.png" alt="">
+                                    </a>
                                 <?php }  ?>
                         </div>                 <!-- /Отображение фотографии -->
 
@@ -184,7 +188,9 @@ a{
                             <div class="row">
 
                                 <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение названии вакансии -->
-                                    <h5 Class="text_name_vacancy"><?= $vacan->name ?></h5>
+                                    <a href="<?= Url::toRoute(['site/org_vacancy','id'=>$organization->id]) ?>">
+                                        <h5 Class="text_name_vacancy"><?= $vacan->name ?></h5>
+                                    </a>
                                 </div>                  <!-- /Отображение названии вакансии -->
 
                                  <!-- Отображение зарплаты -->
@@ -207,13 +213,13 @@ a{
                             <div class="row"> <!-- Отображение названия организации и города -->
 
                                 <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8"><!-- Отображение названия организации -->
-                                    <p>
+                                    <a href="<?= Url::toRoute(['site/org_vacancy','id'=>$organization->id]) ?>" style=" color: #000;"> 
                                         <?php
                                             $o = $vacan->organization_id;
                                             $organization = Organization::find()->where(['id'=>$o])->one();
                                             echo $organization->name;
                                         ?>
-                                    </p>
+                                    </a>
                                 </div><!-- /Отображение названия организации -->
 
                                 <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение города -->

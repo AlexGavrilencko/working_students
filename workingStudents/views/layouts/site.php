@@ -61,16 +61,13 @@ PublicAsset::register($this);
 
             <a href="/site/index" class="navbar-brad"><img src="/public/img/logo.jpg" alt="Logo"></a>  <!-- логотип в меню сайта -->
 
-                <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                 <div class="collapse navbar-collapse " id="collapsibleNavbar">
-
-                     
-
-
+                
                         <?php  if (Yii::$app->user->isGuest){ ?>
+                            <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+
+                        <div class="collapse navbar-collapse " id="collapsibleNavbar">
                             <ul class="navbar-nav">  <!-- переходы в меню для гостя-->
 
                                 <li class="nav-item">
@@ -93,63 +90,68 @@ PublicAsset::register($this);
                                 </li>
                             </ul>
 
-                        <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
+                                <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
 
-                            <li class="nav-item">
-                                <a class=" nav-link menugreen h6" href="/auth/login" id="vxod">Вход</a>
-                             </li>
-                             <li class="nav-item">
-                                <a href="/auth/login" class="btn btnorange ml-2">Разместить резюме</a>
-                            </li>
+                                    <li class="nav-item">
+                                        <a class=" nav-link menugreen h6" href="/auth/login" id="vxod">Вход</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/auth/login" class="btn btnorange ml-2">Разместить резюме</a>
+                                    </li>
 
-                        </ul>
+                                </ul>
+                        </div>
                         <?php } else {?>
-                            <?php $user = Yii::$app->user->identity;
-                            if($user->rang===10){ ?> <!-- Для студента -->
+                            <?php $user = Yii::$app->user->identity;?>
+                             
+                            <?php if($user->rang===10){ ?> <!-- Для студента -->
 
                                 <li class="nav-item dropdown ml-auto dropleft">
-                                     <a class="nav-link menugreen dropdown-toggle h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                     <a class="nav-link menugreen dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                          Личный кабинет
                                      </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item menugreen h6" href="/privateoffice/personal_account">Профиль</a>
-                                            <a class="dropdown-item menugreen h6" href="/privateoffice/resume">Мое резюме</a>
-                                            <a class="dropdown-item menugreen h6" href="<?= Url::toRoute(['site/search','id'=>'0']) ?>">Поиск вакансий</a>
-                                            <a class="dropdown-item menugreen h6" href="<?= Url::toRoute(['privateoffice/my_select']) ?>">Избранное</a>
-                                            <a class="dropdown-item menugreen h6" href="<?= Url::toRoute(['privateoffice/my_scan']) ?>">Просмотренное</a>
-                                            <a class="dropdown-item menugreen h6" href="/privateoffice/response">Уведомления</a>
-                                            <a class="dropdown-item menugreen h6" href="/site/indexartic">Cтатьи</a>
-                                            <a class="dropdown-item menugreen h6" href="/auth/logout" id="exit"><div>Выход</div></a>
+                                            <a class="dropdown-item menugreen " href="/privateoffice/personal_account">Профиль</a>
+                                            <a class="dropdown-item menugreen " href="/privateoffice/resume">Мое резюме</a>
+                                            <a class="dropdown-item menugreen " href="<?= Url::toRoute(['site/search','id'=>'0']) ?>">Поиск вакансий</a>
+                                            <a class="dropdown-item menugreen " href="<?= Url::toRoute(['site/search_practic','id'=>'0']) ?>">Поиск практики</a>
+                                            <a class="dropdown-item menugreen " href="<?= Url::toRoute(['privateoffice/my_select']) ?>">Избранное</a>
+                                            <a class="dropdown-item menugreen " href="<?= Url::toRoute(['privateoffice/my_scan']) ?>">Просмотренное</a>
+                                            <a class="dropdown-item menugreen " href="/privateoffice/response">Уведомления</a>
+                                            <a class="dropdown-item menugreen " href="/site/indexartic">Cтатьи</a>
+                                            <a class="dropdown-item menugreen " href="/auth/logout" id="exit"><div>Выход</div></a>
                                         </div>
                                 </li>
                             <?php }
+
                             if($user->rang===20){ ?> <!-- Для работодателя -->
 
                                 <li class="nav-item dropdown dropleft ml-auto">
-                                     <a class="nav-link menugreen dropdown-toggle h6" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                     <a class="nav-link menugreen dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                          Личный кабинет
                                      </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item menugreen h6" href="/privateoffice/personal_account">Профиль</a>
-                                            <a class="dropdown-item menugreen h6" href="/privateoffice/vacancy">Составить вакансию</a>
-                                            <a class="dropdown-item menugreen h6" href="/privateoffice/practic">Составить практику</a>
-                                            <a class="dropdown-item menugreen h6" href="/privateoffice/my_vacancy">Опубликованные вакансии</a>
-                                            <a class="dropdown-item menugreen h6" href="/privateoffice/my_practic">Опубликованная практика</a>
-                                            <a class="dropdown-item menugreen h6" href="/privateoffice/organiz">Данные об организации</a>
-                                            <a class="dropdown-item menugreen h6" href="/site/search_work">Поиск резюме</a>
-                                            <a class="dropdown-item menugreen h6" href="<?= Url::toRoute(['privateoffice/my_select']) ?>">Избранное</a>
-                                            <a class="dropdown-item menugreen h6" href="<?= Url::toRoute(['privateoffice/my_scan']) ?>">Просмотренное</a>
-                                            <a class="dropdown-item menugreen h6" href="/privateoffice/response">Уведомления</a>
-                                            <a class="dropdown-item menugreen h6" href="/site/indexartic">Cтатьи</a>
-                                            <a class="dropdown-item menugreen h6" href="/auth/logout" id="exit"><div>Выход</div></a>
+                                            <a class="dropdown-item menugreen " href="/privateoffice/personal_account">Профиль</a>
+                                            <a class="dropdown-item menugreen " href="/privateoffice/vacancy">Составить вакансию</a>
+                                            <a class="dropdown-item menugreen " href="/privateoffice/practic">Составить практику</a>
+                                            <a class="dropdown-item menugreen " href="/privateoffice/my_vacancy">Вакансии</a>
+                                            <a class="dropdown-item menugreen " href="/privateoffice/my_practic">Практика</a>
+                                            <a class="dropdown-item menugreen " href="/privateoffice/organiz">Данные об организации</a>
+                                            <a class="dropdown-item menugreen " href="/site/search_work">Поиск резюме</a>
+                                            <a class="dropdown-item menugreen " href="<?= Url::toRoute(['privateoffice/my_select']) ?>">Избранное</a>
+                                            <a class="dropdown-item menugreen " href="<?= Url::toRoute(['privateoffice/my_scan']) ?>">Просмотренное</a>
+                                            <a class="dropdown-item menugreen " href="/privateoffice/response">Уведомления</a>
+                                            <a class="dropdown-item menugreen " href="/site/indexartic">Cтатьи</a>
+                                            <a class="dropdown-item menugreen " href="/auth/logout" id="exit"><div>Выход</div></a>
                                         </div>
                                 </li>
-                            <?php }
-                            ?>
+                            <?php } ?>
+
+                              
                         <?php }?>
 
-                    </ul>
-                </div>
+                  
+            
             </nav>
     </header>
 

@@ -144,11 +144,11 @@ $this->title = 'Мои вакансии';
                     </div>                          <!-- /Отображение дополнительной информации для соискателя -->          
 
                     <div class="row"> <!-- кнопок действия и даты -->
-                        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
+                        <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                             <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>" class="links">Подробнее о вакансии</a>
                         </div>
-                        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                            <p>Дата<?= $vacan->dateAdd ?></p>       
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <span class="p-date" style="color: #000;"><?= $vacan->dateAdd?></span>        
                         </div>
                     </div>
                 </div> <!-- /Фон для отображения -->
@@ -156,7 +156,8 @@ $this->title = 'Мои вакансии';
 <!-- _______________________________________________________________________________________________ -->
             <?php } //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             else{ ?>  
-                <div class="border_search3"> <!-- Фон для отображения -->
+                <!-- ______________________________________Вид отображения_________________________________________________________ -->
+                <div class="border_search32"> <!-- Фон для отображения -->
                     <div class="row "> 
 
                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение фотографии -->
@@ -171,13 +172,14 @@ $this->title = 'Мои вакансии';
                         </div>                 <!-- /Отображение фотографии -->
 
                         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Отображение информации правее фотографии -->
+                            
+                            <div class="row justify-content-md-center">
+                                    <h6 Class="text_name_vacancy">Предложение по практике</h6>
+                            </div>
                             <div class="row">
-
-                                <div class="col-12 col-sm-6 col-md-8 col-lg-8 col-xl-8">  <!-- Отображение названии вакансии -->
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">  <!-- Отображение названии вакансии -->
                                     <h6 Class="text_name_vacancy"><?= $vacan->name ?></h6>
                                 </div>                  <!-- /Отображение названии вакансии -->
-
-                                              <!-- /Отображение зарплаты -->
                             </div>
 
                             <div class="row"> <!-- Отображение названия организации и города -->
@@ -224,14 +226,16 @@ $this->title = 'Мои вакансии';
                             ?>
                         </p>
                     </div>                      <!-- /Отображение дополнительной информации для соискателя -->
-                    <div class="row justify-content-md-center"> <!-- кнопок действия и даты -->
-                            
-
-                            <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl-3">
-                                <p>Дата<?= $vacan->dateAdd ?></p>       
-                            </div>
+                    <div class="row"> <!-- кнопок действия и даты -->
+                        <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
+                            <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>" class="links">Подробнее о практике</a>
+                        </div>
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <span class="p-date" style="color: #000;"><?= $vacan->dateAdd?></span>        
+                        </div>
                     </div>
                 </div> <!-- /Фон для отображения -->
+<!-- _______________________________________________________________________________________________ -->
                 <?php }  endforeach; ?>  <!-- /Цикл для отображения вакансий -->        
         </div>
         <?= $this->render('/partials/sidebar', [
