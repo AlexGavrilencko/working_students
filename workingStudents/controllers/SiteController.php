@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\CategoryProfstand;
+use app\models\Position;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -313,6 +315,26 @@ class SiteController extends Controller
             'count'=>$count,
         ]);
     }
+
+    public function actionGetCategoryProfstand()
+    {
+        $res = CategoryProfstand::find()->where(['profstand_id' => Yii::$app->request->get('q')])->all();
+
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        return $res;
+    }
+
+    public function actionGetPosition()
+    {
+        $res = Position::find()->where(['categprofst_id' => Yii::$app->request->get('q')])->all();
+
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        return $res;
+    }
+
+
 
     public function actionSearchfilt(){ /* Страница поиска для студента по фильтрам*/
         $this->layout = 'site';
