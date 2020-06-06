@@ -196,8 +196,8 @@ a:hover{
                         <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                             <a href="<?= Url::toRoute(['site/complete_information_practic', 'id'=>$vacan->id]); ?>" class="links">Подробнее о практике</a>
                         </div>
-                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"> 
-                            <span class="p-date" style="color: #000;"><?= $vacan->dateAdd?></span>    
+                        <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                            <span class="p-date" style="color: #000;"><?= $vacan->getDate();?></span>       
                         </div>
                     </div>
                 </div> <!-- /Фон для отображения -->

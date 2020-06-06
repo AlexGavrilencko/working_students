@@ -22,6 +22,7 @@ use app\models\Article;
 use app\models\ArticleTag;
 use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
+use app\models\Profstand;
 
 class SiteController extends Controller
 {
@@ -448,6 +449,12 @@ class SiteController extends Controller
                 }
             }
         }
+        if($city!=null){
+            $city=Attributes::findOne($city);
+        }
+        if($categ!=null){
+            $categ=Profstand::findOne($categ);
+        }
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
@@ -458,6 +465,9 @@ class SiteController extends Controller
             'pagination'=>$data['pagination'],
             'vacancy'=>$data['vacancy'],
             'count'=>$count,
+            'categ'=>$categ,
+            'cityr'=>$city,
+            'posname'=>$positt,
         ]);
     }
 

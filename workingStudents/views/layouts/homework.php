@@ -57,7 +57,7 @@ PublicAsset::register($this);
   font-family: 'Montserrat', sans-serif;
 }
 .bootstrap-select>.dropdown-toggle {
-    width: 258% !important;
+    width: 215% !important;
 }
 </style>
 
@@ -129,7 +129,7 @@ PublicAsset::register($this);
                                     <?php
                                          $objective = Position::find()->all();
                                     ?>
-                          <div class="col-8">
+                          <div class="col-7">
                                
                                     <select class="selectpicker" data-live-search="true" name="categ">
                                         <option data-tokens="">Желаемая должность соискателей</option>  

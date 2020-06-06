@@ -154,10 +154,30 @@ a{
                         </form>                   
                 </div><!-- border_search_resume -->
         </div><!-- ROW для поиска -->
-  
+        <?php 
+        if($cityr===null){
+            $city="";
+        }
+        if($categ===null){
+            $categ="";
+        }
+        if($posname===null){
+            $posname="";
+        }
+        if(($cityr!="")||($categ!="")||($posname!="")){
+            $z=" по запросу : ";
+            $d="; ";
+        }
+        else{
+            $z="";
+            $d="";
+        }
+        ?>
         
-        
-<!-- Для отображения информации --><h5 Class="text_name_vacancy">Найдено <?= $count ?> вакансий</h5>
+        <div class="mt-4" style="margin-left: 4%;">
+            <h4 Class="text_name_vacancy">Найдено <?=$count?> вакансий <?=$z?><?=$posname?><?=$d?><?=$cityr->name?><?=$d?><?=$categ->name?></h4>
+        </div>
+<!-- Для отображения информации -->
     <div class="row justify-content-md-center mb-3"> 
         <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7">  
                     <br>     
@@ -276,13 +296,13 @@ a{
                             ?>
                         </p>
                     </div>                          <!-- /Отображение дополнительной информации для соискателя -->          
-
+                    
                     <div class="row"> <!-- кнопок действия и даты -->
                         <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                             <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>" class="links">Подробнее о вакансии</a>
                         </div>
                         <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                            <span class="p-date" style="color: #000;"><?= $vacan->dateAdd?></span>       
+                            <span class="p-date" style="color: #000;"><?= $vacan->getDate();?></span>       
                         </div>
                     </div>
                 </div> <!-- /Фон для отображения -->

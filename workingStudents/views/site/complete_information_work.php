@@ -251,14 +251,20 @@ a{
                                         <a href="#" class="disabled">Откликнуться на резюме</a>
                                     </div>
                             <?php }?>
-                            <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                                <span class="p-date" style="color: #000;"><?= $resum->dateAdd?></span>      
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                                <span class="p-date" style="color: #000;">Количество просмотров <?= $vacan->viewed ?></span>     
                             </div>
-
-                                <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                                    <img src="/public/img/eye.png" alt="eye" style="width: 32px;"><?= $resum->viewed ?>       
-                                </div>
                         </div> <!-- /Просмотры и дата -->
+                         <!-- /Отображение дополнительной информации для соискателя -->
+ <br>
+                        <div class="row">
+                            <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8"> 
+                                <span class="p-date" style="color: #000;">Дата добавления <?= $resum->getDate();?></span>
+                            </div>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"> 
+                                <span class="p-date" style="color: #000;">Дата изменения <?= $resum->getDate();?></span>
+                            </div>
+                        </div>
                 </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->
          

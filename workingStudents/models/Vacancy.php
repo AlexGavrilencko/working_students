@@ -127,7 +127,7 @@ class Vacancy extends \yii\db\ActiveRecord
 
     public function getDate()
     {
-        return Yii::$app->formatter->asDate($this->date);
+        return Yii::$app->formatter->asDate($this->dateAdd);
 	}
 
     public function create()
