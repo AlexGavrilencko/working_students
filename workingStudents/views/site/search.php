@@ -64,6 +64,34 @@ a{
                                     <input class="form-control btn-none " type="search" name="salard" placeholder="Зарплата до">
                                 </div>
 
+                            </div>
+
+                            <div class="row justify-content-center py-2">
+                                <?php
+                                $category = Profstand::find()->all();
+                                ?>
+                                <select class=" m-1 profs" data-live-search="true" name="categ" id="profs">
+                                    <option data-tokens="">Профстандарт</option>
+                                    <?php
+                                    foreach ($category as $category): ?>
+                                        <option data-tokens="" value="<?=$category->id?>"><?=$category->name?></option>
+                                    <?php endforeach;?>
+                                </select>
+
+                                <select class=" m-1 visibility-hidden category" data-live-search="true" name="city" id="category" >
+                                    <option data-tokens="">Категория</option>
+
+                                </select>
+
+                                <select class=" m-1 visibility-hidden position" data-live-search="true" name="city" id="position" >
+                                    <option data-tokens="">Позиция</option>
+                                </select>
+                            </div>
+
+
+                            <div class="row justify-content-center">
+
+
                                 <?php
                                     $city = Attributes::find()->where(['type'=>'city'])->all();  // получаем все города из таблицы атрибутов 
                                 ?>    
@@ -77,20 +105,9 @@ a{
                                     </select>
                                 </div>
 
-                               
-                                <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Выбор категории -->
-                                    <?php
-                                        $category = Profstand::find()->all();
-                                    ?>
-                                    <select class="selectpicker" data-live-search="true" name="categ">
-                                        <option data-tokens="">Категория</option>  
-                                        <?php                           
-                                            foreach ($category as $category): ?> 
-                                                <option data-tokens="" value="<?=$category->id?>"><?=$category->name?></option>  
-                                            <?php endforeach;?>    
-                                    </select>
-                                </div>
-                                
+
+
+
                              
                                 <div class="col-6 col-sm-5 col-md-2 col-lg-2 col-xl-3 mt-1"> <!-- Кнопка для поиска -->
                                     <input type="button" class="btn btn-secondary1" value="Фильтры" onclick="disp(document.getElementById('form1'))">
@@ -305,6 +322,10 @@ a{
                 ?>
   
 </div>
+
+<script>
+
+</script>
 
 
 
