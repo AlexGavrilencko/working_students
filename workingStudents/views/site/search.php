@@ -70,7 +70,7 @@ a{
                                 <?php
                                 $category = Profstand::find()->all();
                                 ?>
-                                <select class=" m-1 profs" data-live-search="true" name="categ" id="profs">
+                                <select class="selectpicker m-1 profs" data-live-search="true" name="categ" id="profs">
                                     <option data-tokens="">Профстандарт</option>
                                     <?php
                                     foreach ($category as $category): ?>
@@ -78,12 +78,12 @@ a{
                                     <?php endforeach;?>
                                 </select>
 
-                                <select class=" m-1 visibility-hidden category" data-live-search="true" name="city" id="category" >
+                                <select class="selectpicker m-1 visibility-hidden category" data-live-search="true" name="city" id="category" >
                                     <option data-tokens="">Категория</option>
 
                                 </select>
 
-                                <select class=" m-1 visibility-hidden position" data-live-search="true" name="city" id="position" >
+                                <select class="selectpicker m-1 visibility-hidden position" data-live-search="true" name="city" id="position" >
                                     <option data-tokens="">Позиция</option>
                                 </select>
                             </div>

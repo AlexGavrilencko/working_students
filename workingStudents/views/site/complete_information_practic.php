@@ -185,10 +185,10 @@ $this->title = 'Просмотр вакансии';
  <br>
                         <div class="row">
                             <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"> 
-                                <span class="p-date" style="color: #000;">Дата добавления <?= $vacan->dateAdd?></span>
+                                <span class="p-date" style="color: #000;">Дата добавления <?= $vacan->getDate();?></span>
                             </div>
                             <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"> 
-                                <span class="p-date" style="color: #000;">Дата изменения <?= $vacan->dateAdd?></span>
+                                <span class="p-date" style="color: #000;">Дата изменения <?= $vacan->getDateChang();?></span>
                             </div>
                             <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                                 <span class="p-date" style="color: #000;">Количество просмотров <?= $vacan->viewed ?></span>     

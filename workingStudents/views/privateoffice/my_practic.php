@@ -118,7 +118,7 @@ $this->title = 'Опубликованные предложения по пра�
                             </div>
 
                             <div class="col-6 col-sm-6 col-md-3 col-lg-2 col-xl-3">
-                                <span class="p-date" style="color: #000;"><?= $vacan->dateAdd?></span>          
+                                <span class="p-date" style="color: #000;"><?= $vacan->getDate();?></span>          
                             </div>
                     </div>
                 </div> <!-- /Фон для отображения -->
