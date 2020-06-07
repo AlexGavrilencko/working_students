@@ -70,7 +70,7 @@ a{
                                 <?php
                                 $category = Profstand::find()->all();
                                 ?>
-                                <select class=" m-1 profs" data-live-search="true" name="categ" id="profs">
+                                <select class="selectpicker m-1 profs" data-live-search="true" name="categ" id="profs">
                                     <option data-tokens="">Профстандарт</option>
                                     <?php
                                     foreach ($category as $category): ?>
@@ -78,12 +78,12 @@ a{
                                     <?php endforeach;?>
                                 </select>
 
-                                <select class=" m-1 visibility-hidden category" data-live-search="true" name="city" id="category" >
+                                <select class=" m-1 visibility-hidden category" data-live-search="true" name="categ_pr" id="category" >
                                     <option data-tokens="">Категория</option>
 
                                 </select>
 
-                                <select class=" m-1 visibility-hidden position" data-live-search="true" name="city" id="position" >
+                                <select class=" m-1 visibility-hidden position" data-live-search="true" name="position" id="position" >
                                     <option data-tokens="">Позиция</option>
                                 </select>
                             </div>
@@ -130,7 +130,7 @@ a{
                                                     $schelude = Attributes::find()->where(['type'=>'schelude'])->all();  // получаем все города из таблицы атрибутов 
                                                 ?>
                                                 <?php   foreach ($schelude as $sch): ?> 
-                                                    <input type="checkbox" name="schelude[]" id="schelude" value="<?=$sch->name?>"><?=$sch->name?><Br>
+                                                    <input type="checkbox" name="schelude[]" id="schelude" value="<?=$sch->id?>"><?=$sch->name?><Br>
                                                     
                                                 <?php endforeach;?>
                                             </div><!-- div COL -->
@@ -142,8 +142,7 @@ a{
                                                 <?php   foreach ($experience as $exp): ?> 
                                                     <div class="row ml-1">
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="checkbox" name="exper" value="<?$exp->id?>">
-                                                            <label class="form-check-label" for="inlineCheckbox1"><?=$exp->name?></label>
+                                                            <input type="checkbox" name="exper[]" id="exper" value="<?=$exp->id?>"><?=$exp->name?><Br>
                                                         </div>
                                                     </div>
                                                 <?php endforeach;?>
@@ -156,8 +155,7 @@ a{
                                                 <?php   foreach ($employment as $emp): ?> 
                                                     <div class="row ml-1">
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="checkbox" id="<?$emp->id?>" value="option1">
-                                                            <label class="form-check-label" for="inlineCheckbox1"><?=$emp->name?></label>
+                                                            <input type="checkbox" name="employ[]" id="employ" value="<?=$emp->id?>"><?=$emp->name?><Br>
                                                         </div>
                                                     </div>
                                                 <?php endforeach;?>

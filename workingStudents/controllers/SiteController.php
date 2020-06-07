@@ -341,13 +341,15 @@ class SiteController extends Controller
         // Разбераем запрос
         $city = Yii::$app->request->get('city');
         $categ = Yii::$app->request->get('categ');
+        $categ_pr = Yii::$app->request->get('categ_pr');
+        $categ_pr = Yii::$app->request->get('categ_pr');
         $positt = Yii::$app->request->get('posit');
         $salaro = Yii::$app->request->get('salaro');
         $salard = Yii::$app->request->get('salard');
-        $schelude = Yii::$app->request->get('schelude');
-        $color = $_GET['schelude'];
-        //var_dump($color);
-        $exper = Yii::$app->request->get('exper');
+        $exper = $_GET['exper'];
+        $employ = $_GET['employ'];
+        $schelude = $_GET['schelude'];
+        //var_dump($exper);
         $posit = str_replace(' ', '', $positt);
         if($salaro===""){
             $salaro=0;
@@ -471,6 +473,9 @@ class SiteController extends Controller
                 }
             }
         }
+        $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude]);
+                        $data = Vacancy::getSearch($query);
+                        $count=$query->count();
         if($city!=null){
             $city=Attributes::findOne($city);
         }
