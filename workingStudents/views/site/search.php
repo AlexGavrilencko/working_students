@@ -79,12 +79,14 @@ a{
                                 </select>
 
                                 <select class=" m-1 visibility-hidden category" data-live-search="true" name="categ_pr" id="category" >
-                                    <option data-tokens="">Категория</option>
-
+                                    <select class="selectpicker m-1 visibility-hidden category" data-live-search="true" name="city" id="category" >
+                                        <option data-tokens="">Категория</option>
                                 </select>
 
+
                                 <select class=" m-1 visibility-hidden position" data-live-search="true" name="position" id="position" >
-                                    <option data-tokens="">Позиция</option>
+                                    <select class="selectpicker m-1 visibility-hidden position" data-live-search="true" name="city" id="position" >
+                                        <option data-tokens="">Позиция</option>
                                 </select>
                             </div>
 

@@ -262,7 +262,7 @@ a{
                                 <span class="p-date" style="color: #000;">Дата добавления <?= $resum->getDate();?></span>
                             </div>
                             <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"> 
-                                <span class="p-date" style="color: #000;">Дата изменения <?= $resum->getDate();?></span>
+                                <span class="p-date" style="color: #000;">Дата изменения <?= $resum->getDateChang();?></span>
                             </div>
                         </div>
                 </div> <!-- /Фон для отображения -->

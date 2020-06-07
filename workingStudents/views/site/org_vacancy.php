@@ -148,7 +148,7 @@ $this->title = 'Мои вакансии';
                             <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>" class="links">Подробнее о вакансии</a>
                         </div>
                         <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                            <span class="p-date" style="color: #000;"><?= $vacan->dateAdd?></span>        
+                            <span class="p-date" style="color: #000;"><?= $vacan->getDate();?></span>        
                         </div>
                     </div>
                 </div> <!-- /Фон для отображения -->
@@ -231,7 +231,7 @@ $this->title = 'Мои вакансии';
                             <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>" class="links">Подробнее о практике</a>
                         </div>
                         <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                            <span class="p-date" style="color: #000;"><?= $vacan->dateAdd?></span>        
+                            <span class="p-date" style="color: #000;"><?= $vacan->getDate();?></span>        
                         </div>
                     </div>
                 </div> <!-- /Фон для отображения -->
