@@ -50,9 +50,30 @@ a:hover{
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
         <div class="row justify-content-center"> <!-- Для поиска -->
                 <div class="border_search_resume" style=" border-color: #e5e5e5;">
-                        <form class="search_resume" method="get" action="<?= Url::toRoute(['site/searchfilt'])?>">
+                        <form class="search_resume" method="get" action="<?= Url::toRoute(['site/search_practic'])?>">
                             <div class="row justify-content-center">
                                 
+                            <div class="row justify-content-center py-2">
+                                <?php
+                                $category = Profstand::find()->all();
+                                ?>
+                                <select class="selectpicker m-1 profs" data-live-search="true" name="categ" id="profs">
+                                    <option data-tokens="">Профстандарт</option>
+                                    <?php
+                                    foreach ($category as $category): ?>
+                                        <option data-tokens="" value="<?=$category->id?>"><?=$category->name?></option>
+                                    <?php endforeach;?>
+                                </select>
+                                
+                                <select class=" m-1 visibility-hidden category" data-live-search="true" name="categ_pr" id="category" >
+                                         
+                                </select>
+                               
+
+                                <select class="" data-live-search="true" name="position" id="position" > 
+                                            
+                                </select>
+                            </div>
 
                                 <?php
                                     $city = Attributes::find()->where(['type'=>'city'])->all();  // получаем все города из таблицы атрибутов 
@@ -67,25 +88,12 @@ a:hover{
                                     </select>
                                 </div>
 
-                               
-                                <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Выбор категории -->
-                                    <?php
-                                        $category = Profstand::find()->all();
-                                    ?>
-                                    <select class="selectpicker" data-live-search="true" name="categ">
-                                        <option data-tokens="">Категория</option>  
-                                        <?php                           
-                                            foreach ($category as $category): ?> 
-                                                <option data-tokens="" value="<?=$category->id?>"><?=$category->name?></option>  
-                                            <?php endforeach;?>    
-                                    </select>
-                                </div>
 
                                 <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Выбор категории -->
                                     <?php
                                         $org = Organization::find()->where(['correctOrg'=>1])->all();
                                     ?>
-                                    <select class="selectpicker" data-live-search="true" name="categ">
+                                    <select class="selectpicker" data-live-search="true" name="org">
                                         <option data-tokens="">Организация</option>  
                                         <?php                           
                                             foreach ($org as $org): ?> 
@@ -105,8 +113,48 @@ a:hover{
                         </form>                   
                 </div><!-- border_search_resume -->
         </div><!-- ROW для поиска -->
-  
+        <?php
+        if($city===null){
+            $city="";
+            $d1="";
+        }
+        else{
+            $d1="; ";
+        }
+        if($categ===null){
+            $categ="";
+            $d2="";
+        }
+        else{
+            $d2="; ";
+        }
+        if($categ_pr===""){
+            $categ_pr="";
+            $d3="";
+        }
+        else{
+            $d3="; ";
+        }
+        if($org===""){
+            $org="";
+            $d4="";
+        }
+        else{
+            $d4="; ";
+        }
+        if(($city!="")||($categ!="")||($categ_pr!="")||($org!="")){
+            $z=" по запросу : ";
+            
+        }
+        else{
+            $z="";
+            
+        }
+        ?>
         
+        <div class="mt-4" style="margin-left: 4%;">
+            <h4 Class="text_name_vacancy">Найдено <?=$count?> вакансий <?=$z?><?=$categ->name?><?=$d2?><?=$categ_pr->name?></h4>
+        </div>   
 
 <!-- Для отображения информации -->
     <div class="row justify-content-md-center mb-3"> 

@@ -278,7 +278,23 @@ class PrivateofficeController extends Controller
 
 
 
+    public function actionGetCategoryProfstand()
+    {
+        $res = CategoryProfstand::find()->where(['profstand_id' => Yii::$app->request->get('q')])->all();
 
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        return $res;
+    }
+
+    public function actionGetPosition()
+    {
+        $res = Position::find()->where(['categprofst_id' => Yii::$app->request->get('q')])->all();
+
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        return $res;
+    }
     //создание вакансии
     public function actionPractic(){
         $this->layout = 'site';
@@ -290,8 +306,12 @@ class PrivateofficeController extends Controller
         $vac->organization_id = $org->id;
         if(Yii::$app->request->isPost)
         {
+            // $category_id = Yii::$app->request->get('category_id');
+            // $categprof_id = Yii::$app->request->get('categprof_id');
             $vac->load(Yii::$app->request->post());
             $vac->WorkOrPractice=1;
+            // $vac->category_id=$category_id;
+            // $vac->categprof_id=$categprof_id;
             $vac->create();
             return $this->redirect(['privateoffice/my_practic']);
         }
@@ -323,8 +343,16 @@ class PrivateofficeController extends Controller
         $vac->organization_id = $org->id;
         if(Yii::$app->request->isPost)
         {
+            
             $vac->load(Yii::$app->request->post());
+            // $category_id = Yii::$app->request->get('category_id');
+            // $categprof_id = Yii::$app->request->get('categprof_id');
+            // $position_id = Yii::$app->request->get('position_id');
             $vac->WorkOrPractice=0;
+            // $vac->category_id=$category_id;
+            // $vac->categprof_id=$categprof_id;
+            // $vac->position_id=$position_id;
+            //var_dump($vac);
             $vac->create();
             return $this->redirect(['privateoffice/my_vacancy']);
         }

@@ -63,7 +63,7 @@ class Vacancy extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name','duties', 'requirement', 'conditions', 'description','user_id', 'organization_id', 'city_id', 'experience_id', 'employment_id', 'schedule_id', 'salary', 'position_id', 'category_id', 'WorkOrPractice', 'ShowOrHide'], 'required'],
+            [['name','duties', 'requirement', 'conditions', 'description','user_id','categprof_id', 'organization_id', 'city_id', 'experience_id', 'employment_id', 'schedule_id', 'salary', 'position_id', 'category_id', 'WorkOrPractice', 'ShowOrHide'], 'required'],
             [['user_id', 'organization_id', 'city_id', 'experience_id', 'employment_id', 'schedule_id', 'salary', 'position_id', 'category_id', 'WorkOrPractice', 'ShowOrHide', 'viewed'], 'integer'],
             [['name','duties', 'requirement', 'conditions', 'description'], 'string'],
             [['dateAdd'], 'date', 'format'=>'php:Y-m-d'],
@@ -128,7 +128,10 @@ class Vacancy extends \yii\db\ActiveRecord
     public function getDate()
     {
         return Yii::$app->formatter->asDate($this->dateAdd);
-	}
+
+    }
+
+    
 
     public function create()
     {

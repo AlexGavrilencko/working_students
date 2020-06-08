@@ -77,16 +77,14 @@ a{
                                         <option data-tokens="" value="<?=$category->id?>"><?=$category->name?></option>
                                     <?php endforeach;?>
                                 </select>
-
+                                
                                 <select class=" m-1 visibility-hidden category" data-live-search="true" name="categ_pr" id="category" >
-                                    <select class="selectpicker m-1 visibility-hidden category" data-live-search="true" name="city" id="category" >
-                                        <option data-tokens="">Категория</option>
+                                         
                                 </select>
+                               
 
-
-                                <select class=" m-1 visibility-hidden position" data-live-search="true" name="position" id="position" >
-                                    <select class="selectpicker m-1 visibility-hidden position" data-live-search="true" name="city" id="position" >
-                                        <option data-tokens="">Позиция</option>
+                                <select class=" m-1 visibility-hidden position" data-live-search="true" name="position" id="position" > 
+                                            
                                 </select>
                             </div>
 
@@ -172,27 +170,39 @@ a{
                 </div><!-- border_search_resume -->
         </div><!-- ROW для поиска -->
         <?php 
-        if($cityr===null){
+        if($city===null){
             $city="";
+            $d1="";
+        }
+        else{
+            $d1="; ";
         }
         if($categ===null){
             $categ="";
+            $d2="";
         }
-        if($posname===null){
+        else{
+            $d2="; ";
+        }
+        if($posname===""){
             $posname="";
+            $d3="";
+        }
+        else{
+            $d3="; ";
         }
         if(($cityr!="")||($categ!="")||($posname!="")){
             $z=" по запросу : ";
-            $d="; ";
+            
         }
         else{
             $z="";
-            $d="";
+            
         }
         ?>
         
         <div class="mt-4" style="margin-left: 4%;">
-            <h4 Class="text_name_vacancy">Найдено <?=$count?> вакансий <?=$z?><?=$posname?><?=$d?><?=$cityr->name?><?=$d?><?=$categ->name?></h4>
+            <h4 Class="text_name_vacancy">Найдено <?=$count?> вакансий <?=$z?><?=$posname?><?=$d3?><?=$cityr->name?><?=$d1?><?=$categ->name?><?=$d2?></h4>
         </div>
 <!-- Для отображения информации -->
     <div class="row justify-content-md-center mb-3"> 

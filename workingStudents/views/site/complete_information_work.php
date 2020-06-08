@@ -252,7 +252,7 @@ a{
                                     </div>
                             <?php }?>
                             <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                                <span class="p-date" style="color: #000;">Количество просмотров <?= $vacan->viewed ?></span>     
+                                <span class="p-date" style="color: #000;">Количество просмотров <?= $resum->viewed ?></span>     
                             </div>
                         </div> <!-- /Просмотры и дата -->
                          <!-- /Отображение дополнительной информации для соискателя -->
@@ -261,9 +261,11 @@ a{
                             <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8"> 
                                 <span class="p-date" style="color: #000;">Дата добавления <?= $resum->getDate();?></span>
                             </div>
+                            <?php $resum->dateChanges=date("Y-m-d"); ?>
                             <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"> 
-                                <span class="p-date" style="color: #000;">Дата изменения <?= $resum->getDateChang();?></span>
+                                <span class="p-date" style="color: #000;">Дата изменения <?=Yii::$app->formatter->asDate($resum->dateChanges) ?></span>
                             </div>
+                            
                         </div>
                 </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->

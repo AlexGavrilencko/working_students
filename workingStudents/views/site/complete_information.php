@@ -259,11 +259,13 @@ $this->title = 'Просмотр вакансии';
                         </div> <!-- /Просмотры и дата -->
                         <br>
                         <div class="row">
+                        <?php $vacan->dateAdd=date("Y-m-d"); ?>
                             <div class="col-8 col-sm-8 col-md-8 col-lg-8 col-xl-8"> 
-                                <span class="p-date" style="color: #000;">Дата добавления <?= $vacan->getDate();?></span>
+                                <span class="p-date" style="color: #000;">Дата добавления <?= Yii::$app->formatter->asDate($vacan->dateAdd)?></span>
                             </div>
+                            <?php $vacan->dateChanges=date("Y-m-d"); ?>
                             <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"> 
-                                <span class="p-date" style="color: #000;">Дата изменения <?= $vacan->getDateChang();?></span>
+                                <span class="p-date" style="color: #000;">Дата изменения <?=Yii::$app->formatter->asDate($vacan->dateChanges) ?></span>
                             </div>
                         </div>
                 </div> <!-- /Фон для отображения -->

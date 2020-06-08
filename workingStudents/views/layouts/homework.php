@@ -124,14 +124,14 @@ PublicAsset::register($this);
 
           <div class="row">
               <div class="col-12 col-md-10 col-lg-8">
-                  <form class="search" method="get" action="<?= Url::toRoute(['site/searchws']) ?>">
+                  <form class="search" method="get" action="<?= Url::toRoute(['site/searchres']) ?>">
                       <div class="row no-gutters align-items-center">
                                     <?php
                                          $objective = Position::find()->all();
                                     ?>
                           <div class="col-7">
                                
-                                    <select class="selectpicker" data-live-search="true" name="categ">
+                                    <select class="selectpicker" data-live-search="true" name="position">
                                         <option data-tokens="">Желаемая должность соискателей</option>  
                                         <?php                           
                                             foreach ($objective as $objective): ?> 
