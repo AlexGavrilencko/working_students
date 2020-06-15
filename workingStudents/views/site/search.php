@@ -26,6 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
     cursor: default;  /* устанавливаем курсор в виде стрелки */
     color: #999; /* цвет текста для нективной ссылки */
 }
+    .max-width-100{
+        max-width: 100%;
+    }
 a{
         color: #00a4b9dc;
         font-size: 15px;
@@ -66,11 +69,11 @@ a{
 
                             </div>
 
-                            <div class="row justify-content-center py-2">
+                            <div class="row justify-content-center py-2" >
                                 <?php
                                 $category = Profstand::find()->all();
                                 ?>
-                                <select class="selectpicker m-1 profs" data-live-search="true" name="categ" id="profs">
+                                <select class="selectpicker m-1 profs max-width-100" data-live-search="true" name="categ" id="profs">
                                     <option data-tokens="">Профстандарт</option>
                                     <?php
                                     foreach ($category as $category): ?>
@@ -78,14 +81,10 @@ a{
                                     <?php endforeach;?>
                                 </select>
                                 
-                                <select class=" m-1 visibility-hidden category" data-live-search="true" name="categ_pr" id="category" >
-                                         
-                                </select>
+                                
                                
 
-                                <select class=" m-1 visibility-hidden position" data-live-search="true" name="position" id="position" > 
-                                            
-                                </select>
+                                
                             </div>
 
 
