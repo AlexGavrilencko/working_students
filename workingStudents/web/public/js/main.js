@@ -1,18 +1,4 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$('.profs').selectpicker();
 
 document.getElementById('profs').addEventListener('change', e => {
     let selectedProfstndrt = e.target.value;
@@ -35,6 +21,9 @@ document.getElementById('profs').addEventListener('change', e => {
                 opt.setAttribute('data-tokens', '');
                 select[0].appendChild(opt);
             }
+
+            $('.category').selectpicker();
+            
         })
 })
 
@@ -57,6 +46,9 @@ document.getElementById('category').addEventListener('change', e => {
                 opt.setAttribute('data-tokens', '');
                 select[0].appendChild(opt);
             }
+
+            $('.position').selectpicker();
+        
         })
 })
 
