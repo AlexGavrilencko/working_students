@@ -82,7 +82,6 @@ a{
                                          
                                 </select>
                                
-
                                 <select class=" m-1 visibility-hidden position" data-live-search="true" name="position" id="position" > 
                                             
                                 </select>
@@ -202,7 +201,7 @@ a{
         ?>
         
         <div class="mt-4" style="margin-left: 4%;">
-            <h4 Class="text_name_vacancy">Найдено <?=$count?> вакансий <?=$z?><?=$posname?><?=$d3?><?=$cityr->name?><?=$d1?><?=$categ->name?><?=$d2?></h4>
+            <h4 Class="text_name_vacancy">Найдено <?=$count?> вакансий 
         </div>
 <!-- Для отображения информации -->
     <div class="row justify-content-md-center mb-3"> 
