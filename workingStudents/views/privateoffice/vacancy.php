@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="flk bd-highlight col-sm-12 col-md-12 col-lg-12 col-xl-10">
             <div class="border_search padding_search">-->
             <br>
+<form class="search_resume" method="get" action="<?= Url::toRoute(['privateoffice/vacancy'])?>">
     <div class="site-registration">
         <div class=" text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
             <div class="pole border_search31 padding_search ">
@@ -134,7 +135,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ?>
                     <?php
                             // получаем все города из таблицы атрибутов
-                            $schedule = Attributes::find()->where(['type'=>'schedule'])->all();
+                            $schedule = Attributes::find()->where(['type'=>'schelude'])->all();
                             // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
                             $items = ArrayHelper::map($schedule,'id','name');
                             $params = [
@@ -146,33 +147,30 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'salary')->textInput(['placeholder'=>"Введите заработную плату"])->label('Заработная плата <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                             "data-placement"=>"top", "title"=>"Заработная плата"]) ?>
                     <?php
-                            // получаем все города из таблицы атрибутов
-                            $position = Position::find()->all();
-                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                            $items = ArrayHelper::map($position,'id','name','code');
-                            $params = [
-                                'prompt' => 'Укажите должность'
-                            ];
-                            echo $form->field($model, 'position_id')->dropDownList($items,$params)->label('Должность <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
-                            "data-placement"=>"top", "title"=>"Должность"]);
-                        ?>
+                                $category = Profstand::find()->all();
+                                ?>
+                                <div class="row justify-content-center py-2">
+                                <select class="selectpicker m-1 profs" data-live-search="true" name="category_id" id="profs">
+                                    <option data-tokens="">Профстандарт</option>
+                                    <?php
+                                    foreach ($category as $category): ?>
+                                        <option data-tokens="" value="<?=$category->id?>"><?=$category->name?></option>
+                                    <?php endforeach;?>
+                                </select>
+                                
+                                <select class=" m-1 visibility-hidden category" data-live-search="true" name="categprof_id" id="category" >      
+                                </select>
+                                <select class=" m-1 visibility-hidden position" data-live-search="true" name="position_id" id="position" >          
+                                </select>
+                                </div>
+                    
                     <?= $form->field($model, 'duties')->textarea(['placeholder'=>"Введите обязанности"])->label('Обязанности <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                             "data-placement"=>"top", "title"=>"Обязанности"]) ?>
                     <?= $form->field($model, 'requirement')->textarea(['placeholder'=>"Введите требования"])->label('Требования <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                             "data-placement"=>"top", "title"=>"Требования "]) ?>
                     <?= $form->field($model, 'conditions')->textarea(['placeholder'=>"Введите условия"])->label('Условия <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                             "data-placement"=>"top", "title"=>"Условия"]) ?>
-                    <?php
-                            // получаем все города из таблицы атрибутов
-                            $category = Profstand::find()->all();
-                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                            $items = ArrayHelper::map($category,'id','name','code');
-                            $params = [
-                                'prompt' => 'Укажите профобласть'
-                            ];
-                            echo $form->field($model, 'category_id')->dropDownList($items,$params)->label('Профобласть <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
-                            "data-placement"=>"top", "title"=>"Профобласть к которой отностится вакансия"]);
-                        ?>
+                    
                         
                     <?php $model->WorkOrPractice=0 ?>
                         <div class="row justify-content-center"> 
@@ -183,5 +181,6 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+                                    </form>
 <?php ActiveForm::end(); ?>
 <br>

@@ -24,6 +24,7 @@ use app\models\Article;
 use app\models\ArticleTag;
 use yii\data\ActiveDataProvider;
 use yii\data\Pagination;
+use app\models\Profstand;
 
 class SiteController extends Controller
 {
@@ -238,6 +239,7 @@ class SiteController extends Controller
         $this->layout = 'site'; 
         $query =Vacancy::find()->where(['WorkOrPractice' => 0]);
         $data = Vacancy::getSearch($query);   
+        $count=$query->count();
         $atr=Attributes::find()->all();
         $org=Organization::find()->all();
         $vac=Vacancy::find()->all();
@@ -255,6 +257,7 @@ class SiteController extends Controller
             'categories'=>$categories,
             'pagination'=>$data['pagination'],
             'vacancy'=>$data['vacancy'],
+            'count'=>$count,
             ]);
     }
 
@@ -264,6 +267,7 @@ class SiteController extends Controller
         if($id!=null){
             $query =Vacancy::find()->where(['category_id'=>$id,'WorkOrPractice' => 0]);
             $data = Vacancy::getSearch($query);
+            $count=$query->count();
         }
         $atr=Attributes::find()->all();
         $org=Organization::find()->all();
@@ -283,6 +287,7 @@ class SiteController extends Controller
             'categories'=>$categories,
             'pagination'=>$data['pagination'],
             'vacancy'=>$data['vacancy'],
+            'count'=>$count,
             
         ]);
     }
@@ -295,6 +300,7 @@ class SiteController extends Controller
         // Поисковый запрос с поиском и обрезанием пробелов
         $query = Vacancy::find()->filterWhere(['like','name', $search1])->andWhere(['WorkOrPractice' => 0]);
         $data = Vacancy::getSearch($query);
+        $count=$query->count();
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
@@ -306,6 +312,7 @@ class SiteController extends Controller
             'categories'=>$categories,
             'pagination'=>$data['pagination'],
             'vacancy'=>$data['vacancy'],
+            'count'=>$count,
         ]);
     }
 
@@ -334,13 +341,15 @@ class SiteController extends Controller
         // Разбераем запрос
         $city = Yii::$app->request->get('city');
         $categ = Yii::$app->request->get('categ');
+        $categ_pr = Yii::$app->request->get('categ_pr');
+        $posiyion = Yii::$app->request->get('position');
         $positt = Yii::$app->request->get('posit');
         $salaro = Yii::$app->request->get('salaro');
         $salard = Yii::$app->request->get('salard');
-        $schelude = Yii::$app->request->get('schelude');
-        $color = $_GET['schelude'];
-        //var_dump($color);
-        $exper = Yii::$app->request->get('exper');
+        $exper = $_GET['exper'];
+        $employ = $_GET['employ'];
+        $schelude = $_GET['schelude'];
+        //var_dump($positt);
         $posit = str_replace(' ', '', $positt);
         if($salaro===""){
             $salaro=0;
@@ -351,102 +360,2588 @@ class SiteController extends Controller
         if($city==="Город"){
             $city=null;
         }
-        if($categ==="Категория"){
+        if($categ==="Профстандарт"){
             $categ=null;
+        }
+        if($categ_pr==="Категория"){
+            $categ_pr=null;
+        }
+        if($position==="Должность"){
+            $position=null;
         }
         
         if($city!=null){
             if($categ!=null){
                 if($posit!=null){
                     if(($salaro!=null)||($salard!=null)){
-                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])-andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
-                        $data = Vacancy::getSearch($query);
+                        if($categ_pr!=null){
+                            if($position!=null){
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                } 
+                            }
+                        }
+                        else{
+                            if($position!=null){
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                } 
+                            }
+                        }
                     }
                     else{
-                        $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
-                        $data = Vacancy::getSearch($query);
+                        if($categ_pr!=null){
+                            if($position!=null){
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                } 
+                            }
+                        }
+                        else{
+                            if($position!=null){
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                } 
+                            }
+                        }
                     }
                 }
                 else{
-                    if(($salaro!=null)||($salard!=null)){
-                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                    else{
-                        $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0]);
-                        $data = Vacancy::getSearch($query);
-                    }
+                        if(($salaro!=null)||($salard!=null)){
+                            if($categ_pr!=null){
+                                if($position!=null){
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    } 
+                                }
+                            }
+                            else{
+                                if($position!=null){
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'position_id'=>$position]);
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0]);
+                                            }
+                                        }
+                                    } 
+                                }
+                            }
+                        }
+                        else{
+                            if($categ_pr!=null){
+                                if($position!=null){
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    } 
+                                }
+                            }
+                            else{
+                                if($position!=null){
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'position_id'=>$position]);
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'category_id' => $categ,'WorkOrPractice' => 0]);
+                                            }
+                                        }
+                                    } 
+                                }
+                            }
+                        }
+                        
+            
                 }
             }
             else{
                 if($posit!=null){
                     if(($salaro!=null)||($salard!=null)){
-                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
-                        $data = Vacancy::getSearch($query);
+                        if($categ_pr!=null){
+                            if($position!=null){
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                } 
+                            }
+                        }
+                        else{
+                            if($position!=null){
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                } 
+                            }
+                        }
                     }
                     else{
-                        $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
-                        $data = Vacancy::getSearch($query);
+                        if($categ_pr!=null){
+                            if($position!=null){
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                } 
+                            }
+                        }
+                        else{
+                            if($position!=null){
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                } 
+                            }
+                        }
                     }
                 }
                 else{
-                    if(($salaro!=null)||($salard!=null)){
-                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                    else{
-                        $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0]);
-                        $data = Vacancy::getSearch($query);
-                        //var_dump($query);
-                    }
+                        if(($salaro!=null)||($salard!=null)){
+                            if($categ_pr!=null){
+                                if($position!=null){
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    } 
+                                }
+                            }
+                            else{
+                                if($position!=null){
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $cit,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'position_id'=>$position]);
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'experience_id'=>$exper]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['city_id' => $city,'WorkOrPractice' => 0]);
+                                            }
+                                        }
+                                    } 
+                                }
+                            }
+                        }
+                        else{
+                            if($categ_pr!=null){
+                                if($position!=null){
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $cit,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    } 
+                                }
+                            }
+                            else{
+                                if($position!=null){
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'position_id'=>$position]);
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'experience_id'=>$exper]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'employment_id'=>$employ]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0,'schedule_id'=>$schelude]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['city_id' => $city,'WorkOrPractice' => 0]);
+                                            }
+                                        }
+                                    } 
+                                }
+                            }
+                        }
+                        
+            
                 }
             }
+            
         }
         else{
             if($categ!=null){
                 if($posit!=null){
                     if(($salaro!=null)||($salard!=null)){
-                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
-                        $data = Vacancy::getSearch($query);
+                        if($categ_pr!=null){
+                            if($position!=null){
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                } 
+                            }
+                        }
+                        else{
+                            if($position!=null){
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                } 
+                            }
+                        }
                     }
                     else{
-                        $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
-                        $data = Vacancy::getSearch($query);
+                        if($categ_pr!=null){
+                            if($position!=null){
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                } 
+                            }
+                        }
+                        else{
+                            if($position!=null){
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                } 
+                            }
+                        }
                     }
                 }
                 else{
-                    if(($salaro!=null)||($salard!=null)){
-                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                    else{
-                        $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0]);
-                        $data = Vacancy::getSearch($query);
-                    }
+                        if(($salaro!=null)||($salard!=null)){
+                            if($categ_pr!=null){
+                                if($position!=null){
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    } 
+                                }
+                            }
+                            else{
+                                if($position!=null){
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'position_id'=>$position]);
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['category_id' => $categ,'WorkOrPractice' => 0]);
+                                            }
+                                        }
+                                    } 
+                                }
+                            }
+                        }
+                        else{
+                            if($categ_pr!=null){
+                                if($position!=null){
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    } 
+                                }
+                            }
+                            else{
+                                if($position!=null){
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'position_id'=>$position]);
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'experience_id'=>$exper]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'employment_id'=>$employ]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0,'schedule_id'=>$schelude]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['category_id' => $categ,'WorkOrPractice' => 0]);
+                                            }
+                                        }
+                                    } 
+                                }
+                            }
+                        }
+                        
+            
                 }
             }
             else{
                 if($posit!=null){
                     if(($salaro!=null)||($salard!=null)){
-                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andFilterWhere(['like','name', $posit])->andWhere(['WorkOrPractice' => 0]);
-                        $data = Vacancy::getSearch($query);
+                        if($categ_pr!=null){
+                            if($position!=null){
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'employment_id'=>$employ,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                } 
+                            }
+                        }
+                        else{
+                            if($position!=null){
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'employment_id'=>$employ])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                } 
+                            }
+                        }
                     }
                     else{
-                        $query=Vacancy::find()->filterWhere(['like','name', $posit])->andWhere(['WorkOrPractice' => 0]);
-                        $data = Vacancy::getSearch($query);
+                        if($categ_pr!=null){
+                            if($position!=null){
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'position_id'=>$position,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'experience_id'=>$exper,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'employment_id'=>$employ,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'categprof_id'=>$categ_pr])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                } 
+                            }
+                        }
+                        else{
+                            if($position!=null){
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'position_id'=>$position])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if($exper!=null){
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'experience_id'=>$exper])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($employ!=null){
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'employment_id'=>$employ])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                    else{
+                                        if($schelude!=null){
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                        else{
+                                            $query=Vacancy::find()->where(['WorkOrPractice' => 0])->andFilterWhere(['like','name', $posit]);
+                                        }
+                                    }
+                                } 
+                            }
+                        }
                     }
                 }
                 else{
-                    if(($salaro!=null)||($salard!=null)){
-                        $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0]);
-                        $data = Vacancy::getSearch($query);
-                    }
-                    else{
-                        $query=Vacancy::find()->where(['WorkOrPractice' => 0]);
-                        $data = Vacancy::getSearch($query);
-                    }
+                        if(($salaro!=null)||($salard!=null)){
+                            if($categ_pr!=null){
+                                if($position!=null){
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'employment_id'=>$employ,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    } 
+                                }
+                            }
+                            else{
+                                if($position!=null){
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'position_id'=>$position]);
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'experience_id'=>$exper]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'employment_id'=>$employ]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0,'schedule_id'=>$schelude]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->filterWhere(['between', 'salary', $salaro, $salard])->andWhere(['WorkOrPractice' => 0]);
+                                            }
+                                        }
+                                    } 
+                                }
+                            }
+                        }
+                        else{
+                            if($categ_pr!=null){
+                                if($position!=null){
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'position_id'=>$position,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'experience_id'=>$exper,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'employment_id'=>$employ,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'categprof_id'=>$categ_pr]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'categprof_id'=>$categ_pr]);
+                                            }
+                                        }
+                                    } 
+                                }
+                            }
+                            else{
+                                if($position!=null){
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'experience_id'=>$exper,'position_id'=>$position]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'employment_id'=>$employ,'position_id'=>$position]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'position_id'=>$position]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'position_id'=>$position]);
+                                            }
+                                        }
+                                    }
+                                }
+                                else{
+                                    if($exper!=null){
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ,'experience_id'=>$exper]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'employment_id'=>$employ,'experience_id'=>$exper]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'experience_id'=>$exper]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'experience_id'=>$exper]);
+                                            }
+                                        }
+                                    }
+                                    else{
+                                        if($employ!=null){
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude,'employment_id'=>$employ]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'employment_id'=>$employ]);
+                                            }
+                                        }
+                                        else{
+                                            if($schelude!=null){
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0,'schedule_id'=>$schelude]);
+                                            }
+                                            else{
+                                                $query=Vacancy::find()->where(['WorkOrPractice' => 0]);
+                                            }
+                                        }
+                                    } 
+                                }
+                            }
+                        }
+                        
+            
                 }
-            }
+            }        
+        }
+        $data = Vacancy::getSearch($query);
+        $count=$query->count();
+        if($city!=null){
+            $city=Attributes::findOne($city);
+        }
+        if($categ!=null){
+            $categ=Profstand::findOne($categ);
         }
         $popular = Article::getPopular();
         $recent = Article::getRecent();
@@ -457,6 +2952,10 @@ class SiteController extends Controller
             'categories'=>$categories,
             'pagination'=>$data['pagination'],
             'vacancy'=>$data['vacancy'],
+            'count'=>$count,
+            'categ'=>$categ,
+            'city'=>$city,
+            'posname'=>$positt,
         ]);
     }
 
@@ -476,25 +2975,130 @@ class SiteController extends Controller
     public function actionSearch_practic()      /* Страница поиска для практики */
     {
         $this->layout = 'site';
-        $query =Vacancy::find()->where(['WorkOrPractice' => 1]);
-        $data = Vacancy::getSearch($query);     
-        $atr=Attributes::find()->all();
-        $org=Organization::find()->all();
+        $city = Yii::$app->request->get('city');
+        $categ = Yii::$app->request->get('categ');
+        $categ_pr = Yii::$app->request->get('categ_pr');
+        $org = Yii::$app->request->get('org');
+        //var_dump($city, $org);
+        if($city==="Город"){
+            $city=null;
+        }
+        if($categ==="Профстандарт"){
+            $categ=null;
+        }
+        if($categ_pr==="Категория"){
+            $categ_pr=null;
+        }
+        if($org==="Организация"){
+            $org=null;
+        }
+        if($categ!=null){
+            if($categ_pr!=null){
+                if($city!=null){
+                    if($org!=null){
+                        $query =Vacancy::find()->where(['WorkOrPractice' => 1,'city_id' => $city,'category_id' => $categ,'categprof_id'=>$categ_pr,'organization_id'=>$org]);
+                    }
+                    else{
+                        $query =Vacancy::find()->where(['WorkOrPractice' => 1,'city_id' => $city,'category_id' => $categ,'categprof_id'=>$categ_pr]);
+                    }
+                }
+                else{
+                    if($org!=null){
+                        $query =Vacancy::find()->where(['WorkOrPractice' => 1,'category_id' => $categ,'categprof_id'=>$categ_pr,'organization_id'=>$org]);
+                    }
+                    else{
+                        $query =Vacancy::find()->where(['WorkOrPractice' => 1,'category_id' => $categ,'categprof_id'=>$categ_pr]);
+                    }
+                }
+            }
+            else{
+                if($city!=null){
+                    if($org!=null){
+                        $query =Vacancy::find()->where(['WorkOrPractice' => 1,'city_id' => $city,'category_id' => $categ,'organization_id'=>$org]);
+                    }
+                    else{
+                        $query =Vacancy::find()->where(['WorkOrPractice' => 1,'city_id' => $city,'category_id' => $categ]);
+                    }
+                }
+                else{
+                    if($org!=null){
+                        $query =Vacancy::find()->where(['WorkOrPractice' => 1,'category_id' => $categ,'organization_id'=>$org]);
+                    }
+                    else{
+                        $query =Vacancy::find()->where(['WorkOrPractice' => 1,'category_id' => $categ]);
+                    }
+                }
+            }
+        }
+        else{
+            if($categ_pr!=null){
+                if($city!=null){
+                    if($org!=null){
+                        $query =Vacancy::find()->where(['WorkOrPractice' => 1,'city_id' => $city,'categprof_id'=>$categ_pr,'organization_id'=>$org]);
+                    }
+                    else{
+                        $query =Vacancy::find()->where(['WorkOrPractice' => 1,'city_id' => $city,'categprof_id'=>$categ_pr]);
+                    }
+                }
+                else{
+                    if($org!=null){
+                        $query =Vacancy::find()->where(['WorkOrPractice' => 1,'categprof_id'=>$categ_pr,'organization_id'=>$org]);
+                    }
+                    else{
+                        $query =Vacancy::find()->where(['WorkOrPractice' => 1,'categprof_id'=>$categ_pr]);
+                    }
+                }
+            }
+            else{
+                if($city!=null){
+                    if($org!=null){
+                        $query =Vacancy::find()->where(['WorkOrPractice' => 1,'city_id' => $city,'organization_id'=>$org]);
+                    }
+                    else{
+                        $query =Vacancy::find()->where(['WorkOrPractice' => 1,'city_id' => $city]);
+                    }
+                }
+                else{
+                    if($org!=null){
+                        $query =Vacancy::find()->where(['WorkOrPractice' => 1,'organization_id'=>$org]);
+                    }
+                    else{
+                        $query =Vacancy::find()->where(['WorkOrPractice' => 1]);
+                    }
+                }
+            }
+        }
+        
+        $data = Vacancy::getSearch($query);
+        $count=$query->count();
+        if($city!=null){
+            $city=Attributes::findOne($city);
+        }
+        if($categ!=null){
+            $categ=Profstand::findOne($categ);
+        }
+        if($categ_pr!=null){
+            $categ_pr=CategoryProfstand::findOne($categ_pr);
+        }
+        if($org!=null){
+            $org=Organization::findOne($org);
+        }     
+        
         $vac=Vacancy::find()->all();
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
             return $this->render('search_practic',[
-            'catvac'=>$catvac,
-            'cat'=>$cat,
             'vac'=>$vac,
-            'org'=>$org,
-            'idc'=>$idc,
             'popular'=>$popular,
             'recent'=>$recent,
             'categories'=>$categories,
             'pagination'=>$data['pagination'],
             'vacancy'=>$data['vacancy'],
+            'city'=>$city,
+            'categ'=>$categ,
+            'categ_pr'=>$categ_pr,
+            'org'=>$org,
             ]);
     }
 
@@ -511,18 +3115,73 @@ class SiteController extends Controller
     public function actionSearch_work()      /* Страница поиска для компании */
     {
         $this->layout = 'site';
+        $city = Yii::$app->request->get('city');
+        $position = Yii::$app->request->get('position');
+        if($city==="Город"){
+            $city=null;
+        }
+        if($position==="Должность"){
+            $position=null;
+        }
+        if($city!=null){
+            if($position!=null){
+                $query =Resume::find()->where(['ShowOrHide' => 1,'CareerObjective_id' => $position,'city_id'=>$city]);
+            }
+            else{
+                $query =Resume::find()->where(['ShowOrHide' => 1,'city_id'=>$city]);
+            }
+        }
+        else{
+            if($position!=null){
+                $query =Resume::find()->where(['ShowOrHide' => 1,'CareerObjective_id' => $position]);
+            }
+            else{
+                $query =Resume::find()->where(['ShowOrHide' => 1]);
+            }
+        }
+        $data = Resume::getSearch($query);
+        $count=$query->count();
         $resume=Resume::find()->all();
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
-        $data = Resume::getAll(5);
+        
         return $this->render('search_work',[
-            'resume' => $resume,   /* Заменить на резюме */
             'popular'=>$popular,
             'recent'=>$recent,
             'categories'=>$categories,
             'pagination'=>$data['pagination'],
-            'resump'=>$data['resume'],
+            'resume'=>$data['resume'],
+       ]);
+    }
+    public function actionSearchres()      /* Страница поиска для компании */
+    {
+        $this->layout = 'site';
+        $position = Yii::$app->request->get('position');
+        if($position==="Желаемая должность"){
+            $position=null;
+        }
+        if($position!=null){
+            $query =Resume::find()->where(['ShowOrHide'=>1,'CareerObjective_id'=>$position]);
+        }
+        else{
+            $query =Resume::find()->where(['ShowOrHide'=>1]);
+        }
+            
+        
+        $data = Resume::getSearch($query);
+        $count=$query->count();
+        
+        $popular = Article::getPopular();
+        $recent = Article::getRecent();
+        $categories = ArtCategory::getAll();
+        
+        return $this->render('search_work',[
+            'popular'=>$popular,
+            'recent'=>$recent,
+            'categories'=>$categories,
+            'pagination'=>$data['pagination'],
+            'resume'=>$data['resume'],
        ]);
     }
 
@@ -555,7 +3214,8 @@ class SiteController extends Controller
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();        
         return $this->render('complete_information',[
-            'vac'=>$vac,
+            'id'=>$id,
+            'vacan'=>$vac,
             'popular'=>$popular,
             'recent'=>$recent,
             'categories'=>$categories
@@ -630,13 +3290,13 @@ class SiteController extends Controller
                 $response->create();
             }
         }
-        $vac=Vacancy::find()->where(['id' => $id])->one();
+        $vac=Vacancy::find()->where(['id'=> $id])->one();
         $popular = Article::getPopular();
         $recent = Article::getRecent();
         $categories = ArtCategory::getAll();
         return $this->render('complete_information',[
             'id'=>$id,
-            'vac'=>$vac,
+            'vacan'=>$vac,
             'popular'=>$popular,
             'recent'=>$recent,
             'categories'=>$categories

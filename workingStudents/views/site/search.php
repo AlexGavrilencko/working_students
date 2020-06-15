@@ -70,21 +70,21 @@ a{
                                 <?php
                                 $category = Profstand::find()->all();
                                 ?>
-                                <select class=" m-1 profs" data-live-search="true" name="categ" id="profs">
+                                <select class="selectpicker m-1 profs" data-live-search="true" name="categ" id="profs">
                                     <option data-tokens="">Профстандарт</option>
                                     <?php
                                     foreach ($category as $category): ?>
                                         <option data-tokens="" value="<?=$category->id?>"><?=$category->name?></option>
                                     <?php endforeach;?>
                                 </select>
-
-                                <select class=" m-1 visibility-hidden category" data-live-search="true" name="city" id="category" >
-                                    <option data-tokens="">Категория</option>
-
+                                
+                                <select class=" m-1 visibility-hidden category" data-live-search="true" name="categ_pr" id="category" >
+                                         
                                 </select>
+                               
 
-                                <select class=" m-1 visibility-hidden position" data-live-search="true" name="city" id="position" >
-                                    <option data-tokens="">Позиция</option>
+                                <select class=" m-1 visibility-hidden position" data-live-search="true" name="position" id="position" > 
+                                            
                                 </select>
                             </div>
 
@@ -130,7 +130,7 @@ a{
                                                     $schelude = Attributes::find()->where(['type'=>'schelude'])->all();  // получаем все города из таблицы атрибутов 
                                                 ?>
                                                 <?php   foreach ($schelude as $sch): ?> 
-                                                    <input type="checkbox" name="schelude[]" id="schelude" value="<?=$sch->name?>"><?=$sch->name?><Br>
+                                                    <input type="checkbox" name="schelude[]" id="schelude" value="<?=$sch->id?>"><?=$sch->name?><Br>
                                                     
                                                 <?php endforeach;?>
                                             </div><!-- div COL -->
@@ -142,8 +142,7 @@ a{
                                                 <?php   foreach ($experience as $exp): ?> 
                                                     <div class="row ml-1">
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="checkbox" name="exper" value="<?$exp->id?>">
-                                                            <label class="form-check-label" for="inlineCheckbox1"><?=$exp->name?></label>
+                                                            <input type="checkbox" name="exper[]" id="exper" value="<?=$exp->id?>"><?=$exp->name?><Br>
                                                         </div>
                                                     </div>
                                                 <?php endforeach;?>
@@ -156,8 +155,7 @@ a{
                                                 <?php   foreach ($employment as $emp): ?> 
                                                     <div class="row ml-1">
                                                         <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="checkbox" id="<?$emp->id?>" value="option1">
-                                                            <label class="form-check-label" for="inlineCheckbox1"><?=$emp->name?></label>
+                                                            <input type="checkbox" name="employ[]" id="employ" value="<?=$emp->id?>"><?=$emp->name?><Br>
                                                         </div>
                                                     </div>
                                                 <?php endforeach;?>
@@ -171,9 +169,41 @@ a{
                         </form>                   
                 </div><!-- border_search_resume -->
         </div><!-- ROW для поиска -->
-  
+        <?php 
+        if($city===null){
+            $city="";
+            $d1="";
+        }
+        else{
+            $d1="; ";
+        }
+        if($categ===null){
+            $categ="";
+            $d2="";
+        }
+        else{
+            $d2="; ";
+        }
+        if($posname===""){
+            $posname="";
+            $d3="";
+        }
+        else{
+            $d3="; ";
+        }
+        if(($cityr!="")||($categ!="")||($posname!="")){
+            $z=" по запросу : ";
+            
+        }
+        else{
+            $z="";
+            
+        }
+        ?>
         
-
+        <div class="mt-4" style="margin-left: 4%;">
+            <h4 Class="text_name_vacancy">Найдено <?=$count?> вакансий <?=$z?><?=$posname?><?=$d3?><?=$cityr->name?><?=$d1?><?=$categ->name?><?=$d2?></h4>
+        </div>
 <!-- Для отображения информации -->
     <div class="row justify-content-md-center mb-3"> 
         <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7">  
@@ -293,13 +323,13 @@ a{
                             ?>
                         </p>
                     </div>                          <!-- /Отображение дополнительной информации для соискателя -->          
-
+                    
                     <div class="row"> <!-- кнопок действия и даты -->
                         <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10">
                             <a href="<?= Url::toRoute(['site/complete_information', 'id'=>$vacan->id]); ?>" class="links">Подробнее о вакансии</a>
                         </div>
                         <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                            <span class="p-date" style="color: #000;"><?= $vacan->dateAdd?></span>       
+                            <span class="p-date" style="color: #000;"><?= $vacan->getDate();?></span>       
                         </div>
                     </div>
                 </div> <!-- /Фон для отображения -->

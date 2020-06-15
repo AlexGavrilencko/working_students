@@ -112,19 +112,27 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= $form->field($model, 'requirement')->textarea(['placeholder'=>"Введите требования"])->label('Требования <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
                             "data-placement"=>"top", "title"=>"Требования "]) ?>
                     <?= $form->field($model, 'conditions')->textarea(['placeholder'=>"Введите условия"])->label('Условия <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
-                            "data-placement"=>"top", "title"=>"Условия"]) ?><?php
-                            // получаем все города из таблицы атрибутов
+                            "data-placement"=>"top", "title"=>"Условия"]) ?>
+                            <?php
                             $category = Profstand::find()->all();
-                            // формируем массив, с ключем равным полю 'id' и значением равным полю 'name' 
-                            $items = ArrayHelper::map($category,'id','name','code');
-                            $params = [
-                                'prompt' => 'Укажите профобласть'
-                            ];
-                            echo $form->field($model, 'category_id')->dropDownList($items,$params)->label('Профобласть <strong><big><span class="vop">?</span></big></strong>', ["data-toggle"=>"tooltip", 
-                            "data-placement"=>"top", "title"=>"Профобласть к которой отностится вакансия"]);
-                        ?>
-                        
-                   
+                            ?>
+                            <div class="row justify-content-center py-2">
+                            <select class="selectpicker m-1 profs" data-live-search="true" name="category_id" id="profs">
+                                <option data-tokens="">Профстандарт</option>
+                                <?php
+                                foreach ($category as $category): ?>
+                                    <option data-tokens="" value="<?=$category->id?>"><?=$category->name?></option>
+                                <?php endforeach;?>
+                            </select>
+                            
+                            <select class=" m-1 visibility-hidden category" data-live-search="true" name="categprof_id" id="category" >      
+                            </select>
+                            
+                            <select  class="" data-live-search="true" name="position_id" id="position" >          
+                            </select>
+                            
+                            
+                            </div>
 
                     <?php $model->WorkOrPractice=1; ?>
                         <div class="row justify-content-center">

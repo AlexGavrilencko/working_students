@@ -16,9 +16,9 @@ $c = 0;
                 <?php $profstand=Profstand::find()->all();?>
 
                 <?php foreach($profstand as $cat): ?>
-                        <div class="col-sm-6 col-md-3 col-lg-3 col-xl-3">  
-                                <a type="submit" class="btn d-block mx-auto <?php ClassHelper::getColor($c) ?> m-2" 
-                                    href="<?= Url::toRoute(['site/searchcat','id'=>$cat->id]) ?>"><?= $cat->name ?></a>
+                        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4" style=" text-align: center;">  
+                                <a type="submit" class="btn d-block inline-block mx-auto <?php ClassHelper::getColor($c) ?> m-2" style="height: 85%; line-height: inherit; "
+                                    href="<?= Url::toRoute(['site/searchcat','id'=>$cat->id]) ?>"><span style=" vertical-align: middle;"><?= $cat->name ?></span></a>
                                 <?php $c++; ?>
                         </div>  
                 <?php endforeach;?>

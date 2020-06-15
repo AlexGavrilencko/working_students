@@ -31,9 +31,17 @@ class AuthController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             $user = User::find()->where(['login' => $model->login, 'password' => $model->password])->one();
             if($user) {
-                Yii::$app->user->login($user); // <-- вот так логиним пользователя 
-                return $this->redirect(['privateoffice/personal_account']); //студент переходит на модель своего ЛК
+                if($user->rang==100) {
+                    Yii::$app->user->login($user); // <-- вот так логиним пользователя 
+                    return $this->redirect(['/admin']); //студент переходит на модель своего ЛК
                 } 
+                else{
+                    Yii::$app->user->login($user); // <-- вот так логиним пользователя 
+                return $this->redirect(['privateoffice/personal_account']); //студент переходит на модель своего ЛК
+                }
+                
+            }
+            
         }
         return $this->render('login',['model' => $model,]);
     }

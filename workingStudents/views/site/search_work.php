@@ -34,20 +34,23 @@ a{
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
             <div class="row justify-content-center"> <!-- Для поиска -->
                 <div class="border_search_resume" style=" border-color: #e5e5e5;">
-                    <form class="search_resume" >
+                    <form class="search_resume" method="get" action="<?= Url::toRoute(['site/search_work'])?>">
                         <div class="row justify-content-center">
-
-                                <div class="col-12 col-sm-10 col-md-6 col-lg-6 col-xl-6 mt-1"> <!-- Ввод должности или профессии -->
-                                    <input class="form-control btn-none " type="search" placeholder="Профессия">
-                                </div>
-                                <div class="col-12 col-sm-10 col-md-3 col-lg-3 col-xl-3 mt-1"> <!-- Ввод зарплаты -->
-                                <input class="form-control btn-none " type="search" placeholder="Зарплата от">
+                        <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Выбор категории -->
+                                    <?php
+                                        $category = Position::find()->all();
+                                    ?>
+                    
+                                
+                                    <select class="selectpicker" data-live-search="true" name="posit" style="width: 100%;">
+                                        <option data-tokens="">Должность</option>  
+                                        <?php                           
+                                            foreach ($category as $category): ?> 
+                                                <option data-tokens="" value="<?=$category->id?>"><?=$category->name?></option>  
+                                            <?php endforeach;?>    
+                                    </select>
+                                   
                             </div>
-                            <div class="col-12 col-sm-10 col-md-3 col-lg-3 col-xl-3 mt-1"> <!-- Ввод зарплаты -->
-                                    <input class="form-control btn-none " type="search" name="salard" placeholder="Зарплата до">
-                            </div>
-
-
 
                             <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Выбор города -->
                                 <?php
@@ -63,21 +66,7 @@ a{
                                 
                             </div>
 
-                            <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Выбор категории -->
-                                    <?php
-                                        $category = Attributes::find()->where(['type'=>'category'])->all();
-                                    ?>
-                    
-                                
-                                    <select class="selectpicker" data-live-search="true" name="categ" style="width: 100%;">
-                                        <option data-tokens="">Категория</option>  
-                                        <?php                           
-                                            foreach ($category as $category): ?> 
-                                                <option data-tokens="" value="<?=$category->id?>"><?=$category->name?></option>  
-                                            <?php endforeach;?>    
-                                    </select>
-                                   
-                            </div>
+                            
 
                         <!-- <div class="col-sm-2">  Для выбора стажа 
 
@@ -96,7 +85,7 @@ a{
         <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7">  
                 <br>  
                 <?php
-                    foreach ($resump as $resum): 
+                    foreach ($resume as $resum): 
                         if ($resum->ShowOrHide===1){
                            // var_dump($resum);
                 ?>   
@@ -123,7 +112,7 @@ a{
 
                                     <?php  if (!Yii::$app->user->isGuest){ ?>
                                         <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4"> 
-                                            <a href="<?= Url::toRoute(['site/selected', 'id'=>$resum->id]); ?>">
+                                            <a href="<?= Url::toRoute(['site/selected_r', 'id'=>$resum->id]); ?>">
                                                 <!--<img class="heard" src="/public/img/heard.png" alt="-->В избранное<!--">-->
                                             </a>
                                         </div>
@@ -179,8 +168,8 @@ a{
                                 <a href="<?= Url::toRoute(['site/complete_information_work', 'id'=>$resum->id]); ?>" class="links">Подробнее о резюме</a>
                             </div>
                             <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2">
-                                <span class="p-date" style="color: #000;"><?= $resum->dateAdd?></span>       
-                            </div>
+                            <span class="p-date" style="color: #000;"><?= $resum->getDate();?></span>       
+                        </div>
                     </div>
             </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->

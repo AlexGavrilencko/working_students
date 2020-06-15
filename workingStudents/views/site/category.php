@@ -35,7 +35,7 @@ $t=ArtCategory::find()->where(['id'=>$id])->one();
                             <div class="social-share text-center">
                                 <span class="social-share-title pull-left text-capitalize">By Admin On <?= $article->getDate();?></span>
                                 <ul class="text-center pull-right">
-                                    <li><a class="s-facebook" href="#"><i class="fa fa-eye"></i></a></li><?= (int) $article->viewed?>
+                                    <span class="p-date" style="color: #000;">Количество просмотров: <?= $article->viewed ?></span>
                                 </ul>
                             </div>
                         </div>

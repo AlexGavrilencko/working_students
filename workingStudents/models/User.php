@@ -41,7 +41,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['login', 'e_mail', 'username', 'password','password_repeat'], 'required'],
+           
             [['ActInactUser', 'rang'], 'integer'],
             [['date'], 'date', 'format'=>'php:Y-m-d'],
             [['date'], 'default', 'value' => date('Y-m-d')],

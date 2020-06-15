@@ -182,22 +182,21 @@ $this->title = 'Просмотр вакансии';
 
                     
  <!-- /Отображение дополнительной информации для соискателя -->
-                        <div class="row"> <!-- Просмотры и дата -->
-                               
-                                   
-                                        <div class=" col-md-8 col-lg-8 col-xl-8"> 
-                                           
-                                        </div>
-                                    <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl-2">
-                                        <span class="p-date" style="color: #000;"><?= $vacan->dateAdd?></span>       
-                                    </div>
-
-                                        <div class="col-6 col-sm-6 col-md-2 col-lg-2 col-xl-2">
-                                        <img src="/public/img/eye.png" alt="eye" style="width: 32px;"><?= $vacan->viewed ?>       
-                                        </div>
-                               
-
-                        </div> <!-- /Просмотры и дата -->
+ <br>
+                        <div class="row">
+                        <?php $vacan->dateAdd=date("Y-m-d");?>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"> 
+                                <span class="p-date" style="color: #000;">Дата добавления <?= Yii::$app->formatter->asDate($vacan->dateAdd)?></span>
+                            </div>
+                            <?php $vacan->dateChanges=date("Y-m-d");?>
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4"> 
+                                <span class="p-date" style="color: #000;">Дата изменения <?=Yii::$app->formatter->asDate($vacan->dateChanges) ?></span>
+                            </div>
+                            
+                            <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                                <span class="p-date" style="color: #000;">Количество просмотров <?=$vacan->viewed?></span>     
+                            </div>
+                        </div>
                 </div> <!-- /Фон для отображения -->
 <!-- _______________________________________________________________________________________________ -->
          

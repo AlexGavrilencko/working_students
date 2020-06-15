@@ -107,10 +107,10 @@ class Resume extends \yii\db\ActiveRecord
         ];
     }
     
-    public function getDateAdd()
+    public function getDate()
     {
         return Yii::$app->formatter->asDate($this->dateAdd);
-    }
+	}
     
     public function getDateChanges()
     {
@@ -120,6 +120,24 @@ class Resume extends \yii\db\ActiveRecord
     {
         return $this->save(false);
     }
+    public static function getSearch($query)
+	{
+        //var_dump($query);
+		$pageSize = 5;
+        $count = $query->count();
+        
+
+		$pagination = new Pagination(['totalCount' => $count, 'pageSize'=>$pageSize]);
+
+		$resume = $query->offset($pagination->offset)
+		->limit($pagination->limit)
+		->all();
+        //var_dump($vacancy);
+		$data['resume'] = $resume;
+		$data['pagination'] = $pagination;
+
+		return $data;
+	}
     public function findModel($id)
     {
         if (($model = resume::findOne($id)) !== null) {

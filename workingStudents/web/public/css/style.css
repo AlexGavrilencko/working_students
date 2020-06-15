@@ -358,7 +358,7 @@ input{
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
-    height: 80%!important;
+    height: 80%;
   }
   .header2{ 
     background-attachment: fixed;
@@ -2302,6 +2302,9 @@ padding-left: 7px;
   visibility: visible;
 }
 
+.vis{
+  visibility: hidden;
+}
 
 
 
