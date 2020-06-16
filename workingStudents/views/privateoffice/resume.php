@@ -40,15 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
         }
     }
 </script>
-<style>
-    a{
-        color: #00a4b9dc;
-        font-size: 18px;
-    }
-    a:hover{
-        color: #003941dc;
-    }
-</style>
+
 
 <?php $form = ActiveForm::begin(); ?>
 <br>

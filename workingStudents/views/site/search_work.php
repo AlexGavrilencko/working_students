@@ -16,12 +16,16 @@ use app\models\Position;
 $this->title = 'Поиск';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<style>
+  <style>
+
     a.disabled {
     pointer-events: none; /* делаем ссылку некликабельной */
     cursor: default;  /* устанавливаем курсор в виде стрелки */
     color: #999; /* цвет текста для нективной ссылки */
 }
+    .max-width-100{
+        max-width: 100%;
+    }
 a{
         color: #00a4b9dc;
         font-size: 15px;
@@ -29,7 +33,8 @@ a{
     a:hover{
         color: #003941dc;
     }
-</style>
+
+  </style>  
 
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
             <div class="row justify-content-center"> <!-- Для поиска -->

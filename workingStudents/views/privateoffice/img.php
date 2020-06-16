@@ -7,32 +7,25 @@ use yii\widgets\ActiveForm;
 $this->title = 'Загрузка фотографии профиля';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-    <style>
-     p {
-    font-family: 'Montserrat', sans-serif;
-  }
-  h1 {
-    font-family: 'Montserrat', sans-serif;
-  }
-  h2 {
-    font-family: 'Montserrat', sans-serif;
-  }
-  h3 {
-    font-family: 'Montserrat', sans-serif;
-  }
-  h4 {
-    font-family: 'Montserrat', sans-serif;
-  }
-  h5 {
-    font-family: 'Montserrat', sans-serif;
-  }
-  h6 {
-    font-family: 'Montserrat', sans-serif;
-  }
-  input{
-  font-family: 'Montserrat', sans-serif;
+  <style>
+
+    a.disabled {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #999; /* цвет текста для нективной ссылки */
 }
-</style>
+    .max-width-100{
+        max-width: 100%;
+    }
+a{
+        color: #00a4b9dc;
+        font-size: 15px;
+    }
+    a:hover{
+        color: #003941dc;
+    }
+
+  </style>  
 <br>
     <div class="site-registration text-center">
          <div class="text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">

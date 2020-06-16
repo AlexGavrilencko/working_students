@@ -13,7 +13,25 @@ $this->params['breadcrumbs'][] = $this->title;
       //var_dump($user);die();
  ?>
 
- 
+<style>
+
+    a.disabled {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #999; /* цвет текста для нективной ссылки */
+}
+    .max-width-100{
+        max-width: 100%;
+    }
+a{
+        color: #00a4b9dc;
+        font-size: 15px;
+    }
+    a:hover{
+        color: #003941dc;
+    }
+
+  </style>  
 <!-- Для свсех стандартно так как в таблице user храняться общие данные -->
         <div class="row d-flex text-dark flex-row justify-content-center m-2 p-1">
             <div class=" bd-highlight col-12 col-sm-12 col-md-10 col-lg-10 col-xl-10">

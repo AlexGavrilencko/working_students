@@ -67,9 +67,7 @@ a{
                                     <input class="form-control btn-none " type="search" name="salard" placeholder="Зарплата до">
                                 </div>
 
-                            </div>
-
-                            <div class="row justify-content-center py-2" >
+                                          
                                 <?php
                                 $category = Profstand::find()->all();
                                 ?>
@@ -81,20 +79,11 @@ a{
                                     <?php endforeach;?>
                                 </select>
                                 
-                                
-                               
-
-                                
-                            </div>
-
-
-                            <div class="row justify-content-center">
-
 
                                 <?php
                                     $city = Attributes::find()->where(['type'=>'city'])->all();  // получаем все города из таблицы атрибутов 
                                 ?>    
-                                <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3 mt-1"> <!-- Ввод зарплаты -->                                   
+                                <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-3  m-1"> <!-- Ввод зарплаты -->                                   
                                     <select class="selectpicker" data-live-search="true" name="city">
                                         <option data-tokens="">Город</option>  
                                         <?php                           
@@ -108,11 +97,11 @@ a{
 
 
                              
-                                <div class="col-6 col-sm-5 col-md-2 col-lg-2 col-xl-3 mt-1"> <!-- Кнопка для поиска -->
+                                <div class="col-6 col-sm-5 col-md-2 col-lg-2 col-xl-3  m-1"> <!-- Кнопка для поиска -->
                                     <input type="button" class="btn btn-secondary1" value="Фильтры" onclick="disp(document.getElementById('form1'))">
                                 </div>
 
-                                <div class="col-6 col-sm-5 col-md-2 col-lg-2 col-xl-3 mt-1"> <!-- Кнопка для поиска -->
+                                <div class="col-6 col-sm-5 col-md-2 col-lg-2 col-xl-3  m-1"> <!-- Кнопка для поиска -->
                                     <button type="submit" class="btn btn-secondary1">Найти</button>
                                 </div>
 

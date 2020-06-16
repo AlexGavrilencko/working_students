@@ -11,6 +11,23 @@ use yii\captcha\Captcha;
 $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<style>
+    a.disabled {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #999; /* цвет текста для нективной ссылки */
+}
+    .max-width-100{
+        max-width: 100%;
+    }
+a{
+        color: #00a4b9dc;
+        font-size: 15px;
+    }
+    a:hover{
+        color: #003941dc;
+    }
+</style>
 <div class="site-contact text-dark d-flex align-items-center justify-content-center h-100 flex-row bd-highlight flex-column">
     <div class="pole border_search31">
     <h3 class="text-center text_name_vacancy">Свзяаться с нами</h3>

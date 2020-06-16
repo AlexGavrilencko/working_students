@@ -4,6 +4,23 @@ use yii\widgets\LinkPager;
 use app\models\ArtCategory;
 $t=ArtCategory::find()->where(['id'=>$id])->one();
 ?>
+<style>
+    a.disabled {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #999; /* цвет текста для нективной ссылки */
+}
+    .max-width-100{
+        max-width: 100%;
+    }
+a{
+        color: #00a4b9dc;
+        font-size: 15px;
+    }
+    a:hover{
+        color: #003941dc;
+    }
+</style>
 
 <div class=" text-center text-uppercase mt-2">
 <h4 class="entry-title">Статьи по категории: <i Class="text_name_vacancy"><?= $t->title?></i></h3>
