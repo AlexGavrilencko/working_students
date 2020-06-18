@@ -342,7 +342,7 @@ class SiteController extends Controller
         $city = Yii::$app->request->get('city');
         $categ = Yii::$app->request->get('categ');
         $categ_pr = Yii::$app->request->get('categ_pr');
-        $posiyion = Yii::$app->request->get('position');
+        $position = Yii::$app->request->get('position');
         $positt = Yii::$app->request->get('posit');
         $salaro = Yii::$app->request->get('salaro');
         $salard = Yii::$app->request->get('salard');
