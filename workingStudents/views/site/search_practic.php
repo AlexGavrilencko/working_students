@@ -53,7 +53,7 @@ a:hover{
                         <form class="search_resume" method="get" action="<?= Url::toRoute(['site/search_practic'])?>">
                             <div class="row justify-content-center">
                                 
-                            <div class="row justify-content-center py-2">
+                            
                                 <?php
                                 $category = Profstand::find()->all();
                                 ?>
@@ -64,16 +64,8 @@ a:hover{
                                         <option data-tokens="" value="<?=$category->id?>"><?=$category->name?></option>
                                     <?php endforeach;?>
                                 </select>
-                                
-                                <select class=" m-1 visibility-hidden category" data-live-search="true" name="categ_pr" id="category" >
-                                         
-                                </select>
-                               
 
-                                <select class="" data-live-search="true" name="position" id="position" > 
-                                            
-                                </select>
-                            </div>
+                           
 
                                 <?php
                                     $city = Attributes::find()->where(['type'=>'city'])->all();  // получаем все города из таблицы атрибутов 

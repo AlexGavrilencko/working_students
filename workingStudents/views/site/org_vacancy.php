@@ -13,9 +13,17 @@ use yii\helpers\ArrayHelper;
 $this->title = 'Мои вакансии';
 ?>     
 <style>
-    a{
+    a.disabled {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #999; /* цвет текста для нективной ссылки */
+}
+    .max-width-100{
+        max-width: 100%;
+    }
+a{
         color: #00a4b9dc;
-        font-size: 18px;
+        font-size: 15px;
     }
     a:hover{
         color: #003941dc;

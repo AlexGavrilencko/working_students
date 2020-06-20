@@ -52,50 +52,71 @@ PublicAsset::register($this);
   input{
   font-family: 'Montserrat', sans-serif;
 }
-</style>
+
+
+    a.disabled {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #999; /* цвет текста для нективной ссылки */
+}
+    .max-width-100{
+        max-width: 100%;
+    }
+a{
+        color: #00a4b9dc;
+        font-size: 15px;
+    }
+    a:hover{
+        color: #003941dc;
+    }
+
+  </style>  
     <header class="header1">
     <nav class="navbar navbar-expand-lg light"> <!-- стиль для меню сайта -->
-               
-               <a href="/site/index" class="navbar-brad"><img src="/public/img/logo1.png" alt="Logo"></a>  <!-- логотип в меню сайта -->
-                          
-               <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                  
-                      <div class="collapse navbar-collapse " id="collapsibleNavbar">
 
-                          <ul class="navbar-nav">  <!-- переходы в меню -->
-                      
-                              <li class="nav-item">
-                                  <a class="nav-link menugreen h6" href="<?= Url::toRoute(['site/search','id'=>'0']) ?>">Вакансии</a>
-                              </li>
-                      
-                              <li class="nav-item">
-                                  <a class="nav-link menugreen h6" href="/site/search_work">Резюме</a>
-                              </li> 
-                              <li class="nav-item">
-                                <a class="nav-link h6 menugreen" href="<?= Url::toRoute(['site/search_practic','id'=>'0']) ?>">Практика</a>
+            <a href="/site/index" class="navbar-brad"><img src="/public/img/logo.jpg" alt="Logo"></a>  <!-- логотип в меню сайта -->
+
+                
+                       
+                            <button class="navbar-toggler navbar-toggler-right navbar-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"> <!-- иконка для свернутого меню -->
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+
+                        <div class="collapse navbar-collapse " id="collapsibleNavbar">
+                            <ul class="navbar-nav">  <!-- переходы в меню для гостя-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link menugreen h6" href="<?= Url::toRoute(['site/search','id'=>'0']) ?>">Вакансии</a>
+                                </li>
+                        
+                                <li class="nav-item">
+                                    <a class="nav-link h6 menugreen" href="<?= Url::toRoute(['site/search_work','id'=>'0']) ?>">Резюме</a>
+                                </li> 
+                                <li class="nav-item">
+                                    <a class="nav-link h6 menugreen" href="<?= Url::toRoute(['site/search_practic','id'=>'0']) ?>">Практика</a>
                                 </li> 
 
-                              <li class="nav-item">
-                                <a class="nav-link h6 menugreen" href="/site/indexwork">Работодателю</a>
-                            </li>
-                            <li class="nav-item">
+                                <li class="nav-item">
+                                    <a class="nav-link h6 menugreen" href="/site/indexwork">Работодателю</a>
+                                </li>
+
+                                <li class="nav-item">
                                     <a class="nav-link h6 menugreen" href="/site/indexartic">Cтатьи</a>
                                 </li>
+                            </ul>
 
-                          </ul>
+                                <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
 
-                            <ul class="navbar-nav ml-auto">  <!-- переходы в меню для гостя ссылка на ВХОД -->
-                                <li class="nav-item">
-                                    <a class=" nav-link menugreen h6" href="/auth/login" id="vxod">Вход</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/auth/login" class="btn btnorange ml-2">Разместить резюме</a>
-                                </li>
-                            </ul>  
-                      </div>
-          </nav>
+                                    <li class="nav-item">
+                                        <a class=" nav-link menugreen h6" href="/auth/login" id="vxod">Вход</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/auth/login" class="btn btnorange ml-2">Разместить резюме</a>
+                                    </li>
+
+                                </ul>
+                        </div>
+            </nav>
 
   
         <?= $content ?>

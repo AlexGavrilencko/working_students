@@ -10,15 +10,24 @@ use app\models\Position;
 use yii\helpers\Html;
 use yii\helpers\Url;
 ?>
-<style>
-    a{
+  <style>
+    a.disabled {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #999; /* цвет текста для нективной ссылки */
+}
+    .max-width-100{
+        max-width: 100%;
+    }
+a{
         color: #00a4b9dc;
         font-size: 15px;
     }
     a:hover{
         color: #003941dc;
     }
-</style>
+
+  </style>  
  <div class=" text-center text-uppercase mt-2">
 	<h4 class="entry-title">Избранное</h3>
 </div>
@@ -29,7 +38,7 @@ $user = Yii::$app->user->identity;
     // ______________________________________ВСЕ ДЛЯ ИЗБРАННОГО_________________________________________________________ 
     if($user->rang==10){//условие для вывода избранного для студента?>
         <!-- Для отображения информации -->
-        <div class="row justify-content-md-center "> 
+        <div class="row justify-content-md-center  mb-3"> 
             <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7 mt-4">  
                 <?php
                 foreach ($select as $sel):
@@ -179,7 +188,7 @@ $user = Yii::$app->user->identity;
                             if ($resum->ShowOrHide===1){
                 ?>   
                             <!-- _______________________________________________________________________________________________ -->
-                                <div class="border_search4 "> <!-- Фон для отображения -->
+                                <div class="border_search3 "> <!-- Фон для отображения -->
                                     <div class="row"> 
                                     
                                         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Отображение фотографии -->

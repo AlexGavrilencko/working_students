@@ -7,7 +7,28 @@ use yii\widgets\ActiveForm;
 
 ?>
           
+<style>
+   P { 
+    text-indent: 1.5em; /* Отступ первой строки */
+    text-align: justify; /* Выравнивание по ширине */
+   }
+    a.disabled {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #999; /* цвет текста для нективной ссылки */
+}
+    .max-width-100{
+        max-width: 100%;
+    }
+a{
+        color: #00a4b9dc;
+        font-size: 15px;
+    }
+    a:hover{
+        color: #003941dc;
+    }
 
+  </style>  
 
     <div class="container-fluid  d-flex flex-row bd-highlight flex-column pole"> 
         <div class="row justify-content-md-center border_search3 text-dark padding_search pers_data_prot">

@@ -12,15 +12,25 @@ use yii\helpers\ArrayHelper;
 
 $this->title = 'Опубликованные предложения по практике';
 ?>
-<style>
-    a{
+  <style>
+
+    a.disabled {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #999; /* цвет текста для нективной ссылки */
+}
+    .max-width-100{
+        max-width: 100%;
+    }
+a{
         color: #00a4b9dc;
         font-size: 15px;
     }
     a:hover{
         color: #003941dc;
     }
-</style>
+
+  </style>  
 <!-- Для отображения информации -->
 <div class="container-fluid d-flex flex-row bd-highlight flex-column">
     <div class="row justify-content-md-center"> 

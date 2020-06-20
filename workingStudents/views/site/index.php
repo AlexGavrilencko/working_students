@@ -8,6 +8,23 @@ use app\models\Profstand;
 $this->title = 'Главная';
 $c = 0;
 ?>
+<style>
+    a.disabled {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #999; /* цвет текста для нективной ссылки */
+}
+    .max-width-100{
+        max-width: 100%;
+    }
+a{
+        color: #00a4b9dc;
+        font-size: 15px;
+    }
+    a:hover{
+        color: #003941dc;
+    }
+</style>
 <div class="container">
     <div class="container-fluid d-flex flex-row bd-highlight flex-column"> <!-- Контейнер для отображения категорий -->
         <h5 class=" text-center m-2">Найдите работу в вашем городе</h5> <!-- Надо сделать так, чтобы город был автоматически, как на других сайтах -->

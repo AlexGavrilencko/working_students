@@ -3,7 +3,23 @@ use yii\helpers\Url;
 use yii\widgets\LinkPager;
 ?>
 <!--main content start-->
-
+<style>
+    a.disabled {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #999; /* цвет текста для нективной ссылки */
+}
+    .max-width-100{
+        max-width: 100%;
+    }
+a{
+        color: #00a4b9dc;
+        font-size: 15px;
+    }
+    a:hover{
+        color: #003941dc;
+    }
+</style>
     <div class="container-fluid d-flex flex-row bd-highlight flex-column">
         <div class="row justify-content-md-center">
             <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7 mt-4">
