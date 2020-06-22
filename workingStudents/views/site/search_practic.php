@@ -145,7 +145,7 @@ a:hover{
         ?>
         
         <div class="mt-4" style="margin-left: 4%;">
-            <h4 Class="text_name_vacancy">Найдено <?=$count?> вакансий <?=$z?><?=$categ->name?><?=$d2?><?=$categ_pr->name?></h4>
+            <h4 Class="text_name_vacancy">Найдено <?=$count?> предложений по практике 
         </div>   
 
 <!-- Для отображения информации -->
